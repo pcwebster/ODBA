@@ -134,11 +134,13 @@ def freeze_top(ws, data_start_row):
 def run_queries(parquet_path):
     con = duckdb.connect()
     p = str(parquet_path).replace("\\", "/")
+    # DBDP-50: bind path as parameter instead of f-string interpolation
+    # DuckDB supports ? placeholders: con.execute("... read_parquet(?) ...", [p])
 
     print("  Running queries...")
 
     # 1. Summary by appropriation type
-    q_summary = con.execute(f"""
+    q_summary = con.execute("""
         SELECT
             appropriation_type                         AS "Appropriation Type",
             exhibit_type                               AS "Exhibit",
@@ -149,14 +151,14 @@ def run_queries(parquet_path):
             CASE WHEN SUM(cost_prior_year) > 0
                  THEN (SUM(cost_fy2027) - SUM(cost_prior_year)) / SUM(cost_prior_year)
                  ELSE NULL END                         AS "Change (%)"
-        FROM read_parquet('{p}')
+        FROM read_parquet(?)
         WHERE cost_prior_year IS NOT NULL OR cost_fy2027 IS NOT NULL
         GROUP BY 1, 2
         ORDER BY "FY2027 Request ($M)" DESC NULLS LAST
-    """).df()
+    """, [p]).df()
 
     # 2. By agency
-    q_agency = con.execute(f"""
+    q_agency = con.execute("""
         SELECT
             service_agency_acronym                     AS "Agency",
             service_agency_name                        AS "Agency Name",
@@ -168,13 +170,13 @@ def run_queries(parquet_path):
             CASE WHEN SUM(cost_prior_year) > 0
                  THEN (SUM(cost_fy2027) - SUM(cost_prior_year)) / SUM(cost_prior_year)
                  ELSE NULL END                         AS "Change (%)"
-        FROM read_parquet('{p}')
+        FROM read_parquet(?)
         GROUP BY 1, 2, 3
         ORDER BY "FY2027 Request ($M)" DESC NULLS LAST
-    """).df()
+    """, [p]).df()
 
     # 3. Year-over-year by line item (XML records with both years populated)
-    q_yoy = con.execute(f"""
+    q_yoy = con.execute("""
         SELECT
             service_agency_acronym                     AS "Agency",
             appropriation_type                         AS "Type",
@@ -187,15 +189,15 @@ def run_queries(parquet_path):
             CASE WHEN cost_prior_year > 0
                  THEN (cost_fy2027 - cost_prior_year) / cost_prior_year
                  ELSE NULL END                         AS "Change (%)"
-        FROM read_parquet('{p}')
+        FROM read_parquet(?)
         WHERE file_format = 'XML'
           AND cost_prior_year IS NOT NULL
           AND cost_fy2027     IS NOT NULL
         ORDER BY ABS(cost_fy2027 - cost_prior_year) DESC NULLS LAST
-    """).df()
+    """, [p]).df()
 
     # 4. RDT&E by Budget Activity
-    q_ba = con.execute(f"""
+    q_ba = con.execute("""
         SELECT
             budget_activity_number                     AS "BA",
             budget_activity_title                      AS "Budget Activity Title",
@@ -206,14 +208,14 @@ def run_queries(parquet_path):
             ROUND(SUM(cost_fy2029),     1)             AS "FY2029 FYDP ($M)",
             ROUND(SUM(cost_fy2030),     1)             AS "FY2030 FYDP ($M)",
             ROUND(SUM(cost_fy2031),     1)             AS "FY2031 FYDP ($M)"
-        FROM read_parquet('{p}')
+        FROM read_parquet(?)
         WHERE appropriation_type = 'RDT&E'
         GROUP BY 1, 2
         ORDER BY CAST(budget_activity_number AS INTEGER) NULLS LAST
-    """).df()
+    """, [p]).df()
 
     # 5. Procurement detail
-    q_proc = con.execute(f"""
+    q_proc = con.execute("""
         SELECT
             service_agency_acronym                     AS "Agency",
             line_item_number                           AS "Line #",
@@ -229,13 +231,13 @@ def run_queries(parquet_path):
             ROUND(cost_fy2030,      1)                 AS "FY2030 ($M)",
             ROUND(cost_fy2031,      1)                 AS "FY2031 ($M)",
             source_file                                AS "Source File"
-        FROM read_parquet('{p}')
+        FROM read_parquet(?)
         WHERE appropriation_type = 'Procurement'
         ORDER BY service_agency_acronym, budget_activity_number, line_item_number
-    """).df()
+    """, [p]).df()
 
     # 6. RDT&E detail
-    q_rdte = con.execute(f"""
+    q_rdte = con.execute("""
         SELECT
             service_agency_acronym                     AS "Agency",
             program_element                            AS "PE Number",
@@ -249,13 +251,13 @@ def run_queries(parquet_path):
             ROUND(cost_fy2030,      1)                 AS "FY2030 ($M)",
             ROUND(cost_fy2031,      1)                 AS "FY2031 ($M)",
             source_file                                AS "Source File"
-        FROM read_parquet('{p}')
+        FROM read_parquet(?)
         WHERE appropriation_type = 'RDT&E'
         ORDER BY service_agency_acronym, budget_activity_number, program_element
-    """).df()
+    """, [p]).df()
 
     # 7. All records
-    q_all = con.execute(f"""
+    q_all = con.execute("""
         SELECT
             record_id, budget_year, submission_date,
             service_agency_acronym AS "agency_acronym",
@@ -271,9 +273,9 @@ def run_queries(parquet_path):
             ROUND(cost_fy2030,      1) AS cost_fy2030,
             ROUND(cost_fy2031,      1) AS cost_fy2031,
             cost_units, file_format, source_file
-        FROM read_parquet('{p}')
+        FROM read_parquet(?)
         ORDER BY appropriation_type, service_agency_acronym, line_item_number
-    """).df()
+    """, [p]).df()
 
     return {
         "Summary":        q_summary,

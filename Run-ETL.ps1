@@ -51,15 +51,20 @@ if (-not $PythonCmd) {
 
 # ── Step 2: Install required packages ────────────────────────────────────────
 Write-Host ""
-Write-Host "  [2/3] Installing required Python packages (pandas, pyarrow)..." -ForegroundColor White
+Write-Host "  [2/3] Installing required Python packages from requirements.txt..." -ForegroundColor White
 
-foreach ($pkg in @("pandas", "pyarrow")) {
-    Write-Host "        Checking $pkg..." -ForegroundColor Gray
-    & $PythonCmd -m pip install $pkg --quiet 2>&1 | Out-Null
+$ReqFile = Join-Path $ScriptDir "requirements.txt"
+if (Test-Path $ReqFile) {
+    & $PythonCmd -m pip install -r $ReqFile --quiet 2>&1 | Out-Null
     if ($LASTEXITCODE -ne 0) {
-        Write-Host "        [WARN] pip returned an error for $pkg" -ForegroundColor Yellow
+        Write-Host "        [WARN] pip returned an error installing requirements" -ForegroundColor Yellow
     } else {
-        Write-Host "        [OK] $pkg" -ForegroundColor Green
+        Write-Host "        [OK] all packages installed" -ForegroundColor Green
+    }
+} else {
+    Write-Host "        [WARN] requirements.txt not found -- installing unpinned fallback" -ForegroundColor Yellow
+    foreach ($pkg in @("pandas", "pyarrow", "defusedxml")) {
+        & $PythonCmd -m pip install $pkg --quiet 2>&1 | Out-Null
     }
 }
 

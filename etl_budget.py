@@ -25,7 +25,7 @@ import re
 import sys
 import json
 import hashlib
-import xml.etree.ElementTree as ET
+import defusedxml.ElementTree as ET  # DBDP-39: defense-in-depth against XXE/entity-expansion
 from pathlib import Path
 
 import pandas as pd

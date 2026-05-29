@@ -1,0 +1,13 @@
+# ODBA — FY2027 Budget ETL Pipeline
+# Pinned dependencies (DBDP-38)
+# Install: pip install -r requirements.txt
+#
+# To regenerate pinned versions after upgrading:
+#   pip install --upgrade pandas pyarrow duckdb openpyxl defusedxml
+#   pip freeze | grep -E "^(pandas|pyarrow|duckdb|openpyxl|defusedxml)==" > requirements.txt
+
+pandas==2.3.3
+pyarrow==24.0.0
+duckdb==1.5.3
+openpyxl==3.1.5
+defusedxml==0.7.1

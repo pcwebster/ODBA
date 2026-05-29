@@ -41,10 +41,20 @@ if (-not $PythonCmd) {
 
 # ── Step 2: Install packages ──────────────────────────────────────────────────
 Write-Host ""
-Write-Host "  [2/3] Installing required packages (duckdb, openpyxl)..." -ForegroundColor White
-foreach ($pkg in @("duckdb", "openpyxl")) {
-    & $PythonCmd -m pip install $pkg --quiet 2>&1 | Out-Null
-    Write-Host "        [OK] $pkg" -ForegroundColor Green
+Write-Host "  [2/3] Installing required packages from requirements.txt..." -ForegroundColor White
+$ReqFile = Join-Path $ScriptDir "requirements.txt"
+if (Test-Path $ReqFile) {
+    & $PythonCmd -m pip install -r $ReqFile --quiet 2>&1 | Out-Null
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "        [WARN] pip returned an error installing requirements" -ForegroundColor Yellow
+    } else {
+        Write-Host "        [OK] all packages installed" -ForegroundColor Green
+    }
+} else {
+    Write-Host "        [WARN] requirements.txt not found -- installing unpinned fallback" -ForegroundColor Yellow
+    foreach ($pkg in @("duckdb", "openpyxl")) {
+        & $PythonCmd -m pip install $pkg --quiet 2>&1 | Out-Null
+    }
 }
 
 # ── Step 3: Generate report ───────────────────────────────────────────────────
