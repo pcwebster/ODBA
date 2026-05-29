@@ -1,0 +1,40 @@
+# ── Raw data folders (downloaded from DoD Comptroller) ────────────────────────
+01_Operation_and_Maintenance/
+02_Procurement/
+03_RDT_and_E/
+06_Defense_Working_Capital_Fund/
+09_Defense_Health_Program/
+09_Military_Health_System/
+
+# ── Generated outputs ──────────────────────────────────────────────────────────
+output/
+*.parquet
+*.xlsx
+
+# ── Python ─────────────────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+
+# ── Scratch / backup files ─────────────────────────────────────────────────────
+*.fix
+*.bak
+*.orig
+*.tmp
+
+# ── OS ─────────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Secrets ────────────────────────────────────────────────────────────────────
+.env
+*.pem
