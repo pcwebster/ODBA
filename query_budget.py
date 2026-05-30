@@ -145,7 +145,7 @@ def run_queries(parquet_path):
             appropriation_type                         AS "Appropriation Type",
             exhibit_type                               AS "Exhibit",
             COUNT(*)                                   AS "# Line Items",
-            ROUND(SUM(cost_prior_year),  1)            AS "FY2026 Enacted ($M)",
+            ROUND(SUM(cost_prior_year),  1)            AS "Prior Year ($M)",
             ROUND(SUM(cost_fy2027),      1)            AS "FY2027 Request ($M)",
             ROUND(SUM(cost_fy2027) - SUM(cost_prior_year), 1) AS "Change ($M)",
             CASE WHEN SUM(cost_prior_year) > 0
@@ -164,7 +164,7 @@ def run_queries(parquet_path):
             service_agency_name                        AS "Agency Name",
             appropriation_type                         AS "Appropriation",
             COUNT(*)                                   AS "# Line Items",
-            ROUND(SUM(cost_prior_year), 1)             AS "FY2026 Enacted ($M)",
+            ROUND(SUM(cost_prior_year), 1)             AS "Prior Year ($M)",
             ROUND(SUM(cost_fy2027),     1)             AS "FY2027 Request ($M)",
             ROUND(SUM(cost_fy2027) - SUM(cost_prior_year), 1) AS "Change ($M)",
             CASE WHEN SUM(cost_prior_year) > 0
@@ -183,7 +183,7 @@ def run_queries(parquet_path):
             COALESCE(NULLIF(line_item_title,''), line_item_title) AS "Line Item / Program",
             program_element                            AS "PE / Line #",
             budget_activity_number                     AS "BA",
-            ROUND(cost_prior_year, 1)                  AS "FY2026 Enacted ($M)",
+            ROUND(cost_prior_year, 1)                  AS "Prior Year ($M)",
             ROUND(cost_fy2027,     1)                  AS "FY2027 Request ($M)",
             ROUND(cost_fy2027 - cost_prior_year, 1)    AS "Change ($M)",
             CASE WHEN cost_prior_year > 0
@@ -297,17 +297,18 @@ def build_workbook(sheets):
     wb = openpyxl.Workbook()
     wb.remove(wb.active)  # remove default blank sheet
 
-    num_money = ["FY2026 Enacted ($M)", "FY2027 Request ($M)",
-                 "Change ($M)", "FY2026 ($M)", "FY2027 ($M)",
+    num_money = ["Prior Year ($M)",      # Summary/Agency/YoY (FY2025 for MHS, FY2026 for others)
+                 "FY2026 Enacted ($M)",  # Procurement current_year; RDT&E by BA prior_year
+                 "FY2027 Request ($M)", "Change ($M)",
+                 "FY2026 ($M)", "FY2027 ($M)",
                  "FY2028 ($M)", "FY2028 FYDP ($M)",
                  "FY2029 ($M)", "FY2029 FYDP ($M)",
                  "FY2030 ($M)", "FY2030 FYDP ($M)",
                  "FY2031 ($M)", "FY2031 FYDP ($M)",
-                 "All Prior ($M)", "FY2026 Enacted ($M)",
+                 "All Prior ($M)",
                  "cost_prior_year", "cost_fy2027", "cost_fy2028",
                  "cost_fy2029", "cost_fy2030", "cost_fy2031",
-                 "# Programs", "# Line Items",
-                 "FY2026 Enacted ($M)"]
+                 "# Programs", "# Line Items"]
     pct_money  = ["Change (%)"]
     delta_money = ["Change ($M)"]
 
@@ -387,7 +388,7 @@ def main():
     print()
     print("  Tabs in the workbook:")
     for name, df in sheets.items():
-        print(f"    {name:<20} {len(df):>4} rows")
+        print(f"    {name:<23} {len(df):>5} rows")
     print("=" * 65)
     print()
 

@@ -11,8 +11,8 @@
 #   JSON — DWCF (RF-1)       :  06_Defense_Working_Capital_Fund/
 #   JSON — DHP               :  09_Defense_Health_Program/
 #
-# Phase 2 (this version):
-#   JSON files now parsed at line-item level via Grid/Rows structure.
+# JSON parsing:
+#   JSON files parsed at line-item level via Grid/Rows structure.
 #   Values in source JSON are in thousands; converted to millions here.
 #   Aggregate volume files (OM_Volume1_Part1.json etc.) are skipped to
 #   avoid double-counting individual agency files.
@@ -340,7 +340,7 @@ def parse_rdte_xml(filepath):
 
 # =============================================================================
 # JSON Parser — O&M, DWCF, DHP
-# Phase 2: extracts line items from Grid/Rows structure.
+# Extracts line items from Grid/Rows structure.
 # Values in source JSON are in thousands; converted to millions here.
 # Falls back to metadata-level record if no Grid data found.
 # =============================================================================
@@ -1085,7 +1085,7 @@ def collect_files():
 def main():
     print()
     print("=" * 65)
-    print("  ODBA — FY2027 Budget ETL  (Phase 3 — MHS)")
+    print("  ODBA — FY2027 Budget ETL  (Defense-Wide Agencies, PB2027)")
     print("=" * 65)
     print(f"  Data directory : {DATA_DIR}")
     print(f"  Output file    : {OUTPUT_FILE}")
@@ -1137,7 +1137,7 @@ def main():
 
     # ── Parse JSON files ──────────────────────────────────────────────────────
     print()
-    print("── Parsing JSON files (Phase 2 — line-item extraction) ───────")
+    print("── Parsing JSON files (OP-5 / line-item extraction) ─────────")
     skipped_agg = 0
     for fp in json_files:
         if fp.name in JSON_AGGREGATE_FILES:
@@ -1205,6 +1205,44 @@ def main():
     print(f"  Size   :  {size_mb:.2f} MB")
     print(f"  Rows   :  {len(df):,}")
     print(f"  Cols   :  {len(df.columns)}")
+
+    # -- Post-run validation --------------------------------------------------
+    VALID_EXHIBIT_TYPES = {"P-40", "R-2", "OP-5", "RF-1", "DHP-J-Book", "DHP-SMR"}
+    fails = []
+
+    print()
+    print("-- Post-run validation -------------------------------------------")
+
+    # (a) exhibit_type: only expected values
+    bad_et = set(df["exhibit_type"].unique()) - VALID_EXHIBIT_TYPES
+    if not bad_et:
+        print(f"  [PASS] exhibit_type        : all values within expected set")
+    else:
+        print(f"  [FAIL] exhibit_type        : unexpected values: {sorted(bad_et)}")
+        fails.append("exhibit_type")
+
+    # (b) data_lifecycle_stage: non-null / non-empty on 100% of records
+    null_ls = (df["data_lifecycle_stage"].isna() | (df["data_lifecycle_stage"] == "")).sum()
+    if null_ls == 0:
+        print(f"  [PASS] data_lifecycle_stage: 100% populated ({len(df):,} records)")
+    else:
+        print(f"  [FAIL] data_lifecycle_stage: {null_ls:,} null/empty records")
+        fails.append("data_lifecycle_stage")
+
+    # (c) source_file: non-null / non-empty on 100% of records
+    null_sf = (df["source_file"].isna() | (df["source_file"] == "")).sum()
+    if null_sf == 0:
+        print(f"  [PASS] source_file         : 100% populated ({len(df):,} records)")
+    else:
+        print(f"  [FAIL] source_file         : {null_sf:,} null/empty records")
+        fails.append("source_file")
+
+    print()
+    if fails:
+        print(f"  VALIDATION FAILED -- {len(fails)} check(s): {', '.join(fails)}")
+    else:
+        print(f"  All validation checks passed.")
+
     print()
     print("=" * 65)
     print("  ETL complete.")
