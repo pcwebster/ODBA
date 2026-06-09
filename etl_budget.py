@@ -1207,7 +1207,7 @@ def main():
     print(f"  Cols   :  {len(df.columns)}")
 
     # -- Post-run validation --------------------------------------------------
-    VALID_EXHIBIT_TYPES = {"P-40", "R-2", "OP-5", "RF-1", "DHP-J-Book", "DHP-SMR"}
+    VALID_EXHIBIT_TYPES = {"P-40", "R-2", "OP-5", "RF-1", "DHP", "DHP-J-Book", "DHP-SMR"}  # DBDP-68
     fails = []
 
     print()
