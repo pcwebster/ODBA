@@ -119,7 +119,7 @@ def add_title(ws, title, subtitle=None, row=1):
     ws.cell(row=row, column=1, value=title).font = TITLE_FONT
     if subtitle:
         ws.cell(row=row + 1, column=1, value=subtitle).font = Font(italic=True, size=10, color="595959")
-    return row + (3 if subtitle else 2)
+    return row + (2 if subtitle else 1)   # DBDP-66: header directly under subtitle (row 3) so skiprows=2 works
 
 
 def freeze_top(ws, data_start_row):
@@ -145,14 +145,14 @@ def run_queries(parquet_path):
             appropriation_type                         AS "Appropriation Type",
             exhibit_type                               AS "Exhibit",
             COUNT(*)                                   AS "# Line Items",
-            ROUND(SUM(cost_prior_year),  1)            AS "Prior Year ($M)",
-            ROUND(SUM(cost_fy2027),      1)            AS "FY2027 Request ($M)",
-            ROUND(SUM(cost_fy2027) - SUM(cost_prior_year), 1) AS "Change ($M)",
+            ROUND(COALESCE(SUM(cost_prior_year), 0), 1)       AS "Prior Year ($M)",
+            ROUND(COALESCE(SUM(cost_fy2027),     0), 1)       AS "FY2027 Request ($M)",
+            ROUND(COALESCE(SUM(cost_fy2027), 0) - COALESCE(SUM(cost_prior_year), 0), 1) AS "Change ($M)",
             CASE WHEN SUM(cost_prior_year) > 0
                  THEN (SUM(cost_fy2027) - SUM(cost_prior_year)) / SUM(cost_prior_year)
                  ELSE NULL END                         AS "Change (%)"
         FROM read_parquet(?)
-        WHERE cost_prior_year IS NOT NULL OR cost_fy2027 IS NOT NULL
+        -- DBDP-66 TC-ER-09R: no dollar filter, so every appropriation_type (incl. DWCF) gets a Summary row
         GROUP BY 1, 2
         ORDER BY "FY2027 Request ($M)" DESC NULLS LAST
     """, [p]).df()
@@ -183,7 +183,7 @@ def run_queries(parquet_path):
             COALESCE(NULLIF(line_item_title,''), line_item_title) AS "Line Item / Program",
             program_element                            AS "PE / Line #",
             budget_activity_number                     AS "BA",
-            ROUND(cost_prior_year, 1)                  AS "Prior Year ($M)",
+            ROUND(cost_prior_year, 1)                  AS "FY2025 Actuals ($M)",
             ROUND(cost_fy2027,     1)                  AS "FY2027 Request ($M)",
             ROUND(cost_fy2027 - cost_prior_year, 1)    AS "Change ($M)",
             CASE WHEN cost_prior_year > 0
@@ -202,7 +202,7 @@ def run_queries(parquet_path):
             budget_activity_number                     AS "BA",
             budget_activity_title                      AS "Budget Activity Title",
             COUNT(*)                                   AS "# Programs",
-            ROUND(SUM(cost_prior_year), 1)             AS "FY2026 Enacted ($M)",
+            ROUND(SUM(cost_prior_year), 1)             AS "FY2025 Actuals ($M)",
             ROUND(SUM(cost_fy2027),     1)             AS "FY2027 Request ($M)",
             ROUND(SUM(cost_fy2028),     1)             AS "FY2028 FYDP ($M)",
             ROUND(SUM(cost_fy2029),     1)             AS "FY2029 FYDP ($M)",
@@ -223,9 +223,9 @@ def run_queries(parquet_path):
             budget_activity_number                     AS "BA",
             budget_activity_title                      AS "BA Title",
             ROUND(cost_all_prior_years, 1)             AS "All Prior ($M)",
-            ROUND(cost_prior_year,  1)                 AS "FY2026 ($M)",
+            ROUND(cost_prior_year,  1)                 AS "FY2025 Actuals ($M)",
             ROUND(cost_current_year,1)                 AS "FY2026 Enacted ($M)",
-            ROUND(cost_fy2027,      1)                 AS "FY2027 ($M)",
+            ROUND(cost_fy2027,      1)                 AS "FY2027 Request ($M)",
             ROUND(cost_fy2028,      1)                 AS "FY2028 ($M)",
             ROUND(cost_fy2029,      1)                 AS "FY2029 ($M)",
             ROUND(cost_fy2030,      1)                 AS "FY2030 ($M)",
@@ -244,8 +244,8 @@ def run_queries(parquet_path):
             line_item_title                            AS "Program Element Title",
             budget_activity_number                     AS "BA",
             budget_activity_title                      AS "BA Title",
-            ROUND(cost_prior_year,  1)                 AS "FY2026 ($M)",
-            ROUND(cost_fy2027,      1)                 AS "FY2027 ($M)",
+            ROUND(cost_prior_year,  1)                 AS "FY2025 Actuals ($M)",
+            ROUND(cost_fy2027,      1)                 AS "FY2027 Request ($M)",
             ROUND(cost_fy2028,      1)                 AS "FY2028 ($M)",
             ROUND(cost_fy2029,      1)                 AS "FY2029 ($M)",
             ROUND(cost_fy2030,      1)                 AS "FY2030 ($M)",
@@ -259,20 +259,18 @@ def run_queries(parquet_path):
     # 7. All records
     q_all = con.execute("""
         SELECT
-            record_id, budget_year, submission_date,
-            service_agency_acronym AS "agency_acronym",
-            service_agency_name    AS "agency_name",
-            appropriation_type, exhibit_type,
+            record_id, budget_year, budget_cycle, submission_date,
+            service_agency_name, service_agency_acronym,
+            appropriation_code, appropriation_name, appropriation_type,
+            exhibit_type, source_file, file_format, data_lifecycle_stage,
             line_item_number, line_item_title,
-            program_element,
             budget_activity_number, budget_activity_title,
-            ROUND(cost_prior_year,  1) AS cost_prior_year,
-            ROUND(cost_fy2027,      1) AS cost_fy2027,
-            ROUND(cost_fy2028,      1) AS cost_fy2028,
-            ROUND(cost_fy2029,      1) AS cost_fy2029,
-            ROUND(cost_fy2030,      1) AS cost_fy2030,
-            ROUND(cost_fy2031,      1) AS cost_fy2031,
-            cost_units, file_format, source_file
+            budget_sub_activity_number, budget_sub_activity_title,
+            program_element,
+            cost_all_prior_years, cost_prior_year, cost_current_year,
+            cost_fy2027, cost_fy2028, cost_fy2029, cost_fy2030, cost_fy2031,
+            cost_units, description, justification,
+            usaspending_federal_account, program_activity_code, treasury_account_symbol
         FROM read_parquet(?)
         ORDER BY appropriation_type, service_agency_acronym, line_item_number
     """, [p]).df()
@@ -297,7 +295,8 @@ def build_workbook(sheets):
     wb = openpyxl.Workbook()
     wb.remove(wb.active)  # remove default blank sheet
 
-    num_money = ["Prior Year ($M)",      # Summary/Agency/YoY (FY2025 for MHS, FY2026 for others)
+    num_money = ["FY2025 Actuals ($M)",   # DBDP-66 TC-ER-07 cost_prior_year (Proc/RDT&E/BA/YoY)
+                 "Prior Year ($M)",      # Summary/By Agency (neutral; not in TC-ER-07 scope)
                  "FY2026 Enacted ($M)",  # Procurement current_year; RDT&E by BA prior_year
                  "FY2027 Request ($M)", "Change ($M)",
                  "FY2026 ($M)", "FY2027 ($M)",
@@ -312,21 +311,24 @@ def build_workbook(sheets):
     pct_money  = ["Change (%)"]
     delta_money = ["Change ($M)"]
 
+    LIFECYCLE = "  |  Lifecycle Stage: Budget Request"   # DBDP-66 TC-ER-10
     sheet_meta = {
         "Summary":        ("FY2027 Defense Budget -- Summary",
-                           "Total funding by appropriation type  |  Dollars in Millions"),
+                           "Total funding by appropriation type  |  Dollars in Millions" + LIFECYCLE),
         "By Agency":      ("FY2027 Defense Budget -- By Agency",
-                           "FY2027 request ranked by agency  |  Dollars in Millions"),
+                           "FY2027 request ranked by agency  |  Dollars in Millions" + LIFECYCLE),
         "Year-over-Year": ("Year-over-Year Change by Line Item",
-                           "XML records with both FY2026 enacted and FY2027 request  |  Sorted by absolute change"),
+                           "XML records with FY2025 actuals and FY2027 request  |  Sorted by absolute change" + LIFECYCLE),
         "RDT&E by BA":    ("RDT&E Budget Activity Summary (BA 1-8)",
-                           "Includes FYDP profile through FY2031  |  Dollars in Millions"),
+                           "Includes FYDP profile through FY2031  |  Dollars in Millions" + LIFECYCLE),
         "Procurement":    ("Procurement (P-1) Line Items",
-                           "All P-1 procurement line items with FYDP  |  Dollars in Millions"),
+                           "All P-1 procurement line items with FYDP  |  Dollars in Millions" + LIFECYCLE),
         "RDT&E":          ("RDT&E (R-1) Program Elements",
-                           "All R-1 program elements with FYDP  |  Dollars in Millions"),
-        "All Records":    ("Complete Data -- All Records",
-                           "All 33 schema columns  |  Use filters to explore"),
+                           "All R-1 program elements with FYDP  |  Dollars in Millions" + LIFECYCLE),
+        # All Records: subtitle must read EXACTLY "All 34 schema columns" (TC-ER-06);
+        # lifecycle label (TC-ER-10) carried in the title instead.
+        "All Records":    ("Complete Data -- All Records  |  Lifecycle Stage: Budget Request",
+                           "All 34 schema columns"),
     }
 
     for sheet_name, df in sheets.items():
