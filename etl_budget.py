@@ -940,7 +940,7 @@ def _parse_mhs_vol2(filepath):
 
             r = blank_record()
             r.update({
-                "record_id"                  : make_id(fname, current_appn, sag, desc),
+                "record_id"                  : make_id(fname, current_appn, sag, desc, section_label or ""),  # DBDP-62: add budget_sub_activity_title for row-grain uniqueness
                 "budget_year"                : 2027.0,
                 "budget_cycle"               : "PB",
                 "submission_date"            : "2026-04",
@@ -988,7 +988,7 @@ def _parse_mhs_vol2(filepath):
                 svc_info = SERVICE_MARKERS["Navy"]
                 r = blank_record()
                 r.update({
-                    "record_id"                  : make_id(fname, m_appn, m_sag, m_desc),
+                    "record_id"                  : make_id(fname, m_appn, m_sag, m_desc, section_label or ""),  # DBDP-62: add budget_sub_activity_title for row-grain uniqueness
                     "budget_year"                : 2027.0,
                     "budget_cycle"               : "PB",
                     "submission_date"            : "2026-04",
@@ -1212,6 +1212,15 @@ def main():
 
     print()
     print("-- Post-run validation -------------------------------------------")
+
+    # (a0) record_id: unique on 100% of records (nunique == row count)  # DBDP-62
+    n_unique = df["record_id"].nunique()
+    if n_unique == len(df):
+        print(f"  [PASS] record_id           : unique ({n_unique:,} of {len(df):,})")
+    else:
+        print(f"  [FAIL] record_id           : {n_unique:,} unique of {len(df):,} rows "
+              f"({len(df) - n_unique:,} duplicate occurrence(s))")
+        fails.append("record_id")
 
     # (a) exhibit_type: only expected values
     bad_et = set(df["exhibit_type"].unique()) - VALID_EXHIBIT_TYPES
