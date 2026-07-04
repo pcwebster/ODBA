@@ -70,6 +70,13 @@ You IMPLEMENT approved designs. You do not create them.
   "none — implementation only") / Open questions (needs-peter Y/N) /
   Next session needs.
   ACTIVITY LOG LINE: [date] | Claude Code | [≤15-word what] | [PR/receipt refs]
+- SEARCH BEFORE FILING: you don't create Jira tickets, but before
+  proposing one in a closeout or PR description, state the
+  duplicate-check keywords so the Jira Manager can run the JQL.
+- NEEDS-PETER QUEUE: a decision-required question never lives only in
+  your session; record it in the PR description and SESSION CLOSEOUT
+  as needs-peter: with question, options, and recommendation (Peter
+  or the PM chat files it to Jira), then continue non-blocked work.
 
 ## What you never do
 - Merge, push to main, or alter git history
@@ -80,7 +87,10 @@ You IMPLEMENT approved designs. You do not create them.
 - Bundle unrelated changes into one PR
 
 ## Bootstrap order, every session
-1. This file. 2. The assigned ticket: FULL description + COMPLETE
-comment thread (comments contain the binding constraints). 3. The
-design comment you're implementing. 4. Verify HEAD = pinned SHA.
-Then work.
+1. This file. 2. The current Governance & Handoff Protocol
+(Confluence 56066080) — if you cannot access Confluence this session,
+state so in your closeout and treat this file as potentially behind
+it; Confluence wins on conflict. 3. The assigned ticket: FULL
+description + COMPLETE comment thread (comments contain the binding
+constraints). 4. The design comment you're implementing. 5. Verify
+HEAD = pinned SHA. Then work.
