@@ -1,6 +1,6 @@
 # =============================================================================
 # ODBA -- Open Defense Budget Analytics
-# query.py  |  Tier-1 DuckDB query helper (DBDP-95, design c10295)
+# query.py  |  Tier-1 DuckDB query helper (DBDP-95, design c10295 + c10305)
 # =============================================================================
 # Source-traceable query/lookup over output/fact_budget_line_items.parquet.
 #
@@ -10,10 +10,13 @@
 #   python query.py --sql "SELECT ..."  one-shot SQL
 #   ... --csv <path>                    export the (primary) result as CSV
 #
-# B7 non-negotiable: any result containing a dollar figure must carry both
-# source_file and data_lifecycle_stage. Enforced in shape_result() -- the
-# single render/write path in this file. No override flag exists.
-# Only SELECT/WITH statements are accepted; the dataset is never written.
+# B7 non-negotiable (c10305 unconditional rule): EVERY result rendered or
+# exported must carry both source_file and data_lifecycle_stage, regardless
+# of result content -- nothing about the data is inspected, so there is no
+# stringify/retype/alias disguise that evades it. Enforced in shape_result()
+# -- the single render/write path in this file. No override flag exists.
+# DESCRIBE/SHOW/EXPLAIN (metadata, not data cells) are exempt. Only these
+# plus SELECT/WITH are accepted; the dataset is never written.
 # =============================================================================
 
 import argparse
@@ -29,13 +32,19 @@ if hasattr(sys.stdout, "reconfigure"):   # Windows console: render UTF-8 data
 SCRIPT_DIR   = Path(__file__).parent.resolve()
 PARQUET_FILE = SCRIPT_DIR / "output" / "fact_budget_line_items.parquet"
 
-# Dollar detection is by RESULT-SCHEMA TYPE (aliases cannot evade it).
+# Dollar-type detection survives only for friendlier refusal MESSAGING
+# (c10305 demoted it from gate to hint; the gate itself inspects nothing).
 DOLLAR_TYPE_PREFIXES = ("DOUBLE", "DECIMAL")
 NON_DOLLAR_FLOATS    = {"budget_year"}   # sole non-dollar float, excepted by name
 
+# Exact-first-token whitelists (c10305): provenance-gated vs metadata-exempt.
+GATED_TOKENS  = ("select", "with")
+EXEMPT_TOKENS = ("describe", "show", "explain")
+
 REFUSAL = """\
-REFUSED: this result contains dollar-typed columns but is missing {missing}.
-Every dollar figure must carry source_file + data_lifecycle_stage (B7 rule).
+REFUSED: this result is missing {missing}.{dollar_hint}
+Every rendered or exported result must carry source_file +
+data_lifecycle_stage (B7 rule, unconditional -- c10305).
 Rewrite pattern -- line-level: add source_file, data_lifecycle_stage to the
 SELECT list. Aggregates: add data_lifecycle_stage to the GROUP BY and select
 array_agg(DISTINCT source_file) AS source_file. There is no override flag."""
@@ -102,9 +111,9 @@ def connect():
     return con
 
 
-def is_select(sql):
-    """Defense-in-depth first-token check: only SELECT/WITH are accepted."""
-    return sql.lstrip().split(None, 1)[0].lower() in ("select", "with") if sql.strip() else False
+def first_token(sql):
+    """Defense-in-depth exact-first-token classification (c10305)."""
+    return sql.lstrip().split(None, 1)[0].lower() if sql.strip() else ""
 
 
 def _fmt(v):
@@ -117,17 +126,23 @@ def _fmt(v):
     return str(v)
 
 
-def shape_result(cols, types, rows, title, vertical=False, csv_path=None):
+def shape_result(cols, types, rows, title, vertical=False, csv_path=None,
+                 exempt=False):
     """SOLE output path: compliance gate, then render (or CSV-write) a result.
 
-    Returns True if rendered/written, False if refused (B7 provenance rule)."""
-    dollar_cols = [c for c, t in zip(cols, types)
-                   if str(t).upper().startswith(DOLLAR_TYPE_PREFIXES)
-                   and c not in NON_DOLLAR_FLOATS]
-    if dollar_cols:
+    Gate (c10305, unconditional): unless the statement class is exempt
+    (DESCRIBE/SHOW/EXPLAIN -- metadata, not data cells), the result must
+    contain both provenance columns. Nothing about the data is inspected.
+    Returns True if rendered/written, False if refused."""
+    if not exempt:
         missing = [c for c in ("source_file", "data_lifecycle_stage") if c not in cols]
         if missing:
-            print(REFUSAL.format(missing=" + ".join(missing)))
+            dollar_cols = [c for c, t in zip(cols, types)
+                           if str(t).upper().startswith(DOLLAR_TYPE_PREFIXES)
+                           and c not in NON_DOLLAR_FLOATS]
+            hint = (f"\n(dollar-derived columns present: {', '.join(dollar_cols)})"
+                    if dollar_cols else "")
+            print(REFUSAL.format(missing=" + ".join(missing), dollar_hint=hint))
             return False
 
     if csv_path:
@@ -161,23 +176,31 @@ def run_statement(con, sql, params, title, vertical=False, csv_path=None):
     """Execute one statement and hand the result to shape_result().
 
     Returns an exit code: 0 ok, 2 refused."""
-    if not is_select(sql):
-        print("REFUSED: only SELECT/WITH statements are accepted "
-              "(read-only helper; the dataset is never written).")
+    token = first_token(sql)
+    if token not in GATED_TOKENS + EXEMPT_TOKENS:
+        print("REFUSED: only SELECT/WITH (and DESCRIBE/SHOW/EXPLAIN) statements "
+              "are accepted (read-only helper; the dataset is never written).")
         return 2
-    cur = con.execute(sql, params)
-    cols  = [d[0] for d in cur.description]
-    types = [d[1] for d in cur.description]
-    rows  = cur.fetchall()
-    return 0 if shape_result(cols, types, rows, title, vertical, csv_path) else 2
+    try:
+        cur = con.execute(sql, params)
+        cols  = [d[0] for d in cur.description]
+        types = [d[1] for d in cur.description]
+        rows  = cur.fetchall()
+    except duckdb.Error as e:
+        # Controlled refusal, never a traceback (c10305 / c10303 secondary).
+        print(f"REFUSED: statement not executable as a read-only query -- "
+              f"{str(e).splitlines()[0]}")
+        return 2
+    return 0 if shape_result(cols, types, rows, title, vertical, csv_path,
+                             exempt=token in EXEMPT_TOKENS) else 2
 
 
 def repl(con):
     print(f"ODBA tier-1 query helper -- view 'budget' over {PARQUET_FILE.name}")
     cols = [r[0] for r in con.execute("DESCRIBE budget").fetchall()]
     print(f"columns: {', '.join(cols)}")
-    print("SELECT/WITH only; results with dollar figures must carry "
-          "source_file + data_lifecycle_stage. 'exit' to quit.")
+    print("SELECT/WITH only; every result must carry source_file + "
+          "data_lifecycle_stage (DESCRIBE/SHOW/EXPLAIN exempt). 'exit' to quit.")
     while True:
         try:
             line = input("budget> ").strip()
@@ -188,16 +211,18 @@ def repl(con):
             continue
         if line.lower() in ("exit", "quit"):
             return 0
-        try:
-            run_statement(con, line, [], "result")
-        except duckdb.Error as e:
-            print(f"error: {e}")
+        run_statement(con, line, [], "result")
 
 
 def main(argv=None):
     p = argparse.ArgumentParser(
         description="ODBA tier-1 DuckDB query helper (DBDP-95). "
-                    "Every dollar figure carries source_file + data_lifecycle_stage.")
+                    "Every rendered or exported result carries source_file + "
+                    "data_lifecycle_stage (B7, unconditional).",
+        epilog="Provenance labels are read from the dataset. Selecting literal "
+               "values AS source_file / data_lifecycle_stage fabricates "
+               "provenance -- falsification, not omission; outside the tier-1 "
+               "honest-operator threat model and accepted as residual (c10305).")
     p.add_argument("command", nargs="*",
                    help="canned query name (+ argument where required); see --list")
     p.add_argument("--list", action="store_true", help="list canned queries")
