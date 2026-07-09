@@ -1,0 +1,467 @@
+{
+  "CAAF_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "CMP_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "CTR_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "DAU_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "DAWDA_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "DCAA_Cyber_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "DCAA_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "DCMA_Cyber_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "DCMA_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "DCSA_Cyber_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "DCSA_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "DHRA_Cyber_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "DHRA_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "DISA_Cyber_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "DISA_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "DLA_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "DLSA_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "DPAA_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "DSCA_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "DTRA_Cyber_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "DTRA_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "DTSA_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "DWIA_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "DeCA_PB27_J-Book.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "DoWDE_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "DoW_Revolving_Funds_J-Book_FY2027.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "ENV-30.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "MDA_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "MHS_PB27_J-Book-Vol1-COMP_PSCP.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "MHS_PB27_J-Book-Vol2-SMR.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "O-1_Summary.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "OHDACA_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "OIG_Cyber_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "OIG_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "OLDCC_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "OM_Volume1_Part1.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "OM_Volume1_Part_2.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "OP-31.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "OP-32A_Summary.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "OP-34.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "OP-8.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "OSW_Cyber_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "OSW_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "Overview_Exhibit.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "PB-15.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "PB-24.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "PB-28.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "PB-31Q.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "PB-61.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "PB_2027_DWWCF_Operating_and_Capital_Bgt_Est.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "PB_2027_PDW_VOL_1.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "PB_2027_RDTE_VOL_5.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "PROC_CBDP_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "PROC_CYBERCOM_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "PROC_DCSA_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "PROC_DHRA_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "PROC_DISA_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "PROC_DLA_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "PROC_DMACT_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "PROC_DODEA_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "PROC_DPAA_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "PROC_DPAP_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "PROC_DTRA_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "PROC_MDA_VOL2B_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "PROC_OSD_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "PROC_SOCOM_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "PROC_TJS_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "PROC_WHS_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "PSYOP_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "RDTE_CBDP_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "RDTE_CHIPS_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "RDTE_CYBERCOM_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "RDTE_DCAA_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "RDTE_DCMA_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "RDTE_DCSA_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "RDTE_DHRA_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "RDTE_DISA_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "RDTE_DLA_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "RDTE_DSCA_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "RDTE_DTIC_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "RDTE_DTRA_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "RDTE_OSW_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "RDTE_OTE_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "RDTE_SOCOM_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "RDTE_TJS_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "RDTE_Vol1_DARPA_MasterJustificationBook_PB_2027.xml": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "SISC_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "SOCOM_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "Service_Support.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "Summary_by_Agency.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "USCYBERCOM_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "Volume_2.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "WHS_OP-5.json": {
+    "acquisition_date": "2026-05-21",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  }
+}

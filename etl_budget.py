@@ -35,6 +35,7 @@ SCRIPT_DIR   = Path(__file__).parent.resolve()
 DATA_DIR     = SCRIPT_DIR
 OUTPUT_DIR   = SCRIPT_DIR / "output"
 OUTPUT_FILE  = OUTPUT_DIR / "fact_budget_line_items.parquet"
+MANIFEST_FILE = SCRIPT_DIR / "data" / "source_manifest.json"
 
 # ── XML Namespaces ────────────────────────────────────────────────────────────
 JB_NS   = "http://www.dtic.mil/comptroller/xml/schema/022009/jb"
@@ -58,7 +59,35 @@ COLUMNS = [
     "cost_units",
     "description", "justification",
     "usaspending_federal_account", "program_activity_code", "treasury_account_symbol",
+    # DBDP-94 schema-foundation batch (c10315): appended at end, 34 -> 37
+    "funding_type", "funding_type_signal", "data_vintage",
 ]
+
+# ── DBDP-94 enums / fixed maps (c10315 §1, c10321; DBDP-86 c10274 grammar) ────
+# Six-value lifecycle enum (c10321: Apportioned lands ahead of its data).
+LIFECYCLE_STAGES = {
+    "Budget Request", "Enacted", "Apportioned",
+    "Reprogrammed", "Obligated", "Outlayed",
+}
+# funding_type domain (DBDP-86 c10274 §1) — all rows NULL until the B5
+# classifier lands; no default, ever.
+FUNDING_TYPES = {"discretionary", "mandatory", "reconciliation"}
+# funding_type_signal grammar (c10274 §2) — enforced by the resident
+# TC-FT guards; vacuous while all signals are NULL.
+SIGNAL_METHODS     = {"red_text", "section_header", "account_marker", "none_found"}
+SIGNAL_CONFIDENCES = {"high", "medium", "low"}
+# Fixed confidence map (c10274; revisable ONLY via an approved DBDP-86
+# AC amendment per DBDP-85 c10299 A3 — never by implementer judgment).
+SIGNAL_CONFIDENCE_MAP = {
+    "red_text": "high", "section_header": "high",
+    "account_marker": "medium", "none_found": "medium",
+}
+# method -> funding_type (c10274 §3); account_marker resolves per the
+# marker table, which must exist + be validated before that method ships.
+SIGNAL_METHOD_VALUE_MAP = {
+    "red_text": "reconciliation", "section_header": "mandatory",
+    "none_found": "discretionary",
+}
 
 # ── JSON aggregate files to skip (they duplicate individual agency files) ─────
 JSON_AGGREGATE_FILES = {
@@ -103,9 +132,28 @@ def to_float(val):
 
 
 def make_id(*parts):
-    """Generate a short stable record ID from key fields."""
+    """Generate a short stable record ID from key fields.
+
+    DBDP-72 (via DBDP-94 c10315): 20-hex leading truncation (80 bits) of the
+    same MD5 over the same inputs as at cc5a594 — so every new ID's first 12
+    hex equal the old ID (the SB3 prefix-equality migration property).
+    usedforsecurity=False: non-cryptographic use (Bandit B324 / FIPS).
+    """
     key = "|".join(str(p) for p in parts)
-    return hashlib.md5(key.encode()).hexdigest()[:12]
+    return hashlib.md5(key.encode(), usedforsecurity=False).hexdigest()[:20]
+
+
+def load_source_manifest():
+    """Load the source acquisition manifest (DBDP-87/48 via c10315).
+
+    The manifest is the ONLY source for data_vintage and
+    data_lifecycle_stage — never datetime.now(), never file mtimes.
+    """
+    if not MANIFEST_FILE.exists():
+        print(f"  [FATAL] source manifest not found: {MANIFEST_FILE}")
+        sys.exit(1)
+    with open(MANIFEST_FILE, encoding="utf-8") as fh:
+        return json.load(fh)
 
 
 def acronym_from_filename(fname):
@@ -207,7 +255,6 @@ def parse_procurement_xml(filepath):
             "exhibit_type"            : "P-40",
             "source_file"             : fname,
             "file_format"             : "XML",
-            "data_lifecycle_stage"    : "Budget Request",
             "line_item_number"        : li_num,
             "line_item_title"         : li_title,
             "budget_activity_number"  : ba_num,
@@ -313,7 +360,6 @@ def parse_rdte_xml(filepath):
             "exhibit_type"            : "R-2",
             "source_file"             : fname,
             "file_format"             : "XML",
-            "data_lifecycle_stage"    : "Budget Request",
             "line_item_number"        : "",
             "line_item_title"         : pe_title,
             "budget_activity_number"  : ba_num,
@@ -566,7 +612,6 @@ def parse_json_exhibit(filepath):
             "exhibit_type"               : exhibit_type,
             "source_file"                : fname,
             "file_format"                : "JSON",
-            "data_lifecycle_stage"       : "Budget Request",
             "line_item_number"           : "",
             "line_item_title"            : row["label"],
             "budget_activity_number"     : "",
@@ -644,7 +689,6 @@ def parse_json_metadata(filepath):
         "exhibit_type"           : exhibit_type,
         "source_file"            : fname,
         "file_format"            : "JSON",
-        "data_lifecycle_stage"   : "Budget Request",
         "line_item_title"        : name,
         "description"            : desc,
         "cost_units"             : "Millions",
@@ -794,7 +838,6 @@ def _parse_mhs_vol1(filepath):
                 "exhibit_type"                 : "DHP-J-Book",
                 "source_file"                  : fname,
                 "file_format"                  : "XML",
-                "data_lifecycle_stage"         : "Budget Request",
                 "budget_activity_number"       : "01",
                 "budget_activity_title"        : "Operation & Maintenance",
                 "budget_sub_activity_number"   : sub_act_num,
@@ -953,7 +996,6 @@ def _parse_mhs_vol2(filepath):
                 "exhibit_type"               : "DHP-SMR",
                 "source_file"                : fname,
                 "file_format"                : "XML",
-                "data_lifecycle_stage"       : "Budget Request",
                 "budget_activity_number"     : sag,
                 "budget_sub_activity_title"  : section_label or "",
                 "line_item_title"            : desc,
@@ -1000,7 +1042,6 @@ def _parse_mhs_vol2(filepath):
                     "exhibit_type"               : "DHP-SMR",
                     "source_file"                : fname,
                     "file_format"                : "XML",
-                    "data_lifecycle_stage"       : "Budget Request",
                     "budget_activity_number"     : m_sag,
                     "budget_sub_activity_title"  : section_label or "",
                     "line_item_title"            : m_desc,
@@ -1176,7 +1217,26 @@ def main():
     for col in float_cols:
         df[col] = pd.to_numeric(df[col], errors="coerce")
 
-    str_cols = [c for c in COLUMNS if c not in float_cols]
+    # ── Manifest join (DBDP-94 c10315: DBDP-87 + DBDP-48 in one join) ─────────
+    # data_vintage and data_lifecycle_stage are properties of the SOURCE,
+    # recorded in the manifest at registration time. Hard-fail on any parsed
+    # file with no manifest entry — a missing entry must be a loud stop, never
+    # a silent mislabel.
+    manifest = load_source_manifest()
+    parsed_files = set(df["source_file"].unique())
+    missing = sorted(parsed_files - set(manifest))
+    if missing:
+        print(f"  [FATAL] {len(missing)} parsed source file(s) missing from "
+              f"{MANIFEST_FILE.name}: {missing[:5]}{' ...' if len(missing) > 5 else ''}")
+        sys.exit(1)
+    df["data_vintage"]         = df["source_file"].map(lambda f: manifest[f]["acquisition_date"])
+    df["data_lifecycle_stage"] = df["source_file"].map(lambda f: manifest[f]["lifecycle_stage"])
+
+    # funding_type / funding_type_signal stay genuinely NULL until the B5
+    # classifier lands (c10315 §1.1–1.2) — excluded from the ""-fill below.
+    NULLABLE_UNTIL_CLASSIFIED = {"funding_type", "funding_type_signal"}
+    str_cols = [c for c in COLUMNS
+                if c not in float_cols and c not in NULLABLE_UNTIL_CLASSIFIED]
     df[str_cols] = df[str_cols].fillna("")
 
     # ── Summary ───────────────────────────────────────────────────────────────
@@ -1213,14 +1273,24 @@ def main():
     print()
     print("-- Post-run validation -------------------------------------------")
 
-    # (a0) record_id: unique on 100% of records (nunique == row count)  # DBDP-62
-    n_unique = df["record_id"].nunique()
-    if n_unique == len(df):
-        print(f"  [PASS] record_id           : unique ({n_unique:,} of {len(df):,})")
+    # (a0) composite (record_id, data_vintage) uniqueness  # DBDP-94 c10315 §3
+    # REPLACES the DBDP-62 standalone record_id assertion (AR c10284 binding
+    # note / c10326 note 2): within one vintage the composite is equivalent,
+    # and it does not false-fail on a legitimate future restatement.
+    n_dupes = df.duplicated(subset=["record_id", "data_vintage"]).sum()
+    if n_dupes == 0:
+        print(f"  [PASS] (record_id,vintage) : composite unique ({len(df):,} of {len(df):,})")
     else:
-        print(f"  [FAIL] record_id           : {n_unique:,} unique of {len(df):,} rows "
-              f"({len(df) - n_unique:,} duplicate occurrence(s))")
-        fails.append("record_id")
+        print(f"  [FAIL] (record_id,vintage) : {n_dupes:,} duplicate composite key(s)")
+        fails.append("composite_uniqueness")
+
+    # (a1) record_id format: 20-hex (80-bit) per DBDP-72 via c10315 §1.4
+    bad_id = (~df["record_id"].str.fullmatch(r"[0-9a-f]{20}")).sum()
+    if bad_id == 0:
+        print(f"  [PASS] record_id format    : all match ^[0-9a-f]{{20}}$")
+    else:
+        print(f"  [FAIL] record_id format    : {bad_id:,} record(s) not 20-hex")
+        fails.append("record_id_format")
 
     # (a) exhibit_type: only expected values
     bad_et = set(df["exhibit_type"].unique()) - VALID_EXHIBIT_TYPES
@@ -1230,13 +1300,122 @@ def main():
         print(f"  [FAIL] exhibit_type        : unexpected values: {sorted(bad_et)}")
         fails.append("exhibit_type")
 
-    # (b) data_lifecycle_stage: non-null / non-empty on 100% of records
+    # (b) data_lifecycle_stage: non-null, in the six-value enum (c10321), and
+    #     equal to the manifest-derived value for its source_file (c10315 §5d)
+    manifest_chk = load_source_manifest()
     null_ls = (df["data_lifecycle_stage"].isna() | (df["data_lifecycle_stage"] == "")).sum()
-    if null_ls == 0:
-        print(f"  [PASS] data_lifecycle_stage: 100% populated ({len(df):,} records)")
+    bad_enum = set(df["data_lifecycle_stage"].unique()) - LIFECYCLE_STAGES - {""}
+    ls_mismatch = (df["data_lifecycle_stage"]
+                   != df["source_file"].map(lambda f: manifest_chk.get(f, {}).get("lifecycle_stage"))).sum()
+    if null_ls == 0 and not bad_enum and ls_mismatch == 0:
+        print(f"  [PASS] data_lifecycle_stage: 100% populated, in 6-value enum, "
+              f"== manifest ({len(df):,} records)")
     else:
-        print(f"  [FAIL] data_lifecycle_stage: {null_ls:,} null/empty records")
+        print(f"  [FAIL] data_lifecycle_stage: {null_ls:,} null/empty; "
+              f"bad enum values {sorted(bad_enum)}; {ls_mismatch:,} manifest mismatch(es)")
         fails.append("data_lifecycle_stage")
+
+    # (b2) data_vintage: non-null, ISO date, sane range, 1:1 manifest join
+    #      (c10315 §5c; DBDP-87 c10275 verification path)
+    from datetime import date as _date
+    def _valid_vintage(v):
+        if not isinstance(v, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", v):
+            return False
+        try:
+            d = _date.fromisoformat(v)
+        except ValueError:
+            return False
+        return _date(2025, 1, 1) <= d <= _date.today()
+    bad_dv = (~df["data_vintage"].map(_valid_vintage)).sum()
+    pair_mismatch = 0
+    for sf, dv in df[["source_file", "data_vintage"]].drop_duplicates().itertuples(index=False):
+        if manifest_chk.get(sf, {}).get("acquisition_date") != dv:
+            pair_mismatch += 1
+    if bad_dv == 0 and pair_mismatch == 0:
+        print(f"  [PASS] data_vintage        : 100% valid ISO dates in range, "
+              f"1:1 manifest join ({df['data_vintage'].nunique()} distinct)")
+    else:
+        print(f"  [FAIL] data_vintage        : {bad_dv:,} invalid value(s); "
+              f"{pair_mismatch:,} (source_file, vintage) pair(s) not in manifest")
+        fails.append("data_vintage")
+
+    # (e) TC-FT-01…09 funding_type suite (DBDP-85 c10287 §3, A5 gate-label
+    #     matrix c10299). 01/02/03 ACTIVE at landing; 04–09 are RESIDENT
+    #     GUARDS — vacuous while every signal is NULL, live the moment the
+    #     B5 classifier writes its first non-null value. Their vacuous
+    #     success is NOT classifier validation (A5 Tester instruction).
+    ft, sig = df["funding_type"], df["funding_type_signal"]
+
+    # TC-FT-01 (ACTIVE): domain
+    bad_ft = set(ft.dropna().unique()) - FUNDING_TYPES
+    if not bad_ft:
+        print(f"  [PASS] TC-FT-01 domain     : non-null funding_type ⊆ {sorted(FUNDING_TYPES)}")
+    else:
+        print(f"  [FAIL] TC-FT-01 domain     : unexpected values {sorted(bad_ft)}")
+        fails.append("TC-FT-01")
+
+    # TC-FT-02 (ACTIVE at landing; retires once B5 lands): honest NULL state
+    n_null_ft = ft.isna().sum()
+    if n_null_ft == 635 and len(df) == 635:
+        print(f"  [PASS] TC-FT-02 all-NULL   : all 635 rows unclassified at landing")
+    else:
+        print(f"  [FAIL] TC-FT-02 all-NULL   : {n_null_ft:,} NULL of {len(df):,} rows "
+              f"(expected 635 of 635)")
+        fails.append("TC-FT-02")
+
+    # TC-FT-03 (ACTIVE): null-pairing invariant
+    unpaired = (ft.isna() != sig.isna()).sum()
+    if unpaired == 0:
+        print(f"  [PASS] TC-FT-03 null-pair  : funding_type NULL ⟺ signal NULL")
+    else:
+        print(f"  [FAIL] TC-FT-03 null-pair  : {unpaired:,} row(s) with exactly one null")
+        fails.append("TC-FT-03")
+
+    # TC-FT-04…09 (RESIDENT GUARDS — vacuous at landing per A5)
+    nn = df[sig.notna()]
+    ft_guard_fails = []
+    for _, row in nn.iterrows():
+        raw = row["funding_type_signal"]
+        try:
+            obj = json.loads(raw)
+        except (TypeError, ValueError):
+            ft_guard_fails.append("TC-FT-04 (signal not valid JSON)")
+            continue
+        keys = list(obj.keys())
+        if not (obj.get("method") in SIGNAL_METHODS
+                and obj.get("confidence") in SIGNAL_CONFIDENCES
+                and "evidence" in obj):
+            ft_guard_fails.append("TC-FT-04 (method/confidence/evidence)")
+        if keys not in (["method", "evidence", "confidence"],
+                        ["method", "evidence", "confidence", "corroboration"]) \
+           or json.dumps(obj, separators=(",", ":"), ensure_ascii=False) != raw:
+            ft_guard_fails.append("TC-FT-05 (key order / compactness)")
+        if obj.get("confidence") != SIGNAL_CONFIDENCE_MAP.get(obj.get("method")):
+            ft_guard_fails.append("TC-FT-06 (fixed confidence map)")
+        method = obj.get("method")
+        if method == "account_marker":
+            # Gated: no account_marker classification may ship until the
+            # marker table exists + is validated (c10287 §2, c10299 A6).
+            ft_guard_fails.append("TC-FT-07 (account_marker before marker table)")
+        elif SIGNAL_METHOD_VALUE_MAP.get(method) != row["funding_type"]:
+            ft_guard_fails.append("TC-FT-07 (method→value)")
+        evidence = str(obj.get("evidence", ""))
+        if any(stage in evidence for stage in LIFECYCLE_STAGES) \
+           or any(c in evidence for c in COLUMNS if c.startswith("cost_")):
+            ft_guard_fails.append("TC-FT-08 (evidence references lifecycle/cost)")
+        corr = obj.get("corroboration")
+        if corr is not None:
+            if (not isinstance(corr, list) or corr != sorted(corr)
+                    or not set(corr) <= SIGNAL_METHODS or method in corr):
+                ft_guard_fails.append("TC-FT-09 (corroboration format)")
+    if not ft_guard_fails:
+        state = ("vacuous — 0 non-null signals; NOT classifier validation"
+                 if nn.empty else f"{len(nn):,} non-null signal(s) checked")
+        print(f"  [PASS] TC-FT-04..09 guards : resident ({state})")
+    else:
+        print(f"  [FAIL] TC-FT-04..09 guards : {len(ft_guard_fails)} violation(s): "
+              f"{sorted(set(ft_guard_fails))}")
+        fails.append("TC-FT-04..09")
 
     # (c) source_file: non-null / non-empty on 100% of records
     null_sf = (df["source_file"].isna() | (df["source_file"] == "")).sum()
@@ -1249,6 +1428,7 @@ def main():
     print()
     if fails:
         print(f"  VALIDATION FAILED -- {len(fails)} check(s): {', '.join(fails)}")
+        sys.exit(1)   # assertion failure is a hard stop (CLAUDE.md; c10315)
     else:
         print(f"  All validation checks passed.")
 
