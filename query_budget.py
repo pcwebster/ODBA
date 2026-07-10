@@ -9,7 +9,7 @@
 #   4. RDT&E by BA      -- R&D budget activity breakdown (BA1-BA8)
 #   5. Procurement      -- P-1 line items with full funding profile
 #   6. RDT&E            -- R-1 program elements with full funding profile
-#   7. All Records      -- complete data dump (all 33 columns)
+#   7. All Records      -- complete data dump (all schema columns)
 #
 # Output: output/ODBA_FY2027_Budget_Report.xlsx
 # =============================================================================
@@ -19,6 +19,11 @@ from pathlib import Path
 
 import duckdb
 import pandas as pd
+
+# DBDP-94 c10336 Ruling 1: the schema column list has exactly one home —
+# etl_budget.COLUMNS. No second hardcoded enumeration may exist here.
+from etl_budget import COLUMNS
+
 from openpyxl import load_workbook
 from openpyxl.styles import (Font, PatternFill, Alignment, Border, Side,
                               numbers)
@@ -256,24 +261,17 @@ def run_queries(parquet_path):
         ORDER BY service_agency_acronym, budget_activity_number, program_element
     """, [p]).df()
 
-    # 7. All records
+    # 7. All records — SELECT * so the sheet always carries the full schema
+    #    (parquet column order == etl_budget.COLUMNS; DBDP-94 c10336 Ruling 1)
     q_all = con.execute("""
-        SELECT
-            record_id, budget_year, budget_cycle, submission_date,
-            service_agency_name, service_agency_acronym,
-            appropriation_code, appropriation_name, appropriation_type,
-            exhibit_type, source_file, file_format, data_lifecycle_stage,
-            line_item_number, line_item_title,
-            budget_activity_number, budget_activity_title,
-            budget_sub_activity_number, budget_sub_activity_title,
-            program_element,
-            cost_all_prior_years, cost_prior_year, cost_current_year,
-            cost_fy2027, cost_fy2028, cost_fy2029, cost_fy2030, cost_fy2031,
-            cost_units, description, justification,
-            usaspending_federal_account, program_activity_code, treasury_account_symbol
+        SELECT *
         FROM read_parquet(?)
         ORDER BY appropriation_type, service_agency_acronym, line_item_number
     """, [p]).df()
+    # funding_type / funding_type_signal are genuinely NULL until the B5
+    # classifier lands; openpyxl cannot write pandas NA — render as empty
+    # cells without touching the parquet's NULL state.
+    q_all = q_all.astype(object).where(q_all.notna(), None)
 
     return {
         "Summary":        q_summary,
@@ -325,10 +323,11 @@ def build_workbook(sheets):
                            "All P-1 procurement line items with FYDP  |  Dollars in Millions" + LIFECYCLE),
         "RDT&E":          ("RDT&E (R-1) Program Elements",
                            "All R-1 program elements with FYDP  |  Dollars in Millions" + LIFECYCLE),
-        # All Records: subtitle must read EXACTLY "All 34 schema columns" (TC-ER-06);
-        # lifecycle label (TC-ER-10) carried in the title instead.
+        # All Records: subtitle computed from len(COLUMNS) — never a literal
+        # (DBDP-94 c10336 Ruling 1; TC-ER-06 is len(COLUMNS)-relative per
+        # DBDP-66 c10327). Lifecycle label (TC-ER-10) carried in the title.
         "All Records":    ("Complete Data -- All Records  |  Lifecycle Stage: Budget Request",
-                           "All 34 schema columns"),
+                           f"All {len(COLUMNS)} schema columns"),
     }
 
     for sheet_name, df in sheets.items():
