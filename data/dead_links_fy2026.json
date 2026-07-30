@@ -1,1034 +1,651 @@
-{
-  "_meta": {
-    "artifact": "FY2026 PB machine-readable dead-link ledger",
-    "ticket": "DBDP-101 (B1-0); created addressing Codex verdict DBDP-101 c10429 finding 2",
-    "narrative_receipt": "DBDP-89 c10373",
-    "source_page": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-    "advertised_machine_readable_total": 154,
-    "downloaded_and_registered": 95,
-    "dead_at_survey": 59,
-    "survey_check": "2026-07-15, urllib GET + curl GET (both 404 for all 59)",
-    "ledger_recheck": "2026-07-29T21:06:29-04:00, urllib HEAD + curl HEAD",
-    "now_live_at_recheck": 5,
-    "paired_pdf_live_at_recheck": 9,
-    "paired_pdf_note": "c10373's 'paired PDFs exist' generalization was sample-based (2 probes); per-entry paired_pdf_status_2026-07-29 below is the corrected per-link record — 9 of 59 have a live paired PDF at recheck"
+[
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/O-1_Summary_(Part_1).json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
   },
-  "dead_links": [
-    {
-      "advertised_filename": "O-1_Summary_(Part_1).json",
-      "section": "01_Operation_and_Maintenance/O_M_VOL_1_PART_1",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/O-1_Summary_(Part_1).json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 200,
-        "curl_head": 200
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/O-1_Summary_(Part_1).pdf",
-      "paired_pdf_status_2026-07-29": 200,
-      "now_live_2026-07-29": true,
-      "note": "dead at survey time (2026-07-15), live at ledger recheck (2026-07-29) — publisher repaired the link; NOT downloaded/registered in this PR (delta scope); flagged for follow-up registration"
-    },
-    {
-      "advertised_filename": "OP-32A_Summary_(Part_1).json",
-      "section": "01_Operation_and_Maintenance/O_M_VOL_1_PART_1",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/OP-32A_Summary_(Part_1).json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 200,
-        "curl_head": 200
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/OP-32A_Summary_(Part_1).pdf",
-      "paired_pdf_status_2026-07-29": 200,
-      "now_live_2026-07-29": true,
-      "note": "dead at survey time (2026-07-15), live at ledger recheck (2026-07-29) — publisher repaired the link; NOT downloaded/registered in this PR (delta scope); flagged for follow-up registration"
-    },
-    {
-      "advertised_filename": "OSD_MISO_OP-5.json",
-      "section": "01_Operation_and_Maintenance/O_M_VOL_1_PART_1",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/OSD_MISO_OP-5.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/OSD_MISO_OP-5.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "Overview_(Part_1).json",
-      "section": "01_Operation_and_Maintenance/O_M_VOL_1_PART_1",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/Overview_(Part_1).json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 200,
-        "curl_head": 200
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/Overview_(Part_1).pdf",
-      "paired_pdf_status_2026-07-29": 200,
-      "now_live_2026-07-29": true,
-      "note": "dead at survey time (2026-07-15), live at ledger recheck (2026-07-29) — publisher repaired the link; NOT downloaded/registered in this PR (delta scope); flagged for follow-up registration"
-    },
-    {
-      "advertised_filename": "SDA_OP-5.json",
-      "section": "01_Operation_and_Maintenance/O_M_VOL_1_PART_1",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/SDA_OP-5.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/SDA_OP-5.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "SOCOM_OP-5.json",
-      "section": "01_Operation_and_Maintenance/O_M_VOL_1_PART_1",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/SOCOM_OP-5.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 200,
-        "curl_head": 200
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/SOCOM_OP-5.pdf",
-      "paired_pdf_status_2026-07-29": 200,
-      "now_live_2026-07-29": true,
-      "note": "dead at survey time (2026-07-15), live at ledger recheck (2026-07-29) — publisher repaired the link; NOT downloaded/registered in this PR (delta scope); flagged for follow-up registrationthis advertised basename collides with the FY2027 corpus — it is the 43rd advertised collision that was never registered (source of the c10429 count correction: 42 registered, not 43)",
-      "fy2027_basename_collision": true
-    },
-    {
-      "advertised_filename": "DCAA_OOC_OP-5.json",
-      "section": "01_Operation_and_Maintenance/O_M_VOL_1_PART_2",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/DCAA_OOC_OP-5.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/DCAA_OOC_OP-5.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "DCMA_OOC_OP-5.json",
-      "section": "01_Operation_and_Maintenance/O_M_VOL_1_PART_2",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/DCMA_OOC_OP-5.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/DCMA_OOC_OP-5.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "DISA_Cyber_OOC_OP-5.json",
-      "section": "01_Operation_and_Maintenance/O_M_VOL_1_PART_2",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/DISA_Cyber_OOC_OP-5.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/DISA_Cyber_OOC_OP-5.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "DISA_OOC_OP-5.json",
-      "section": "01_Operation_and_Maintenance/O_M_VOL_1_PART_2",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/DISA_OOC_OP-5.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/DISA_OOC_OP-5.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "DLSA_OOC_OP-5.json",
-      "section": "01_Operation_and_Maintenance/O_M_VOL_1_PART_2",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/DLSA_OOC_OP-5.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/DLSA_OOC_OP-5.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "DMA_OOC_OP-5.json",
-      "section": "01_Operation_and_Maintenance/O_M_VOL_1_PART_2",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/DMA_OOC_OP-5.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/DMA_OOC_OP-5.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "DSCA_OOC_OP-5.json",
-      "section": "01_Operation_and_Maintenance/O_M_VOL_1_PART_2",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/DSCA_OOC_OP-5.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/DSCA_OOC_OP-5.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "DTRA_OOC_OP-5.json",
-      "section": "01_Operation_and_Maintenance/O_M_VOL_1_PART_2",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/DTRA_OOC_OP-5.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/DTRA_OOC_OP-5.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "DoDDE_OOC_OP-5.json",
-      "section": "01_Operation_and_Maintenance/O_M_VOL_1_PART_2",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/DoDDE_OOC_OP-5.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/DoDDE_OOC_OP-5.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "OIG_OOC_OP-5.json",
-      "section": "01_Operation_and_Maintenance/O_M_VOL_1_PART_2",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/OIG_OOC_OP-5.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/OIG_OOC_OP-5.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "OSD_MISO_OOC_OP-5.json",
-      "section": "01_Operation_and_Maintenance/O_M_VOL_1_PART_2",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/OSD_MISO_OOC_OP-5.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/OSD_MISO_OOC_OP-5.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "OSD_OOC_OP-5.json",
-      "section": "01_Operation_and_Maintenance/O_M_VOL_1_PART_2",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/OSD_OOC_OP-5.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/OSD_OOC_OP-5.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "SOCOM_OOC_OP-5.json",
-      "section": "01_Operation_and_Maintenance/O_M_VOL_1_PART_2",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/SOCOM_OOC_OP-5.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/SOCOM_OOC_OP-5.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "TJS_OOC.json",
-      "section": "01_Operation_and_Maintenance/O_M_VOL_1_PART_2",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/TJS_OOC.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/TJS_OOC.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "WHS_OOC_OP-5.json",
-      "section": "01_Operation_and_Maintenance/O_M_VOL_1_PART_2",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/WHS_OOC_OP-5.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/WHS_OOC_OP-5.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "DSCA_PB2026.xml",
-      "section": "02_Procurement",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/02_Procurement/DSCA_PB2026.xml",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/02_Procurement/DSCA_PB2026.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "PROC_DTRA_PB_2026.xml",
-      "section": "02_Procurement",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/02_Procurement/PROC_DTRA_PB_2026.xml",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 200,
-        "curl_head": 200
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/02_Procurement/PROC_DTRA_PB_2026.pdf",
-      "paired_pdf_status_2026-07-29": 200,
-      "now_live_2026-07-29": true,
-      "note": "dead at survey time (2026-07-15), live at ledger recheck (2026-07-29) — publisher repaired the link; NOT downloaded/registered in this PR (delta scope); flagged for follow-up registration",
-      "recoverable_from": "content recoverable from PB_2026_PDW_VOL_1.xml (contains Defense Threat Reduction Agency line items)"
-    },
-    {
-      "advertised_filename": "PROC_SDA_PB_2026.xml",
-      "section": "02_Procurement",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/02_Procurement/PROC_SDA_PB_2026.xml",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/02_Procurement/PROC_SDA_PB_2026.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "RDTE_CYBERCOM_PB_2026.xml",
-      "section": "03_RDT_and_E",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/03_RDT_and_E/RDTE_CYBERCOM_PB_2026.xml",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/03_RDT_and_E/RDTE_CYBERCOM_PB_2026.pdf",
-      "paired_pdf_status_2026-07-29": 200,
-      "recoverable_from": "content recoverable from PB_2026_RDTE_VOL_5.xml (contains United States Cyber Command program elements)"
-    },
-    {
-      "advertised_filename": "DeCA_PB26_J-Book.json",
-      "section": "06_Defense_Working_Capital_Fund",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/06_Defense_Working_Capital_Fund/DeCA_PB26_J-Book.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/06_Defense_Working_Capital_Fund/DeCA_PB26_J-Book.pdf",
-      "paired_pdf_status_2026-07-29": 200
-    },
-    {
-      "advertised_filename": "DoD_Revolving_Funds_J-Book_FY2026.json",
-      "section": "06_Defense_Working_Capital_Fund",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/06_Defense_Working_Capital_Fund/DoD_Revolving_Funds_J-Book_FY2026.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/06_Defense_Working_Capital_Fund/DoD_Revolving_Funds_J-Book_FY2026.pdf",
-      "paired_pdf_status_2026-07-29": 200
-    },
-    {
-      "advertised_filename": "PB_2026_DWWCF_Operating_and_Capital_Budget_Estimates.json",
-      "section": "06_Defense_Working_Capital_Fund",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/06_Defense_Working_Capital_Fund/PB_2026_DWWCF_Operating_and_Capital_Budget_Estimates.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/06_Defense_Working_Capital_Fund/PB_2026_DWWCF_Operating_and_Capital_Budget_Estimates.pdf",
-      "paired_pdf_status_2026-07-29": 200
-    },
-    {
-      "advertised_filename": "01-DHP_Vol_I_and_II_Cover_PB26.json",
-      "section": "09_Defense_Health_Program",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/01-DHP_Vol_I_and_II_Cover_PB26.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/01-DHP_Vol_I_and_II_Cover_PB26.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "02-DHP_Vol_I_and_II_Table_of_Contents_PB26.json",
-      "section": "09_Defense_Health_Program",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/02-DHP_Vol_I_and_II_Table_of_Contents_PB26.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/02-DHP_Vol_I_and_II_Table_of_Contents_PB26.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "03-Vol_I_Sec_1-PBA-19_Introductory_Statement_DHP PB26.json",
-      "section": "09_Defense_Health_Program",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/03-Vol_I_Sec_1-PBA-19_Introductory_Statement_DHP PB26.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/03-Vol_I_Sec_1-PBA-19_Introductory_Statement_DHP PB26.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "04-Vol_I_Sec_2-O-1_Operation_and_Maintenance_Funding_DHP_PB26.json",
-      "section": "09_Defense_Health_Program",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/04-Vol_I_Sec_2-O-1_Operation_and_Maintenance_Funding_DHP_PB26.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/04-Vol_I_Sec_2-O-1_Operation_and_Maintenance_Funding_DHP_PB26.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "05-Vol_I_Sec-3-OP-32A_Summary_of_Price_and_Program_Growth_DHP_PB26.json",
-      "section": "09_Defense_Health_Program",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/05-Vol_I_Sec-3-OP-32A_Summary_of_Price_and_Program_Growth_DHP_PB26.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/05-Vol_I_Sec-3-OP-32A_Summary_of_Price_and_Program_Growth_DHP_PB26.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "06-Vol_I_Sec_4-PB-31R_Personnel_Summary_DHP_PB26.json",
-      "section": "09_Defense_Health_Program",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/06-Vol_I_Sec_4-PB-31R_Personnel_Summary_DHP_PB26.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/06-Vol_I_Sec_4-PB-31R_Personnel_Summary_DHP_PB26.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "07-Vol_I_Sec_5-PB-31Q_PB26.json",
-      "section": "09_Defense_Health_Program",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/07-Vol_I_Sec_5-PB-31Q_PB26.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/07-Vol_I_Sec_5-PB-31Q_PB26.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "08-Vol_I_Sec_6-PB-31D_Summary_of_Funding_Increases_and_Decreases_DHP_PB26.json",
-      "section": "09_Defense_Health_Program",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/08-Vol_I_Sec_6-PB-31D_Summary_of_Funding_Increases_and_Decreases_DHP_PB26.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/08-Vol_I_Sec_6-PB-31D_Summary_of_Funding_Increases_and_Decreases_DHP_PB26.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "09-Vol_I_Sec_7A-OP-5_In-House_Care_DHP_PB26.json",
-      "section": "09_Defense_Health_Program",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/09-Vol_I_Sec_7A-OP-5_In-House_Care_DHP_PB26.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/09-Vol_I_Sec_7A-OP-5_In-House_Care_DHP_PB26.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "11-Vol_I_Sec_7C-OP-5_Consolidated_Health_Support_DHP_PB26.json",
-      "section": "09_Defense_Health_Program",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/11-Vol_I_Sec_7C-OP-5_Consolidated_Health_Support_DHP_PB26.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/11-Vol_I_Sec_7C-OP-5_Consolidated_Health_Support_DHP_PB26.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "12-Vol_I_Sec_7D-OP-5_Information_Management_DHP_PB26.json",
-      "section": "09_Defense_Health_Program",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/12-Vol_I_Sec_7D-OP-5_Information_Management_DHP_PB26.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/12-Vol_I_Sec_7D-OP-5_Information_Management_DHP_PB26.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "13-Vol_I_Sec_7E-OP-5_Management_Activities_DHP_PB26.json",
-      "section": "09_Defense_Health_Program",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/13-Vol_I_Sec_7E-OP-5_Management_Activities_DHP_PB26.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/13-Vol_I_Sec_7E-OP-5_Management_Activities_DHP_PB26.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "14-Vol_I_Sec_7F-OP-5_Education_and_Training_DHP_PB26.json",
-      "section": "09_Defense_Health_Program",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/14-Vol_I_Sec_7F-OP-5_Education_and_Training_DHP_PB26.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/14-Vol_I_Sec_7F-OP-5_Education_and_Training_DHP_PB26.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "15-Vol_I_Sec_7G-OP-5_Base_Operations_and_Communications_DHP_PB26.json",
-      "section": "09_Defense_Health_Program",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/15-Vol_I_Sec_7G-OP-5_Base_Operations_and_Communications_DHP_PB26.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/15-Vol_I_Sec_7G-OP-5_Base_Operations_and_Communications_DHP_PB26.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "16-Vol_I_Sec_7H-OP-5_Facilities_Sustainment_Restoration_and_Modernization_DHP_PB26.json",
-      "section": "09_Defense_Health_Program",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/16-Vol_I_Sec_7H-OP-5_Facilities_Sustainment_Restoration_and_Modernization_DHP_PB26.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/16-Vol_I_Sec_7H-OP-5_Facilities_Sustainment_Restoration_and_Modernization_DHP_PB26.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "17-Vol_I_Sec_8-PB-11_Cost_of_Medical_Activities_DHP_PB26.json",
-      "section": "09_Defense_Health_Program",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/17-Vol_I_Sec_8-PB-11_Cost_of_Medical_Activities_DHP_PB26.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/17-Vol_I_Sec_8-PB-11_Cost_of_Medical_Activities_DHP_PB26.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "18-Vol_I_Sec_9-PB-11A_Personnel_Summary_DHP_PB26.json",
-      "section": "09_Defense_Health_Program",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/18-Vol_I_Sec_9-PB-11A_Personnel_Summary_DHP_PB26.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/18-Vol_I_Sec_9-PB-11A_Personnel_Summary_DHP_PB26.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "19-Vol_I_Sec_10-PB-11B_Medical_Workload_Data_DHP_PB26.json",
-      "section": "09_Defense_Health_Program",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/19-Vol_I_Sec_10-PB-11B_Medical_Workload_Data_DHP_PB26.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/19-Vol_I_Sec_10-PB-11B_Medical_Workload_Data_DHP_PB26.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "20-Vol_II_Sec_1-PB-15_Advisory_and_Assistance_Services_DHP_PB26.json",
-      "section": "09_Defense_Health_Program",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/20-Vol_II_Sec_1-PB-15_Advisory_and_Assistance_Services_DHP_PB26.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/20-Vol_II_Sec_1-PB-15_Advisory_and_Assistance_Services_DHP_PB26.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "21-Vol_II_Sec_2-PB-28_Summary_of_Funds_Obligated_for_Environmental_Projects_DHP_PB26.json",
-      "section": "09_Defense_Health_Program",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/21-Vol_II_Sec_2-PB-28_Summary_of_Funds_Obligated_for_Environmental_Projects_DHP_PB26.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/21-Vol_II_Sec_2-PB-28_Summary_of_Funds_Obligated_for_Environmental_Projects_DHP_PB26.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "22-Vol_II_Sec_3-PB-22_Major_DoD_Headquarters_Activities_DHP_PB26.json",
-      "section": "09_Defense_Health_Program",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/22-Vol_II_Sec_3-PB-22_Major_DoD_Headquarters_Activities_DHP_PB26.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/22-Vol_II_Sec_3-PB-22_Major_DoD_Headquarters_Activities_DHP_PB26.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "23-Vol_II_Sec_4-P-1_Procurement_Program_DHP_PB26.json",
-      "section": "09_Defense_Health_Program",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/23-Vol_II_Sec_4-P-1_Procurement_Program_DHP_PB26.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/23-Vol_II_Sec_4-P-1_Procurement_Program_DHP_PB26.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "24-Vol_II_Sec_5-P-40_Procurement_Budget_Item_Justification_DHP_PB26.json",
-      "section": "09_Defense_Health_Program",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/24-Vol_II_Sec_5-P-40_Procurement_Budget_Item_Justification_DHP_PB26.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/24-Vol_II_Sec_5-P-40_Procurement_Budget_Item_Justification_DHP_PB26.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "25-Vol_II_Sec_6-R-1_Research Development_Test_and_Evaluation_Programs_DHP PB26.json",
-      "section": "09_Defense_Health_Program",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/25-Vol_II_Sec_6-R-1_Research Development_Test_and_Evaluation_Programs_DHP PB26.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/25-Vol_II_Sec_6-R-1_Research Development_Test_and_Evaluation_Programs_DHP PB26.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "26-Vol_II_Sec_7-RDTE_Budget_Item_Justification_DHP_PB26.json",
-      "section": "09_Defense_Health_Program",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/26-Vol_II_Sec_7-RDTE_Budget_Item_Justification_DHP_PB26.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/26-Vol_II_Sec_7-RDTE_Budget_Item_Justification_DHP_PB26.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "26-Vol_I_Appendix_OO_Overseas_Operations_DHP_PB26.json",
-      "section": "09_Defense_Health_Program",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/26-Vol_I_Appendix_OO_Overseas_Operations_DHP_PB26.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/26-Vol_I_Appendix_OO_Overseas_Operations_DHP_PB26.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "27-DHP_Vol_III_Cover_PB26.json",
-      "section": "09_Defense_Health_Program",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/27-DHP_Vol_III_Cover_PB26.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/27-DHP_Vol_III_Cover_PB26.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "28-DHP_Vol_III_Table_of_Contents_PB26.json",
-      "section": "09_Defense_Health_Program",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/28-DHP_Vol_III_Table_of_Contents_PB26.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/28-DHP_Vol_III_Table_of_Contents_PB26.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "30-Vol_III_Sec_2-Army_Medical_Readiness_DHP_PB26.json",
-      "section": "09_Defense_Health_Program",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/30-Vol_III_Sec_2-Army_Medical_Readiness_DHP_PB26.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/30-Vol_III_Sec_2-Army_Medical_Readiness_DHP_PB26.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "31-Vol_III_Sec_3-Navy_Medical_Readiness_DHP_PB26.json",
-      "section": "09_Defense_Health_Program",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/31-Vol_III_Sec_3-Navy_Medical_Readiness_DHP_PB26.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/31-Vol_III_Sec_3-Navy_Medical_Readiness_DHP_PB26.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    },
-    {
-      "advertised_filename": "9-Vol_III_Sec_1-Air_Force_Medical_Readiness_DHP_PB26.json",
-      "section": "09_Defense_Health_Program",
-      "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/9-Vol_III_Sec_1-Air_Force_Medical_Readiness_DHP_PB26.json",
-      "advertised_on": "https://comptroller.war.gov/Budget-Materials/FY2026BudgetJustification/",
-      "status_2026-07-15": {
-        "urllib_get": 404,
-        "curl_get": 404,
-        "note": "B1-0 survey download pass; 404 from both clients (DBDP-89 c10373)"
-      },
-      "status_2026-07-29": {
-        "urllib_head": 404,
-        "curl_head": 404
-      },
-      "paired_pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/9-Vol_III_Sec_1-Air_Force_Medical_Readiness_DHP_PB26.pdf",
-      "paired_pdf_status_2026-07-29": 404
-    }
-  ]
-}
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/OP-32A_Summary_(Part_1).json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/OSD_MISO_OP-5.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/Overview_(Part_1).json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/SDA_OP-5.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/SOCOM_OP-5.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/DCAA_OOC_OP-5.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/DCMA_OOC_OP-5.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/DISA_Cyber_OOC_OP-5.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/DISA_OOC_OP-5.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/DLSA_OOC_OP-5.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/DMA_OOC_OP-5.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/DSCA_OOC_OP-5.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/DTRA_OOC_OP-5.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/DoDDE_OOC_OP-5.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/OIG_OOC_OP-5.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/OSD_MISO_OOC_OP-5.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/OSD_OOC_OP-5.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/SOCOM_OOC_OP-5.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/TJS_OOC.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/WHS_OOC_OP-5.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/02_Procurement/DSCA_PB2026.xml",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/02_Procurement/PROC_DTRA_PB_2026.xml",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": "Content recoverable from PB_2026_PDW_VOL_1.xml (contains DTRA line items)."
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/02_Procurement/PROC_SDA_PB_2026.xml",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/03_RDT_and_E/RDTE_CYBERCOM_PB_2026.xml",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": "Content recoverable from PB_2026_RDTE_VOL_5.xml (contains US Cyber Command program elements)."
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/06_Defense_Working_Capital_Fund/DeCA_PB26_J-Book.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/06_Defense_Working_Capital_Fund/DoD_Revolving_Funds_J-Book_FY2026.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/06_Defense_Working_Capital_Fund/PB_2026_DWWCF_Operating_and_Capital_Budget_Estimates.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/01-DHP_Vol_I_and_II_Cover_PB26.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/02-DHP_Vol_I_and_II_Table_of_Contents_PB26.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/03-Vol_I_Sec_1-PBA-19_Introductory_Statement_DHP PB26.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/04-Vol_I_Sec_2-O-1_Operation_and_Maintenance_Funding_DHP_PB26.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/05-Vol_I_Sec-3-OP-32A_Summary_of_Price_and_Program_Growth_DHP_PB26.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/06-Vol_I_Sec_4-PB-31R_Personnel_Summary_DHP_PB26.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/07-Vol_I_Sec_5-PB-31Q_PB26.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/08-Vol_I_Sec_6-PB-31D_Summary_of_Funding_Increases_and_Decreases_DHP_PB26.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/09-Vol_I_Sec_7A-OP-5_In-House_Care_DHP_PB26.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/11-Vol_I_Sec_7C-OP-5_Consolidated_Health_Support_DHP_PB26.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/12-Vol_I_Sec_7D-OP-5_Information_Management_DHP_PB26.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/13-Vol_I_Sec_7E-OP-5_Management_Activities_DHP_PB26.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/14-Vol_I_Sec_7F-OP-5_Education_and_Training_DHP_PB26.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/15-Vol_I_Sec_7G-OP-5_Base_Operations_and_Communications_DHP_PB26.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/16-Vol_I_Sec_7H-OP-5_Facilities_Sustainment_Restoration_and_Modernization_DHP_PB26.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/17-Vol_I_Sec_8-PB-11_Cost_of_Medical_Activities_DHP_PB26.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/18-Vol_I_Sec_9-PB-11A_Personnel_Summary_DHP_PB26.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/19-Vol_I_Sec_10-PB-11B_Medical_Workload_Data_DHP_PB26.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/20-Vol_II_Sec_1-PB-15_Advisory_and_Assistance_Services_DHP_PB26.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/21-Vol_II_Sec_2-PB-28_Summary_of_Funds_Obligated_for_Environmental_Projects_DHP_PB26.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/22-Vol_II_Sec_3-PB-22_Major_DoD_Headquarters_Activities_DHP_PB26.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/23-Vol_II_Sec_4-P-1_Procurement_Program_DHP_PB26.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/24-Vol_II_Sec_5-P-40_Procurement_Budget_Item_Justification_DHP_PB26.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/25-Vol_II_Sec_6-R-1_Research Development_Test_and_Evaluation_Programs_DHP PB26.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/26-Vol_II_Sec_7-RDTE_Budget_Item_Justification_DHP_PB26.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/26-Vol_I_Appendix_OO_Overseas_Operations_DHP_PB26.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/27-DHP_Vol_III_Cover_PB26.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/28-DHP_Vol_III_Table_of_Contents_PB26.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/30-Vol_III_Sec_2-Army_Medical_Readiness_DHP_PB26.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/31-Vol_III_Sec_3-Navy_Medical_Readiness_DHP_PB26.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  },
+  {
+    "advertised_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/9-Vol_III_Sec_1-Air_Force_Medical_Readiness_DHP_PB26.json",
+    "http_status_observed": 404,
+    "check_date": "2026-07-15",
+    "clients_used": [
+      "urllib GET",
+      "curl GET"
+    ],
+    "paired_pdf_exists": true,
+    "recovery_note": null
+  }
+]
