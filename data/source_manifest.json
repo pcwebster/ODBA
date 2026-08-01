@@ -1,4 +1,46 @@
 {
+  "00-DHP_Vol_III_PB26.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:44-04:00; local path FY2026/09_Defense_Health_Program/00-DHP_Vol_III_PB26.json",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/00-DHP_Vol_III_PB26.json"
+  },
+  "00-DHP_Vols_I_and_II_PB26.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:43-04:00; local path FY2026/09_Defense_Health_Program/00-DHP_Vols_I_and_II_PB26.json",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/09_Defense_Health_Program/00-DHP_Vols_I_and_II_PB26.json"
+  },
+  "1-TJS_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:59-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/1-TJS_OP-5.json",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/1-TJS_OP-5.json"
+  },
+  "2-TJS_Sub-OPS OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:00-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/2-TJS_Sub-OPS OP-5.json",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/2-TJS_Sub-OPS OP-5.json"
+  },
+  "3-TJS_NDU_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:00-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/3-TJS_NDU_OP-5.json",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/3-TJS_NDU_OP-5.json"
+  },
+  "4-TJS_JTEEP_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:01-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/4-TJS_JTEEP_OP-5.json",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/4-TJS_JTEEP_OP-5.json"
+  },
+  "5-TJS_Cyber_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:01-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/5-TJS_Cyber_OP-5.json",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/5-TJS_Cyber_OP-5.json"
+  },
   "CAAF_OP-5.json": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
@@ -13,6 +55,24 @@
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "CYBERCOM_Headquarters_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:44-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/CYBERCOM_Headquarters_OP-5.json",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/CYBERCOM_Headquarters_OP-5.json"
+  },
+  "CYBERCOM_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:43-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/CYBERCOM_OP-5.json",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/CYBERCOM_OP-5.json"
+  },
+  "Cyberspace_Operations_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:44-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/Cyberspace_Operations_OP-5.json",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/Cyberspace_Operations_OP-5.json"
   },
   "DAU_OP-5.json": {
     "acquisition_date": "2026-05-21",
@@ -84,6 +144,12 @@
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
   },
+  "DMA_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:51-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/DMA_OP-5.json",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/DMA_OP-5.json"
+  },
   "DPAA_OP-5.json": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
@@ -119,6 +185,12 @@
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
   },
+  "DoDDE_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:52-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/DoDDE_OP-5.json",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/DoDDE_OP-5.json"
+  },
   "DoWDE_OP-5.json": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
@@ -134,6 +206,312 @@
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
   },
+  "FY2026_BRAC_Overview.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:41-04:00; local path FY2026/05_BRAC/FY2026_BRAC_Overview.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/05_BRAC/FY2026_BRAC_Overview.xml"
+  },
+  "FY2026_CAAF_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "CAAF_OP-5.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:02-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/FY2026_CAAF_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'CAAF_OP-5.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/CAAF_OP-5.json"
+  },
+  "FY2026_CMP_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "CMP_OP-5.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:43-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_CMP_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'CMP_OP-5.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/CMP_OP-5.json"
+  },
+  "FY2026_CTR_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "CTR_OP-5.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:03-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/FY2026_CTR_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'CTR_OP-5.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/CTR_OP-5.json"
+  },
+  "FY2026_DAU_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "DAU_OP-5.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:45-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DAU_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DAU_OP-5.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/DAU_OP-5.json"
+  },
+  "FY2026_DAWDA_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "DAWDA_OP-5.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:03-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/FY2026_DAWDA_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DAWDA_OP-5.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/DAWDA_OP-5.json"
+  },
+  "FY2026_DCAA_Cyber_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "DCAA_Cyber_OP-5.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:45-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DCAA_Cyber_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DCAA_Cyber_OP-5.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/DCAA_Cyber_OP-5.json"
+  },
+  "FY2026_DCAA_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "DCAA_OP-5.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:46-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DCAA_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DCAA_OP-5.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/DCAA_OP-5.json"
+  },
+  "FY2026_DCMA_Cyber_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "DCMA_Cyber_OP-5.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:46-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DCMA_Cyber_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DCMA_Cyber_OP-5.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/DCMA_Cyber_OP-5.json"
+  },
+  "FY2026_DCMA_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "DCMA_OP-5.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:47-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DCMA_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DCMA_OP-5.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/DCMA_OP-5.json"
+  },
+  "FY2026_DCSA_Cyber_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "DCSA_Cyber_OP-5.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:47-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DCSA_Cyber_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DCSA_Cyber_OP-5.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/DCSA_Cyber_OP-5.json"
+  },
+  "FY2026_DCSA_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "DCSA_OP-5.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:48-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DCSA_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DCSA_OP-5.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/DCSA_OP-5.json"
+  },
+  "FY2026_DHRA_Cyber_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "DHRA_Cyber_OP-5.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:48-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DHRA_Cyber_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DHRA_Cyber_OP-5.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/DHRA_Cyber_OP-5.json"
+  },
+  "FY2026_DHRA_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "DHRA_OP-5.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:49-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DHRA_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DHRA_OP-5.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/DHRA_OP-5.json"
+  },
+  "FY2026_DISA_Cyber_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "DISA_Cyber_OP-5.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:49-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DISA_Cyber_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DISA_Cyber_OP-5.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/DISA_Cyber_OP-5.json"
+  },
+  "FY2026_DISA_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "DISA_OP-5.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:50-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DISA_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DISA_OP-5.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/DISA_OP-5.json"
+  },
+  "FY2026_DLA_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "DLA_OP-5.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:50-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DLA_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DLA_OP-5.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/DLA_OP-5.json"
+  },
+  "FY2026_DLSA_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "DLSA_OP-5.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:51-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DLSA_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DLSA_OP-5.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/DLSA_OP-5.json"
+  },
+  "FY2026_DPAA_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "DPAA_OP-5.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:52-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DPAA_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DPAA_OP-5.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/DPAA_OP-5.json"
+  },
+  "FY2026_DSCA_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "DSCA_OP-5.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:53-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DSCA_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DSCA_OP-5.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/DSCA_OP-5.json"
+  },
+  "FY2026_DTRA_Cyber_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "DTRA_Cyber_OP-5.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:53-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DTRA_Cyber_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DTRA_Cyber_OP-5.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/DTRA_Cyber_OP-5.json"
+  },
+  "FY2026_DTRA_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "DTRA_OP-5.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:54-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DTRA_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DTRA_OP-5.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/DTRA_OP-5.json"
+  },
+  "FY2026_DTSA_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "DTSA_OP-5.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:54-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DTSA_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DTSA_OP-5.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/DTSA_OP-5.json"
+  },
+  "FY2026_ENV-30.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "ENV-30.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:15-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_2/FY2026_ENV-30.json; basename prefixed FY2026_ at download — publisher filename 'ENV-30.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_2/ENV-30.json"
+  },
+  "FY2026_MDA_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "MDA_OP-5.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:55-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_MDA_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'MDA_OP-5.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/MDA_OP-5.json"
+  },
+  "FY2026_OHDACA_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "OHDACA_OP-5.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:04-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/FY2026_OHDACA_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'OHDACA_OP-5.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/OHDACA_OP-5.json"
+  },
+  "FY2026_OIG_Cyber_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "OIG_Cyber_OP-5.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:05-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/FY2026_OIG_Cyber_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'OIG_Cyber_OP-5.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/OIG_Cyber_OP-5.json"
+  },
+  "FY2026_OIG_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "OIG_OP-5.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:04-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/FY2026_OIG_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'OIG_OP-5.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/OIG_OP-5.json"
+  },
+  "FY2026_OLDCC_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "OLDCC_OP-5.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:55-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_OLDCC_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'OLDCC_OP-5.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/OLDCC_OP-5.json"
+  },
+  "FY2026_OM_Volume1_Part1.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "OM_Volume1_Part1.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:38-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_OM_Volume1_Part1.json; basename prefixed FY2026_ at download — publisher filename 'OM_Volume1_Part1.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/OM_Volume1_Part1.json"
+  },
+  "FY2026_OM_Volume1_Part_2.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "OM_Volume1_Part_2.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:38-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/FY2026_OM_Volume1_Part_2.json; basename prefixed FY2026_ at download — publisher filename 'OM_Volume1_Part_2.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/OM_Volume1_Part_2.json"
+  },
+  "FY2026_OP-31.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "OP-31.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:17-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_2/FY2026_OP-31.json; basename prefixed FY2026_ at download — publisher filename 'OP-31.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_2/OP-31.json"
+  },
+  "FY2026_OP-34.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "OP-34.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:18-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_2/FY2026_OP-34.json; basename prefixed FY2026_ at download — publisher filename 'OP-34.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_2/OP-34.json"
+  },
+  "FY2026_OP-8.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "OP-8.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:17-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_2/FY2026_OP-8.json; basename prefixed FY2026_ at download — publisher filename 'OP-8.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_2/OP-8.json"
+  },
+  "FY2026_PB-15.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "PB-15.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:18-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_2/FY2026_PB-15.json; basename prefixed FY2026_ at download — publisher filename 'PB-15.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_2/PB-15.json"
+  },
+  "FY2026_PB-24.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "PB-24.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:19-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_2/FY2026_PB-24.json; basename prefixed FY2026_ at download — publisher filename 'PB-24.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_2/PB-24.json"
+  },
+  "FY2026_PB-28.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "PB-28.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:19-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_2/FY2026_PB-28.json; basename prefixed FY2026_ at download — publisher filename 'PB-28.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_2/PB-28.json"
+  },
+  "FY2026_PB-31Q.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "PB-31Q.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:20-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_2/FY2026_PB-31Q.json; basename prefixed FY2026_ at download — publisher filename 'PB-31Q.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_2/PB-31Q.json"
+  },
+  "FY2026_PB-61.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "PB-61.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:20-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_2/FY2026_PB-61.json; basename prefixed FY2026_ at download — publisher filename 'PB-61.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_2/PB-61.json"
+  },
+  "FY2026_SISC_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "SISC_OP-5.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:05-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/FY2026_SISC_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'SISC_OP-5.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/SISC_OP-5.json"
+  },
+  "FY2026_Service_Support.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "Service_Support.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:21-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_2/FY2026_Service_Support.json; basename prefixed FY2026_ at download — publisher filename 'Service_Support.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_2/Service_Support.json"
+  },
+  "FY2026_Volume_2.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "Volume_2.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:40-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_2/FY2026_Volume_2.json; basename prefixed FY2026_ at download — publisher filename 'Volume_2.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_2/Volume_2.json"
+  },
+  "FY2026_WHS_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "original_filename": "WHS_OP-5.json",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:02-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_WHS_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'WHS_OP-5.json' collides with the FY2027 corpus",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/WHS_OP-5.json"
+  },
+  "FY26_NATO_Security_Investment_Program.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:10:05-04:00; local path FY2026/11_NATO_Security_Investment_Program/FY26_NATO_Security_Investment_Program.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/11_NATO_Security_Investment_Program/FY26_NATO_Security_Investment_Program.xml"
+  },
   "MDA_OP-5.json": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
@@ -148,6 +526,12 @@
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "MISO_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:55-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/MISO_OP-5.json",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/MISO_OP-5.json"
   },
   "O-1_Summary.json": {
     "acquisition_date": "2026-05-21",
@@ -204,6 +588,18 @@
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
   },
+  "OSD_Cyber_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:57-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/OSD_Cyber_OP-5.json",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/OSD_Cyber_OP-5.json"
+  },
+  "OSD_OP-5.json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:56-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/OSD_OP-5.json",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/OSD_OP-5.json"
+  },
   "OSW_Cyber_OP-5.json": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
@@ -244,6 +640,18 @@
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
   },
+  "PB_2026_PDW_VOL_1.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:21-04:00; local path FY2026/02_Procurement/PB_2026_PDW_VOL_1.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/02_Procurement/PB_2026_PDW_VOL_1.xml"
+  },
+  "PB_2026_RDTE_VOL_5.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:34-04:00; local path FY2026/03_RDT_and_E/PB_2026_RDTE_VOL_5.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/03_RDT_and_E/PB_2026_RDTE_VOL_5.xml"
+  },
   "PB_2027_DWWCF_Operating_and_Capital_Bgt_Est.json": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
@@ -259,50 +667,116 @@
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
   },
+  "PB_26_DW_FH_FHIF.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:40-04:00; local path FY2026/04_Family_Housing/PB_26_DW_FH_FHIF.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/04_Family_Housing/PB_26_DW_FH_FHIF.xml"
+  },
+  "PROC_CBDP_PB_2026.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:22-04:00; local path FY2026/02_Procurement/PROC_CBDP_PB_2026.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/02_Procurement/PROC_CBDP_PB_2026.xml"
+  },
   "PROC_CBDP_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "PROC_CYBERCOM_PB_2026.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:22-04:00; local path FY2026/02_Procurement/PROC_CYBERCOM_PB_2026.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/02_Procurement/PROC_CYBERCOM_PB_2026.xml"
   },
   "PROC_CYBERCOM_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
   },
+  "PROC_DCSA_PB_2026.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:22-04:00; local path FY2026/02_Procurement/PROC_DCSA_PB_2026.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/02_Procurement/PROC_DCSA_PB_2026.xml"
+  },
   "PROC_DCSA_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "PROC_DHRA_PB_2026.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:23-04:00; local path FY2026/02_Procurement/PROC_DHRA_PB_2026.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/02_Procurement/PROC_DHRA_PB_2026.xml"
   },
   "PROC_DHRA_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
   },
+  "PROC_DISA_PB_2026.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:23-04:00; local path FY2026/02_Procurement/PROC_DISA_PB_2026.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/02_Procurement/PROC_DISA_PB_2026.xml"
+  },
   "PROC_DISA_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "PROC_DLA_PB_2026.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:24-04:00; local path FY2026/02_Procurement/PROC_DLA_PB_2026.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/02_Procurement/PROC_DLA_PB_2026.xml"
   },
   "PROC_DLA_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
   },
+  "PROC_DMACT_PB_2026.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:24-04:00; local path FY2026/02_Procurement/PROC_DMACT_PB_2026.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/02_Procurement/PROC_DMACT_PB_2026.xml"
+  },
   "PROC_DMACT_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "PROC_DODEA_PB_2026.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:25-04:00; local path FY2026/02_Procurement/PROC_DODEA_PB_2026.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/02_Procurement/PROC_DODEA_PB_2026.xml"
   },
   "PROC_DODEA_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
   },
+  "PROC_DPAA_PB_2026.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:25-04:00; local path FY2026/02_Procurement/PROC_DPAA_PB_2026.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/02_Procurement/PROC_DPAA_PB_2026.xml"
+  },
   "PROC_DPAA_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "PROC_DPAP_PB_2026.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:25-04:00; local path FY2026/02_Procurement/PROC_DPAP_PB_2026.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/02_Procurement/PROC_DPAP_PB_2026.xml"
   },
   "PROC_DPAP_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
@@ -314,25 +788,55 @@
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
   },
+  "PROC_MDA_VOL2B_PB_2026.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:30-04:00; local path FY2026/02_Procurement/PROC_MDA_VOL2B_PB_2026.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/02_Procurement/PROC_MDA_VOL2B_PB_2026.xml"
+  },
   "PROC_MDA_VOL2B_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "PROC_OSD_PB_2026.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:28-04:00; local path FY2026/02_Procurement/PROC_OSD_PB_2026.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/02_Procurement/PROC_OSD_PB_2026.xml"
   },
   "PROC_OSD_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
   },
+  "PROC_SOCOM_PB_2026.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:29-04:00; local path FY2026/02_Procurement/PROC_SOCOM_PB_2026.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/02_Procurement/PROC_SOCOM_PB_2026.xml"
+  },
   "PROC_SOCOM_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
   },
+  "PROC_TJS_PB_2026.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:29-04:00; local path FY2026/02_Procurement/PROC_TJS_PB_2026.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/02_Procurement/PROC_TJS_PB_2026.xml"
+  },
   "PROC_TJS_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "PROC_WHS_PB_2026.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:30-04:00; local path FY2026/02_Procurement/PROC_WHS_PB_2026.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/02_Procurement/PROC_WHS_PB_2026.xml"
   },
   "PROC_WHS_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
@@ -344,10 +848,22 @@
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
   },
+  "RDTE_CBDP_PB_2026.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:33-04:00; local path FY2026/03_RDT_and_E/RDTE_CBDP_PB_2026.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/03_RDT_and_E/RDTE_CBDP_PB_2026.xml"
+  },
   "RDTE_CBDP_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "RDTE_CHIPS_PB_2026.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:32-04:00; local path FY2026/03_RDT_and_E/RDTE_CHIPS_PB_2026.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/03_RDT_and_E/RDTE_CHIPS_PB_2026.xml"
   },
   "RDTE_CHIPS_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
@@ -359,75 +875,165 @@
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
   },
+  "RDTE_DCAA_PB_2026.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:35-04:00; local path FY2026/03_RDT_and_E/RDTE_DCAA_PB_2026.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/03_RDT_and_E/RDTE_DCAA_PB_2026.xml"
+  },
   "RDTE_DCAA_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "RDTE_DCMA_PB_2026.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:36-04:00; local path FY2026/03_RDT_and_E/RDTE_DCMA_PB_2026.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/03_RDT_and_E/RDTE_DCMA_PB_2026.xml"
   },
   "RDTE_DCMA_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
   },
+  "RDTE_DCSA_PB_2026.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:36-04:00; local path FY2026/03_RDT_and_E/RDTE_DCSA_PB_2026.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/03_RDT_and_E/RDTE_DCSA_PB_2026.xml"
+  },
   "RDTE_DCSA_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "RDTE_DHRA_PB_2026.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:36-04:00; local path FY2026/03_RDT_and_E/RDTE_DHRA_PB_2026.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/03_RDT_and_E/RDTE_DHRA_PB_2026.xml"
   },
   "RDTE_DHRA_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
   },
+  "RDTE_DISA_PB_2026.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:37-04:00; local path FY2026/03_RDT_and_E/RDTE_DISA_PB_2026.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/03_RDT_and_E/RDTE_DISA_PB_2026.xml"
+  },
   "RDTE_DISA_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "RDTE_DLA_PB_2026.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:37-04:00; local path FY2026/03_RDT_and_E/RDTE_DLA_PB_2026.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/03_RDT_and_E/RDTE_DLA_PB_2026.xml"
   },
   "RDTE_DLA_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
   },
+  "RDTE_DSCA_PB_2026.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:38-04:00; local path FY2026/03_RDT_and_E/RDTE_DSCA_PB_2026.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/03_RDT_and_E/RDTE_DSCA_PB_2026.xml"
+  },
   "RDTE_DSCA_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "RDTE_DTIC_PB_2026.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:38-04:00; local path FY2026/03_RDT_and_E/RDTE_DTIC_PB_2026.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/03_RDT_and_E/RDTE_DTIC_PB_2026.xml"
   },
   "RDTE_DTIC_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
   },
+  "RDTE_DTRA_PB_2026.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:39-04:00; local path FY2026/03_RDT_and_E/RDTE_DTRA_PB_2026.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/03_RDT_and_E/RDTE_DTRA_PB_2026.xml"
+  },
   "RDTE_DTRA_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "RDTE_OSD_PB_2026.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:33-04:00; local path FY2026/03_RDT_and_E/RDTE_OSD_PB_2026.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/03_RDT_and_E/RDTE_OSD_PB_2026.xml"
   },
   "RDTE_OSW_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
   },
+  "RDTE_OTE_PB_2026.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:39-04:00; local path FY2026/03_RDT_and_E/RDTE_OTE_PB_2026.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/03_RDT_and_E/RDTE_OTE_PB_2026.xml"
+  },
   "RDTE_OTE_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "RDTE_SOCOM_PB_2026.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:40-04:00; local path FY2026/03_RDT_and_E/RDTE_SOCOM_PB_2026.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/03_RDT_and_E/RDTE_SOCOM_PB_2026.xml"
   },
   "RDTE_SOCOM_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
   },
+  "RDTE_TJS_PB_2026.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:40-04:00; local path FY2026/03_RDT_and_E/RDTE_TJS_PB_2026.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/03_RDT_and_E/RDTE_TJS_PB_2026.xml"
+  },
   "RDTE_TJS_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
   },
+  "RDTE_Vol1_DARPA_MasterJustificationBook_PB_2026.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:31-04:00; local path FY2026/03_RDT_and_E/RDTE_Vol1_DARPA_MasterJustificationBook_PB_2026.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/03_RDT_and_E/RDTE_Vol1_DARPA_MasterJustificationBook_PB_2026.xml"
+  },
   "RDTE_Vol1_DARPA_MasterJustificationBook_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "RDTE_Vol2_MDA_RDTE_PB26_Justification_Book.xml": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:32-04:00; local path FY2026/03_RDT_and_E/RDTE_Vol2_MDA_RDTE_PB26_Justification_Book.xml",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/03_RDT_and_E/RDTE_Vol2_MDA_RDTE_PB26_Justification_Book.xml"
   },
   "SISC_OP-5.json": {
     "acquisition_date": "2026-05-21",
@@ -448,6 +1054,12 @@
     "acquisition_date": "2026-05-21",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection."
+  },
+  "Summary_by_Agency_(Part_1).json": {
+    "acquisition_date": "2026-07-15",
+    "lifecycle_stage": "Budget Request",
+    "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:41-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/Summary_by_Agency_(Part_1).json",
+    "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2026/budget_justification/pdfs/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/Summary_by_Agency_(Part_1).json"
   },
   "USCYBERCOM_OP-5.json": {
     "acquisition_date": "2026-05-21",
