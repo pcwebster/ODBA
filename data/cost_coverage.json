@@ -1,0 +1,26 @@
+{
+  "2026": {
+    "covered": [
+      "cost_fy2026"
+    ],
+    "excluded": {
+      "cost_fy2027": "no FYDP published (administration transition)",
+      "cost_fy2028": "no FYDP published (administration transition)",
+      "cost_fy2029": "no FYDP published (administration transition)",
+      "cost_fy2030": "no FYDP published (administration transition)",
+      "cost_fy2031": "no FYDP published (administration transition)"
+    }
+  },
+  "2027": {
+    "covered": [
+      "cost_fy2027",
+      "cost_fy2028",
+      "cost_fy2029",
+      "cost_fy2030",
+      "cost_fy2031"
+    ],
+    "excluded": {
+      "cost_fy2026": "absolute FY2026 column not published in the FY27 PB submission; the FY2026 figure is carried in the relative cost_current_year column (AR c10430 section 2 absolute/relative interlock - forcing this column null on FY27 rows prevents double-representation of FY2026 dollars)"
+    }
+  }
+}

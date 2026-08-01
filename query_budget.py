@@ -142,6 +142,43 @@ def run_queries(parquet_path):
     # DBDP-50: bind path as parameter instead of f-string interpolation
     # DuckDB supports ? placeholders: con.execute("... read_parquet(?) ...", [p])
 
+    # ── Report guard (DBDP-102 AC-4; AR c10430 binding note a) ────────────────
+    # This workbook is a single-year, single-lifecycle, single-vintage report.
+    # The three-part pin is FY2027 + 'Budget Request' + one declared vintage;
+    # a bare budget_year pin is NOT sufficient once Enacted rows (B1-3) or a
+    # restated vintage exist. Hard-fail if more than one lifecycle stage or
+    # vintage is eligible for the slice — multi-year/multi-stage reporting is
+    # future B7 tier-2 work, a deliberate redesign, never a silent fold-in.
+    eligible = con.execute("""
+        SELECT DISTINCT data_lifecycle_stage, data_vintage
+        FROM read_parquet(?)
+        WHERE budget_year = 2027.0 AND data_lifecycle_stage = 'Budget Request'
+    """, [p]).fetchall()
+    all_pairs = con.execute("""
+        SELECT DISTINCT data_lifecycle_stage, data_vintage
+        FROM read_parquet(?) WHERE budget_year = 2027.0
+    """, [p]).fetchall()
+    stages   = sorted({s for s, _ in all_pairs})
+    vintages = sorted({v for _, v in eligible})
+    if len(stages) > 1 or len(vintages) != 1:
+        print("  [FATAL] report guard (DBDP-102 AC-4): the FY2027 report slice "
+              "must be exactly one lifecycle stage ('Budget Request') and one "
+              "data_vintage.")
+        print(f"          eligible stages within budget_year=2027: {stages}")
+        print(f"          eligible vintages within FY2027 Budget Request: {vintages}")
+        print("          Multi-stage/multi-vintage reporting is a deliberate "
+              "B7 tier-2 redesign — refusing to render a mixed workbook.")
+        sys.exit(1)
+    vintage = vintages[0]
+    # Pin all report queries to the validated slice. Literals are inlined
+    # only after validation above, escaped, sourced from the parquet itself.
+    slice_sql = ("SELECT * FROM read_parquet('{}') WHERE budget_year = 2027.0 "
+                 "AND data_lifecycle_stage = 'Budget Request' "
+                 "AND data_vintage = '{}'").format(
+                     p.replace("'", "''"), vintage.replace("'", "''"))
+    con.execute(f"CREATE TEMP VIEW report_slice AS {slice_sql}")
+    print(f"  Report slice: budget_year=2027.0 | Budget Request | vintage {vintage}")
+
     print("  Running queries...")
 
     # 1. Summary by appropriation type
@@ -156,11 +193,11 @@ def run_queries(parquet_path):
             CASE WHEN SUM(cost_prior_year) > 0
                  THEN (SUM(cost_fy2027) - SUM(cost_prior_year)) / SUM(cost_prior_year)
                  ELSE NULL END                         AS "Change (%)"
-        FROM read_parquet(?)
+        FROM report_slice
         -- DBDP-66 TC-ER-09R: no dollar filter, so every appropriation_type (incl. DWCF) gets a Summary row
         GROUP BY 1, 2
         ORDER BY "FY2027 Request ($M)" DESC NULLS LAST
-    """, [p]).df()
+    """).df()
 
     # 2. By agency
     q_agency = con.execute("""
@@ -175,10 +212,10 @@ def run_queries(parquet_path):
             CASE WHEN SUM(cost_prior_year) > 0
                  THEN (SUM(cost_fy2027) - SUM(cost_prior_year)) / SUM(cost_prior_year)
                  ELSE NULL END                         AS "Change (%)"
-        FROM read_parquet(?)
+        FROM report_slice
         GROUP BY 1, 2, 3
         ORDER BY "FY2027 Request ($M)" DESC NULLS LAST
-    """, [p]).df()
+    """).df()
 
     # 3. Year-over-year by line item (XML records with both years populated)
     q_yoy = con.execute("""
@@ -194,12 +231,12 @@ def run_queries(parquet_path):
             CASE WHEN cost_prior_year > 0
                  THEN (cost_fy2027 - cost_prior_year) / cost_prior_year
                  ELSE NULL END                         AS "Change (%)"
-        FROM read_parquet(?)
+        FROM report_slice
         WHERE file_format = 'XML'
           AND cost_prior_year IS NOT NULL
           AND cost_fy2027     IS NOT NULL
         ORDER BY ABS(cost_fy2027 - cost_prior_year) DESC NULLS LAST
-    """, [p]).df()
+    """).df()
 
     # 4. RDT&E by Budget Activity
     q_ba = con.execute("""
@@ -213,11 +250,11 @@ def run_queries(parquet_path):
             ROUND(SUM(cost_fy2029),     1)             AS "FY2029 FYDP ($M)",
             ROUND(SUM(cost_fy2030),     1)             AS "FY2030 FYDP ($M)",
             ROUND(SUM(cost_fy2031),     1)             AS "FY2031 FYDP ($M)"
-        FROM read_parquet(?)
+        FROM report_slice
         WHERE appropriation_type = 'RDT&E'
         GROUP BY 1, 2
         ORDER BY CAST(budget_activity_number AS INTEGER) NULLS LAST
-    """, [p]).df()
+    """).df()
 
     # 5. Procurement detail
     q_proc = con.execute("""
@@ -236,10 +273,10 @@ def run_queries(parquet_path):
             ROUND(cost_fy2030,      1)                 AS "FY2030 ($M)",
             ROUND(cost_fy2031,      1)                 AS "FY2031 ($M)",
             source_file                                AS "Source File"
-        FROM read_parquet(?)
+        FROM report_slice
         WHERE appropriation_type = 'Procurement'
         ORDER BY service_agency_acronym, budget_activity_number, line_item_number
-    """, [p]).df()
+    """).df()
 
     # 6. RDT&E detail
     q_rdte = con.execute("""
@@ -256,18 +293,18 @@ def run_queries(parquet_path):
             ROUND(cost_fy2030,      1)                 AS "FY2030 ($M)",
             ROUND(cost_fy2031,      1)                 AS "FY2031 ($M)",
             source_file                                AS "Source File"
-        FROM read_parquet(?)
+        FROM report_slice
         WHERE appropriation_type = 'RDT&E'
         ORDER BY service_agency_acronym, budget_activity_number, program_element
-    """, [p]).df()
+    """).df()
 
     # 7. All records — SELECT * so the sheet always carries the full schema
     #    (parquet column order == etl_budget.COLUMNS; DBDP-94 c10336 Ruling 1)
     q_all = con.execute("""
         SELECT *
-        FROM read_parquet(?)
+        FROM report_slice
         ORDER BY appropriation_type, service_agency_acronym, line_item_number
-    """, [p]).df()
+    """).df()
     # funding_type / funding_type_signal are genuinely NULL until the B5
     # classifier lands; openpyxl cannot write pandas NA — render as empty
     # cells without touching the parquet's NULL state.
