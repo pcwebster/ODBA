@@ -172,21 +172,33 @@ def load_source_manifest():
         return json.load(fh)
 
 
-def load_cost_coverage():
+def load_cost_coverage(path=None):
     """Load data/cost_coverage.json (DBDP-102, c10365 §2).
 
-    Year keys are normalized to int (AC-2). Validates structure: covered
-    lists ⊆ ABSOLUTE_COST_COLUMNS; every excluded column carries a reason
-    note. Hard-fails on a missing or malformed file.
+    Year keys are normalized to int (AC-2). Validates structure STRICTLY:
+    a year spec carries exactly the keys "covered" and "excluded" — any
+    other key (e.g. a resurrected "positive_leg_exceptions") hard-fails,
+    per the DBDP-102 delta ruling on Codex c10455 finding 1: the positive
+    leg admits no configured exceptions. If a genuine exception case ever
+    arises, that is an ETL Designer design item, not a JSON edit.
+    Covered lists ⊆ ABSOLUTE_COST_COLUMNS; every excluded column carries a
+    reason note. Hard-fails on a missing or malformed file.
     """
-    if not COVERAGE_FILE.exists():
-        print(f"  [FATAL] cost coverage file not found: {COVERAGE_FILE}")
+    path = Path(path) if path else COVERAGE_FILE
+    if not path.exists():
+        print(f"  [FATAL] cost coverage file not found: {path}")
         sys.exit(1)
-    with open(COVERAGE_FILE, encoding="utf-8") as fh:
+    with open(path, encoding="utf-8") as fh:
         raw = json.load(fh)
     coverage = {}
     for year_key, spec in raw.items():
         year = int(year_key)
+        unknown = sorted(set(spec) - {"covered", "excluded"})
+        if unknown:
+            print(f"  [FATAL] cost_coverage[{year}]: unknown key(s) {unknown} — "
+                  f"a year spec carries exactly 'covered' and 'excluded'; the "
+                  f"positive leg admits no configured exceptions (c10455 f.1)")
+            sys.exit(1)
         covered = spec.get("covered", [])
         excluded = spec.get("excluded", {})
         bad = [c for c in covered if c not in ABSOLUTE_COST_COLUMNS]
@@ -200,11 +212,7 @@ def load_cost_coverage():
             print(f"  [FATAL] cost_coverage[{year}]: excluded columns without "
                   f"a reason note: {missing_reason}")
             sys.exit(1)
-        coverage[year] = {
-            "covered": covered,
-            "excluded": excluded,
-            "positive_leg_exceptions": spec.get("positive_leg_exceptions", {}),
-        }
+        coverage[year] = {"covered": covered, "excluded": excluded}
     return coverage
 
 
@@ -216,32 +224,69 @@ def check_cost_coverage(df, coverage):
     Returns a list of failure strings; empty list = pass.
 
     Legs:
+      validity — budget_year is non-null, numeric, and integral on EVERY
+                 row, so every row belongs to exactly one checked group
+                 (c10455 finding 2: null/non-integral years must hard-fail,
+                 never escape — manifest hard-fail philosophy);
       closure  — every data year has a coverage entry (coverage may carry
                  future years with no rows yet, e.g. 2026 before B1-2);
       negative — a declared-absent column is 100% null within its year group
                  (structural absence is declared + verified, never inferred);
-      positive — a declared-covered column has ≥1 non-null value in its year
-                 group, or a predeclared source-receipted exception
-                 (c10430 binding note c: required, not optional).
+      positive — a declared-covered column has ≥1 non-null value in its
+                 year group (c10430 binding note c: required, not optional;
+                 NO configured exceptions — c10455 finding 1). The sanctioned
+                 handling for legitimate cases like RF-1 is the per-line-null
+                 carve-out below, never a column-level exemption.
     Per-line nulls INSIDE coverage are legal gaps (RF-1 case) — untouched.
     """
     failures = []
-    data_years = sorted({int(y) for y in df["budget_year"].dropna().unique()})
+
+    # validity leg — runs first; grouping with bad years would be wrong
+    by_num = pd.to_numeric(df["budget_year"], errors="coerce")
+    null_rows = df.index[df["budget_year"].isna()]
+    if len(null_rows) > 0:
+        failures.append(
+            f"budget_year validity: {len(null_rows):,} row(s) with null "
+            f"budget_year (first row index {null_rows[0]}) — every row must "
+            f"belong to exactly one coverage group")
+    nonnum_rows = df.index[df["budget_year"].notna() & by_num.isna()]
+    if len(nonnum_rows) > 0:
+        failures.append(
+            f"budget_year validity: {len(nonnum_rows):,} non-numeric "
+            f"budget_year value(s) (first row index {nonnum_rows[0]})")
+    nonint_rows = df.index[by_num.notna() & (by_num % 1 != 0)]
+    if len(nonint_rows) > 0:
+        failures.append(
+            f"budget_year validity: {len(nonint_rows):,} non-integral "
+            f"budget_year value(s) (first row index {nonint_rows[0]}, value "
+            f"{df['budget_year'][nonint_rows[0]]!r}) — coverage groups are "
+            f"integer fiscal years")
+    if failures:
+        return failures
+
+    # normalize ONCE; from here every row has exactly one integer year
+    # (the group-assignment invariant at the end proves it — no assert,
+    # which would vanish under python -O; Bandit B101)
+    year_of = by_num.astype(int)
+    data_years = sorted(year_of.unique())
+
     for year in data_years:
         if year not in coverage:
             failures.append(f"closure: budget_year {year} has no cost_coverage entry")
+    grouped_total = 0
     for year in data_years:
+        grp = df[year_of == year]
+        grouped_total += len(grp)
         if year not in coverage:
             continue
-        grp = df[df["budget_year"] == float(year)]
         spec = coverage[year]
         for col in ABSOLUTE_COST_COLUMNS:
             if col in spec["covered"]:
-                if grp[col].notna().sum() == 0 and col not in spec["positive_leg_exceptions"]:
+                if grp[col].notna().sum() == 0:
                     failures.append(
                         f"positive-leg: year {year} column {col} is declared "
-                        f"covered but 100% null ({len(grp):,} rows) with no "
-                        f"predeclared exception — silent coverage lie")
+                        f"covered but 100% null ({len(grp):,} rows) — silent "
+                        f"coverage lie (no exception mechanism exists)")
             else:
                 offenders = grp.index[grp[col].notna()]
                 if len(offenders) > 0:
@@ -250,6 +295,11 @@ def check_cost_coverage(df, coverage):
                         f"carries {len(offenders):,} non-null value(s) "
                         f"(first row index {offenders[0]}) but is not in "
                         f"{year}'s coverage list")
+    # every-row-assigned invariant (c10455 finding 2 closure)
+    if grouped_total != len(df):
+        failures.append(
+            f"group-assignment invariant: {grouped_total:,} rows grouped of "
+            f"{len(df):,} — some rows belong to no checked group")
     return failures
 
 
