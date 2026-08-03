@@ -36,6 +36,7 @@ DATA_DIR     = SCRIPT_DIR
 OUTPUT_DIR   = SCRIPT_DIR / "output"
 OUTPUT_FILE  = OUTPUT_DIR / "fact_budget_line_items.parquet"
 MANIFEST_FILE = SCRIPT_DIR / "data" / "source_manifest.json"
+COVERAGE_FILE = SCRIPT_DIR / "data" / "cost_coverage.json"
 
 # ── XML Namespaces ────────────────────────────────────────────────────────────
 JB_NS   = "http://www.dtic.mil/comptroller/xml/schema/022009/jb"
@@ -61,6 +62,21 @@ COLUMNS = [
     "usaspending_federal_account", "program_activity_code", "treasury_account_symbol",
     # DBDP-94 schema-foundation batch (c10315): appended at end, 34 -> 37
     "funding_type", "funding_type_signal", "data_vintage",
+    # DBDP-102 B1-1 (c10365 §2, AR c10430): additive FY2026 request-year
+    # figure, appended per the c10315 precedent (37 -> 38). NULL until B1-2
+    # ingests FY26 rows; forced 100%-null on FY27 rows by the coverage
+    # assertion (2027 coverage excludes it — absolute/relative interlock).
+    "cost_fy2026",
+]
+
+# ── DBDP-102 cost-column coverage (c10365 §2; AR c10430) ─────────────────────
+# Absolute (year-named) cost columns governed by data/cost_coverage.json.
+# Structural absence is DECLARED there and VERIFIED uniform by the coverage
+# assertion — never inferred from nulls. Relative columns (cost_prior_year,
+# cost_current_year, …) keep per-submission semantics and are not governed.
+ABSOLUTE_COST_COLUMNS = [
+    "cost_fy2026", "cost_fy2027", "cost_fy2028",
+    "cost_fy2029", "cost_fy2030", "cost_fy2031",
 ]
 
 # ── DBDP-94 enums / fixed maps (c10315 §1, c10321; DBDP-86 c10274 grammar) ────
@@ -154,6 +170,137 @@ def load_source_manifest():
         sys.exit(1)
     with open(MANIFEST_FILE, encoding="utf-8") as fh:
         return json.load(fh)
+
+
+def load_cost_coverage(path=None):
+    """Load data/cost_coverage.json (DBDP-102, c10365 §2).
+
+    Year keys are normalized to int (AC-2). Validates structure STRICTLY:
+    a year spec carries exactly the keys "covered" and "excluded" — any
+    other key (e.g. a resurrected "positive_leg_exceptions") hard-fails,
+    per the DBDP-102 delta ruling on Codex c10455 finding 1: the positive
+    leg admits no configured exceptions. If a genuine exception case ever
+    arises, that is an ETL Designer design item, not a JSON edit.
+    Covered lists ⊆ ABSOLUTE_COST_COLUMNS; every excluded column carries a
+    reason note. Hard-fails on a missing or malformed file.
+    """
+    path = Path(path) if path else COVERAGE_FILE
+    if not path.exists():
+        print(f"  [FATAL] cost coverage file not found: {path}")
+        sys.exit(1)
+    with open(path, encoding="utf-8") as fh:
+        raw = json.load(fh)
+    coverage = {}
+    for year_key, spec in raw.items():
+        year = int(year_key)
+        unknown = sorted(set(spec) - {"covered", "excluded"})
+        if unknown:
+            print(f"  [FATAL] cost_coverage[{year}]: unknown key(s) {unknown} — "
+                  f"a year spec carries exactly 'covered' and 'excluded'; the "
+                  f"positive leg admits no configured exceptions (c10455 f.1)")
+            sys.exit(1)
+        covered = spec.get("covered", [])
+        excluded = spec.get("excluded", {})
+        bad = [c for c in covered if c not in ABSOLUTE_COST_COLUMNS]
+        if bad:
+            print(f"  [FATAL] cost_coverage[{year}]: covered columns not in "
+                  f"ABSOLUTE_COST_COLUMNS: {bad}")
+            sys.exit(1)
+        missing_reason = [c for c in ABSOLUTE_COST_COLUMNS
+                          if c not in covered and not excluded.get(c)]
+        if missing_reason:
+            print(f"  [FATAL] cost_coverage[{year}]: excluded columns without "
+                  f"a reason note: {missing_reason}")
+            sys.exit(1)
+        coverage[year] = {"covered": covered, "excluded": excluded}
+    return coverage
+
+
+def check_cost_coverage(df, coverage):
+    """Coverage assertion (DBDP-102; AC-2 as amended c10387; AR c10430).
+
+    This is the SINGLE callable the production run and any test exercise
+    against the same in-memory dataframe (Codex c10382 executable-path rule).
+    Returns a list of failure strings; empty list = pass.
+
+    Legs:
+      validity — budget_year is non-null, numeric, and integral on EVERY
+                 row, so every row belongs to exactly one checked group
+                 (c10455 finding 2: null/non-integral years must hard-fail,
+                 never escape — manifest hard-fail philosophy);
+      closure  — every data year has a coverage entry (coverage may carry
+                 future years with no rows yet, e.g. 2026 before B1-2);
+      negative — a declared-absent column is 100% null within its year group
+                 (structural absence is declared + verified, never inferred);
+      positive — a declared-covered column has ≥1 non-null value in its
+                 year group (c10430 binding note c: required, not optional;
+                 NO configured exceptions — c10455 finding 1). The sanctioned
+                 handling for legitimate cases like RF-1 is the per-line-null
+                 carve-out below, never a column-level exemption.
+    Per-line nulls INSIDE coverage are legal gaps (RF-1 case) — untouched.
+    """
+    failures = []
+
+    # validity leg — runs first; grouping with bad years would be wrong
+    by_num = pd.to_numeric(df["budget_year"], errors="coerce")
+    null_rows = df.index[df["budget_year"].isna()]
+    if len(null_rows) > 0:
+        failures.append(
+            f"budget_year validity: {len(null_rows):,} row(s) with null "
+            f"budget_year (first row index {null_rows[0]}) — every row must "
+            f"belong to exactly one coverage group")
+    nonnum_rows = df.index[df["budget_year"].notna() & by_num.isna()]
+    if len(nonnum_rows) > 0:
+        failures.append(
+            f"budget_year validity: {len(nonnum_rows):,} non-numeric "
+            f"budget_year value(s) (first row index {nonnum_rows[0]})")
+    nonint_rows = df.index[by_num.notna() & (by_num % 1 != 0)]
+    if len(nonint_rows) > 0:
+        failures.append(
+            f"budget_year validity: {len(nonint_rows):,} non-integral "
+            f"budget_year value(s) (first row index {nonint_rows[0]}, value "
+            f"{df['budget_year'][nonint_rows[0]]!r}) — coverage groups are "
+            f"integer fiscal years")
+    if failures:
+        return failures
+
+    # normalize ONCE; from here every row has exactly one integer year
+    # (the group-assignment invariant at the end proves it — no assert,
+    # which would vanish under python -O; Bandit B101)
+    year_of = by_num.astype(int)
+    data_years = sorted(year_of.unique())
+
+    for year in data_years:
+        if year not in coverage:
+            failures.append(f"closure: budget_year {year} has no cost_coverage entry")
+    grouped_total = 0
+    for year in data_years:
+        grp = df[year_of == year]
+        grouped_total += len(grp)
+        if year not in coverage:
+            continue
+        spec = coverage[year]
+        for col in ABSOLUTE_COST_COLUMNS:
+            if col in spec["covered"]:
+                if grp[col].notna().sum() == 0:
+                    failures.append(
+                        f"positive-leg: year {year} column {col} is declared "
+                        f"covered but 100% null ({len(grp):,} rows) — silent "
+                        f"coverage lie (no exception mechanism exists)")
+            else:
+                offenders = grp.index[grp[col].notna()]
+                if len(offenders) > 0:
+                    failures.append(
+                        f"declared-absent violation: year {year} column {col} "
+                        f"carries {len(offenders):,} non-null value(s) "
+                        f"(first row index {offenders[0]}) but is not in "
+                        f"{year}'s coverage list")
+    # every-row-assigned invariant (c10455 finding 2 closure)
+    if grouped_total != len(df):
+        failures.append(
+            f"group-assignment invariant: {grouped_total:,} rows grouped of "
+            f"{len(df):,} — some rows belong to no checked group")
+    return failures
 
 
 def acronym_from_filename(fname):
@@ -1212,6 +1359,7 @@ def main():
     float_cols = [
         "budget_year",
         "cost_all_prior_years", "cost_prior_year", "cost_current_year",
+        "cost_fy2026",   # DBDP-102: additive; NULL until B1-2 ingests FY26
         "cost_fy2027", "cost_fy2028", "cost_fy2029", "cost_fy2030", "cost_fy2031",
     ]
     for col in float_cols:
@@ -1339,6 +1487,21 @@ def main():
               f"{pair_mismatch:,} (source_file, vintage) pair(s) not in manifest")
         fails.append("data_vintage")
 
+    # (c2) cost-column coverage assertion (DBDP-102; c10365 §2; AR c10430)
+    #      — closure + declared-absent 100%-null + covered positive leg,
+    #      via the single callable check_cost_coverage() (same dataframe
+    #      the tests exercise; Codex c10382 executable-path rule).
+    coverage = load_cost_coverage()
+    cov_failures = check_cost_coverage(df, coverage)
+    if not cov_failures:
+        yrs = sorted({int(y) for y in df["budget_year"].dropna().unique()})
+        print(f"  [PASS] cost coverage       : closure + absent-null + positive "
+              f"leg for year(s) {yrs} (declared in {COVERAGE_FILE.name})")
+    else:
+        for f_ in cov_failures:
+            print(f"  [FAIL] cost coverage       : {f_}")
+        fails.append("cost_coverage")
+
     # (e) TC-FT-01…09 funding_type suite (DBDP-85 c10287 §3, A5 gate-label
     #     matrix c10299). 01/02/03 ACTIVE at landing; 04–09 are RESIDENT
     #     GUARDS — vacuous while every signal is NULL, live the moment the
@@ -1354,13 +1517,17 @@ def main():
         print(f"  [FAIL] TC-FT-01 domain     : unexpected values {sorted(bad_ft)}")
         fails.append("TC-FT-01")
 
-    # TC-FT-02 (ACTIVE at landing; retires once B5 lands): honest NULL state
+    # TC-FT-02 (ACTIVE until B5 lands) — re-bound per DBDP-102 AC-3
+    # (c10387): ALL rows unclassified, superseding the c10299 "== 635"
+    # literal (row count stops being 635 at B1-2; executable-receipts
+    # discipline per TC-ER-06 / DBDP-66 c10327).
     n_null_ft = ft.isna().sum()
-    if n_null_ft == 635 and len(df) == 635:
-        print(f"  [PASS] TC-FT-02 all-NULL   : all 635 rows unclassified at landing")
+    if n_null_ft == len(df):
+        print(f"  [PASS] TC-FT-02 all-NULL   : all {len(df):,} rows unclassified "
+              f"(re-bound: == len(df), not a literal)")
     else:
         print(f"  [FAIL] TC-FT-02 all-NULL   : {n_null_ft:,} NULL of {len(df):,} rows "
-              f"(expected 635 of 635)")
+              f"(expected all rows NULL until B5 lands)")
         fails.append("TC-FT-02")
 
     # TC-FT-03 (ACTIVE): null-pairing invariant
