@@ -220,17 +220,67 @@ def check_discriminator_collisions(all_records):
     return msgs
 
 
-def load_source_manifest():
-    """Load the source acquisition manifest (DBDP-87/48 via c10315).
+SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 
-    The manifest is the ONLY source for data_vintage and
-    data_lifecycle_stage — never datetime.now(), never file mtimes.
+
+def load_source_manifest():
+    """Load the source acquisition manifest (DBDP-87/48 via c10315;
+    DBDP-73 c10479/c10487: sha256 is the manifest's fifth file-grain fact).
+
+    The manifest is the ONLY source for data_vintage, data_lifecycle_stage,
+    and sha256 — never datetime.now(), never file mtimes. Every entry MUST
+    carry a required sha256 (64 lowercase hex); hard-fails on load if any
+    entry is missing it or it is malformed (DBDP-73 c10479: "the manifest
+    loader hard-fails on a missing or malformed sha256").
     """
     if not MANIFEST_FILE.exists():
         print(f"  [FATAL] source manifest not found: {MANIFEST_FILE}")
         sys.exit(1)
     with open(MANIFEST_FILE, encoding="utf-8") as fh:
-        return json.load(fh)
+        manifest = json.load(fh)
+    bad = [f for f, entry in manifest.items()
+           if not SHA256_RE.fullmatch(entry.get("sha256", ""))]
+    if bad:
+        print(f"  [FATAL] {len(bad)} manifest entry(ies) missing or malformed "
+              f"'sha256' (required 64 lowercase hex, DBDP-73): {bad[:5]}"
+              f"{' ...' if len(bad) > 5 else ''}")
+        sys.exit(1)
+    return manifest
+
+
+def sha256_of(filepath):
+    """SHA-256 of a file's on-disk bytes, streamed (DBDP-73 c10479)."""
+    h = hashlib.sha256()
+    with open(filepath, "rb") as fh:
+        for chunk in iter(lambda: fh.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def verify_file_integrity(filepath, manifest):
+    """Pre-parse integrity gate (DBDP-73 c10479/c10487).
+
+    Hard-fails naming the file if it has no manifest entry (missing entry)
+    or its on-disk bytes don't match the manifest's committed sha256 (hash
+    mismatch) — loud stop in both cases, before the file is parsed. This is
+    the ETL's only source of protective power for the integrity control;
+    a downstream copy of the hash could never catch anything this gate
+    didn't (c10479 §2).
+    """
+    fname = Path(filepath).name
+    entry = manifest.get(fname)
+    if entry is None:
+        print(f"  [FATAL] integrity: {fname} has no source_manifest.json "
+              f"entry — cannot verify before parsing (DBDP-73)")
+        sys.exit(1)
+    actual = sha256_of(filepath)
+    expected = entry["sha256"]
+    if actual != expected:
+        print(f"  [FATAL] integrity: {fname} sha256 mismatch — "
+              f"expected {expected}, got {actual} (DBDP-73 tamper/corruption "
+              f"gate — the file's on-disk bytes no longer match the "
+              f"committed manifest hash)")
+        sys.exit(1)
 
 
 def load_cost_coverage(path=None):
@@ -1362,6 +1412,10 @@ def main():
     print(f"  Found {len(xml_files)} XML files  |  {len(mhs_files)} MHS files  |  {len(json_files)} JSON files")
     print()
 
+    # Manifest loaded once, up front — reused for the pre-parse integrity
+    # gate below and the lifecycle/vintage join later (DBDP-73 c10479).
+    manifest = load_source_manifest()
+
     all_records = []
     errors      = []
 
@@ -1379,6 +1433,7 @@ def main():
             print(f"  [SKIP] Unknown XML folder: {fp.relative_to(DATA_DIR)}")
             continue
 
+        verify_file_integrity(fp, manifest)
         try:
             recs = parser(fp)
             all_records.extend(recs)
@@ -1391,6 +1446,7 @@ def main():
     print()
     print("── Parsing MHS J-Book XML files ──────────────────────────────")
     for fp in mhs_files:
+        verify_file_integrity(fp, manifest)
         try:
             recs = parse_mhs_xml(fp)
             all_records.extend(recs)
@@ -1408,6 +1464,7 @@ def main():
         if fp.name in JSON_AGGREGATE_FILES:
             skipped_agg += 1
             continue
+        verify_file_integrity(fp, manifest)
         try:
             recs = parse_json_exhibit(fp)
             all_records.extend(recs)
@@ -1455,8 +1512,8 @@ def main():
     # data_vintage and data_lifecycle_stage are properties of the SOURCE,
     # recorded in the manifest at registration time. Hard-fail on any parsed
     # file with no manifest entry — a missing entry must be a loud stop, never
-    # a silent mislabel.
-    manifest = load_source_manifest()
+    # a silent mislabel. Reuses the manifest loaded at the top of main()
+    # (DBDP-73) — one read, one consistent view for the whole run.
     parsed_files = set(df["source_file"].unique())
     missing = sorted(parsed_files - set(manifest))
     if missing:
