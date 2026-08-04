@@ -25,6 +25,7 @@ import re
 import sys
 import json
 import hashlib
+import unicodedata
 import defusedxml.ElementTree as ET  # DBDP-39: defense-in-depth against XXE/entity-expansion
 from pathlib import Path
 
@@ -157,6 +158,66 @@ def make_id(*parts):
     """
     key = "|".join(str(p) for p in parts)
     return hashlib.md5(key.encode(), usedforsecurity=False).hexdigest()[:20]
+
+
+def norm_key(v):
+    """Normalize one discriminator component (DBDP-106 c10434 §3).
+
+    None/NaN -> ""; else str -> Unicode NFC -> collapse internal whitespace
+    runs to a single space -> strip. NO case folding (case is content).
+    """
+    if v is None or (isinstance(v, float) and v != v):
+        return ""
+    s = unicodedata.normalize("NFC", str(v))
+    return re.sub(r"\s+", " ", s).strip()
+
+
+def make_content_id(*parts):
+    """Content-derived record ID for the re-keyed families (DBDP-106 c10434).
+
+    Same hash/output contract as make_id (DBDP-72: MD5 usedforsecurity=False,
+    20-hex leading truncation, "|" join) over NORMALIZED components with NO
+    positional input of any kind. A component containing "|" is ambiguous key
+    material -> hard-fail (c10434 §3; none exist at base — future-data guard).
+    """
+    normed = [norm_key(p) for p in parts]
+    for n in normed:
+        if "|" in n:
+            print(f"  [FATAL] record-id key component contains '|' — ambiguous "
+                  f"key material (DBDP-106 c10434 §3): {n!r} in {normed!r}")
+            sys.exit(1)
+    key = "|".join(normed)
+    return hashlib.md5(key.encode(), usedforsecurity=False).hexdigest()[:20]
+
+
+def check_discriminator_collisions(all_records):
+    """DBDP-106 c10434 §4 collision rule — hard-fail, no silent collapse.
+
+    Groups the three re-keyed families' records by their normalized
+    discriminator tuple (stashed at parse time as _disc_key/_disc_family).
+    Any group with >1 row is a genuine natural-key duplicate: print the
+    family, source_file, full key tuple, and one identifying line per
+    colliding row, then abort. NO ordinal or positional tiebreaker exists
+    in any form — a future content-identical pair stops the pipeline and
+    names itself (the c10431 latent needs-peter trigger; Peter's call,
+    never the code's).
+    Returns the list of collision messages (empty = pass) so tests can
+    exercise the same callable; main() aborts on non-empty.
+    """
+    groups = {}
+    for r in all_records:
+        fam = r.get("_disc_family")
+        if fam:
+            groups.setdefault((fam, r["_disc_key"]), []).append(r)
+    msgs = []
+    for (fam, key), rows in groups.items():
+        if len(rows) > 1:
+            lines = "; ".join(
+                f"title={r.get('line_item_title')!r} cost_fy2027={r.get('cost_fy2027')!r}"
+                for r in rows)
+            msgs.append(f"{fam} collision in {rows[0].get('source_file')}: "
+                        f"key={key!r} -> {len(rows)} rows [{lines}]")
+    return msgs
 
 
 def load_source_manifest():
@@ -390,7 +451,11 @@ def parse_procurement_xml(filepath):
 
         r = blank_record()
         r.update({
-            "record_id"               : make_id(fname, li_num, idx),
+            # DBDP-106 c10434: content discriminator (source_file,
+            # line_item_number) — enumerate index removed
+            "record_id"               : make_content_id(fname, li_num),
+            "_disc_family"            : "P-40",
+            "_disc_key"               : (norm_key(fname), norm_key(li_num)),
             "budget_year"             : to_float(book["year"]),
             "budget_cycle"            : book["cycle"],
             "submission_date"         : book["date"],
@@ -495,7 +560,12 @@ def parse_rdte_xml(filepath):
 
         r = blank_record()
         r.update({
-            "record_id"               : make_id(fname, pe_num, idx),
+            # DBDP-106 c10434: content discriminator (source_file,
+            # program_element, budget_activity_number) — PE alone is not
+            # unique (3 OSW PE-across-BA pairs); enumerate index removed
+            "record_id"               : make_content_id(fname, pe_num, ba_num),
+            "_disc_family"            : "R-2",
+            "_disc_key"               : (norm_key(fname), norm_key(pe_num), norm_key(ba_num)),
             "budget_year"             : to_float(book["year"]),
             "budget_cycle"            : book["cycle"],
             "submission_date"         : book["date"],
@@ -747,7 +817,14 @@ def parse_json_exhibit(filepath):
 
         r = blank_record()
         r.update({
-            "record_id"                  : make_id(fname, row["row_code"] or row["label"], i),
+            # DBDP-106 c10434: content discriminator (source_file, row_code)
+            # — the source-carried grid row Code; label fallback and
+            # enumerate index removed (row_code present on 100% of filtered
+            # rows at base; a future empty row_code duplicates the key and
+            # trips the collision hard-fail)
+            "record_id"                  : make_content_id(fname, row["row_code"]),
+            "_disc_family"               : "OP-5",
+            "_disc_key"                  : (norm_key(fname), norm_key(row["row_code"])),
             "budget_year"                : budget_year,
             "budget_cycle"               : budget_cycle,
             "submission_date"            : submission_date,
@@ -1352,6 +1429,15 @@ def main():
 
     if not all_records:
         print("  [ERROR] No records parsed.")
+        sys.exit(1)
+
+    # ── Discriminator collision hard-fail (DBDP-106 c10434 §4) ────────────────
+    collisions = check_discriminator_collisions(all_records)
+    if collisions:
+        print(f"  [FATAL] {len(collisions)} natural-key collision group(s) — "
+              f"no silent collapse, no positional tiebreaker (DBDP-106):")
+        for m in collisions:
+            print(f"          {m}")
         sys.exit(1)
 
     df = pd.DataFrame(all_records, columns=COLUMNS)
