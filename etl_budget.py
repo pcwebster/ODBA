@@ -120,6 +120,18 @@ JSON_AGGREGATE_FILES = {
 # ── Grid codes that contain line-item data in JSON exhibits ───────────────────
 JSON_TARGET_GRIDS = {"Op5Part1", "OP53a"}
 
+# DBDP-103 c10469 §1 (AR-cleared c10488a): FY26 DHP arrives as consolidated
+# grid-JSON volumes on the SAME engine as OP-5 — no new parser, and the MHS
+# SpreadsheetML path is not invoked (zero MHS files exist in FY26).
+# File-scoped extra targets: Vol III's record source is OP32AGrid (object-
+# class grain). Vols I–II needs no addition — its OP53a rows are already a
+# target. Every other DHP grid (SAG*, FinaSumm, PersSumm, DHPPB11 …)
+# re-presents the same dollars and is deliberately NOT targeted — that is
+# the anti-double-count.
+DHP_FILE_TARGET_GRIDS = {
+    "00-DHP_Vol_III_PB26.json": {"OP32AGrid"},
+}
+
 
 # =============================================================================
 # Shared Helpers
@@ -222,6 +234,24 @@ def check_discriminator_collisions(all_records):
 
 SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 
+# ── DBDP-103 B1-2: manifest registry contract (c10469 §3; AR c10488(c)) ──────
+# The manifest carries FIVE file-grain facts under one enforcement pattern:
+# {acquisition_date, lifecycle_stage, budget_year, ingest_status, sha256} —
+# required at registration, hard-fail on missing entry/field, each consumed
+# by a named assertion.
+#   budget_year    — int; the ONLY source of a row's budget_year from B1-2
+#                    forward. FY26 file headers are proven unreliable
+#                    (recycled BY=2024/2025 templates, c10373) — never trust
+#                    file metadata (AR c10430 note b, discharged here).
+#   ingest_status  — parsed          : a record source
+#                    control-only    : opened for control totals only
+#                    overlap-skipped : aggregate; skipped to avoid double-count
+#                    unsupported-taggedpdf : adobe:ns pseudo-XML (B4-class)
+#                  Only `parsed` files may emit records — asserted post-parse.
+INGEST_STATUSES = {"parsed", "control-only", "overlap-skipped",
+                   "unsupported-taggedpdf"}
+RECORD_EMITTING_STATUS = "parsed"
+
 
 def load_source_manifest():
     """Load the source acquisition manifest (DBDP-87/48 via c10315;
@@ -245,6 +275,23 @@ def load_source_manifest():
               f"'sha256' (required 64 lowercase hex, DBDP-73): {bad[:5]}"
               f"{' ...' if len(bad) > 5 else ''}")
         sys.exit(1)
+    # DBDP-103: budget_year + ingest_status are required registry facts
+    bad_year = [f for f, e in manifest.items()
+                if not isinstance(e.get("budget_year"), int)
+                or isinstance(e.get("budget_year"), bool)]
+    if bad_year:
+        print(f"  [FATAL] {len(bad_year)} manifest entry(ies) missing or "
+              f"non-integer 'budget_year' (required, DBDP-103): {bad_year[:5]}"
+              f"{' ...' if len(bad_year) > 5 else ''}")
+        sys.exit(1)
+    bad_status = [f for f, e in manifest.items()
+                  if e.get("ingest_status") not in INGEST_STATUSES]
+    if bad_status:
+        print(f"  [FATAL] {len(bad_status)} manifest entry(ies) with missing or "
+              f"invalid 'ingest_status' (must be one of "
+              f"{sorted(INGEST_STATUSES)}, DBDP-103): {bad_status[:5]}"
+              f"{' ...' if len(bad_status) > 5 else ''}")
+        sys.exit(1)
     return manifest
 
 
@@ -257,6 +304,27 @@ def sha256_of(filepath):
     return h.hexdigest()
 
 
+# TC-B1-CO-01 ordering instrumentation (DBDP-103 c10501/c10504): every
+# successful verification and every consuming read appends here, so a test
+# can prove verification precedes each file's first consuming read and that
+# the control-consumed set == the control-verified set. Recording is a
+# side-effect of the production path — there is no separate "test mode",
+# so the evidence cannot diverge from what production actually did.
+VERIFICATION_EVENTS = []   # (seq, filename)
+CONSUMING_READ_EVENTS = []  # (seq, filename, kind)
+_EVENT_SEQ = [0]
+
+
+def _next_seq():
+    _EVENT_SEQ[0] += 1
+    return _EVENT_SEQ[0]
+
+
+def note_consuming_read(filepath, kind):
+    """Record a consuming read (parse or control-total) for the ordering proof."""
+    CONSUMING_READ_EVENTS.append((_next_seq(), Path(filepath).name, kind))
+
+
 def verify_file_integrity(filepath, manifest):
     """Pre-parse integrity gate (DBDP-73 c10479/c10487).
 
@@ -266,6 +334,11 @@ def verify_file_integrity(filepath, manifest):
     the ETL's only source of protective power for the integrity control;
     a downstream copy of the hash could never catch anything this gate
     didn't (c10479 §2).
+
+    DBDP-103 c10501: this gate governs EVERY file the ETL opens — parsed
+    sources AND control-only aggregate reads. Successful verifications are
+    recorded (VERIFICATION_EVENTS) so the ordering invariant "verified
+    before consumed" is provable rather than asserted.
     """
     fname = Path(filepath).name
     entry = manifest.get(fname)
@@ -281,6 +354,50 @@ def verify_file_integrity(filepath, manifest):
               f"gate — the file's on-disk bytes no longer match the "
               f"committed manifest hash)")
         sys.exit(1)
+    VERIFICATION_EVENTS.append((_next_seq(), fname))
+
+
+def read_control_totals(control_files, manifest):
+    """Read declared control totals from `control-only` files (DBDP-103).
+
+    Every file is verified through the SAME pre-parse gate before a single
+    byte is consumed for a control value (c10501 ordering invariant; the
+    c10487 "verifies every file it opens" invariant carried to the SHA
+    where control-only reads actually exist). Control-only files are never
+    record sources — they are read here and nowhere else.
+
+    Returns {filename: {grid_code: summed_By1_in_$K}}.
+    """
+    totals = {}
+    for fp in control_files:
+        verify_file_integrity(fp, manifest)          # ALWAYS before the read
+        note_consuming_read(fp, "control-total")     # ...then consume
+        with open(fp, encoding="utf-8") as fh:
+            doc = json.load(fh)
+        grids = {}
+        stack = [doc]
+        while stack:
+            node = stack.pop()
+            if isinstance(node, list):
+                stack.extend(node)
+                continue
+            if not isinstance(node, dict):
+                continue
+            if node.get("Type") == "Grid" and isinstance(node.get("Rows"), list):
+                code = node.get("Code", "") or "<nocode>"
+                acc = grids.setdefault(code, 0.0)
+                for row in node["Rows"]:
+                    if row.get("Type") != "data":
+                        continue
+                    for cell in row.get("Cells", []):
+                        if cell.get("ColumnCode") == "By1":
+                            v = to_float(cell.get("Value"))
+                            if v is not None:
+                                acc += v
+                grids[code] = acc
+            stack.extend(node.values())
+        totals[Path(fp).name] = {k: round(v, 3) for k, v in grids.items()}
+    return totals
 
 
 def load_cost_coverage(path=None):
@@ -443,7 +560,26 @@ def blank_record():
 # XML Parser — Procurement (P-1)
 # =============================================================================
 
-def parse_procurement_xml(filepath):
+def check_allowlist_yield(fname, allowlist, seen_agencies):
+    """Volume-book allowlist non-empty guard (DBDP-103 TC-B1-EX-02).
+
+    AR c10488(b) binding note: an allowlisted agency yielding ZERO rows from
+    its volume must HARD-FAIL AT PARSE, not at test — a silent empty recovery
+    would drop DTRA/USCYBERCOM without tripping the "present exactly once"
+    assertion until test time. This is the under-counting complement to the
+    inclusion ledger's over-counting (double-count) guard.
+    Match is exact on the normalized agency string (DBDP-106 norm discipline).
+    """
+    empty = [a for a in allowlist if norm_key(a) not in seen_agencies]
+    if empty:
+        print(f"  [FATAL] volume allowlist: {fname} yielded ZERO rows for "
+              f"allowlisted agency(ies) {empty} — the authorized volume-only "
+              f"recovery produced nothing (DBDP-103 TC-B1-EX-02 / AR c10488b). "
+              f"Agencies present in file: {sorted(seen_agencies)[:8]}")
+        sys.exit(1)
+
+
+def parse_procurement_xml(filepath, allowlist=None):
     records = []
     fname = Path(filepath).name
 
@@ -468,7 +604,19 @@ def parse_procurement_xml(filepath):
         print(f"    [INFO] No LineItemList in {fname} — skipping (combined volume?)")
         return records
 
+    # DBDP-103: volume-book agency allowlist — keyed on the per-row
+    # ServiceAgencyName CONTENT (not position), manifest-declared. Rows
+    # outside the allowlist are the agency books' content and are skipped
+    # here to avoid the double-count.
+    allow_norm = {norm_key(a) for a in (allowlist or [])}
+    seen_agencies = set()
+
     for idx, li in enumerate(line_item_list.findall(f"{{{PROC_NS}}}LineItem")):
+        if allow_norm:
+            row_agency = elem_text(li, "ServiceAgencyName", PROC_NS)
+            if norm_key(row_agency) not in allow_norm:
+                continue
+            seen_agencies.add(norm_key(row_agency))
         li_num   = elem_text(li, "LineItemNumber",           PROC_NS)
         li_title = elem_text(li, "LineItemTitle",            PROC_NS)
         ba_num   = elem_text(li, "BudgetActivityNumber",     PROC_NS)
@@ -538,6 +686,8 @@ def parse_procurement_xml(filepath):
         })
         records.append(r)
 
+    if allow_norm:
+        check_allowlist_yield(fname, allowlist, seen_agencies)
     return records
 
 
@@ -545,7 +695,7 @@ def parse_procurement_xml(filepath):
 # XML Parser — RDT&E (R-1)
 # =============================================================================
 
-def parse_rdte_xml(filepath):
+def parse_rdte_xml(filepath, allowlist=None):
     records = []
     fname = Path(filepath).name
 
@@ -580,9 +730,19 @@ def parse_rdte_xml(filepath):
     def r2(el, tag):
         return elem_text(el, tag, r2_ns)
 
+    # DBDP-103: volume-book agency allowlist (see parse_procurement_xml)
+    allow_norm = {norm_key(a) for a in (allowlist or [])}
+    seen_agencies = set()
+
     for idx, pe in enumerate(pe_list):
         if local_name(pe.tag) != "ProgramElement":
             continue
+
+        if allow_norm:
+            row_agency = r2(pe, "ServiceAgencyName")
+            if norm_key(row_agency) not in allow_norm:
+                continue
+            seen_agencies.add(norm_key(row_agency))
 
         pe_num   = r2(pe, "ProgramElementNumber")
         pe_title = r2(pe, "ProgramElementTitle")
@@ -648,6 +808,8 @@ def parse_rdte_xml(filepath):
         })
         records.append(r)
 
+    if allow_norm:
+        check_allowlist_yield(fname, allowlist, seen_agencies)
     return records
 
 
@@ -678,7 +840,7 @@ def _json_cell(row, *codes):
     return ""
 
 
-def _walk_json_grids(node, ctx, seen_codes, raw_rows, depth=0):
+def _walk_json_grids(node, ctx, seen_codes, raw_rows, depth=0, targets=None):
     """
     Recursively walk the JSON exhibit tree.
     Collect data rows from TARGET grid codes into raw_rows.
@@ -688,7 +850,7 @@ def _walk_json_grids(node, ctx, seen_codes, raw_rows, depth=0):
         return
     if isinstance(node, list):
         for item in node:
-            _walk_json_grids(item, ctx, seen_codes, raw_rows, depth + 1)
+            _walk_json_grids(item, ctx, seen_codes, raw_rows, depth + 1, targets)
         return
     if not isinstance(node, dict):
         return
@@ -702,7 +864,7 @@ def _walk_json_grids(node, ctx, seen_codes, raw_rows, depth=0):
         sag = _sag_from_go_name(go_name)
         if sag:
             new_ctx["sag_title"] = sag
-        _walk_json_grids(go, new_ctx, seen_codes, raw_rows, depth + 1)
+        _walk_json_grids(go, new_ctx, seen_codes, raw_rows, depth + 1, targets)
         return
 
     node_type = node.get("Type", "")
@@ -710,7 +872,7 @@ def _walk_json_grids(node, ctx, seen_codes, raw_rows, depth=0):
     # Process Grid nodes with row data
     if node_type == "Grid" and "Rows" in node:
         grid_code = node.get("Code", "") or ""
-        if grid_code in JSON_TARGET_GRIDS:
+        if grid_code in (targets if targets is not None else JSON_TARGET_GRIDS):
             for row in node.get("Rows", []):
                 if row.get("Type") != "data":
                     continue
@@ -736,6 +898,7 @@ def _walk_json_grids(node, ctx, seen_codes, raw_rows, depth=0):
                 raw_rows.append({
                     "grid_code": grid_code,
                     "row_code":  row_code,
+                    "line_no":   _json_cell(row, "Line"),
                     "sag_title": new_ctx.get("sag_title", ""),
                     "label":     label,
                     "py":        py,
@@ -748,7 +911,7 @@ def _walk_json_grids(node, ctx, seen_codes, raw_rows, depth=0):
         if k in ("ByteArray", "Uploads"):
             continue
         if isinstance(v, (dict, list)):
-            _walk_json_grids(v, new_ctx, seen_codes, raw_rows, depth + 1)
+            _walk_json_grids(v, new_ctx, seen_codes, raw_rows, depth + 1, targets)
 
 
 def parse_json_exhibit(filepath):
@@ -810,7 +973,9 @@ def parse_json_exhibit(filepath):
     # Walk tree to collect raw grid rows
     raw_rows   = []
     seen_codes = set()
-    _walk_json_grids({"GeneratedOutput": go}, {}, seen_codes, raw_rows)
+    targets = JSON_TARGET_GRIDS | DHP_FILE_TARGET_GRIDS.get(fname, set())
+    _walk_json_grids({"GeneratedOutput": go}, {}, seen_codes, raw_rows,
+                     targets=targets)
 
     # No grid data found — fall back to metadata-level record
     if not raw_rows:
@@ -886,7 +1051,7 @@ def parse_json_exhibit(filepath):
             "exhibit_type"               : exhibit_type,
             "source_file"                : fname,
             "file_format"                : "JSON",
-            "line_item_number"           : "",
+            "line_item_number"           : row.get("line_no", ""),
             "line_item_title"            : row["label"],
             "budget_activity_number"     : "",
             "budget_activity_title"      : row["sag_title"],
@@ -1367,30 +1532,58 @@ SKIP_FILES = {
 }
 
 
-def collect_files():
-    xml_files  = []
-    mhs_files  = []
-    json_files = []
+# DBDP-103: FY26 corpus lives in a year-scoped tree registered by DBDP-101.
+YEAR_ROOTS = ["", "FY2026"]   # "" = the FY27 tree at the repo root
 
-    for folder in XML_FOLDERS:
-        folder_path = DATA_DIR / folder
-        if folder_path.exists():
-            for f in sorted(folder_path.rglob("*.xml")):
-                if f.name not in SKIP_FILES:
-                    xml_files.append(f)
 
-    mhs_path = DATA_DIR / MHS_FOLDER
-    if mhs_path.exists():
-        for f in sorted(mhs_path.rglob("*.xml")):
-            mhs_files.append(f)
+def collect_files(manifest):
+    """Discover source files, ROUTED BY THE MANIFEST (DBDP-103 c10469 §3).
 
-    for folder in JSON_FOLDERS:
-        folder_path = DATA_DIR / folder
-        if folder_path.exists():
-            for f in sorted(folder_path.rglob("*.json")):
-                json_files.append(f)
+    Discovery is manifest-driven rather than name-list-driven: each on-disk
+    file resolves to its registry entry and is routed by `ingest_status` —
+    `parsed` files go to their family's parse list, `control-only` files to
+    the control-total list, and `overlap-skipped` / `unsupported-taggedpdf`
+    files are registered-but-never-parsed. This is what makes "only parsed
+    files emit records" a declared property rather than a name-list accident
+    (the FY27 basename skip could not catch the `FY2026_`-prefixed twins).
 
-    return xml_files, mhs_files, json_files
+    Returns (xml_files, mhs_files, json_files, control_files).
+    """
+    xml_files, mhs_files, json_files, control_files = [], [], [], []
+    unregistered = []
+
+    for root in YEAR_ROOTS:
+        base = DATA_DIR / root if root else DATA_DIR
+        for folder in XML_FOLDERS + [MHS_FOLDER] + JSON_FOLDERS:
+            folder_path = base / folder
+            if not folder_path.exists():
+                continue
+            for f in sorted(list(folder_path.rglob("*.xml"))
+                            + list(folder_path.rglob("*.json"))):
+                entry = manifest.get(f.name)
+                if entry is None:
+                    unregistered.append(str(f.relative_to(DATA_DIR)))
+                    continue
+                status = entry["ingest_status"]
+                if status == "control-only":
+                    control_files.append(f)
+                elif status == RECORD_EMITTING_STATUS:
+                    if folder == MHS_FOLDER:
+                        mhs_files.append(f)
+                    elif f.suffix.lower() == ".xml":
+                        xml_files.append(f)
+                    else:
+                        json_files.append(f)
+                # overlap-skipped / unsupported-taggedpdf: registered, never parsed
+
+    if unregistered:
+        print(f"  [FATAL] {len(unregistered)} on-disk source file(s) not "
+              f"registered in {MANIFEST_FILE.name} — every file in a source "
+              f"tree must carry a registry entry (DBDP-103): "
+              f"{unregistered[:5]}{' ...' if len(unregistered) > 5 else ''}")
+        sys.exit(1)
+
+    return xml_files, mhs_files, json_files, control_files
 
 
 # =============================================================================
@@ -1408,13 +1601,15 @@ def main():
 
     OUTPUT_DIR.mkdir(exist_ok=True)
 
-    xml_files, mhs_files, json_files = collect_files()
-    print(f"  Found {len(xml_files)} XML files  |  {len(mhs_files)} MHS files  |  {len(json_files)} JSON files")
-    print()
-
-    # Manifest loaded once, up front — reused for the pre-parse integrity
-    # gate below and the lifecycle/vintage join later (DBDP-73 c10479).
+    # Manifest loaded once, up front — reused for discovery routing, the
+    # pre-parse integrity gate, control-total reads, and the registry join
+    # (DBDP-73 c10479, DBDP-103 c10469).
     manifest = load_source_manifest()
+
+    xml_files, mhs_files, json_files, control_files = collect_files(manifest)
+    print(f"  Found {len(xml_files)} XML files  |  {len(mhs_files)} MHS files  "
+          f"|  {len(json_files)} JSON files  |  {len(control_files)} control-only")
+    print()
 
     all_records = []
     errors      = []
@@ -1422,7 +1617,8 @@ def main():
     # ── Parse XML files (P-1, R-1) ───────────────────────────────────────────
     print("── Parsing XML files ─────────────────────────────────────────")
     for fp in xml_files:
-        parent = fp.parts[len(DATA_DIR.parts)]
+        parts = fp.relative_to(DATA_DIR).parts
+        parent = parts[1] if parts[0] in ("FY2026",) else parts[0]
         if parent == "02_Procurement":
             parser = parse_procurement_xml
             label  = "P-1 Procurement"
@@ -1434,10 +1630,14 @@ def main():
             continue
 
         verify_file_integrity(fp, manifest)
+        note_consuming_read(fp, "parse")
+        # DBDP-103: manifest-declared per-file agency allowlist (volume books)
+        allowlist = manifest[fp.name].get("agency_allowlist")
         try:
-            recs = parser(fp)
+            recs = parser(fp, allowlist=allowlist)
             all_records.extend(recs)
-            print(f"  [{label}]  {fp.name:<60}  {len(recs):>4} records")
+            tag = f" [allowlist:{','.join(allowlist)}]" if allowlist else ""
+            print(f"  [{label}]  {fp.name:<60}  {len(recs):>4} records{tag}")
         except Exception as e:
             errors.append((str(fp), str(e)))
             print(f"  [ERROR] {fp.name}: {e}")
@@ -1459,12 +1659,12 @@ def main():
     # ── Parse JSON files ──────────────────────────────────────────────────────
     print()
     print("── Parsing JSON files (OP-5 / line-item extraction) ─────────")
-    skipped_agg = 0
     for fp in json_files:
-        if fp.name in JSON_AGGREGATE_FILES:
-            skipped_agg += 1
-            continue
+        # Aggregate skipping is now a manifest property (`overlap-skipped` /
+        # `control-only`), applied in collect_files() — the FY27 basename set
+        # could not catch the FY2026_-prefixed twins (c10469 §2).
         verify_file_integrity(fp, manifest)
+        note_consuming_read(fp, "parse")
         try:
             recs = parse_json_exhibit(fp)
             all_records.extend(recs)
@@ -1477,8 +1677,18 @@ def main():
             errors.append((str(fp), str(e)))
             print(f"  [ERROR] {fp.name}: {e}")
 
-    if skipped_agg:
-        print(f"  [SKIP-AGG]  {skipped_agg} aggregate volume files skipped (avoid double-counting)")
+    # ── Control-only reads (DBDP-103 c10501 / TC-B1-CO-01) ───────────────────
+    # These files are opened for declared control totals ONLY — never record
+    # sources. Each is verified through the same pre-parse integrity gate
+    # BEFORE its control value is consumed (the c10487 invariant carried to
+    # the SHA where control-only reads actually exist).
+    print()
+    print("── Control-only reads (integrity-gated, never record sources) ")
+    control_totals = read_control_totals(control_files, manifest)
+    for fname, grids in sorted(control_totals.items()):
+        headline = {k: v for k, v in grids.items()
+                    if k in ("DWSumbyAgenGrid", "Op5Part1", "OP53a")}
+        print(f"  [CONTROL]  {fname:<58}  {headline if headline else '(read)'}")
 
     # ── Build DataFrame ───────────────────────────────────────────────────────
     print()
@@ -1522,6 +1732,40 @@ def main():
         sys.exit(1)
     df["data_vintage"]         = df["source_file"].map(lambda f: manifest[f]["acquisition_date"])
     df["data_lifecycle_stage"] = df["source_file"].map(lambda f: manifest[f]["lifecycle_stage"])
+
+    # ── budget_year is manifest-derived, authoritatively (DBDP-103) ──────────
+    # AR c10430 binding note (b), discharged here: FY26 file headers are
+    # proven unreliable (recycled BY=2024/2025 templates, c10373), so the
+    # registry — not the file — decides a row's year. This overwrite is
+    # unconditional: whatever a parser read from a header never survives.
+    df["budget_year"] = df["source_file"].map(
+        lambda f: float(manifest[f]["budget_year"]))
+
+    # ── Request-year indirection (c10469 §4; AR c10488(d)) ───────────────────
+    # Parsers write the submission's request-year figure into the FY27 slot;
+    # it belongs in the absolute column anchored to the row's manifest year
+    # (2026 → cost_fy2026, 2027 → cost_fy2027). Base-vs-Total precedence is
+    # untouched — the SAME `fy1base or fy1` rule already applied upstream, so
+    # both years resolve identically. A mis-stamped year is caught twice: by
+    # the coverage uniformity assertion and by the ±$1M control ties.
+    for year in sorted({int(y) for y in df["budget_year"].dropna().unique()}):
+        col = f"cost_fy{year}"
+        if col not in COLUMNS or col == "cost_fy2027":
+            continue
+        mask = df["budget_year"] == float(year)
+        df.loc[mask, col] = df.loc[mask, "cost_fy2027"]
+        df.loc[mask, "cost_fy2027"] = None
+
+    # ── ingest_status enforcement (c10469 §3) ────────────────────────────────
+    # Only `parsed` files may emit records — declared, then asserted.
+    emitted = set(df["source_file"].unique())
+    illegal = sorted(f for f in emitted
+                     if manifest[f]["ingest_status"] != RECORD_EMITTING_STATUS)
+    if illegal:
+        print(f"  [FATAL] {len(illegal)} file(s) emitted records despite a "
+              f"non-'parsed' ingest_status (DBDP-103): "
+              f"{[(f, manifest[f]['ingest_status']) for f in illegal[:5]]}")
+        sys.exit(1)
 
     # funding_type / funding_type_signal stay genuinely NULL until the B5
     # classifier lands (c10315 §1.1–1.2) — excluded from the ""-fill below.
