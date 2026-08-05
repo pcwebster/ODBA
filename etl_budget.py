@@ -560,6 +560,31 @@ def blank_record():
 # XML Parser — Procurement (P-1)
 # =============================================================================
 
+def find_item_lists(root, list_tag, ns):
+    """Locate every item list, descending into MasterJustificationBooks.
+
+    DBDP-103 c10521 Ruling 2 (AR CONCUR c10525): the consolidated volume
+    books are `MasterJustificationBook` → `JustificationBookGroupList` →
+    `JustificationBook`, each child book carrying its OWN LineItemList /
+    ProgramElementList. A root-level find() reaches none of them, which is
+    why the authorized DTRA/USCYBERCOM recoveries silently yielded zero.
+    Bounded traversal: root-level list if present, else every descendant
+    JustificationBook's list. Same fields, same discriminator downstream.
+    """
+    direct = root.find(f"{{{ns}}}{list_tag}") if ns else root.find(list_tag)
+    if direct is not None:
+        return [direct]
+    if local_name(root.tag) != "MasterJustificationBook":
+        return []
+    found = []
+    for el in root.iter():
+        if local_name(el.tag) == "JustificationBook":
+            for child in el:
+                if local_name(child.tag) == list_tag:
+                    found.append(child)
+    return found
+
+
 def check_allowlist_yield(fname, allowlist, seen_agencies):
     """Volume-book allowlist non-empty guard (DBDP-103 TC-B1-EX-02).
 
@@ -599,10 +624,8 @@ def parse_procurement_xml(filepath, allowlist=None):
         "approp_name" : elem_text(root, "AppropriationName",  JB_NS),
     }
 
-    line_item_list = root.find(f"{{{PROC_NS}}}LineItemList")
-    if line_item_list is None:
-        print(f"    [INFO] No LineItemList in {fname} — skipping (combined volume?)")
-        return records
+    # DBDP-103 Ruling 2: traverse into MasterJustificationBook child books
+    item_lists = find_item_lists(root, "LineItemList", PROC_NS)
 
     # DBDP-103: volume-book agency allowlist — keyed on the per-row
     # ServiceAgencyName CONTENT (not position), manifest-declared. Rows
@@ -611,7 +634,22 @@ def parse_procurement_xml(filepath, allowlist=None):
     allow_norm = {norm_key(a) for a in (allowlist or [])}
     seen_agencies = set()
 
-    for idx, li in enumerate(line_item_list.findall(f"{{{PROC_NS}}}LineItem")):
+    if not item_lists:
+        # Ruling 2 ordering fix: for an ALLOWLISTED file this is a hard-fail,
+        # never an INFO-skip — a silent zero here is exactly the failure the
+        # zero-row guard exists to stop (an authorized recovery vanishing).
+        if allow_norm:
+            print(f"  [FATAL] volume traversal: no LineItemList found in "
+                  f"{fname} after MasterJustificationBook traversal, but the "
+                  f"manifest declares an agency_allowlist {allowlist} — the "
+                  f"authorized recovery cannot be satisfied (DBDP-103 R2)")
+            sys.exit(1)
+        print(f"    [INFO] No LineItemList in {fname} — skipping (combined volume?)")
+        return records
+
+    all_items = [li for lst in item_lists
+                 for li in lst.findall(f"{{{PROC_NS}}}LineItem")]
+    for idx, li in enumerate(all_items):
         if allow_norm:
             row_agency = elem_text(li, "ServiceAgencyName", PROC_NS)
             if norm_key(row_agency) not in allow_norm:
@@ -649,11 +687,21 @@ def parse_procurement_xml(filepath, allowlist=None):
 
         r = blank_record()
         r.update({
-            # DBDP-106 c10434: content discriminator (source_file,
-            # line_item_number) — enumerate index removed
-            "record_id"               : make_content_id(fname, li_num),
+            # DBDP-106 c10434 discriminator, BROADENED by DBDP-103 c10521
+            # Ruling 1 (AR CONCUR c10525, Peter DECISION c10526): the FY26
+            # corpus proved (source_file, line_item_number) non-unique —
+            # PROC_WHS_PB_2026.xml carries LineItemNumber 31 twice, under
+            # BSA 1 vs BSA 4 (a source-documented BSA-misplacement
+            # correction). budget_sub_activity_number is a budget-structure
+            # CODE (content), exactly symmetric to the R-2 precedent
+            # (PE broadened with BA). P1LineNumber was rejected: it is the
+            # P-1 display line number — disguised-positional material.
+            # One uniform key across years; the 62 FY27 P-40 rows migrate
+            # via the committed map (no prefix-equality — c10431 §2).
+            "record_id"               : make_content_id(fname, li_num, bsa_num),
             "_disc_family"            : "P-40",
-            "_disc_key"               : (norm_key(fname), norm_key(li_num)),
+            "_disc_key"               : (norm_key(fname), norm_key(li_num),
+                                         norm_key(bsa_num)),
             "budget_year"             : to_float(book["year"]),
             "budget_cycle"            : book["cycle"],
             "submission_date"         : book["date"],
@@ -715,26 +763,41 @@ def parse_rdte_xml(filepath, allowlist=None):
         "approp_name" : elem_text(root, "AppropriationName",  JB_NS),
     }
 
-    pe_list = None
-    r2_ns   = None
+    # DBDP-103 Ruling 2: root-level list, else descend into the child books
+    pe_lists = []
+    r2_ns    = None
     for child in root:
         if local_name(child.tag) == "ProgramElementList":
-            pe_list = child
-            r2_ns   = child.tag.split("}")[0].lstrip("{") if "}" in child.tag else ""
+            pe_lists = [child]
+            r2_ns    = child.tag.split("}")[0].lstrip("{") if "}" in child.tag else ""
             break
+    if not pe_lists and local_name(root.tag) == "MasterJustificationBook":
+        for el in root.iter():
+            if local_name(el.tag) == "JustificationBook":
+                for c in el:
+                    if local_name(c.tag) == "ProgramElementList":
+                        pe_lists.append(c)
+                        if r2_ns is None:
+                            r2_ns = c.tag.split("}")[0].lstrip("{") if "}" in c.tag else ""
 
-    if pe_list is None:
+    # DBDP-103: volume-book agency allowlist (see parse_procurement_xml)
+    allow_norm = {norm_key(a) for a in (allowlist or [])}
+    seen_agencies = set()
+
+    if not pe_lists:
+        if allow_norm:   # Ruling 2 ordering fix — hard-fail, never INFO-skip
+            print(f"  [FATAL] volume traversal: no ProgramElementList found in "
+                  f"{fname} after MasterJustificationBook traversal, but the "
+                  f"manifest declares an agency_allowlist {allowlist} — the "
+                  f"authorized recovery cannot be satisfied (DBDP-103 R2)")
+            sys.exit(1)
         print(f"    [INFO] No ProgramElementList in {fname} — skipping (combined volume?)")
         return records
 
     def r2(el, tag):
         return elem_text(el, tag, r2_ns)
 
-    # DBDP-103: volume-book agency allowlist (see parse_procurement_xml)
-    allow_norm = {norm_key(a) for a in (allowlist or [])}
-    seen_agencies = set()
-
-    for idx, pe in enumerate(pe_list):
+    for idx, pe in enumerate([p for lst in pe_lists for p in lst]):
         if local_name(pe.tag) != "ProgramElement":
             continue
 
@@ -995,6 +1058,23 @@ def parse_json_exhibit(filepath):
     #      By1 value equals the sum of all other rows (the aggregate totals
     #      row).  2 * row_by1 ≈ total_by1 identifies it reliably.
 
+    # ── Target-set-aware selection (DBDP-103 c10521 Ruling 3; AR c10525) ─────
+    # Each dedup mechanism is scoped to its DOCUMENTED purpose:
+    #   • val-map value-tuple dedup  → only among OP53a rows (its DBDP-62
+    #     lineage: the two-level OP53a structure)
+    #   • aggregate-row heuristic    → only among Op5Part1 rows
+    #   • file-scoped target rows (OP32AGrid) → pass through undeduplicated;
+    #     their 113 distinct row Codes carry identity, and scoping them OUT
+    #     of the val-map PREVENTS a DBDP-62-class error (two distinct
+    #     object-class rows colliding on a value-tuple coincidence) rather
+    #     than risking one. Not unguarded: the (source_file, row_code)
+    #     discriminator hard-fails duplicates and the $2,031,191K tie
+    #     catches wiring errors.
+    # Previously the else-branch kept only Op5Part1, so a file with neither
+    # OP53a nor Op5Part1 (DHP Vol III) lost every row it had collected.
+    file_scoped = DHP_FILE_TARGET_GRIDS.get(fname, set())
+    scoped_rows = [r for r in raw_rows if r["grid_code"] in file_scoped]
+
     has_op53a = any(r["grid_code"] == "OP53a" for r in raw_rows)
 
     if has_op53a:
@@ -1022,6 +1102,9 @@ def parse_json_exhibit(filepath):
                 if abs((r["by1"] or 0.0) * 2 - total_by1) > 1.0
             ]
         filtered = op5
+
+    # file-scoped target rows join the selection undeduplicated
+    filtered = filtered + scoped_rows
 
     records = []
     for i, row in enumerate(filtered):
