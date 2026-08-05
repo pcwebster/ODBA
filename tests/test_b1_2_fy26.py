@@ -275,6 +275,92 @@ def co01_legs():
          before == after, before[:12])
 
 
+def dhppb11_legs(post):
+    """AC-3 DHPPB11 control cross-check + its own TC-B1-CO-01 tamper leg.
+
+    DHPPB11 is a control-only GRID inside a `parsed` file, so it reaches its
+    reader through a DISTINCT file-opening/verification path — c10504 requires
+    a representative tamper on that path too, not just on the standalone
+    control-only files.
+    """
+    m = json.load(open(REPO / "data" / "source_manifest.json", encoding="utf-8"))
+    fname = "00-DHP_Vols_I_and_II_PB26.json"
+    src = next(REPO.joinpath("FY2026").rglob(fname))
+    spec = etl.DHP_CONTROL_GRID[fname]
+
+    etl.VERIFICATION_EVENTS.clear()
+    etl.CONSUMING_READ_EVENTS.clear()
+    res = etl.read_dhp_control_matrix(src, m)
+
+    case("AC3.1 DHPPB11 FY26 request column total == $55,032,835K",
+         abs(res["column_total_k"] - spec["matrix_column_total_k"]) <= 1.0,
+         f"{res['column_total_k']:,.0f}K")
+    case("AC3.2 column identity anchored by In-House Care subtotal",
+         res["anchor_k"] is not None
+         and abs(res["anchor_k"] - spec["anchor_value_k"]) <= 1.0,
+         f"{res['anchor_k']:,.0f}K == {spec['anchor_value_k']:,.0f}K")
+    # never summed across years: the all-years sum is ~3x the column figure
+    case("AC3.3 column-filtered, NOT summed across years",
+         res["column_total_k"] < 60_000_000,
+         f"{res['column_total_k']:,.0f}K (all-years sum would be ~165,575,397K)")
+
+    parsed_k = round(post[(post["source_file"] == fname)]["cost_fy2026"].fillna(0).sum() * 1000.0, 0)
+    case("AC3.4 DHPPB11 O&M subtotal == OP53a parse (same-universe)",
+         res["om_subtotal_k"] is not None
+         and abs(res["om_subtotal_k"] - parsed_k) <= 1000.0,
+         f"matrix {res['om_subtotal_k']:,.0f}K vs parsed {parsed_k:,.0f}K")
+
+    targets = etl.JSON_TARGET_GRIDS | etl.DHP_FILE_TARGET_GRIDS.get(fname, set())
+    case("AC3.5 DHPPB11 emits zero records (never a target grid)",
+         spec["grid"] not in targets, f"targets={sorted(targets)}")
+    case("AC3.6 production assertion clean",
+         etl.check_dhp_control(src, m,
+                               [r for r in post[post["source_file"] == fname]
+                                .to_dict("records")]) == [])
+
+    # ordering on THIS path: verified before consumed
+    ver = {n: s for s, n in etl.VERIFICATION_EVENTS}
+    con = {n: s for s, n, k in etl.CONSUMING_READ_EVENTS if k == "control-total"}
+    case("CO-01.5 DHPPB11 path: verification precedes its control read",
+         fname in ver and fname in con and ver[fname] < con[fname],
+         f"verify@{ver.get(fname)} < read@{con.get(fname)}")
+
+    # tamper on the DHPPB11 path (c10504 distinct-path requirement)
+    before = hashlib.sha256(src.read_bytes()).hexdigest()
+    with tempfile.TemporaryDirectory() as td:
+        tmp = Path(td) / fname
+        shutil.copy2(src, tmp)
+        raw = bytearray(tmp.read_bytes())
+        raw[len(raw) // 2] ^= 0x01
+        tmp.write_bytes(bytes(raw))
+        try:
+            etl.read_dhp_control_matrix(tmp, m)
+            case("CO-01.6 DHPPB11 path one-byte tamper hard-fails", False, "no exit")
+        except SystemExit:
+            case("CO-01.6 DHPPB11 path one-byte tamper hard-fails", True,
+                 "exits before the control value is consumed")
+    case("CO-01.7 DHP production source untouched by tamper leg",
+         hashlib.sha256(src.read_bytes()).hexdigest() == before, before[:12])
+
+
+def anchor_oracle_leg():
+    """The independent oracle must ASSERT both known-good families (c10527)."""
+    sys.path.insert(0, str(REPO / "tests"))
+    import anchor_extractor as ax
+    _, failures = ax.self_validate()
+    case("ORACLE both FY27 known-good families asserted (P-40 + R-2)",
+         not failures, "; ".join(failures) if failures else "2/2 asserted")
+    # negative control: a wrong pinned expectation must be caught
+    saved = ax.KNOWN_GOOD
+    try:
+        ax.KNOWN_GOOD = [("R-2", "03_RDT_and_E", "RDTE_DISA_PB_2027.xml", 20, 999.999)]
+        _, neg = ax.self_validate()
+        case("ORACLE negative control: wrong expectation fails", bool(neg),
+             neg[0] if neg else "silently passed")
+    finally:
+        ax.KNOWN_GOOD = saved
+
+
 def main():
     post = pd.read_parquet(PARQUET)
     print("── AC-4 / TC-B1-REG-01 (P-40 migration, independent fingerprint) ──")
@@ -285,6 +371,10 @@ def main():
     ex02_legs()
     print("── TC-B1-CO-01 (control-only integrity, BLOCKING) ──")
     co01_legs()
+    print("── AC-3 DHPPB11 control cross-check + its distinct-path tamper ──")
+    dhppb11_legs(post)
+    print("── AC-2 independent oracle assertion (c10527) ──")
+    anchor_oracle_leg()
     bad = [n for n, ok in results if not ok]
     print()
     if bad:

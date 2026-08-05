@@ -132,6 +132,23 @@ DHP_FILE_TARGET_GRIDS = {
     "00-DHP_Vol_III_PB26.json": {"OP32AGrid"},
 }
 
+# DBDP-103 AC-3 (c10380/c10469): DHPPB11 is a CONTROL-ONLY grid living inside a
+# `parsed` file. It is an all-years PY/CY/BY matrix and must never be a record
+# source nor summed across years — it is column-filtered to the FY26 request
+# column (By1), whose identity is anchored by the published In-House Care
+# subtotal. Its own "DHP Operations and Maintenance" subtotal is the
+# independent same-universe cross-check against the OP53a parse.
+DHP_CONTROL_GRID = {
+    "00-DHP_Vols_I_and_II_PB26.json": {
+        "grid": "DHPPB11",
+        "request_column": "By1",
+        "anchor_row_contains": "Subtotal In-House Care",
+        "anchor_value_k": 10731135.0,      # pins By1 as the FY26 request column
+        "matrix_column_total_k": 55032835.0,
+        "om_subtotal_row_contains": "Subtotal DHP Operations and Maintenance",
+    },
+}
+
 
 # =============================================================================
 # Shared Helpers
@@ -446,6 +463,101 @@ def read_control_totals(control_files, manifest):
             stack.extend(node.values())
         totals[Path(fp).name] = {k: round(v, 3) for k, v in grids.items()}
     return totals
+
+
+def read_dhp_control_matrix(filepath, manifest):
+    """DHPPB11 control-only cross-check (DBDP-103 AC-3; c10469 §1, c10501/c10504).
+
+    DHPPB11 is a control-only GRID inside a `parsed` file, so it reaches its
+    control reader through this distinct path — which therefore performs its
+    OWN pre-read verification through the same gate (c10504: a distinct
+    file-opening/verification path gets its own tamper coverage). The grid is
+    NEVER a record source (it is absent from every target set) and is NEVER
+    summed across years: only the FY26 request column is read, and that
+    column's identity is pinned by the published In-House Care subtotal.
+
+    Returns {column_total_k, anchor_k, om_subtotal_k} in $K, or None if this
+    file declares no control grid.
+    """
+    spec = DHP_CONTROL_GRID.get(Path(filepath).name)
+    if spec is None:
+        return None
+    verify_file_integrity(filepath, manifest)          # ALWAYS before the read
+    note_consuming_read(filepath, "control-total")     # ...then consume
+    with open(filepath, encoding="utf-8") as fh:
+        doc = json.load(fh)
+
+    grid = None
+    stack = [doc]
+    while stack:
+        node = stack.pop()
+        if isinstance(node, list):
+            stack.extend(node)
+            continue
+        if not isinstance(node, dict):
+            continue
+        if node.get("Type") == "Grid" and node.get("Code") == spec["grid"]:
+            grid = node
+        stack.extend(node.values())
+    if grid is None:
+        print(f"  [FATAL] DHP control: grid {spec['grid']!r} not found in "
+              f"{Path(filepath).name} — the AC-3 cross-check cannot be "
+              f"performed (DBDP-103)")
+        sys.exit(1)
+
+    col = spec["request_column"]
+
+    def cells(row):
+        return {c.get("ColumnCode"): c.get("Value") for c in row.get("Cells", [])}
+
+    total = 0.0
+    anchor = om_subtotal = None
+    for row in grid.get("Rows", []):
+        cs = cells(row)
+        v = to_float(cs.get(col))
+        label = str(cs.get("RowText") or "")
+        if row.get("Type") == "data" and v is not None:
+            total += v                      # data rows only — no double count
+        if spec["anchor_row_contains"] in label:
+            anchor = v
+        if spec["om_subtotal_row_contains"] in label:
+            om_subtotal = v
+    return {"column_total_k": round(total, 3),
+            "anchor_k": anchor,
+            "om_subtotal_k": om_subtotal}
+
+
+def check_dhp_control(filepath, manifest, parsed_records):
+    """Assert the DHPPB11 cross-check (AC-3). Returns failure strings."""
+    res = read_dhp_control_matrix(filepath, manifest)
+    if res is None:
+        return []
+    spec = DHP_CONTROL_GRID[Path(filepath).name]
+    fails = []
+    # (a) column identity: the anchor pins By1 as the FY26 request column
+    if res["anchor_k"] is None or abs(res["anchor_k"] - spec["anchor_value_k"]) > 1.0:
+        fails.append(f"DHPPB11 column anchor: {spec['anchor_row_contains']} "
+                     f"{spec['request_column']} = {res['anchor_k']}, expected "
+                     f"{spec['anchor_value_k']:,.0f}K — the request column "
+                     f"cannot be identified, so the cross-check is void")
+    # (b) matrix total on the FY26 column (never summed across years)
+    if abs(res["column_total_k"] - spec["matrix_column_total_k"]) > 1.0:
+        fails.append(f"DHPPB11 matrix total: {res['column_total_k']:,.0f}K != "
+                     f"{spec['matrix_column_total_k']:,.0f}K (±$1M)")
+    # (c) same-universe cross-check against the OP53a parse
+    parsed_k = round(sum((r.get("cost_fy2026") or 0.0) for r in parsed_records) * 1000.0, 0)
+    if res["om_subtotal_k"] is None:
+        fails.append("DHPPB11: DHP O&M subtotal row not found — no cross-check")
+    elif abs(res["om_subtotal_k"] - parsed_k) > 1000.0:   # ±$1M in $K
+        fails.append(f"DHPPB11 vs OP53a parse: matrix O&M subtotal "
+                     f"{res['om_subtotal_k']:,.0f}K != parsed "
+                     f"{parsed_k:,.0f}K (±$1M)")
+    # (d) control-only: the grid must never be a record source
+    targets = JSON_TARGET_GRIDS | DHP_FILE_TARGET_GRIDS.get(Path(filepath).name, set())
+    if spec["grid"] in targets:
+        fails.append(f"DHPPB11 is in the effective target set for "
+                     f"{Path(filepath).name} — a control grid must emit zero records")
+    return fails
 
 
 def load_cost_coverage(path=None):
@@ -1831,6 +1943,7 @@ def main():
                     if k in ("DWSumbyAgenGrid", "Op5Part1", "OP53a")}
         print(f"  [CONTROL]  {fname:<58}  {headline if headline else '(read)'}")
 
+
     # ── Build DataFrame ───────────────────────────────────────────────────────
     print()
     print("Building dataset...")
@@ -1843,6 +1956,23 @@ def main():
     # Runs before the frame is built: every raw BY slot is placed into the
     # absolute column anchored by its row's manifest budget_year.
     map_year_slots(all_records, manifest)
+
+    # DHPPB11 — a control-only GRID inside a `parsed` file (AC-3). Distinct
+    # file-opening path, so it verifies through the gate itself before reading.
+    dhp_fails = []
+    for fp in json_files:
+        if fp.name not in DHP_CONTROL_GRID:
+            continue
+        same_file = [r for r in all_records if r.get("source_file") == fp.name]
+        res = read_dhp_control_matrix(fp, manifest)
+        dhp_fails += check_dhp_control(fp, manifest, same_file)
+        print(f"  [CONTROL]  {fp.name:<58}  DHPPB11 FY26 column "
+              f"{res['column_total_k']:,.0f}K · O&M subtotal "
+              f"{res['om_subtotal_k']:,.0f}K")
+    if dhp_fails:
+        for m_ in dhp_fails:
+            print(f"  [FATAL] DHP control cross-check: {m_}")
+        sys.exit(1)
 
     # ── Discriminator collision hard-fail (DBDP-106 c10434 §4) ────────────────
     collisions = check_discriminator_collisions(all_records)

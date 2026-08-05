@@ -98,23 +98,47 @@ def extract(path, family, agency_allowlist=None):
     return n, round(total, 3)
 
 
+# Known-good FY27 expectations, PINNED for both families (c10527: "validate the
+# independent extractor against at least one known-good FY27 P-40 source and one
+# known-good FY27 R-2 source"). Both are ASSERTED identically — a mismatch on
+# either count or sum fails the run with a nonzero exit. An extractor that only
+# narrates its R-2 result proves nothing about the R-2 path.
+KNOWN_GOOD = [
+    ("P-40", "02_Procurement", "PROC_DISA_PB_2027.xml",  9, 1345.031),
+    ("R-2",  "03_RDT_and_E",   "RDTE_DISA_PB_2027.xml", 20,  407.896),
+]
+
+
 def self_validate():
-    """c10527: validate the extractor on a known-good FY27 P-40 AND R-2."""
-    checks = []
-    p40 = next(REPO.joinpath("02_Procurement").rglob("PROC_DISA_PB_2027.xml"))
-    n, s = extract(p40, "P-40")
-    checks.append(("FY27 P-40 PROC_DISA_PB_2027.xml", n, s, 9, 1345.031))
-    r2 = next(REPO.joinpath("03_RDT_and_E").rglob("RDTE_DISA_PB_2027.xml"))
-    n2, s2 = extract(r2, "R-2")
-    checks.append(("FY27 R-2 RDTE_DISA_PB_2027.xml", n2, s2, None, None))
-    return checks
+    """c10527: assert the extractor on known-good FY27 P-40 AND R-2 sources.
+
+    Returns (results, failures). Both families are held to the same standard.
+    """
+    results, failures = [], []
+    for family, folder, fname, exp_n, exp_s in KNOWN_GOOD:
+        path = next(REPO.joinpath(folder).rglob(fname))
+        n, s = extract(path, family)
+        ok = (n == exp_n) and (abs(s - exp_s) < 0.001)
+        results.append((family, fname, n, s, exp_n, exp_s, ok))
+        if not ok:
+            failures.append(
+                f"{family} {fname}: expected {exp_n} nodes / {exp_s:,.3f}, "
+                f"got {n} nodes / {s:,.3f}")
+    return results, failures
 
 
 if __name__ == "__main__":
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     print("Independent extractor self-validation (no production parser imported):")
-    for label, n, s, exp_n, exp_s in self_validate():
-        note = ""
-        if exp_s is not None:
-            note = f"  expected {exp_n} nodes / {exp_s} -> {'MATCH' if (n == exp_n and abs(s - exp_s) < 0.001) else 'MISMATCH'}"
-        print(f"  {label}: {n} nodes, sum {s}{note}")
+    results, failures = self_validate()
+    for family, fname, n, s, exp_n, exp_s, ok in results:
+        print(f"  [{'PASS' if ok else 'FAIL'}] FY27 {family} {fname}: "
+              f"{n} nodes / {s:,.3f}  (expected {exp_n} / {exp_s:,.3f})")
+    if failures:
+        print("\nSELF-VALIDATION FAILED — the extractor is not trustworthy as an "
+              "oracle and its FY26 anchors must not be used:")
+        for f in failures:
+            print(f"  {f}")
+        sys.exit(1)
+    print(f"\nBoth known-good family checks asserted and passed "
+          f"({len(results)}/{len(results)}).")
