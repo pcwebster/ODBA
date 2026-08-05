@@ -36,6 +36,14 @@ import etl_budget as etl
 
 REPO      = Path(__file__).parent.parent
 BASE_SHA  = "d8f7fd6f9e45c7bf0764913e7556df6477edb759"   # DBDP-106 pinned base
+# DBDP-103 note: the MAP legs below verify the historical d8f7fd6 -> dc979fa
+# migration, so they read the post-state from the DBDP-106 MERGE artifact.
+# Pinning both endpoints keeps this a permanent, true regression test of that
+# migration — later re-keys (e.g. DBDP-103's P-40 BSA broadening, verified by
+# tests/test_b1_2_fy26.py) cannot make a correct historical receipt "fail".
+# The LIVE-code legs (position-invariance, collision hard-fail, 20-hex over
+# the full corpus) still run against HEAD, where they belong.
+POST_SHA  = "dc979fa60e07d82eaceda8ad2343869b00ee8e8a"   # DBDP-106 merge
 MAP_FILE  = REPO / "data" / "record_id_migration_dbdp106.json"
 POST_PARQUET = REPO / "output" / "fact_budget_line_items.parquet"
 
@@ -73,9 +81,9 @@ def fingerprints(df):
     return [row_fingerprint(r) for r in df.to_dict("records")]
 
 
-def pre_rekey_df():
+def artifact_at(sha):
     blob = subprocess.run(
-        ["git", "-C", str(REPO), "show", f"{BASE_SHA}:output/fact_budget_line_items.parquet"],
+        ["git", "-C", str(REPO), "show", f"{sha}:output/fact_budget_line_items.parquet"],
         capture_output=True).stdout
     with tempfile.NamedTemporaryFile(suffix=".parquet", delete=False) as fh:
         fh.write(blob)
@@ -83,8 +91,14 @@ def pre_rekey_df():
     return pd.read_parquet(p)
 
 
+def pre_rekey_df():
+    return artifact_at(BASE_SHA)
+
+
 def main():
-    pre, post = pre_rekey_df(), pd.read_parquet(POST_PARQUET)
+    pre = pre_rekey_df()
+    post_all = pd.read_parquet(POST_PARQUET)          # HEAD, for live-code legs
+    post = artifact_at(POST_SHA)                      # DBDP-106 merge artifact
     mig = json.load(open(MAP_FILE, encoding="utf-8"))
     entries = mig["entries"]
 
@@ -132,8 +146,8 @@ def main():
         case(f"cardinality conserved {fam}", n_pre == n_post, f"{n_pre}=={n_post}")
 
     # DBDP-72 guarantees on new ids
-    case("all post ids 20-hex",
-         post["record_id"].str.fullmatch(r"[0-9a-f]{20}").all())
+    case("all post ids 20-hex (full corpus)",
+         post_all["record_id"].str.fullmatch(r"[0-9a-f]{20}").all())
 
     # position-invariance (TC-B1-RK-01): shuffle WITHIN-FILE row order in one
     # representative source per family, re-parse, compare id sets
@@ -162,7 +176,11 @@ def main():
     recs_shuf = etl.parse_procurement_xml(shuf_path)
     for r in recs_shuf:
         r["source_file"] = "PROC_DISA_PB_2027.xml"   # temp name differs; key uses fname
-    ids_shuf = {etl.make_content_id("PROC_DISA_PB_2027.xml", r["line_item_number"])
+    # DBDP-103 c10521 Ruling 1: the P-40 key broadened with BSA — recompute
+    # position-invariance against the CURRENT key, not the superseded one.
+    ids_shuf = {etl.make_content_id("PROC_DISA_PB_2027.xml",
+                                    r["line_item_number"],
+                                    r["budget_sub_activity_number"])
                 for r in recs_shuf}
     case("position-invariance P-40 (shuffled LineItems -> same ids)",
          ids_orig == ids_shuf, f"{len(ids_orig)} ids")

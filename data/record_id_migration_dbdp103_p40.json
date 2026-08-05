@@ -1,0 +1,379 @@
+{
+  "base_sha": "10ed61bc055af8639f8282e6fd4cf27490fcf1e4",
+  "ticket": "DBDP-103 (c10521 Ruling 1, AR CONCUR c10525, Peter DECISION c10526)",
+  "note": "FY27 P-40 record_id migration: the P-40 discriminator broadened from (source_file, line_item_number) to (source_file, line_item_number, budget_sub_activity_number) after the FY26 corpus proved the former non-unique (PROC_WHS_PB_2026.xml, LineItemNumber 31 under BSA 1 vs 4). Prefix-equality does NOT apply (AR c10431 s2): the key content changed. This map plus the independent row fingerprint are the receipt. Only the 62 FY27 P-40 rows migrate; every other FY27 row keeps its record_id byte-identical and appears nowhere here.",
+  "entries": [
+    {
+      "old_id": "013089c0e40ecde13968",
+      "new_id": "a2f93649ad7947908e38",
+      "family": "P-40",
+      "row_fingerprint": "b6c4d6b8964a4add5e3dc6f7ca620f352ad1871fb28313bd0e81ffc572204296"
+    },
+    {
+      "old_id": "072f36abbfbfb8d75f92",
+      "new_id": "c3114b6701f9c409e203",
+      "family": "P-40",
+      "row_fingerprint": "99eacb4e2a2a7453c308709b30dcf5f44433070a0b29d06e059eb0ded827c8bc"
+    },
+    {
+      "old_id": "11190dcee276269cb6d7",
+      "new_id": "363d81c254bb1f99a818",
+      "family": "P-40",
+      "row_fingerprint": "aa141b3891ca9101dce17bae6a1845259d8a9d354bbc87a61c62439c14c08e03"
+    },
+    {
+      "old_id": "15178c8bf30004640fef",
+      "new_id": "6e53104fc08e8100e913",
+      "family": "P-40",
+      "row_fingerprint": "a863540e6dcd151eff48adda399c8cf0a6b111fbdc9570bec70fc62cd69cc3e4"
+    },
+    {
+      "old_id": "1718ea7de3dc026717bf",
+      "new_id": "d7e2e0bd1f97d96a4d8a",
+      "family": "P-40",
+      "row_fingerprint": "1ab749bf4c8dff6afce62a90b701bb5cf7250572e8988e4c40c290202685fae8"
+    },
+    {
+      "old_id": "24e4f3943b851d6ab8dd",
+      "new_id": "a20f9a5cded2bf2820b0",
+      "family": "P-40",
+      "row_fingerprint": "ab61887c050b8426abb01f738c794215ad055e212b52e619796aa3496479098f"
+    },
+    {
+      "old_id": "28fbe7655780806fa9bf",
+      "new_id": "1d976ec3c37dc80dd63a",
+      "family": "P-40",
+      "row_fingerprint": "388d237a0711565db79b588bfac34e970fb8aa4e444a617538a6f6b1cb3abd50"
+    },
+    {
+      "old_id": "2c4aaf7af6c56da84d5a",
+      "new_id": "fa13d0d6707c919e6230",
+      "family": "P-40",
+      "row_fingerprint": "96560aab78dcc051fb616c0e2a15d838abd08a5e32ac33d873a72892039f5a43"
+    },
+    {
+      "old_id": "2c9b2f80fb23b7787c9f",
+      "new_id": "10fd7b0bc8de5328f402",
+      "family": "P-40",
+      "row_fingerprint": "d1243a2582ca0941141015e30ad4be618643d4b41acb0259e78c900804080143"
+    },
+    {
+      "old_id": "31a9c2b078908155220e",
+      "new_id": "d54b94f9827476eeaaa2",
+      "family": "P-40",
+      "row_fingerprint": "adc39cd2f6342402bade07a394b1e17a177d2240659d32c65ec74bea1a175116"
+    },
+    {
+      "old_id": "356eebefff5b60b37b16",
+      "new_id": "378ae39121a1583c5117",
+      "family": "P-40",
+      "row_fingerprint": "90e043838114d9992d4da9d3d77318b2cf677b1f1887d8e481b7933f84ca99ec"
+    },
+    {
+      "old_id": "37437dfbc5e6d5384849",
+      "new_id": "bd1e2d7001717e35be5d",
+      "family": "P-40",
+      "row_fingerprint": "c23685c05830709f25ebaf8fe19a6bdb44d579bca0240cb1fa5b9acc62fe467c"
+    },
+    {
+      "old_id": "3a34ddfc18985ea6d6fd",
+      "new_id": "0dd2b8c92580f0af5d8e",
+      "family": "P-40",
+      "row_fingerprint": "bedc17586b377b048d3f39f1f90ca0cc598d1c62ee04e22ad291519222940ea5"
+    },
+    {
+      "old_id": "3ba14971f52ea909233c",
+      "new_id": "1f65e7f1e93646d98caa",
+      "family": "P-40",
+      "row_fingerprint": "0b63d4ad526734921c66d9c2f1f273bbfbf1daf038ad6fe287d0a5878540c980"
+    },
+    {
+      "old_id": "4491912ae1f2e93a789d",
+      "new_id": "d46a67790f551cea6f07",
+      "family": "P-40",
+      "row_fingerprint": "2b0132ade03f68c8b51787e1c460fa4ccaf744ddf700ba59efc25ac1f89c877c"
+    },
+    {
+      "old_id": "45d5c851fee8b909b272",
+      "new_id": "2d5589654e8612852faf",
+      "family": "P-40",
+      "row_fingerprint": "ec678eff8047198618bf95b515a4b87527ae29cb0474d57bc4f2adfa5ef8233a"
+    },
+    {
+      "old_id": "4d1fa3f236083b9f7a85",
+      "new_id": "5f4fa254519f2de3b35b",
+      "family": "P-40",
+      "row_fingerprint": "5573afdb691627ea6bdeac166db49a4bcfa2f8c3067684eb201a360b4a6073a7"
+    },
+    {
+      "old_id": "5041318b5e83772d3f4a",
+      "new_id": "77b3a93574c7b1914315",
+      "family": "P-40",
+      "row_fingerprint": "635b0a040a510e49f6b7f3b8038120c4fdcb77390f6611b8d5b001cdfc165ea2"
+    },
+    {
+      "old_id": "50afbb0bb10da06af7f3",
+      "new_id": "91eb59e881e47f345ef8",
+      "family": "P-40",
+      "row_fingerprint": "a033068d61886640f7521b3cc03b5ecbdea99f9bff94c3a41ae956761fabf2a7"
+    },
+    {
+      "old_id": "51ab1cbe5c19e957c2bf",
+      "new_id": "e830c6c22b305dd55b0a",
+      "family": "P-40",
+      "row_fingerprint": "aa2540e9f965a4b453f746a536806430f25a5a68f1620228b6d438c4c5a6a9f9"
+    },
+    {
+      "old_id": "53fad3e7ade64c16b3e7",
+      "new_id": "4daf54f710214d9636b3",
+      "family": "P-40",
+      "row_fingerprint": "e905ab365ad848f1f89e6884c1bfed7aa07ba89ee1b40a72b27ec5345df5eee7"
+    },
+    {
+      "old_id": "59c3d8546bb26287502d",
+      "new_id": "4745fed416cf062face0",
+      "family": "P-40",
+      "row_fingerprint": "024a5bb7c52ba0cc60c98637bc7e8778b84e0ae1527bed52d64da84f9968943a"
+    },
+    {
+      "old_id": "5a7a2a744fa9a620fbaa",
+      "new_id": "6b85252d0ee9cba85a5f",
+      "family": "P-40",
+      "row_fingerprint": "f3c5c1e0f51dd37f6b4727f3bc8c3fe0b1ff1cd4639960d4cbe34915e24ddb4b"
+    },
+    {
+      "old_id": "5df079ad2b5d55265424",
+      "new_id": "c059cbe69f197478e72a",
+      "family": "P-40",
+      "row_fingerprint": "d38bd0aca0da703b8fbb54fc88b26f62fb4e0c5c5fe0422c4a3d4350c9afda28"
+    },
+    {
+      "old_id": "602020b0e335ab06a1cd",
+      "new_id": "6c67cff258ddf7f81f9e",
+      "family": "P-40",
+      "row_fingerprint": "402e9e90f1939d612e2910f4a2ed73fb2947931f25ebfed485bdc29ca871e0c1"
+    },
+    {
+      "old_id": "64944174575062ec1754",
+      "new_id": "5596e9cf2f2faa465676",
+      "family": "P-40",
+      "row_fingerprint": "2fb760afbde6184e7a3e66ce576522784ef957eb6fb87191885e1c06f4048a5b"
+    },
+    {
+      "old_id": "690d4aa7372ad98542e3",
+      "new_id": "1788a7d84645c9b38400",
+      "family": "P-40",
+      "row_fingerprint": "d100c9b13b5bb4fa435b1e5c797d62fe35369c97f82dd1ff6eee99ff5cfb70d4"
+    },
+    {
+      "old_id": "69ba4ac2f18cd3b44434",
+      "new_id": "1f5a1710fb8337977dfe",
+      "family": "P-40",
+      "row_fingerprint": "70423f31ee7ac420ab75b8b3ca96177d7839f9d5b560b85605481aa1fa95279a"
+    },
+    {
+      "old_id": "6ec0cb9c2118486d0c8a",
+      "new_id": "0ed1f0c3df77a0726c60",
+      "family": "P-40",
+      "row_fingerprint": "db221f11fb044f559e894a23893a10a5b0bc7c8eccf00a70d524e9e732056e33"
+    },
+    {
+      "old_id": "73d31bad27487ec6150a",
+      "new_id": "6cff7edd200cbc1c9836",
+      "family": "P-40",
+      "row_fingerprint": "7d78aeaf2257c340135fdb1c87fb063530e6266334387e9e5646272b079a2f8e"
+    },
+    {
+      "old_id": "7578f9c9e17df4034b12",
+      "new_id": "c369dfff568373c3f7b5",
+      "family": "P-40",
+      "row_fingerprint": "d77b2e82ec3f750421c473da6e4a6625236476be714e252985d042d75790dbdd"
+    },
+    {
+      "old_id": "76828846fe4f2f1f3233",
+      "new_id": "b6557b9dd2f14f176959",
+      "family": "P-40",
+      "row_fingerprint": "b83b37b03af551cffea65c584281eb4597ac1a5af632e402274020134345dd48"
+    },
+    {
+      "old_id": "7c504ae7bffc333cdc2f",
+      "new_id": "60d86952286810b96a22",
+      "family": "P-40",
+      "row_fingerprint": "f77466e86b58557f794f5731051e82127eeb8bb277e462c25a64ff3f665dc53e"
+    },
+    {
+      "old_id": "8a9f5cfbd31822a0948e",
+      "new_id": "cfe3ddd206d82fbb4849",
+      "family": "P-40",
+      "row_fingerprint": "46096b0cc17d42e95b5f97290e5442c0154c2f4da738f82663d6fc1d78a894c2"
+    },
+    {
+      "old_id": "9d46b9aa5f1c7267b761",
+      "new_id": "0dc8c99cb53af4a8f080",
+      "family": "P-40",
+      "row_fingerprint": "e35af11c697b5c4446c730630c5cf486d572243154cd10dc3955b554a5766619"
+    },
+    {
+      "old_id": "9da7eee6991f19517a4a",
+      "new_id": "64ca9d449f14b3d6ada6",
+      "family": "P-40",
+      "row_fingerprint": "0c2fbeee8c61515c89fd2e0aff1aff2bcb3d6fe81809122a814195c8b17ebe4f"
+    },
+    {
+      "old_id": "a37dc23498ecb1fbe018",
+      "new_id": "29add403d58c5bd23dfe",
+      "family": "P-40",
+      "row_fingerprint": "ce85846f2401a049d40eac9419a12939be93b0e78b79fa4585650d78a8aea6d3"
+    },
+    {
+      "old_id": "a47875c8fe9ffdbdb9bc",
+      "new_id": "49e99ed5a54291fe8a8e",
+      "family": "P-40",
+      "row_fingerprint": "01f3375ae71389980df77e38219bcb3fda6f3ce34fefe95df9aca29724698e18"
+    },
+    {
+      "old_id": "a4c64522245e18ab51be",
+      "new_id": "26a1971739b2ddbb161d",
+      "family": "P-40",
+      "row_fingerprint": "87d41577f921d9e29d25163d9bf7e18ddb197b00314956bdd696022deb5fcd68"
+    },
+    {
+      "old_id": "ab440eb6cbff05ffb554",
+      "new_id": "deaa822fa6c5736fee4d",
+      "family": "P-40",
+      "row_fingerprint": "5ddcdbd5f61128ef7e9269a0bda554500bd8d8f8269b7550394944f7c03247cb"
+    },
+    {
+      "old_id": "aba106d930d977cfee56",
+      "new_id": "c022e6b2ed9134382dab",
+      "family": "P-40",
+      "row_fingerprint": "3251c80380b5691c9b195f57b50663173276fb3f855337c0efe147607f9a7b47"
+    },
+    {
+      "old_id": "afed5989a183a47471a9",
+      "new_id": "6881d023f61263204090",
+      "family": "P-40",
+      "row_fingerprint": "4983a1b8025941bfb5b1d474f8d48d7e1ce0b53f0a29885c85c4fc1b9073e916"
+    },
+    {
+      "old_id": "b0247b1cebe69317b751",
+      "new_id": "a06c553d12cf4537823f",
+      "family": "P-40",
+      "row_fingerprint": "81884b844938de6ab084a405321ca1463b27dad6f229e98251cce45e2f5be5dd"
+    },
+    {
+      "old_id": "ba2cb8cf87a9b71a9a3c",
+      "new_id": "433c37d3b1b15c74d724",
+      "family": "P-40",
+      "row_fingerprint": "66dbef79971316a958b778054ecff7f15e5c52643f26f132f97e071b761a743e"
+    },
+    {
+      "old_id": "bc771b95f5b6ee576248",
+      "new_id": "3af9099fb87248138b92",
+      "family": "P-40",
+      "row_fingerprint": "4373bde34869d23c9f4cf86c0cc1fc9ca58df4552fc755068688c42f436df1ee"
+    },
+    {
+      "old_id": "be592c2c157a0c09f7dc",
+      "new_id": "5dfb6c2ff4b52f2cf6e2",
+      "family": "P-40",
+      "row_fingerprint": "300a7f2c73715e6898e96425fc426022902597dee4ff7e9ccc6156568b64c7a3"
+    },
+    {
+      "old_id": "c34928d6e460824bd44e",
+      "new_id": "96009fb830923fc902f1",
+      "family": "P-40",
+      "row_fingerprint": "6fc7ad21194047e2141014b55661b0c9abd626171637f3e9cfb2de7a589957b8"
+    },
+    {
+      "old_id": "c6f1a4d2a94c3a74135d",
+      "new_id": "0a4c03b97cd32c7f4225",
+      "family": "P-40",
+      "row_fingerprint": "23edae4f48bd3e12fbc7217ce5a062cfb2c3c9e13c89372de840cc387f57b280"
+    },
+    {
+      "old_id": "c7fc2b200769dff78548",
+      "new_id": "90131f74c0b4202e2b33",
+      "family": "P-40",
+      "row_fingerprint": "22b36ec4b7ec397861950da1e2f39683378d32f2e5f9e262746c5d010f3309fa"
+    },
+    {
+      "old_id": "d0ae7cbbe7d788cdeb37",
+      "new_id": "0195543dfe08cd9eef89",
+      "family": "P-40",
+      "row_fingerprint": "131910d8b2b48701dc1ad1c22c4748765203500381b2946af3b070b424068121"
+    },
+    {
+      "old_id": "d2c1d0c43ad5b34213bc",
+      "new_id": "b7b2bd0cb7b3e0eed17a",
+      "family": "P-40",
+      "row_fingerprint": "590a2ee3fe73c636a76fedf6d29c6d4af5846e07870d085d9433a0efdb610ea1"
+    },
+    {
+      "old_id": "d56f846ac444735fa016",
+      "new_id": "c4d6db3f1f3d6eff714e",
+      "family": "P-40",
+      "row_fingerprint": "8eb7bdd0c3838babdd4f154fe4e831023416d86d6e8375664526b211ba8f5cdf"
+    },
+    {
+      "old_id": "d7f8845fd8558440d083",
+      "new_id": "67d5d036d22848dd25bd",
+      "family": "P-40",
+      "row_fingerprint": "e18b59ace25fe4d774d400b1e6429ebda6e760558811bfb7aa1d099c95ebdf72"
+    },
+    {
+      "old_id": "e17d9243430f7e708d2f",
+      "new_id": "41e4d8bbe9eaba127780",
+      "family": "P-40",
+      "row_fingerprint": "0ecec0b8a87faf5037bd38c7789bed6dd7512d238233f20b059eb09c76c4bfe2"
+    },
+    {
+      "old_id": "ebd4a49d235ab620944e",
+      "new_id": "35e367640bdcfecd8e46",
+      "family": "P-40",
+      "row_fingerprint": "7fc524f8e511f671ad2740f364088d1a6041fad59a8331a9c57869c789c4ef49"
+    },
+    {
+      "old_id": "ee1fc7501ea9844ca201",
+      "new_id": "5c570f50e63689df18a3",
+      "family": "P-40",
+      "row_fingerprint": "fdbe2a0dd63d194641a691a361ef23eedb8b36a4f97501fb3bb3cf549c4346fa"
+    },
+    {
+      "old_id": "ef2b04666b223005e0cd",
+      "new_id": "29c3e559428c2bb281b7",
+      "family": "P-40",
+      "row_fingerprint": "a42645242a8c022ffa15e9d09226887fbc71175daca50a65b7e98875f9bc9ff4"
+    },
+    {
+      "old_id": "f1873c9a61c3ea0272f2",
+      "new_id": "ba5341273e018b3ed4ed",
+      "family": "P-40",
+      "row_fingerprint": "16467e226e42b3d8644a394f0dc7f10b99ba470b0b2aff2ed745cb6e294c76e4"
+    },
+    {
+      "old_id": "f5fb7141c91cdea2ea52",
+      "new_id": "4be9d7408ab8d9087cbf",
+      "family": "P-40",
+      "row_fingerprint": "6f9e3ef041fd979099c5275321d1ce463080092fbbdd701ff118ac6a969ee74e"
+    },
+    {
+      "old_id": "f659e2199254421b88c8",
+      "new_id": "c558258157ccd034d8b8",
+      "family": "P-40",
+      "row_fingerprint": "8614896f2689c44b3cb05b0a9c770879e2d6244704b8d604850092af351e92da"
+    },
+    {
+      "old_id": "f9b1a79eff737c6debef",
+      "new_id": "8cb23cf348f201352cda",
+      "family": "P-40",
+      "row_fingerprint": "78db423f58d664579ab5dbe683c74aeb1501f8416b10193c9ba39e47e36f00e1"
+    },
+    {
+      "old_id": "fb06377b09c077f3ef08",
+      "new_id": "5b59f2a6290142f67aa2",
+      "family": "P-40",
+      "row_fingerprint": "6bb5ade1db259e96c9e7b7de1af85908ea8b6e852c87ad75358c8cb1f08c0fa3"
+    }
+  ]
+}

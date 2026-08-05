@@ -1,14 +1,14 @@
 {
   "2026": {
     "covered": [
-      "cost_fy2026"
+      "cost_fy2026",
+      "cost_fy2027",
+      "cost_fy2028",
+      "cost_fy2029",
+      "cost_fy2030"
     ],
     "excluded": {
-      "cost_fy2027": "no FYDP published (administration transition)",
-      "cost_fy2028": "no FYDP published (administration transition)",
-      "cost_fy2029": "no FYDP published (administration transition)",
-      "cost_fy2030": "no FYDP published (administration transition)",
-      "cost_fy2031": "no FYDP published (administration transition)"
+      "cost_fy2031": "beyond the FY26 FYDP horizon (BY5 = FY2030)"
     }
   },
   "2027": {

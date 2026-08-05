@@ -202,6 +202,54 @@ def make_content_id(*parts):
     return hashlib.md5(key.encode(), usedforsecurity=False).hexdigest()[:20]
 
 
+def map_year_slots(records, manifest):
+    """Submission-anchored year mapping (DBDP-103 c10529 §1; AR CONCUR c10531).
+
+    Every absolute year slot is anchored by the row's manifest budget_year Y:
+        by1 -> cost_fy(Y)    by2 -> cost_fy(Y+1)   ...   by5 -> cost_fy(Y+4)
+    replacing the former FY27-anchored slot constants. Parsers emit raw slot
+    values in `_by_slots`; this single callable — the ONLY placement path in
+    production, so a test hook exercising it exercises what production does
+    (c10533 leg 4) — assigns them.
+
+    Properties that matter:
+      • Regression safety is STRUCTURAL, not tested-in: for Y=2027 the rule
+        reproduces the old constants exactly (by1→fy2027 … by5→fy2031), so
+        FY27 rows stay byte-identical and AC-4 needs no further amendment.
+      • A populated slot whose target column is absent from COLUMNS is a
+        HARD-FAIL naming year/slot/column — never a silent drop or fallback
+        (a missing column is a schema+declaration event, c10529 §1).
+      • Absent source elements arrive as None and are skipped; an EXPLICIT
+        source zero arrives as 0.0 and is captured as 0.0 — nulling it would
+        fabricate structural absence (c10529 §2; c10533 CV-01 leg 4).
+      • Relative columns (cost_prior_year / cost_current_year /
+        cost_all_prior_years) keep per-submission semantics — untouched.
+    """
+    for r in records:
+        slots = r.pop("_by_slots", None)
+        if not slots:
+            continue
+        entry = manifest.get(r.get("source_file"))
+        if entry is None:
+            print(f"  [FATAL] year mapping: {r.get('source_file')!r} has no "
+                  f"manifest entry — cannot anchor its year slots (DBDP-103)")
+            sys.exit(1)
+        year = int(entry["budget_year"])
+        for n, value in enumerate(slots, start=1):
+            if value is None:
+                continue          # absent element — not a published value
+            col = f"cost_fy{year + n - 1}"
+            if col not in COLUMNS:
+                print(f"  [FATAL] year mapping: submission year {year} slot "
+                      f"BY{n} maps to column {col!r}, which does not exist in "
+                      f"COLUMNS — a new year requires an additive column plus "
+                      f"its coverage declaration, never a silent drop "
+                      f"(DBDP-103 c10529 §1)")
+                sys.exit(1)
+            r[col] = value
+    return records
+
+
 def check_discriminator_collisions(all_records):
     """DBDP-106 c10434 §4 collision rule — hard-fail, no silent collapse.
 
@@ -723,11 +771,14 @@ def parse_procurement_xml(filepath, allowlist=None):
             "cost_all_prior_years"    : to_float(cost.get("all_prior")),
             "cost_prior_year"         : to_float(cost.get("prior")),
             "cost_current_year"       : to_float(cost.get("current")),
-            "cost_fy2027"             : to_float(cost.get("fy1base") or cost.get("fy1")),
-            "cost_fy2028"             : to_float(cost.get("fy2")),
-            "cost_fy2029"             : to_float(cost.get("fy3")),
-            "cost_fy2030"             : to_float(cost.get("fy4")),
-            "cost_fy2031"             : to_float(cost.get("fy5")),
+            # DBDP-103 c10529: raw BY slots; map_year_slots() anchors them to
+            # the submission year. Base-vs-Total precedence UNCHANGED
+            # (fy1base then fy1) — identical for every submission year.
+            "_by_slots"               : [
+                to_float(cost.get("fy1base") or cost.get("fy1")),
+                to_float(cost.get("fy2")), to_float(cost.get("fy3")),
+                to_float(cost.get("fy4")), to_float(cost.get("fy5")),
+            ],
             "cost_units"              : li.get("totalCostUnits", "Millions"),
             "description"             : desc,
             "justification"           : just,
@@ -860,11 +911,14 @@ def parse_rdte_xml(filepath, allowlist=None):
             "cost_all_prior_years"    : to_float(cost.get("all_prior")),
             "cost_prior_year"         : to_float(cost.get("prior")),
             "cost_current_year"       : to_float(cost.get("current")),
-            "cost_fy2027"             : to_float(cost.get("fy1base") or cost.get("fy1")),
-            "cost_fy2028"             : to_float(cost.get("fy2")),
-            "cost_fy2029"             : to_float(cost.get("fy3")),
-            "cost_fy2030"             : to_float(cost.get("fy4")),
-            "cost_fy2031"             : to_float(cost.get("fy5")),
+            # DBDP-103 c10529: raw BY slots; map_year_slots() anchors them to
+            # the submission year. Base-vs-Total precedence UNCHANGED
+            # (fy1base then fy1) — identical for every submission year.
+            "_by_slots"               : [
+                to_float(cost.get("fy1base") or cost.get("fy1")),
+                to_float(cost.get("fy2")), to_float(cost.get("fy3")),
+                to_float(cost.get("fy4")), to_float(cost.get("fy5")),
+            ],
             "cost_units"              : pe.get("monetaryUnit", "Millions"),
             "description"             : desc,
             "justification"           : "",
@@ -1144,7 +1198,8 @@ def parse_json_exhibit(filepath):
             "cost_all_prior_years"       : None,
             "cost_prior_year"            : k_to_m(row["py"]),
             "cost_current_year"          : k_to_m(row["cy"]),
-            "cost_fy2027"                : k_to_m(row["by1"]),
+            "_by_slots"                  : [k_to_m(row["by1"]), None,
+                                            None, None, None],
             "cost_fy2028"                : None,
             "cost_fy2029"                : None,
             "cost_fy2030"                : None,
@@ -1366,7 +1421,8 @@ def _parse_mhs_vol1(filepath):
                 "budget_sub_activity_title"    : sub_act_title,
                 "cost_prior_year"              : _mhs_k_to_m(fy25),
                 "cost_current_year"            : _mhs_k_to_m(fy26),
-                "cost_fy2027"                  : _mhs_k_to_m(fy27),
+                "_by_slots"                    : [_mhs_k_to_m(fy27), None,
+                                                  None, None, None],
                 "cost_units"                   : "Millions",
             })
             records.append(r)
@@ -1523,7 +1579,8 @@ def _parse_mhs_vol2(filepath):
                 "line_item_title"            : desc,
                 "cost_prior_year"            : _mhs_k_to_m(fy25),
                 "cost_current_year"          : _mhs_k_to_m(fy26),
-                "cost_fy2027"                : _mhs_k_to_m(fy27),
+                "_by_slots"                  : [_mhs_k_to_m(fy27), None,
+                                                None, None, None],
                 "cost_units"                 : "Millions",
             })
             records.append(r)
@@ -1569,7 +1626,8 @@ def _parse_mhs_vol2(filepath):
                     "line_item_title"            : m_desc,
                     "cost_prior_year"            : _mhs_k_to_m(fy25),
                     "cost_current_year"          : _mhs_k_to_m(fy26),
-                    "cost_fy2027"                : _mhs_k_to_m(fy27),
+                    "_by_slots"                  : [_mhs_k_to_m(fy27), None,
+                                                None, None, None],
                     "cost_units"                 : "Millions",
                 })
                 records.append(r)
@@ -1781,6 +1839,11 @@ def main():
         print("  [ERROR] No records parsed.")
         sys.exit(1)
 
+    # ── Submission-anchored year mapping (DBDP-103 c10529 §1) ────────────────
+    # Runs before the frame is built: every raw BY slot is placed into the
+    # absolute column anchored by its row's manifest budget_year.
+    map_year_slots(all_records, manifest)
+
     # ── Discriminator collision hard-fail (DBDP-106 c10434 §4) ────────────────
     collisions = check_discriminator_collisions(all_records)
     if collisions:
@@ -1824,20 +1887,8 @@ def main():
     df["budget_year"] = df["source_file"].map(
         lambda f: float(manifest[f]["budget_year"]))
 
-    # ── Request-year indirection (c10469 §4; AR c10488(d)) ───────────────────
-    # Parsers write the submission's request-year figure into the FY27 slot;
-    # it belongs in the absolute column anchored to the row's manifest year
-    # (2026 → cost_fy2026, 2027 → cost_fy2027). Base-vs-Total precedence is
-    # untouched — the SAME `fy1base or fy1` rule already applied upstream, so
-    # both years resolve identically. A mis-stamped year is caught twice: by
-    # the coverage uniformity assertion and by the ±$1M control ties.
-    for year in sorted({int(y) for y in df["budget_year"].dropna().unique()}):
-        col = f"cost_fy{year}"
-        if col not in COLUMNS or col == "cost_fy2027":
-            continue
-        mask = df["budget_year"] == float(year)
-        df.loc[mask, col] = df.loc[mask, "cost_fy2027"]
-        df.loc[mask, "cost_fy2027"] = None
+    # (Year placement already done by map_year_slots() before the frame was
+    # built — c10529 §1 supersedes c10469 §4's request-year-only wording.)
 
     # ── ingest_status enforcement (c10469 §3) ────────────────────────────────
     # Only `parsed` files may emit records — declared, then asserted.
