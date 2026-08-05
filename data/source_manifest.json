@@ -1,6 +1,8 @@
 {
   "00-DHP_Vol_III_PB26.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:44-04:00; local path FY2026/09_Defense_Health_Program/00-DHP_Vol_III_PB26.json; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "35f512278727b76377e3af177860d39aab818605d28987332f9ac2dcb85ef8f2",
@@ -8,6 +10,8 @@
   },
   "00-DHP_Vols_I_and_II_PB26.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:43-04:00; local path FY2026/09_Defense_Health_Program/00-DHP_Vols_I_and_II_PB26.json; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "7e2af36e8989b38f7ae43336284aa01e1a4e0057818dbdb604606a00cf76edab",
@@ -15,6 +19,8 @@
   },
   "1-TJS_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:59-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/1-TJS_OP-5.json; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "33354b87f593cbc6d9adab71216949e6315f3c41fb197ed6a00528e37977f526",
@@ -22,6 +28,8 @@
   },
   "2-TJS_Sub-OPS OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:00-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/2-TJS_Sub-OPS OP-5.json; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "8d4f1ff3ef46fd3c7dce1f77de4f3024f8cfb92e9f20953367887cc3bad37419",
@@ -29,6 +37,8 @@
   },
   "3-TJS_NDU_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:00-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/3-TJS_NDU_OP-5.json; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "123e2ff2e96d73a581336ed75a63cffcf1d7f2b867d69f4d98ce756f808ef7b5",
@@ -36,6 +46,8 @@
   },
   "4-TJS_JTEEP_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:01-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/4-TJS_JTEEP_OP-5.json; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "98c6f12f42f77d5c21924be88ccedb31f26f225bb5e5eaac1294939f457da161",
@@ -43,6 +55,8 @@
   },
   "5-TJS_Cyber_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:01-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/5-TJS_Cyber_OP-5.json; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "8a183f0a708c14d764e5c1ebdfde9ba832f25ac2484606141fb06f90984e00a3",
@@ -50,24 +64,32 @@
   },
   "CAAF_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "9bd6df4f719c8ea45b806fcdc85bb0f3b05245b9333130f834847165ac2d5942"
   },
   "CMP_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "283c3760e644be2fe0cd2836d3177e847218d916c8b69b6264f050bc7bf1d1f2"
   },
   "CTR_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "0d4d06781c66eba7d1fc7dfb004013bde02eb82d1325cc8891f448b18958ed5b"
   },
   "CYBERCOM_Headquarters_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:44-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/CYBERCOM_Headquarters_OP-5.json; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "ef7d72f021ca36a67f2d28ddd69f9dc14fbaf636a5f438470618f567a8e6a009",
@@ -75,6 +97,8 @@
   },
   "CYBERCOM_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:43-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/CYBERCOM_OP-5.json; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "a4fbc9fb6c03365ff6f5fcc61ca89b63c2bf54045de5f7f1dc2bab74c30639b0",
@@ -82,6 +106,8 @@
   },
   "Cyberspace_Operations_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:44-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/Cyberspace_Operations_OP-5.json; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "ebfb0766c7fe19d89239c81c84258873ee5e77c7e1b59033f030792e1fc0658e",
@@ -89,90 +115,120 @@
   },
   "DAU_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "c915e9bfedd9b662dc539bb2bd7e62083612a9d4005abbffb59521bc33ee5dcc"
   },
   "DAWDA_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "4a638bf790b4c1c8362141b0b318eb05f0e4a3d415972ac7966d14d7274c3184"
   },
   "DCAA_Cyber_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "33db675838a4dd981bf2030fecae97a61b8a5e0df569def6ce2a90ccec2129aa"
   },
   "DCAA_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "e375f0162e9df1a140548d9cdcf036fd4851c9af91d41637271701a0de950936"
   },
   "DCMA_Cyber_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "ca00d0a8d34aeb43f2d3e9227369a24a723aa2c96f8f83d2353e77587f65b89f"
   },
   "DCMA_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "5497b04d422db48399de06d6a17224ab12a0f558e057342716936eebedcbe3b8"
   },
   "DCSA_Cyber_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "9efd641e901f4ffb77c58e6784744f515a0a0997912903992e8b95ebffe2a067"
   },
   "DCSA_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "b0030a9f8bd2355105d2e84049e06b68d49b9f9f74036b91141d34ad5b193585"
   },
   "DHRA_Cyber_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "7839ab6c884a4169525de5a9b6ea28cc288b5cc32a4aefcf757f65d6352682c5"
   },
   "DHRA_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "ac8aed12e08a0d477c119a4408b97208b528c5b88a3a5a2019254cb491ae7917"
   },
   "DISA_Cyber_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "8b5b8ca61c44af054386ec75c681fd3ab6d2cfefab6ae9233934ec0cb7b7f86f"
   },
   "DISA_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "45e3169a2ee35a429f34f226c4ea74599919d758f084b9989e006ceda72fda60"
   },
   "DLA_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "81df878a00da7f09b8455b937d465c3bc72463ef2a92323ce09c44aa7948c7b6"
   },
   "DLSA_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "5844af364b1a67f920e4d6f95b4ff1f023a64badec9577123bb256f234cb3f92"
   },
   "DMA_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:51-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/DMA_OP-5.json; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "50b8c77b5721a4ef8ac867ab8d5c5f8b0d863db038b3c37e50e61dac52583aff",
@@ -180,48 +236,64 @@
   },
   "DPAA_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "31276decd37ff46e7ca0677b3cbf83fedc387930058a434be983b43d3576e4a3"
   },
   "DSCA_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "6b4dff9a029207169328a981f7deaadd09de77f0b06b65838c206fcf057c348a"
   },
   "DTRA_Cyber_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "c6b79e0ab5db24189ae614a7440598a7d2413d08c0b77de2ca8ed422c1261576"
   },
   "DTRA_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "ed97fa6e98bb10e62d5511bc8bd5a606ecd3152011afe8b3d378058ac4e515b0"
   },
   "DTSA_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "90109e6d32e667ebf5bdae49e53d68e2796425e33d15eed22178d8118a198dbf"
   },
   "DWIA_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "77421b0e1b3b8ae1ce1e696810d7f3a9d3c0ef685c200218b482480dad09f252"
   },
   "DeCA_PB27_J-Book.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "8207f3b7a36f60c2e574fbd5fccfa030f17fca5f9e222458910cb0506f4b220d"
   },
   "DoDDE_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:52-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/DoDDE_OP-5.json; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "aeb61834e3c761b42911e7e2a498d7a20dab39e2c3e2a688e93bcf810efa1c51",
@@ -229,24 +301,32 @@
   },
   "DoWDE_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "32cee24fec30ff8d173de3342315effcc8a49261faa95b2a869cb52065b3e706"
   },
   "DoW_Revolving_Funds_J-Book_FY2027.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "8d0a260e3eb640fb60ded4a607f2e42b8c21a30e3d0d3de80186e11d9fe3ac2d"
   },
   "ENV-30.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "66042887df90827e86bf15b4b0f61482f77863d0bf2d33a2c08310de5a0e1018"
   },
   "FY2026_BRAC_Overview.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "unsupported-taggedpdf",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:41-04:00; local path FY2026/05_BRAC/FY2026_BRAC_Overview.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "86d02f0d2a517d5b660d9772295d2fca8c9a0c1f19b6b2509a3f5ae0f5184b97",
@@ -254,6 +334,8 @@
   },
   "FY2026_CAAF_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "CAAF_OP-5.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:02-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/FY2026_CAAF_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'CAAF_OP-5.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -262,6 +344,8 @@
   },
   "FY2026_CMP_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "CMP_OP-5.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:43-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_CMP_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'CMP_OP-5.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -270,6 +354,8 @@
   },
   "FY2026_CTR_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "CTR_OP-5.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:03-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/FY2026_CTR_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'CTR_OP-5.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -278,6 +364,8 @@
   },
   "FY2026_DAU_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "DAU_OP-5.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:45-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DAU_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DAU_OP-5.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -286,6 +374,8 @@
   },
   "FY2026_DAWDA_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "DAWDA_OP-5.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:03-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/FY2026_DAWDA_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DAWDA_OP-5.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -294,6 +384,8 @@
   },
   "FY2026_DCAA_Cyber_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "DCAA_Cyber_OP-5.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:45-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DCAA_Cyber_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DCAA_Cyber_OP-5.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -302,6 +394,8 @@
   },
   "FY2026_DCAA_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "DCAA_OP-5.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:46-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DCAA_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DCAA_OP-5.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -310,6 +404,8 @@
   },
   "FY2026_DCMA_Cyber_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "DCMA_Cyber_OP-5.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:46-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DCMA_Cyber_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DCMA_Cyber_OP-5.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -318,6 +414,8 @@
   },
   "FY2026_DCMA_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "DCMA_OP-5.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:47-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DCMA_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DCMA_OP-5.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -326,6 +424,8 @@
   },
   "FY2026_DCSA_Cyber_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "DCSA_Cyber_OP-5.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:47-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DCSA_Cyber_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DCSA_Cyber_OP-5.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -334,6 +434,8 @@
   },
   "FY2026_DCSA_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "DCSA_OP-5.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:48-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DCSA_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DCSA_OP-5.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -342,6 +444,8 @@
   },
   "FY2026_DHRA_Cyber_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "DHRA_Cyber_OP-5.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:48-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DHRA_Cyber_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DHRA_Cyber_OP-5.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -350,6 +454,8 @@
   },
   "FY2026_DHRA_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "DHRA_OP-5.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:49-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DHRA_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DHRA_OP-5.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -358,6 +464,8 @@
   },
   "FY2026_DISA_Cyber_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "DISA_Cyber_OP-5.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:49-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DISA_Cyber_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DISA_Cyber_OP-5.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -366,6 +474,8 @@
   },
   "FY2026_DISA_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "DISA_OP-5.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:50-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DISA_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DISA_OP-5.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -374,6 +484,8 @@
   },
   "FY2026_DLA_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "DLA_OP-5.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:50-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DLA_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DLA_OP-5.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -382,6 +494,8 @@
   },
   "FY2026_DLSA_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "DLSA_OP-5.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:51-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DLSA_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DLSA_OP-5.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -390,6 +504,8 @@
   },
   "FY2026_DPAA_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "DPAA_OP-5.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:52-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DPAA_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DPAA_OP-5.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -398,6 +514,8 @@
   },
   "FY2026_DSCA_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "DSCA_OP-5.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:53-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DSCA_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DSCA_OP-5.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -406,6 +524,8 @@
   },
   "FY2026_DTRA_Cyber_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "DTRA_Cyber_OP-5.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:53-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DTRA_Cyber_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DTRA_Cyber_OP-5.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -414,6 +534,8 @@
   },
   "FY2026_DTRA_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "DTRA_OP-5.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:54-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DTRA_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DTRA_OP-5.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -422,6 +544,8 @@
   },
   "FY2026_DTSA_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "DTSA_OP-5.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:54-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_DTSA_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'DTSA_OP-5.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -430,6 +554,8 @@
   },
   "FY2026_ENV-30.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "ENV-30.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:15-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_2/FY2026_ENV-30.json; basename prefixed FY2026_ at download — publisher filename 'ENV-30.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -438,6 +564,8 @@
   },
   "FY2026_MDA_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "MDA_OP-5.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:55-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_MDA_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'MDA_OP-5.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -446,6 +574,8 @@
   },
   "FY2026_OHDACA_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "OHDACA_OP-5.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:04-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/FY2026_OHDACA_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'OHDACA_OP-5.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -454,6 +584,8 @@
   },
   "FY2026_OIG_Cyber_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "OIG_Cyber_OP-5.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:05-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/FY2026_OIG_Cyber_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'OIG_Cyber_OP-5.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -462,6 +594,8 @@
   },
   "FY2026_OIG_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "OIG_OP-5.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:04-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/FY2026_OIG_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'OIG_OP-5.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -470,6 +604,8 @@
   },
   "FY2026_OLDCC_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "OLDCC_OP-5.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:55-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_OLDCC_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'OLDCC_OP-5.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -478,6 +614,8 @@
   },
   "FY2026_OM_Volume1_Part1.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "control-only",
     "lifecycle_stage": "Budget Request",
     "original_filename": "OM_Volume1_Part1.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:38-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_OM_Volume1_Part1.json; basename prefixed FY2026_ at download — publisher filename 'OM_Volume1_Part1.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -486,6 +624,8 @@
   },
   "FY2026_OM_Volume1_Part_2.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "control-only",
     "lifecycle_stage": "Budget Request",
     "original_filename": "OM_Volume1_Part_2.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:38-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/FY2026_OM_Volume1_Part_2.json; basename prefixed FY2026_ at download — publisher filename 'OM_Volume1_Part_2.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -494,6 +634,8 @@
   },
   "FY2026_OP-31.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "OP-31.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:17-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_2/FY2026_OP-31.json; basename prefixed FY2026_ at download — publisher filename 'OP-31.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -502,6 +644,8 @@
   },
   "FY2026_OP-34.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "OP-34.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:18-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_2/FY2026_OP-34.json; basename prefixed FY2026_ at download — publisher filename 'OP-34.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -510,6 +654,8 @@
   },
   "FY2026_OP-8.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "OP-8.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:17-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_2/FY2026_OP-8.json; basename prefixed FY2026_ at download — publisher filename 'OP-8.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -518,6 +664,8 @@
   },
   "FY2026_PB-15.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "PB-15.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:18-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_2/FY2026_PB-15.json; basename prefixed FY2026_ at download — publisher filename 'PB-15.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -526,6 +674,8 @@
   },
   "FY2026_PB-24.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "PB-24.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:19-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_2/FY2026_PB-24.json; basename prefixed FY2026_ at download — publisher filename 'PB-24.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -534,6 +684,8 @@
   },
   "FY2026_PB-28.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "PB-28.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:19-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_2/FY2026_PB-28.json; basename prefixed FY2026_ at download — publisher filename 'PB-28.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -542,6 +694,8 @@
   },
   "FY2026_PB-31Q.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "PB-31Q.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:20-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_2/FY2026_PB-31Q.json; basename prefixed FY2026_ at download — publisher filename 'PB-31Q.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -550,6 +704,8 @@
   },
   "FY2026_PB-61.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "PB-61.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:20-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_2/FY2026_PB-61.json; basename prefixed FY2026_ at download — publisher filename 'PB-61.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -558,6 +714,8 @@
   },
   "FY2026_SISC_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "SISC_OP-5.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:05-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_2/FY2026_SISC_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'SISC_OP-5.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -566,6 +724,8 @@
   },
   "FY2026_Service_Support.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "Service_Support.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:21-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_2/FY2026_Service_Support.json; basename prefixed FY2026_ at download — publisher filename 'Service_Support.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -574,6 +734,8 @@
   },
   "FY2026_Volume_2.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "overlap-skipped",
     "lifecycle_stage": "Budget Request",
     "original_filename": "Volume_2.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:40-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_2/FY2026_Volume_2.json; basename prefixed FY2026_ at download — publisher filename 'Volume_2.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -582,6 +744,8 @@
   },
   "FY2026_WHS_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "original_filename": "WHS_OP-5.json",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:02-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/FY2026_WHS_OP-5.json; basename prefixed FY2026_ at download — publisher filename 'WHS_OP-5.json' collides with the FY2027 corpus; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
@@ -590,6 +754,8 @@
   },
   "FY26_NATO_Security_Investment_Program.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "unsupported-taggedpdf",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:10:05-04:00; local path FY2026/11_NATO_Security_Investment_Program/FY26_NATO_Security_Investment_Program.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "c4cf5a83fe648523048b129aa678cab553660db6e059b23b2d26f12e3684f113",
@@ -597,24 +763,32 @@
   },
   "MDA_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "7f594263c6b6f24c1f5174b7412b3da528437d9894ec9759b63adc792a3581d9"
   },
   "MHS_PB27_J-Book-Vol1-COMP_PSCP.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "e22316c9a039a8c0bf28b7c1de6bf353f211ec503bc7192484372a5dc67b0c6f"
   },
   "MHS_PB27_J-Book-Vol2-SMR.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "85e3df47ccafb5f64897cba32b5bcbd7b2e7da6a9857f7791e7b2b0e8641d129"
   },
   "MISO_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:55-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/MISO_OP-5.json; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "422e94f381e5186d9e05d132a1c5bc48376d54d78d61bb126bd861d16b601804",
@@ -622,72 +796,96 @@
   },
   "O-1_Summary.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "overlap-skipped",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "30789c1d4ea833a07f02a620c003dc962a8dfbae59c12c6e05776923e185fce1"
   },
   "OHDACA_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "733a6851b3c8e4d381f106de52902618c6c65e4a6d27541fbb31de526806732c"
   },
   "OIG_Cyber_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "be9d33f8c02a0cdb35d232e282a071745a07c32555c8d44c66fa24d3a030eb85"
   },
   "OIG_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "2e55bf93ac6061e48f370d1f054c497874e821ca3197a0670d71c516822fe331"
   },
   "OLDCC_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "0d7fbbde0223e917fe3d6c54f2fd30c45341ee173976bf2d9c6983d83d713075"
   },
   "OM_Volume1_Part1.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "overlap-skipped",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "4e121e5ef309ab580475a6c687bb91e9457f3ce4e08f81ec3628e37db6b3191a"
   },
   "OM_Volume1_Part_2.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "overlap-skipped",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "e69bb73896cf1a93970e055a32179e00bd26d277a6a8815e02d92a0636b5d4d7"
   },
   "OP-31.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "2fc83ad80a4e369aefbd04ef6a059810d0c350e4f717fba5354889db16c7480c"
   },
   "OP-32A_Summary.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "overlap-skipped",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "9ff9d484fa9ff2f7e9d0a15dd65e8cea25fddd6f643b2659f01707380d53a786"
   },
   "OP-34.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "7f9bbc0e2bcd414cf8a2c4caed71fff1add289dbfdf78dcf45d1e449cc813bbd"
   },
   "OP-8.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "2287eb956077539df3b9ea8ae8cbc8a79a131dc3e427ab68c36542b67f90a15a"
   },
   "OSD_Cyber_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:57-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/OSD_Cyber_OP-5.json; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "2421ee0edf593c901c65850c074643b435798f99cb635a623e32f5481db3fd4e",
@@ -695,6 +893,8 @@
   },
   "OSD_OP-5.json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:56-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/OSD_OP-5.json; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "957ac993eb5de5f5e43886abd0648450f39607ad5eee6d539161b0dfb25ee556",
@@ -702,54 +902,75 @@
   },
   "OSW_Cyber_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "12a35e83be290ee23fb0a7e387baf90e778d21ea850a4edd47d153470907f09a"
   },
   "OSW_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "6573504006a48883c2260581eba07eec57021fe9d1e1d61e13d041a287df23e6"
   },
   "Overview_Exhibit.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "overlap-skipped",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "08efbf95f1c4f86d2fef994b6e261e6d9ce8d991236e31593846591b267635e8"
   },
   "PB-15.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "c686787a0742ba0384aeb43addf71f31cf6410d07af414414af1add84369cdf1"
   },
   "PB-24.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "440408b4bc92002a351d96a605089a76f43f612b737f5469f895b531cda27d5a"
   },
   "PB-28.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "588f0f3eea176170a6359ce0df0367f9517e146fe609cf4c3fdad0d2375fd23d"
   },
   "PB-31Q.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "9186918cdf647e30763218cc8757765930085da4b8017a932064b70e325803d9"
   },
   "PB-61.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "3fa4f06fe3c4b7f7ddfd59e43a40191625de9078173f03b226c65ceca4e92845"
   },
   "PB_2026_PDW_VOL_1.xml": {
     "acquisition_date": "2026-07-15",
+    "agency_allowlist": [
+      "Defense Threat Reduction Agency"
+    ],
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:21-04:00; local path FY2026/02_Procurement/PB_2026_PDW_VOL_1.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "a78478f06ad56b194aeb4b95f5171ccd3c5e703fd714a21266da17722f313721",
@@ -757,6 +978,11 @@
   },
   "PB_2026_RDTE_VOL_5.xml": {
     "acquisition_date": "2026-07-15",
+    "agency_allowlist": [
+      "United States Cyber Command"
+    ],
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:34-04:00; local path FY2026/03_RDT_and_E/PB_2026_RDTE_VOL_5.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "d5292ae2449c4c86bbea2d3bc66ef4b95938be81602ddff3d3385e199dbb812a",
@@ -764,24 +990,32 @@
   },
   "PB_2027_DWWCF_Operating_and_Capital_Bgt_Est.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "bbefc3bf4952710d887d286735821fc14d3f8bac021ac42b5ad60b36619b3405"
   },
   "PB_2027_PDW_VOL_1.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "overlap-skipped",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "544dccf9ef5949a544cd947a9ce318b20cd40d7e68af7e75fd228af51a3d29d2"
   },
   "PB_2027_RDTE_VOL_5.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "overlap-skipped",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "13b437f9e8fa7b02c8578aa689728e3955f8140df40621572c2919a55f49ef16"
   },
   "PB_26_DW_FH_FHIF.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "unsupported-taggedpdf",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:40-04:00; local path FY2026/04_Family_Housing/PB_26_DW_FH_FHIF.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "b552fd248b16d1a1d1c3264d7dac4f65bb0097b83adb82b04acfe3fea331fbbf",
@@ -789,6 +1023,8 @@
   },
   "PROC_CBDP_PB_2026.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:22-04:00; local path FY2026/02_Procurement/PROC_CBDP_PB_2026.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "35230e4529cb99b9be0868f0012576996ff911a7ac9ab6be615b5dbbab0523ab",
@@ -796,12 +1032,16 @@
   },
   "PROC_CBDP_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "be314737aee8bdabbcbe310f3505e67c2abda532b3ec79bd2c10ccf88dbbe384"
   },
   "PROC_CYBERCOM_PB_2026.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:22-04:00; local path FY2026/02_Procurement/PROC_CYBERCOM_PB_2026.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "f929af905e0d05c233c1b5d728b5f89d1d5b53e37f60a1ead6616eed11348c84",
@@ -809,12 +1049,16 @@
   },
   "PROC_CYBERCOM_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "3579b734a300b78702528cc94fcbe93d4f2c94d543af73afd7ed3ade0ee700f3"
   },
   "PROC_DCSA_PB_2026.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:22-04:00; local path FY2026/02_Procurement/PROC_DCSA_PB_2026.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "0f04854e0763ffbed4d53b036b5c0e42467221038bc6f51b560831108996366f",
@@ -822,12 +1066,16 @@
   },
   "PROC_DCSA_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "a6e549390b9ab2bd64127c4de42d816053ec1a34b9417da453f0cbd95deffcb6"
   },
   "PROC_DHRA_PB_2026.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:23-04:00; local path FY2026/02_Procurement/PROC_DHRA_PB_2026.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "c3c41ca53a0129c9531e9b3f80b2111791145595e2bbb5aff7dea4bc6e18daba",
@@ -835,12 +1083,16 @@
   },
   "PROC_DHRA_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "b09c31f01f61a2c5c7e59e5d92c34e4a4db486f50185eabb42c561b7a7aafc5a"
   },
   "PROC_DISA_PB_2026.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:23-04:00; local path FY2026/02_Procurement/PROC_DISA_PB_2026.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "1263810f087765af8df2337aa05919119b0a56d919e59cd18bafc6204e06b45f",
@@ -848,12 +1100,16 @@
   },
   "PROC_DISA_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "1adb0970e73debc6407a9036541e22b5dfb3348ed84ad768eac0b9e2bd1e8979"
   },
   "PROC_DLA_PB_2026.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:24-04:00; local path FY2026/02_Procurement/PROC_DLA_PB_2026.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "c7706e487cf3a9269ae216503a81c0964ac6434708a6bfea082f3d4d1169ef7e",
@@ -861,12 +1117,16 @@
   },
   "PROC_DLA_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "f48b49cd8bc9d199577d801522554962e182dd7280e1f40773287b871668fd5c"
   },
   "PROC_DMACT_PB_2026.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:24-04:00; local path FY2026/02_Procurement/PROC_DMACT_PB_2026.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "d084c5b455a05fab8e8e12d7a99c49525f4bd0b5cfdebfa4d7da1ae0256a2234",
@@ -874,12 +1134,16 @@
   },
   "PROC_DMACT_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "9858c49e67d90b4d32c460e0ba3bff5b5fb470f1c6a80212afb48e77a5bfa5c7"
   },
   "PROC_DODEA_PB_2026.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:25-04:00; local path FY2026/02_Procurement/PROC_DODEA_PB_2026.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "61de74d9d5ec60c0b0f6c26f571e346c21dd203cef5d416678cc5da699fb9578",
@@ -887,12 +1151,16 @@
   },
   "PROC_DODEA_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "597408f2deb579d16dad9c0cae0f4ed118247d028d94e40a46704a7fcbcf1248"
   },
   "PROC_DPAA_PB_2026.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:25-04:00; local path FY2026/02_Procurement/PROC_DPAA_PB_2026.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "16cf95e909fe1957f5fee7af2e617483eda1b7510f6bb2096630688c0884f23c",
@@ -900,12 +1168,16 @@
   },
   "PROC_DPAA_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "00ef93397a51f0fc5e39a257df2a7a5dec3be296bed1915a2e85dbe9d71bd6f1"
   },
   "PROC_DPAP_PB_2026.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:25-04:00; local path FY2026/02_Procurement/PROC_DPAP_PB_2026.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "ba47887c6d48c2aa5e205981fd81cc3e92e41a4c21ab662a82a46c578687c525",
@@ -913,18 +1185,24 @@
   },
   "PROC_DPAP_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "22178ba3bf743704f0a4f6249c9494ff39b73d6cb74b650d4e7531802937cee7"
   },
   "PROC_DTRA_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "a02bf00c55ee3e36b257fcc86947a218fa35806b9a51dc1fcef32941af4a44fb"
   },
   "PROC_MDA_VOL2B_PB_2026.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:30-04:00; local path FY2026/02_Procurement/PROC_MDA_VOL2B_PB_2026.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "5aff3ce59a6c0bce23b4c1eaa6465bc332c5034ef808223453ca5b872867f82b",
@@ -932,12 +1210,16 @@
   },
   "PROC_MDA_VOL2B_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "f165bb88ded99a1d3f3bee527d7fc44172b0b6304a2f1b877551be237b10cbb0"
   },
   "PROC_OSD_PB_2026.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:28-04:00; local path FY2026/02_Procurement/PROC_OSD_PB_2026.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "35efec3170c765cfc68607d20c92b083e96e4e066db84b46330fd1c5d5621966",
@@ -945,12 +1227,16 @@
   },
   "PROC_OSD_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "da7eab9ef28b68272737aaf2ce1424bc211fc7c346c8353f9ef413a8c7ca8059"
   },
   "PROC_SOCOM_PB_2026.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:29-04:00; local path FY2026/02_Procurement/PROC_SOCOM_PB_2026.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "026c9c618c822fd91b5756446ff5d252b23b1fda923f798754e7cac35c963f63",
@@ -958,12 +1244,16 @@
   },
   "PROC_SOCOM_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "1141a58d9dd16311f844f8eaa1aa647d01f967a36338c85fed617ca8f183e0e0"
   },
   "PROC_TJS_PB_2026.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:29-04:00; local path FY2026/02_Procurement/PROC_TJS_PB_2026.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "6815d4dd3e7f649ab54e4c5c0f4faaa2bebff19571a3ca5c14c74dbdbcb0b4d8",
@@ -971,12 +1261,16 @@
   },
   "PROC_TJS_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "48def34de4f1f428c7b93b3d1e6dc3e0379cc48c1b06b08e8591d2e87e3e1a2a"
   },
   "PROC_WHS_PB_2026.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:30-04:00; local path FY2026/02_Procurement/PROC_WHS_PB_2026.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "2bd0bf603e76032bedb36cee4493b76533451e2b46fd3db392cb9dbb4f3ec43c",
@@ -984,18 +1278,24 @@
   },
   "PROC_WHS_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "12f367611754ed87878937a9636e3c885133029065b79783fd4fcf1e9307cc5a"
   },
   "PSYOP_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "a827ce4fd7a78ef8b084cb2df6281c9fec68418dec5765416da04d1eea75a9aa"
   },
   "RDTE_CBDP_PB_2026.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:33-04:00; local path FY2026/03_RDT_and_E/RDTE_CBDP_PB_2026.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "fb8166ff2f675e47641abc92c3b6247022908d68a8df02f4a231d456b3b47056",
@@ -1003,12 +1303,16 @@
   },
   "RDTE_CBDP_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "95b85f26e3b8d20cc62acb45cc062fa8bfb8d5db45f118f92f86a3e0ae989055"
   },
   "RDTE_CHIPS_PB_2026.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:32-04:00; local path FY2026/03_RDT_and_E/RDTE_CHIPS_PB_2026.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "a408b71d62f85a01868fccaefacebc2bf1116605f79cd1f94428125a13b8c3d9",
@@ -1016,18 +1320,24 @@
   },
   "RDTE_CHIPS_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "1518e291cd4978727c165954f2e587a3d6245027fde539fa1f6685614065dd21"
   },
   "RDTE_CYBERCOM_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "957f27d283025a8a72685953b25481356b5bd426e9a6bbe69e265efaff579ac1"
   },
   "RDTE_DCAA_PB_2026.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:35-04:00; local path FY2026/03_RDT_and_E/RDTE_DCAA_PB_2026.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "6c8f68bed0494b8fe5954f4adeac62c19db99285579037037049a2fa23528a5f",
@@ -1035,12 +1345,16 @@
   },
   "RDTE_DCAA_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "0eebfa6c40aeb12d0840953df036c7964ca79c933ab5afaf31cda4b79b457cbe"
   },
   "RDTE_DCMA_PB_2026.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:36-04:00; local path FY2026/03_RDT_and_E/RDTE_DCMA_PB_2026.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "322e7d77a95e0582e8ed86e6ca0c0a9dfbd47f63e717b383d5d9c017cd616d90",
@@ -1048,12 +1362,16 @@
   },
   "RDTE_DCMA_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "d136dd2aff03e83b8bd8e7f86c7e2ff26813f1a292b726f324a10ae62aa2c65a"
   },
   "RDTE_DCSA_PB_2026.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:36-04:00; local path FY2026/03_RDT_and_E/RDTE_DCSA_PB_2026.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "28129f848e2c1a67cebb56000b9fa9fd8a8fce26124154bdd202f845e42b4c74",
@@ -1061,12 +1379,16 @@
   },
   "RDTE_DCSA_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "6f2f8b7838fa94861651ddf9df2974648e2d6bda21c1c516475aeaba3447895d"
   },
   "RDTE_DHRA_PB_2026.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:36-04:00; local path FY2026/03_RDT_and_E/RDTE_DHRA_PB_2026.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "3b8af78de6b3c9e3cbdca41b5fb4a172703c009cb845068a54e641732003e428",
@@ -1074,12 +1396,16 @@
   },
   "RDTE_DHRA_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "5f8d0e314ecafbd7b09be58277a215c350c9246f860a48baf777734dfccc07dc"
   },
   "RDTE_DISA_PB_2026.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:37-04:00; local path FY2026/03_RDT_and_E/RDTE_DISA_PB_2026.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "81cea89b54c30e8938a0117a81cf6db1c93d1556e730755af683298fc413a926",
@@ -1087,12 +1413,16 @@
   },
   "RDTE_DISA_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "16ffc3816a84484b1e891ff75d7b146d84be345dcc302c297892dd64faee863a"
   },
   "RDTE_DLA_PB_2026.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:37-04:00; local path FY2026/03_RDT_and_E/RDTE_DLA_PB_2026.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "8f46f2e0fc396435a0cbd628d995a68e95198ffb403c9d15fb5768a855b60f31",
@@ -1100,12 +1430,16 @@
   },
   "RDTE_DLA_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "f6333effd851e76f6c11d2ae15b98b1c852c77850eb7ac1153d1d2cd8aa8b997"
   },
   "RDTE_DSCA_PB_2026.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:38-04:00; local path FY2026/03_RDT_and_E/RDTE_DSCA_PB_2026.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "fc1ca9037da4442e9d9863cfc4b95a4e7dbc66baf12089106e85b13ee1320d0e",
@@ -1113,12 +1447,16 @@
   },
   "RDTE_DSCA_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "ec63b02e3ca454ebb2ce0a6cb399ac63eb9afff0a81d1fccc5950e77df6e035b"
   },
   "RDTE_DTIC_PB_2026.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:38-04:00; local path FY2026/03_RDT_and_E/RDTE_DTIC_PB_2026.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "02479cd6e67dfee10bb1029d9413dbc35e81174384b25319fedfb9589d4aac6a",
@@ -1126,12 +1464,16 @@
   },
   "RDTE_DTIC_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "286e081345a343aab4166d2f895474a70f07a8804ac19dced8c2424e39087e40"
   },
   "RDTE_DTRA_PB_2026.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:39-04:00; local path FY2026/03_RDT_and_E/RDTE_DTRA_PB_2026.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "b56de860998581ab2a76367256f132bf69dc3ace25da62dc9c1a8debec539fc2",
@@ -1139,12 +1481,16 @@
   },
   "RDTE_DTRA_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "60869e826d0e12dc6b623668d2f76702b3cd714ac3105f46ba2bbfd928d96a1d"
   },
   "RDTE_OSD_PB_2026.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:33-04:00; local path FY2026/03_RDT_and_E/RDTE_OSD_PB_2026.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "d51310c2669d4a7bfcf9e7e1de68bae27806306cf47aee550b43fdcf020c7a4d",
@@ -1152,12 +1498,16 @@
   },
   "RDTE_OSW_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "87c4ebc50bbbcf3ba8a040f49c26dde4c86b1649501ccdca73329e05d47e6c29"
   },
   "RDTE_OTE_PB_2026.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:39-04:00; local path FY2026/03_RDT_and_E/RDTE_OTE_PB_2026.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "6a6781dc5c7178e1e9c66c457c6246e37314813df8ce118397ad7cf412bf64d8",
@@ -1165,12 +1515,16 @@
   },
   "RDTE_OTE_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "5b8c29c4655ab82a9a015dd61e87cab1cb19ec5b484322304a90db445cf71096"
   },
   "RDTE_SOCOM_PB_2026.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:40-04:00; local path FY2026/03_RDT_and_E/RDTE_SOCOM_PB_2026.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "2565dfb4e92afe9acd2183aa7b662d04d226b517d93dc033293568378c077b6b",
@@ -1178,12 +1532,16 @@
   },
   "RDTE_SOCOM_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "3389936d5a29f2f9e6be590292ef16c2bf389b0440495ce60017434163426180"
   },
   "RDTE_TJS_PB_2026.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:40-04:00; local path FY2026/03_RDT_and_E/RDTE_TJS_PB_2026.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "6f49c6e0a95c967f69ccb59ca98e5e8a9dfa2e53823cc47a191d20d8c4b815f0",
@@ -1191,12 +1549,16 @@
   },
   "RDTE_TJS_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "42cb55b164c57290b1f6c32b63ed2b53627e56685380d8f65ffa51a5c3111d1b"
   },
   "RDTE_Vol1_DARPA_MasterJustificationBook_PB_2026.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:31-04:00; local path FY2026/03_RDT_and_E/RDTE_Vol1_DARPA_MasterJustificationBook_PB_2026.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "00edc63f808a3ad568df96c8871ac5d2e1cd41446dda9e697cfca20d2a595528",
@@ -1204,12 +1566,16 @@
   },
   "RDTE_Vol1_DARPA_MasterJustificationBook_PB_2027.xml": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "b6ad6ffbea860334cbf75f89d63fb8ea2225c2ff511f23c09973bfea74b08d73"
   },
   "RDTE_Vol2_MDA_RDTE_PB26_Justification_Book.xml": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:09:32-04:00; local path FY2026/03_RDT_and_E/RDTE_Vol2_MDA_RDTE_PB26_Justification_Book.xml; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "13e290313826d311ab47051dd67e6dae6a6c64da9eb17440c3f01e460c75fa36",
@@ -1217,30 +1583,40 @@
   },
   "SISC_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "92868952a847b0dabb640f51a87de9e415b1b79eea0e6a2786099d22fbab6cd2"
   },
   "SOCOM_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "03a8f8c0591dcb8de6e887703b9b2d487aa2be9ef009b1d486fba3444ff36e46"
   },
   "Service_Support.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "209ed217bac36929b04a3cd3832091bc847381c4cf358164210dcd865158220e"
   },
   "Summary_by_Agency.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "overlap-skipped",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "e0c1af6363b4952d40beae480b262b73786f5fc2670e93448b4ace58b0561e20"
   },
   "Summary_by_Agency_(Part_1).json": {
     "acquisition_date": "2026-07-15",
+    "budget_year": 2026,
+    "ingest_status": "control-only",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "registered at download by DBDP-101 B1-0 source survey; retrieved 2026-07-15T21:08:41-04:00; local path FY2026/01_Operation_and_Maintenance/O_M_VOL_1_PART_1/Summary_by_Agency_(Part_1).json; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "7feddbe1a1a5ccc6e7ad3642d3494b7da1da81320660789db50e9a81997a63ed",
@@ -1248,18 +1624,24 @@
   },
   "USCYBERCOM_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "54e052235cc926211c4f08098fa2b65b7bc96ea93463201d87c8fb4d83aa5b18"
   },
   "Volume_2.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "overlap-skipped",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, enrolled as-registered — this file is not parsed by the ETL at 585bcc071246c17c4afae4596fde6edc2d70ff8f (control-only registration / TaggedPDF / aggregate-skip / not-yet-ingested FY26), so no parquet binding is claimed for it",
     "sha256": "a9224343d9d3d6b8add7e5534cc78bfb860fd7fa4f8f46914d9a3e4afe701f4d"
   },
   "WHS_OP-5.json": {
     "acquisition_date": "2026-05-21",
+    "budget_year": 2027,
+    "ingest_status": "parsed",
     "lifecycle_stage": "Budget Request",
     "provenance_note": "recovered from uniform file timestamps across all 93 source files, single-session download pattern (22:31–22:55 ET), not independently confirmed by operator recollection.; sha256 backfilled 2026-08-04, bound to parquet 97704b44c45223fdd4f701e50c44f3c1 at 585bcc071246c17c4afae4596fde6edc2d70ff8f (DBDP-73 hash-and-bind backfill: this file was parsed into the published dataset and the hash is proven to match the bytes that produced it)",
     "sha256": "5bd025102fbc5e29bff4f490f777bbcdd5d23f7348ccfa6be2711d802a42dc15"
