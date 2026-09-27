@@ -1,0 +1,72 @@
+{
+  "_schema": "odba/dbdp-114/consumption-contract/1",
+  "_authority": "DBDP-114 c10575 + AR PASS c10618 + Codex c10628",
+  "_grouping_rule": "Cross-submission aggregation of amount_musd is undefined by policy without a budget_year or amount_basis filter: one absolute fiscal year may carry several submissions' views of itself (e.g. FY2026 appears as the FY26 request and as the FY27 current-year estimate). Filter by budget_year (the submission) or by amount_basis before summing.",
+  "_formats": {
+    "Decimal Number": "fixed-point, exactly 6 decimal places, '.' decimal separator, no thousands separator, no scientific notation",
+    "Whole Number": "signed integer, no separators",
+    "Text": "UTF-8; may be empty (an honest null)",
+    "Date": "ISO-8601 YYYY-MM-DD"
+  },
+  "tables": {
+    "fact_budget_long.csv": {
+      "grain": [
+        "record_id",
+        "data_vintage",
+        "funding_fy"
+      ],
+      "columns": {
+        "record_id": "Text",
+        "source_file": "Text",
+        "service_agency_acronym": "Text",
+        "budget_year": "Whole Number",
+        "data_vintage": "Date",
+        "data_lifecycle_stage": "Text",
+        "funding_fy": "Whole Number",
+        "amount_musd": "Decimal Number",
+        "amount_basis": "Text",
+        "funding_type": "Text"
+      }
+    },
+    "dim_agency.csv": {
+      "grain": [
+        "agency_acronym"
+      ],
+      "columns": {
+        "agency_acronym": "Text",
+        "agency_name_canonical": "Text",
+        "mission_portfolio": "Text"
+      }
+    },
+    "dim_budget_cycle.csv": {
+      "grain": [
+        "source_file"
+      ],
+      "columns": {
+        "source_file": "Text",
+        "budget_year": "Whole Number",
+        "lifecycle_stage": "Text",
+        "acquisition_date": "Date",
+        "ingest_status": "Text",
+        "source_url": "Text",
+        "sha256": "Text"
+      }
+    },
+    "dim_program_hierarchy.csv": {
+      "grain": [
+        "record_id"
+      ],
+      "columns": {
+        "record_id": "Text",
+        "exhibit_type": "Text",
+        "hierarchy_type": "Text",
+        "level1_code": "Text",
+        "level1_name": "Text",
+        "level2_code": "Text",
+        "level2_name": "Text",
+        "level3_code": "Text",
+        "level3_name": "Text"
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "_schema": "odba/dbdp-114/dim-agency-map/1",
+  "_authority": "DBDP-114 c10575 (dim_agency) + DBDP-121 governance rules",
+  "_default_bucket": "Unassigned — pending curation",
+  "_status": "AWAITING SEED — see _seed_handoff below. The mapping is empty by",
+  "_status_2": "declaration, not by oversight: every acronym therefore resolves",
+  "_status_3": "to the explicit default bucket and is printed by every run.",
+  "_seed_handoff": {
+    "expected_source": "fixtures/dbdp114/dim_agency_seed.json",
+    "expected_origin": "Peter's Power Query SWITCH map (DBDP-114 c10575: 'needs Peter's SWITCH map contents supplied to the implementer'; c10577 confirms it is a data handoff, not a design decision)",
+    "state_at_implementation": "ABSENT from the repository at base 5e2637841d6d9535d7bec2c588f190858cfb6757 — fixtures/ does not exist on any ref, and DBDP-114 c10630's claim that fixtures landed at that SHA could not be receipted",
+    "why_not_invented": "mission_portfolio is CURATED content. Populating it from implementer judgement would fabricate curation and violate the additive-never-replacement rule (Constraint 5). The declared default bucket is the design's own answer for an unmapped acronym, so the mechanism is complete and honest while the seed is outstanding.",
+    "to_apply": "drop the seed's acronym -> {agency_name_canonical, mission_portfolio} pairs into `mapping` below; no code change is required."
+  },
+  "_governance": "Curation is ADDITIVE, never replacement: service_agency_name on the wide fact table is never overwritten. Changes to this map are versioned with the repository and reviewed like code.",
+  "mapping": {}
+}

@@ -55,9 +55,23 @@ _F1 = {"budget_year"}
 _F6 = {c for c in etl.COLUMNS if c.startswith("cost_") and c != "cost_units"}
 
 
+# The projection is bound to the columns that existed AT THIS SUITE'S BASE, not
+# to live COLUMNS: a later additive column (DBDP-118's cost_fy2025, 38->39)
+# must not enter a fingerprint that tests the DBDP-103 FY26 ingestion, or the
+# historical `pre` frame could not be hashed at all and the pre/post bijection
+# would compare two different projections. Resolved from the pre frame itself.
+_BASE_COLS = None
+
+
+def set_base_columns(pre_df):
+    global _BASE_COLS
+    _BASE_COLS = [c for c in etl.COLUMNS if c in set(pre_df.columns)]
+    return _BASE_COLS
+
+
 def fingerprint(row):
     parts = []
-    for col in etl.COLUMNS:
+    for col in (_BASE_COLS if _BASE_COLS is not None else etl.COLUMNS):
         if col == "record_id":
             continue
         v = row[col]
@@ -81,8 +95,29 @@ def pre_change_df():
         return pd.read_parquet(fh.name)
 
 
-def ac4_migration(post):
+def artifact_at(sha):
+    """The committed parquet at a pinned SHA (historical endpoint)."""
+    blob = subprocess.run(
+        ["git", "-C", str(REPO), "show", f"{sha}:output/fact_budget_line_items.parquet"],
+        capture_output=True).stdout
+    with tempfile.NamedTemporaryFile(suffix=".parquet", delete=False) as fh:
+        fh.write(blob)
+        return pd.read_parquet(fh.name)
+
+
+# The B1-2 merge commit — this suite's POST endpoint. AC4.3/4 is a claim about
+# what the DBDP-103 re-key conserved BETWEEN TWO HISTORICAL POINTS, so both
+# endpoints are pinned (the pattern DBDP-106's suite already uses). Comparing
+# the pre frame against LIVE HEAD would make this historical claim fail the
+# moment any later ticket legitimately changes a hashed column — which DBDP-118
+# does: its cy leg populates cost_fy2026 on FY27 rows, previously 100% null.
+POST_SHA = "5e2637841d6d9535d7bec2c588f190858cfb6757"
+
+
+def ac4_migration(post_live):
     pre = pre_change_df()
+    set_base_columns(pre)          # projection = COLUMNS at this suite's base
+    post = artifact_at(POST_SHA)   # pinned endpoint, not live HEAD
     mig = json.load(open(MAP_FILE, encoding="utf-8"))
     entries = mig["entries"]
     post27 = post[post["budget_year"] == 2027.0].reset_index(drop=True)
@@ -115,7 +150,7 @@ def ac4_migration(post):
     drift = []
     for f in by_fp:
         o, n = pre_fp[f], post_fp[f]
-        for col in etl.COLUMNS:
+        for col in (_BASE_COLS or etl.COLUMNS):     # base projection, as above
             if col == "record_id":
                 continue
             a, b = o[col], n[col]
@@ -158,9 +193,13 @@ def ac4_migration(post):
 
 def cv_legs(post):
     cov = etl.load_cost_coverage()
+    # DBDP-118 c10576 §4 amends this declaration: `2026.covered += cost_fy2025`
+    # (the FY26 cy leg's backward anchor). The case stays EXACT — it pins the
+    # full amended list rather than relaxing to a subset check, so a later
+    # undeclared drift still fails here.
     case("CV-01 amended 2026 declaration exact",
-         cov[2026]["covered"] == ["cost_fy2026", "cost_fy2027", "cost_fy2028",
-                                  "cost_fy2029", "cost_fy2030"]
+         cov[2026]["covered"] == ["cost_fy2025", "cost_fy2026", "cost_fy2027",
+                                  "cost_fy2028", "cost_fy2029", "cost_fy2030"]
          and list(cov[2026]["excluded"]) == ["cost_fy2031"],
          str(cov[2026]["covered"]))
     fy26 = post[post["budget_year"] == 2026.0]

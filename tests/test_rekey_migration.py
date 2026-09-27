@@ -59,10 +59,23 @@ def case(name, ok, detail=""):
     print(f"  [{'PASS' if ok else 'FAIL'}] {name}" + (f": {detail}" if detail else ""))
 
 
+# Projection bound to the columns present AT THIS SUITE'S PINNED ENDPOINTS
+# (c10436 note 4), not to live COLUMNS: DBDP-118 appends cost_fy2025 (38->39),
+# which neither historical endpoint carries. Hashing over live COLUMNS would
+# KeyError on the pinned frames and would compare two different projections.
+_BASE_COLS = None
+
+
+def set_base_columns(pre_df):
+    global _BASE_COLS
+    _BASE_COLS = [c for c in etl.COLUMNS if c in set(pre_df.columns)]
+    return _BASE_COLS
+
+
 def row_fingerprint(row):
     """c10434 §5 fingerprint over a dict-like row keyed by COLUMNS names."""
     parts = []
-    for col in etl.COLUMNS:
+    for col in (_BASE_COLS if _BASE_COLS is not None else etl.COLUMNS):
         if col == "record_id":
             continue
         v = row[col]
@@ -97,6 +110,7 @@ def pre_rekey_df():
 
 def main():
     pre = pre_rekey_df()
+    set_base_columns(pre)          # projection = COLUMNS at the pinned base
     post_all = pd.read_parquet(POST_PARQUET)          # HEAD, for live-code legs
     post = artifact_at(POST_SHA)                      # DBDP-106 merge artifact
     mig = json.load(open(MAP_FILE, encoding="utf-8"))
