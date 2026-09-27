@@ -46,9 +46,13 @@ def main():
     # a covered column).
     bad_cov = json.loads(json.dumps({
         "2027": {
-            "covered": ["cost_fy2027", "cost_fy2028", "cost_fy2029",
-                        "cost_fy2030", "cost_fy2031"],
-            "excluded": {"cost_fy2026": "x"},
+            # cost_fy2025/2026 included so the loader rejects this file for the
+            # EXCEPTION KEY (the thing under test) rather than for an unrelated
+            # missing-reason complaint after DBDP-118 widened the column set.
+            "covered": ["cost_fy2025", "cost_fy2026", "cost_fy2027",
+                        "cost_fy2028", "cost_fy2029", "cost_fy2030",
+                        "cost_fy2031"],
+            "excluded": {},
             "positive_leg_exceptions": {"cost_fy2031": ""},
         }
     }))
@@ -97,11 +101,21 @@ def main():
 
     # ── original AC-2 adversarial legs stay live (c10387) ────────────────────
     # TC-CV-04: value injected into a declared-absent column.
+    # Re-pointed at 2026/cost_fy2031 by DBDP-118: this case previously probed
+    # cost_fy2026, which the RATIFIED c10430 supersession (c10576 §2 / AR
+    # c10619 amendment text) moved INTO 2027's coverage — injecting a value
+    # there is now legal, so the old probe tested nothing. The case's intent is
+    # unchanged (a value in a declared-absent column must hard-fail); only the
+    # column it probes moved to one that is still declared absent.
+    absent_pairs = [(y, c) for y, spec in cov.items() for c in spec["excluded"]]
+    assert_year, assert_col = absent_pairs[0]
     m4 = df.copy()
-    m4.loc[m4.index[7], "cost_fy2026"] = 12.3
+    target_rows = m4.index[m4["budget_year"] == assert_year]
+    m4.loc[target_rows[0], assert_col] = 12.3
     fails = etl.check_cost_coverage(m4, cov)
-    hit = any("declared-absent violation" in f and "cost_fy2026" in f for f in fails)
-    case("TC-CV-04 declared-absent injection fails", hit, f"{fails[:1]}")
+    hit = any("declared-absent violation" in f and assert_col in f for f in fails)
+    case("TC-CV-04 declared-absent injection fails", hit,
+         f"probed {assert_year}/{assert_col} (still declared absent): {fails[:1]}")
 
     # TC-CV-05: the production dataframe (authentic RF-1 per-line nulls in a
     # covered column) passes clean.
