@@ -23,7 +23,9 @@
 import os
 import re
 import sys
+import csv
 import json
+import shutil
 import hashlib
 import unicodedata
 import defusedxml.ElementTree as ET  # DBDP-39: defense-in-depth against XXE/entity-expansion
@@ -64,10 +66,16 @@ COLUMNS = [
     # DBDP-94 schema-foundation batch (c10315): appended at end, 34 -> 37
     "funding_type", "funding_type_signal", "data_vintage",
     # DBDP-102 B1-1 (c10365 §2, AR c10430): additive FY2026 request-year
-    # figure, appended per the c10315 precedent (37 -> 38). NULL until B1-2
-    # ingests FY26 rows; forced 100%-null on FY27 rows by the coverage
-    # assertion (2027 coverage excludes it — absolute/relative interlock).
+    # figure, appended per the c10315 precedent (37 -> 38). Originally forced
+    # 100%-null on FY27 rows by the coverage assertion; that exclusion is
+    # SUPERSEDED by DBDP-118 (c10576 §2, amendment text ratified in AR c10619)
+    # — it now also carries FY27's current-year estimate of FY2026.
     "cost_fy2026",
+    # DBDP-118 B-FY25 (c10576 §2; AR PASS c10619): additive FY2025 anchor,
+    # appended per the same precedent (38 -> 39). Populated by the BACKWARD
+    # legs of the submission-anchored mapping — FY27 rows via py (actuals),
+    # FY26 rows via cy (estimates) — never by a parser writing it directly.
+    "cost_fy2025",
 ]
 
 # ── DBDP-102 cost-column coverage (c10365 §2; AR c10430) ─────────────────────
@@ -76,9 +84,25 @@ COLUMNS = [
 # assertion — never inferred from nulls. Relative columns (cost_prior_year,
 # cost_current_year, …) keep per-submission semantics and are not governed.
 ABSOLUTE_COST_COLUMNS = [
+    "cost_fy2025",                                    # DBDP-118 (c10576 §2)
     "cost_fy2026", "cost_fy2027", "cost_fy2028",
     "cost_fy2029", "cost_fy2030", "cost_fy2031",
 ]
+
+# ── DBDP-118 declared FY coverage window (c10576 §3; AR c10619 note c) ────────
+# A fiscal year earns an ABSOLUTE column iff it lies within the platform's
+# declared coverage window. The floor cites the COMMITTED "FY25–FY27" Phase 2
+# objective; the ceiling is the FY27 FYDP horizon. These are SCOPE constants:
+# extending the floor is Peter's scope decision, never an implementer edit.
+#
+# The window makes the c10529 hard-fail rule and the stopping rule two
+# DISTINCT, DECLARED branches (AR c10619 binding note c) — see map_year_slots:
+#   (i)  in-window  + target column missing from COLUMNS -> HARD-FAIL (schema bug)
+#   (ii) below-floor                                     -> declared policy NO-OP
+# Never a general "swallow missing targets" path: the two cases are
+# distinguishable in code, which is what TC-118-G2 / Amendment 118-E test.
+FY_COVERAGE_FLOOR   = 2025
+FY_COVERAGE_CEILING = 2031
 
 # ── DBDP-94 enums / fixed maps (c10315 §1, c10321; DBDP-86 c10274 grammar) ────
 # Six-value lifecycle enum (c10321: Apportioned lands ahead of its data).
@@ -219,7 +243,66 @@ def make_content_id(*parts):
     return hashlib.md5(key.encode(), usedforsecurity=False).hexdigest()[:20]
 
 
-def map_year_slots(records, manifest):
+ANCHOR_CALIBRATION_FILE = SCRIPT_DIR / "data" / "fy25_anchor_calibration.json"
+
+# Populated by map_year_slots(); reported by main() so a run always states how
+# many backward anchors it wrote, skipped below floor, or withheld for want of
+# a verified calibration entry. Silence is never an option (c10576 §5).
+ANCHOR_EVENTS = {}
+
+
+def load_anchor_calibration(path=None):
+    """Load the DBDP-118 backward-anchor calibration ledger (Amendment 118-F).
+
+    Returns {source_file: {"py": bool, "cy": bool, "entry": key}} — the
+    per-file, per-leg activation decision, derived ONLY from entries the
+    calibration tool marked verified. Hard-fails on a missing or malformed
+    ledger: backward anchoring without a calibration receipt is exactly the
+    assume-then-anchor failure the gate exists to prevent, so "no ledger"
+    must stop the run rather than quietly fall back to relative-only.
+    """
+    path = Path(path) if path else ANCHOR_CALIBRATION_FILE
+    if not path.exists():
+        print(f"  [FATAL] backward-anchor calibration ledger not found: {path}"
+              f" — DBDP-118 anchoring requires a committed verification receipt "
+              f"(c10576 §5 / Amendment 118-F); rebuild with "
+              f"tools/build_anchor_calibration.py")
+        sys.exit(1)
+    with open(path, encoding="utf-8") as fh:
+        doc = json.load(fh)
+    if doc.get("_schema") != "odba/dbdp-118/anchor-calibration/1":
+        print(f"  [FATAL] calibration ledger {path.name}: unexpected _schema "
+              f"{doc.get('_schema')!r}")
+        sys.exit(1)
+    activation = {}
+    for entry in doc.get("entries", []):
+        required = {"format_variant", "budget_year", "expected_py_target",
+                    "expected_cy_target", "py_leg_outcome", "cy_leg_outcome",
+                    "source_files", "verified_files"}
+        missing = sorted(required - set(entry))
+        if missing:
+            print(f"  [FATAL] calibration ledger: entry missing field(s) {missing}")
+            sys.exit(1)
+        key = f"{entry['format_variant']}|{entry['budget_year']}"
+        verified = set(entry["verified_files"])
+        for fname in entry["source_files"]:
+            # a file activates a leg only if the ENTRY verified that leg AND
+            # the file's own label reading agreed with the entry
+            ok = fname in verified
+            activation[fname] = {
+                "py": ok and entry["py_leg_outcome"] == "verified",
+                "cy": ok and entry["cy_leg_outcome"] == "verified",
+                "entry": key,
+                "budget_year": int(entry["budget_year"]),
+            }
+    return activation
+
+
+def _anchor_note(kind):
+    ANCHOR_EVENTS[kind] = ANCHOR_EVENTS.get(kind, 0) + 1
+
+
+def map_year_slots(records, manifest, calibration=None):
     """Submission-anchored year mapping (DBDP-103 c10529 §1; AR CONCUR c10531).
 
     Every absolute year slot is anchored by the row's manifest budget_year Y:
@@ -240,19 +323,41 @@ def map_year_slots(records, manifest):
         source zero arrives as 0.0 and is captured as 0.0 — nulling it would
         fabricate structural absence (c10529 §2; c10533 CV-01 leg 4).
       • Relative columns (cost_prior_year / cost_current_year /
-        cost_all_prior_years) keep per-submission semantics — untouched.
+        cost_all_prior_years) keep per-submission semantics — untouched. The
+        DBDP-118 backward anchors are COPIES of them, so conservation is an
+        IDENTITY (TC-118-ID1), not a tolerance.
+
+    DBDP-118 (c10576 §2; AR PASS c10619) adds the two BACKWARD legs, making
+    the mapping bidirectional:
+        cy -> cost_fy(Y-1)      py -> cost_fy(Y-2)
+    Each backward leg passes two independent gates before it writes:
+      1. THE WINDOW (AR c10619 note c) — two declared branches, never one
+         swallow-everything path:
+           • target FY below FY_COVERAGE_FLOOR -> NOT ATTEMPTED by declared
+             policy; the value stays in its relative column, no error.
+           • target FY inside the window but its column absent from COLUMNS
+             -> HARD-FAIL naming year, slot and column (the c10529 rule).
+      2. THE CALIBRATION GATE (c10576 §5; Amendment 118-F) — the row's source
+         file must resolve to a ledger entry that VERIFIED this leg against
+         published source labels. Unverified => relative-only, zero anchors.
     """
+    calibration = {} if calibration is None else calibration
     for r in records:
         slots = r.pop("_by_slots", None)
-        if not slots:
-            continue
-        entry = manifest.get(r.get("source_file"))
+        source = r.get("source_file")
+        entry = manifest.get(source)
         if entry is None:
-            print(f"  [FATAL] year mapping: {r.get('source_file')!r} has no "
+            if slots is None and not any(
+                    r.get(c) is not None for c in ("cost_prior_year",
+                                                   "cost_current_year")):
+                continue
+            print(f"  [FATAL] year mapping: {source!r} has no "
                   f"manifest entry — cannot anchor its year slots (DBDP-103)")
             sys.exit(1)
         year = int(entry["budget_year"])
-        for n, value in enumerate(slots, start=1):
+
+        # ── forward legs (DBDP-103 c10529 §1) — unchanged ──────────────────
+        for n, value in enumerate(slots or (), start=1):
             if value is None:
                 continue          # absent element — not a published value
             col = f"cost_fy{year + n - 1}"
@@ -264,6 +369,46 @@ def map_year_slots(records, manifest):
                       f"(DBDP-103 c10529 §1)")
                 sys.exit(1)
             r[col] = value
+
+        # ── backward legs (DBDP-118 c10576 §2) ────────────────────────────
+        act = calibration.get(source)
+        for leg, rel_col, target_fy in (("cy", "cost_current_year", year - 1),
+                                        ("py", "cost_prior_year",  year - 2)):
+            value = r.get(rel_col)
+            if value is None:
+                continue          # authentic absence — nothing published
+            # gate 1, branch (ii): below the declared floor — policy no-op
+            if target_fy < FY_COVERAGE_FLOOR:
+                _anchor_note(f"below_floor_{leg}")
+                continue
+            if target_fy > FY_COVERAGE_CEILING:
+                print(f"  [FATAL] year mapping: submission year {year} slot "
+                      f"{leg.upper()} maps to FY{target_fy}, above the declared "
+                      f"ceiling FY{FY_COVERAGE_CEILING} — extending the window "
+                      f"is a scope decision, never a silent drop (c10576 §3)")
+                sys.exit(1)
+            # gate 2: per-family/variant/year calibration (verify-then-anchor)
+            if not (act and act.get(leg)):
+                _anchor_note(f"uncalibrated_{leg}")
+                continue
+            # gate 1, branch (i): in-window, column must exist
+            col = f"cost_fy{target_fy}"
+            if col not in COLUMNS:
+                print(f"  [FATAL] year mapping: submission year {year} slot "
+                      f"{leg.upper()} maps to column {col!r} (FY{target_fy}, "
+                      f"inside the declared window FY{FY_COVERAGE_FLOOR}–"
+                      f"FY{FY_COVERAGE_CEILING}), which does not exist in "
+                      f"COLUMNS — an in-window year requires an additive column "
+                      f"plus its coverage declaration, never a silent drop "
+                      f"(DBDP-103 c10529 §1; AR c10619 note c branch i)")
+                sys.exit(1)
+            if r.get(col) is not None:
+                print(f"  [FATAL] year mapping: backward leg {leg.upper()} for "
+                      f"submission year {year} would overwrite {col!r} — a "
+                      f"forward and a backward leg must never collide on one row")
+                sys.exit(1)
+            r[col] = value
+            _anchor_note(f"anchored_{leg}")
     return records
 
 
@@ -689,6 +834,337 @@ def check_cost_coverage(df, coverage):
             f"group-assignment invariant: {grouped_total:,} rows grouped of "
             f"{len(df):,} — some rows belong to no checked group")
     return failures
+
+
+# =============================================================================
+# DBDP-114 — Standardized Consumption Layer (design c10575; AR PASS c10618)
+# =============================================================================
+# A READ-ONLY star-schema export produced BESIDE the analytical parquet and
+# strictly DOWNSTREAM of the post-run assertion block: it only ever runs on
+# data that passed. The wide fact table remains the system of record; nothing
+# here feeds back upstream.
+#
+# CSV + a committed type contract is the Decimal-safety answer (the ticket's
+# original failure): a DuckDB DECIMAL never reaches the DAX boundary, floats
+# are written at the parse precision, and consumption_schema.json declares each
+# column's BI type so Power Query applies the CONTRACT rather than inferring.
+#
+# Publication is ATOMIC (Amendment 114-D): the set is built in a temp directory
+# and swapped into place only after every row is generated and asserted, so a
+# hard-fail can never leave a partial set published.
+
+CONSUMPTION_DIR   = OUTPUT_DIR / "consumption"
+DIM_AGENCY_MAP    = SCRIPT_DIR / "data" / "dim_agency_map.json"
+UNASSIGNED_BUCKET = "Unassigned — pending curation"
+
+# amount_basis is a function of (funding_fy - budget_year), and is defined ONLY
+# for Budget-Request rows (c10575; AR c10618 binding note 1). A non-BR row
+# reaching the generator is a HARD-FAIL, never a silently BR-labelled basis.
+BASIS_LIFECYCLE_SCOPE = "Budget Request"
+
+# The grouping rule travels with the artifact the consumer actually opens
+# (AR c10618 binding note 3 / c10531).
+GROUPING_RULE_GUIDANCE = (
+    "Cross-submission aggregation of amount_musd is undefined by policy "
+    "without a budget_year or amount_basis filter: one absolute fiscal year "
+    "may carry several submissions' views of itself (e.g. FY2026 appears as "
+    "the FY26 request and as the FY27 current-year estimate). Filter by "
+    "budget_year (the submission) or by amount_basis before summing."
+)
+
+
+def _fmt6(value):
+    """Canonical six-decimal token — the single serialization rule for money."""
+    return format(float(value), ".6f")
+
+
+def amount_basis_for(funding_fy, budget_year):
+    """Derived basis (c10575). Never stored upstream, never guessed."""
+    delta = int(funding_fy) - int(budget_year)
+    if delta <= -2:
+        return "actual"
+    if delta == -1:
+        return "estimate"
+    if delta == 0:
+        return "request"
+    return "fydp_projection"
+
+
+def load_dim_agency_map(path=None):
+    """Load the curated agency map (c10575; DBDP-121 governance).
+
+    Curation is ADDITIVE, never replacement: the raw service_agency_name stays
+    untouched on the wide table. Any acronym absent from the map resolves to
+    the EXPLICIT default bucket and is reported — never silently blanked.
+    """
+    path = Path(path) if path else DIM_AGENCY_MAP
+    if not path.exists():
+        print(f"  [FATAL] agency map not found: {path} — dim_agency requires a "
+              f"committed map (c10575); an absent map is not the same as an "
+              f"empty one and must not be invented at run time")
+        sys.exit(1)
+    with open(path, encoding="utf-8") as fh:
+        doc = json.load(fh)
+    mapping = doc.get("mapping", {})
+    for acronym, spec in mapping.items():
+        missing = sorted({"agency_name_canonical", "mission_portfolio"} - set(spec))
+        if missing:
+            print(f"  [FATAL] agency map entry {acronym!r} missing {missing}")
+            sys.exit(1)
+    return mapping
+
+
+def build_consumption_set(df, manifest, coverage, out_dir=None):
+    """Generate the DBDP-114 star-schema export. Returns a summary dict.
+
+    Called ONLY after the assertion block has passed. Writes atomically.
+    """
+    out_dir = Path(out_dir) if out_dir else CONSUMPTION_DIR
+    agency_map = load_dim_agency_map()
+
+    # ── G1 (AR c10618 note 1 / Amendment 114-D): fail closed on non-BR ──────
+    # Checked BEFORE any row is generated and before anything is published.
+    stages = df["data_lifecycle_stage"].fillna("")
+    offenders = df.index[stages != BASIS_LIFECYCLE_SCOPE]
+    if len(offenders) > 0:
+        first = df.loc[offenders[0]]
+        print(f"  [FATAL] consumption layer: {len(offenders):,} row(s) carry a "
+              f"data_lifecycle_stage outside {BASIS_LIFECYCLE_SCOPE!r} — "
+              f"amount_basis is Budget-Request-scoped until a non-BR mapping is "
+              f"designed (B1-3/B5), so these rows must NOT be emitted with any "
+              f"basis (AR c10618 binding note 1). First offender: "
+              f"record_id={first['record_id']!r} source_file={first['source_file']!r} "
+              f"stage={first['data_lifecycle_stage']!r}")
+        sys.exit(1)
+
+    # ── fact_budget_long — coverage-respecting unpivot ──────────────────────
+    fact_rows = []
+    for row in df.itertuples(index=False):
+        year = int(row.budget_year)
+        spec = coverage.get(year)
+        if spec is None:
+            print(f"  [FATAL] consumption layer: budget_year {year} has no "
+                  f"coverage entry — closure is asserted upstream, so reaching "
+                  f"here means the assertion block was bypassed")
+            sys.exit(1)
+        for col in ABSOLUTE_COST_COLUMNS:
+            if col not in spec["covered"]:
+                continue              # declared-absent: emits NOTHING (V2)
+            value = getattr(row, col)
+            if value is None or (isinstance(value, float) and value != value):
+                continue              # authentic gap: no row
+            funding_fy = int(col.removeprefix("cost_fy"))
+            fact_rows.append({
+                "record_id":             row.record_id,
+                "source_file":           row.source_file,
+                "service_agency_acronym": row.service_agency_acronym,
+                "budget_year":           year,
+                "data_vintage":          row.data_vintage,
+                "data_lifecycle_stage":  row.data_lifecycle_stage,
+                "funding_fy":            funding_fy,
+                "amount_musd":           _fmt6(value),
+                "amount_basis":          amount_basis_for(funding_fy, year),
+                "funding_type":          "" if row.funding_type is None
+                                         or row.funding_type != row.funding_type
+                                         else row.funding_type,
+            })
+
+    # V7 — provenance non-empty, asserted by the generator itself
+    bad_prov = [r for r in fact_rows
+                if not r["source_file"] or not r["data_lifecycle_stage"]]
+    if bad_prov:
+        print(f"  [FATAL] consumption layer: {len(bad_prov):,} long row(s) with "
+              f"empty source_file or data_lifecycle_stage — the B7 "
+              f"non-negotiable (c10575 V7)")
+        sys.exit(1)
+
+    # ── dim_agency ──────────────────────────────────────────────────────────
+    acronyms = sorted({r["service_agency_acronym"] for r in fact_rows})
+    unmapped = [a for a in acronyms if a not in agency_map]
+    dim_agency = [{
+        "agency_acronym":        a,
+        "agency_name_canonical": agency_map.get(a, {}).get(
+            "agency_name_canonical", UNASSIGNED_BUCKET),
+        "mission_portfolio":     agency_map.get(a, {}).get(
+            "mission_portfolio", UNASSIGNED_BUCKET),
+    } for a in acronyms]
+
+    # ── dim_budget_cycle — a VERBATIM manifest projection, nothing computed ─
+    dim_cycle = []
+    for fname in sorted({r["source_file"] for r in fact_rows}):
+        entry = manifest[fname]
+        dim_cycle.append({
+            "source_file":      fname,
+            "budget_year":      int(entry["budget_year"]),
+            "lifecycle_stage":  entry["lifecycle_stage"],
+            "acquisition_date": entry["acquisition_date"],
+            "ingest_status":    entry["ingest_status"],
+            "source_url":       entry.get("source_url", "") or "",
+            "sha256":           entry.get("sha256", "") or "",
+        })
+
+    # ── dim_program_hierarchy — per-exhibit trees, honest nulls ─────────────
+    # Refuses a fake-uniform hierarchy: each family declares its own shape via
+    # hierarchy_type, and levels absent at metadata depth stay empty (B3
+    # enriches this dim additively, with no consumer-side change).
+    HIER = {
+        "OP-5":       ("OM_BA_SAG",           "sag",  None),
+        "DHP":        ("DHP_BA_SAG",          "sag",  None),
+        "DHP-SMR":    ("DHP_BA_SAG",          "sag",  None),
+        "DHP-J-Book": ("DHP_BA_SAG",          "sag",  None),
+        "R-2":        ("RDTE_BA_PE_PROJECT",  "pe",   "project"),
+        "P-40":       ("PROC_BA_BSA_BLI",     "bsa",  "bli"),
+        "RF-1":       ("RF1_FUND",            "sag",  None),
+    }
+    wide_by_id = {}
+    for row in df.itertuples(index=False):
+        wide_by_id.setdefault(row.record_id, row)
+    dim_hier = []
+    for rid in sorted({r["record_id"] for r in fact_rows}):
+        w = wide_by_id[rid]
+        htype, l2, l3 = HIER.get(w.exhibit_type, ("UNKNOWN", "sag", None))
+        l2code, l2name = ("", "")
+        if l2 == "sag":
+            l2code, l2name = w.budget_sub_activity_number, w.budget_sub_activity_title
+        elif l2 == "pe":
+            l2code, l2name = w.program_element, ""
+        elif l2 == "bsa":
+            l2code, l2name = w.budget_sub_activity_number, w.budget_sub_activity_title
+        l3code, l3name = ("", "")
+        if l3 == "bli":
+            l3code, l3name = w.line_item_number, w.line_item_title
+        elif l3 == "project":
+            l3code, l3name = "", ""          # sparse until B3 — honest nulls
+        dim_hier.append({
+            "record_id":   rid,
+            "exhibit_type": w.exhibit_type,
+            "hierarchy_type": htype,
+            "level1_code": w.budget_activity_number or "",
+            "level1_name": w.budget_activity_title or "",
+            "level2_code": l2code or "",
+            "level2_name": l2name or "",
+            "level3_code": l3code or "",
+            "level3_name": l3name or "",
+        })
+
+    # ── the type contract (V5 / Amendment 114-C two-way closure) ────────────
+    schema = {
+        "_schema": "odba/dbdp-114/consumption-contract/1",
+        "_authority": "DBDP-114 c10575 + AR PASS c10618 + Codex c10628",
+        "_grouping_rule": GROUPING_RULE_GUIDANCE,
+        "_formats": {
+            "Decimal Number": "fixed-point, exactly 6 decimal places, '.' "
+                              "decimal separator, no thousands separator, no "
+                              "scientific notation",
+            "Whole Number":   "signed integer, no separators",
+            "Text":           "UTF-8; may be empty (an honest null)",
+            "Date":           "ISO-8601 YYYY-MM-DD",
+        },
+        "tables": {
+            "fact_budget_long.csv": {
+                "grain": ["record_id", "data_vintage", "funding_fy"],
+                "columns": {
+                    "record_id": "Text", "source_file": "Text",
+                    "service_agency_acronym": "Text", "budget_year": "Whole Number",
+                    "data_vintage": "Date", "data_lifecycle_stage": "Text",
+                    "funding_fy": "Whole Number", "amount_musd": "Decimal Number",
+                    "amount_basis": "Text", "funding_type": "Text",
+                },
+            },
+            "dim_agency.csv": {
+                "grain": ["agency_acronym"],
+                "columns": {"agency_acronym": "Text",
+                            "agency_name_canonical": "Text",
+                            "mission_portfolio": "Text"},
+            },
+            "dim_budget_cycle.csv": {
+                "grain": ["source_file"],
+                "columns": {"source_file": "Text", "budget_year": "Whole Number",
+                            "lifecycle_stage": "Text", "acquisition_date": "Date",
+                            "ingest_status": "Text", "source_url": "Text",
+                            "sha256": "Text"},
+            },
+            "dim_program_hierarchy.csv": {
+                "grain": ["record_id"],
+                "columns": {"record_id": "Text", "exhibit_type": "Text",
+                            "hierarchy_type": "Text",
+                            "level1_code": "Text", "level1_name": "Text",
+                            "level2_code": "Text", "level2_name": "Text",
+                            "level3_code": "Text", "level3_name": "Text"},
+            },
+        },
+    }
+
+    # ── atomic publication (Amendment 114-D) ───────────────────────────────
+    tmp = out_dir.parent / (out_dir.name + ".tmp")
+    if tmp.exists():
+        shutil.rmtree(tmp)
+    tmp.mkdir(parents=True)
+
+    def write_csv(fname, rows, columns):
+        with open(tmp / fname, "w", encoding="utf-8", newline="") as fh:
+            writer = csv.DictWriter(fh, fieldnames=columns, lineterminator="\n",
+                                    extrasaction="raise")
+            writer.writeheader()
+            for row in rows:
+                writer.writerow(row)
+
+    fact_cols = list(schema["tables"]["fact_budget_long.csv"]["columns"])
+    fact_rows.sort(key=lambda r: (r["record_id"], r["data_vintage"], r["funding_fy"]))
+    write_csv("fact_budget_long.csv", fact_rows, fact_cols)
+    write_csv("dim_agency.csv", dim_agency,
+              list(schema["tables"]["dim_agency.csv"]["columns"]))
+    write_csv("dim_budget_cycle.csv", dim_cycle,
+              list(schema["tables"]["dim_budget_cycle.csv"]["columns"]))
+    write_csv("dim_program_hierarchy.csv", dim_hier,
+              list(schema["tables"]["dim_program_hierarchy.csv"]["columns"]))
+    with open(tmp / "consumption_schema.json", "w", encoding="utf-8",
+              newline="\n") as fh:
+        json.dump(schema, fh, indent=2, ensure_ascii=False)
+        fh.write("\n")
+
+    # Swap by RENAME, not delete-then-write: the published set is replaced in
+    # one filesystem operation, so a reader never sees a partial directory and
+    # a failure cannot leave the old set destroyed. (OneDrive can hold a handle
+    # on a synced directory, which makes rmtree-before-rename both unsafe and
+    # unreliable here — KT c10269 environment note.)
+    retired = out_dir.parent / (out_dir.name + ".retired")
+    if retired.exists():
+        shutil.rmtree(retired, ignore_errors=True)
+    if out_dir.exists():
+        try:
+            out_dir.rename(retired)
+        except OSError:
+            # directory handle held (OneDrive): fall back to emptying it in
+            # place, then moving the new files in — still no partial publish,
+            # because every file was already generated and validated above.
+            for stale in out_dir.iterdir():
+                try:
+                    stale.unlink()
+                except OSError:
+                    pass
+            for fresh in tmp.iterdir():
+                shutil.move(str(fresh), str(out_dir / fresh.name))
+            shutil.rmtree(tmp, ignore_errors=True)
+            return _consumption_summary(fact_rows, dim_agency, dim_cycle,
+                                        dim_hier, unmapped)
+    tmp.rename(out_dir)
+    if retired.exists():
+        shutil.rmtree(retired, ignore_errors=True)
+
+    return _consumption_summary(fact_rows, dim_agency, dim_cycle, dim_hier, unmapped)
+
+
+def _consumption_summary(fact_rows, dim_agency, dim_cycle, dim_hier, unmapped):
+    return {
+        "fact_rows": len(fact_rows),
+        "dim_agency": len(dim_agency),
+        "dim_budget_cycle": len(dim_cycle),
+        "dim_program_hierarchy": len(dim_hier),
+        "unmapped_acronyms": unmapped,
+        "basis_counts": {b: sum(1 for r in fact_rows if r["amount_basis"] == b)
+                         for b in sorted({r["amount_basis"] for r in fact_rows})},
+    }
 
 
 def acronym_from_filename(fname):
@@ -1954,8 +2430,23 @@ def main():
 
     # ── Submission-anchored year mapping (DBDP-103 c10529 §1) ────────────────
     # Runs before the frame is built: every raw BY slot is placed into the
-    # absolute column anchored by its row's manifest budget_year.
-    map_year_slots(all_records, manifest)
+    # absolute column anchored by its row's manifest budget_year. DBDP-118
+    # adds the backward legs, gated by the committed calibration ledger.
+    anchor_calibration = load_anchor_calibration()
+    map_year_slots(all_records, manifest, anchor_calibration)
+    if ANCHOR_EVENTS:
+        print()
+        print("  DBDP-118 backward anchoring (c10576 §2; gate c10576 §5):")
+        for kind in sorted(ANCHOR_EVENTS):
+            label = {
+                "anchored_py":      "py -> cost_fy(Y-2)  anchored",
+                "anchored_cy":      "cy -> cost_fy(Y-1)  anchored",
+                "below_floor_py":   f"py  below FY{FY_COVERAGE_FLOOR} floor  (declared no-op, relative retained)",
+                "below_floor_cy":   f"cy  below FY{FY_COVERAGE_FLOOR} floor  (declared no-op, relative retained)",
+                "uncalibrated_py":  "py  withheld — no verified calibration entry",
+                "uncalibrated_cy":  "cy  withheld — no verified calibration entry",
+            }.get(kind, kind)
+            print(f"    {label:<66} {ANCHOR_EVENTS[kind]:>5,}")
 
     # DHPPB11 — a control-only GRID inside a `parsed` file (AC-3). Distinct
     # file-opening path, so it verifies through the gate itself before reading.
@@ -1988,7 +2479,8 @@ def main():
     float_cols = [
         "budget_year",
         "cost_all_prior_years", "cost_prior_year", "cost_current_year",
-        "cost_fy2026",   # DBDP-102: additive; NULL until B1-2 ingests FY26
+        "cost_fy2025",   # DBDP-118: additive; written by the backward legs
+        "cost_fy2026",   # DBDP-102: additive; B1-2 forward + DBDP-118 cy leg
         "cost_fy2027", "cost_fy2028", "cost_fy2029", "cost_fy2030", "cost_fy2031",
     ]
     for col in float_cols:
@@ -2249,6 +2741,31 @@ def main():
         sys.exit(1)   # assertion failure is a hard stop (CLAUDE.md; c10315)
     else:
         print(f"  All validation checks passed.")
+
+    # -- DBDP-114 consumption layer -------------------------------------------
+    # STRICTLY downstream of the assertion block: it only ever runs on data
+    # that passed (c10575; AR c10618(a)). REGENERATE-DOWNSTREAM now covers
+    # three surfaces — parquet, workbook, and this export set.
+    print()
+    print("-- DBDP-114 consumption layer -------------------------------------")
+    summary = build_consumption_set(df, manifest_chk, coverage)
+    print(f"  fact_budget_long        : {summary['fact_rows']:,} rows "
+          f"(grain: record_id, data_vintage, funding_fy)")
+    for basis, n in summary["basis_counts"].items():
+        print(f"    amount_basis={basis:<16} {n:>6,}")
+    print(f"  dim_agency              : {summary['dim_agency']:,} rows")
+    print(f"  dim_budget_cycle        : {summary['dim_budget_cycle']:,} rows")
+    print(f"  dim_program_hierarchy   : {summary['dim_program_hierarchy']:,} rows")
+    # The unmapped list is printed EVERY run — never silent (c10575; V3).
+    unmapped = summary["unmapped_acronyms"]
+    if unmapped:
+        print(f"  [NOTICE] {len(unmapped)} acronym(s) resolve to "
+              f"{UNASSIGNED_BUCKET!r} (curation pending, {DIM_AGENCY_MAP.name}):")
+        for i in range(0, len(unmapped), 10):
+            print(f"           {', '.join(unmapped[i:i + 10])}")
+    else:
+        print(f"  all acronyms mapped     : 0 in {UNASSIGNED_BUCKET!r}")
+    print(f"  Saved  ->  {CONSUMPTION_DIR}")
 
     print()
     print("=" * 65)

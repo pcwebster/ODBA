@@ -1,0 +1,20 @@
+# =============================================================================
+# ODBA -- line-ending policy
+# =============================================================================
+# The DBDP-114 consumption set is a BYTE-REPRODUCIBLE artifact: V6 asserts that
+# two consecutive ETL runs produce byte-identical files, and the generator
+# writes '\n' endings explicitly. Without this rule, git's autocrlf would hand
+# a fresh checkout CRLF copies, the next run would rewrite them as LF, and V6
+# would report spurious drift on a clean clone. Keep these paths LF on disk.
+output/consumption/*.csv   text eol=lf
+output/consumption/*.json  text eol=lf
+
+# Declared data files are compared byte-for-byte by the coverage and
+# calibration guards for the same reason.
+data/cost_coverage.json            text eol=lf
+data/fy25_anchor_calibration.json  text eol=lf
+data/dim_agency_map.json           text eol=lf
+
+# Binary artifacts: never touched by EOL conversion.
+*.parquet  binary
+*.xlsx     binary
