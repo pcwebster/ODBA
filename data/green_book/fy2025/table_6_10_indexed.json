@@ -2,7 +2,7 @@
   "source_url": "https://comptroller.defense.gov/Portals/45/Documents/defbudget/FY2025/fy25_Green_Book.pdf",
   "source_vintage_fy": 2025,
   "source_table": "6-10",
-  "acquisition": "Official PDF indexed text; not original binary",
+  "acquisition": "Indexed text snapshot corrected and verified against the user-provided FY2025 Green Book PDF; PDF binary not committed",
   "pages": [
     {
       "printed_page": 154,
@@ -91,8 +91,8 @@
         "Army  | 121,132  | 153,105  | 152,927  | 174,941  | 218,680  | 251,674  | 234,689  | 243,337  | 237,066  | 203,546  | 175,554",
         "Navy  | 124,057  | 124,284  | 131,665  | 143,803  | 150,256  | 165,345  | 166,091  | 174,989  | 176,498  | 173,888  | 162,065",
         "Air Force  | 125,245  | 125,536  | 127,918  | 141,657  | 148,947  | 157,909  | 163,526  | 164,936  | 166,809  | 162,793  | 144,277",
-        "Defense-Wide  | 67,367  | 68,086  | 71,403  | 76,061  | 84,363  | 98,558  | 100,219  | 112,412  | 115,407  | 115,162  | 103,465",
-        "Total Current Dollars  | 437,301  | 471,011  | 483,913  | 536,462  | 602,246  | 673,487  | 664,524  | 695,673  | 690,781  | 655,388  | 585,361",
+        "Defense-Wide  | 67,367  | 68,086  | 71,403  | 76,061  | 84,363  | 98,558  | 100,219  | 112,412  | 110,407  | 115,162  | 103,465",
+        "Total Current Dollars  | 437,801  | 471,011  | 483,913  | 536,462  | 602,246  | 673,487  | 664,524  | 695,673  | 690,781  | 655,388  | 585,361",
         "Army  | 207,295  | 253,521  | 244,959  | 271,536  | 330,680  | 372,147  | 340,854  | 346,405  | 331,241  | 279,900  | 237,892",
         "Navy  | 213,974  | 207,866  | 211,012  | 223,422  | 227,931  | 243,761  | 241,601  | 248,798  | 245,589  | 237,991  | 218,797",
         "Air Force  | 216,254  | 210,393  | 205,144  | 219,309  | 225,436  | 231,487  | 237,793  | 234,064  | 231,654  | 222,602  | 193,091",
@@ -121,7 +121,7 @@
       "header": "Table 6-10:  DEPARTMENT OF DEFENSE BUDGET AUTHORITY BY MILITARY DEPARTMENT (Continued)(Discretionary and Mandatory Dollars in Millions)Military Department  | FY 2023  | FY 2024 CR*  | FY 2025  | FY 2026  | FY 2027  | FY 2028  | FY 2029",
       "rows": [
         "Army  | 202,378  | 184,995  | 185,590  | 188,652  | 191,732  | 195,153  | 198,547",
-        "Navy  | 246,954  | 243,387  | 257,608  | 264,922  | 275,016  | 275,245  | 282,474",
+        "Navy  | 246,954  | 243,387  | 257,608  | 264,922  | 275,016  | 275,245  | 282,471",
         "Air Force  | 250,567  | 247,114  | 262,374  | 268,325  | 278,021  | 283,797  | 288,288",
         "Defense-Wide  | 174,449  | 161,408  | 166,554  | 177,446  | 172,954  | 182,379  | 186,810",
         "Total Current Dollars  | 874,348  | 836,903  | 872,126  | 899,345  | 917,723  | 936,573  | 956,115",
@@ -132,5 +132,61 @@
         "Total Constant Dollars  | 923,690  | 859,341  | 872,126  | 879,349  | 877,474  | 875,693  | 874,114"
       ]
     }
-  ]
+  ],
+  "provenance": {
+    "pdf_file_name": "fy25_Green_Book.pdf",
+    "pdf_sha256": "c0796fd7ed2de188b2721ec94b1e349fb1df36848afd32cc32f9aa9f6c809250",
+    "pdf_acquisition": "User-provided PDF after the official source URL returned HTTP 403; no independent download claimed",
+    "printed_pages": [
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161
+    ],
+    "pdf_pages": [
+      161,
+      162,
+      163,
+      164,
+      165,
+      166,
+      167,
+      168
+    ],
+    "verification": "All 820 amounts across both dollar bases compared to PDF text; corrected entries also visually checked on rendered pages",
+    "amounts_compared": 820,
+    "amounts_matching": 820,
+    "supersedes_snapshot_commit": "37e420165a069241f73ee22652e96f6ba5b83cd0",
+    "correction_reason": "Three transcription errors in the indexed snapshot; the PDF source values are unchanged",
+    "corrections": [
+      {
+        "printed_page": 159,
+        "funding_fy": 2003,
+        "dollar_basis": "Current",
+        "row": "Total Current Dollars",
+        "previous_value_usd_m": 437301,
+        "corrected_value_usd_m": 437801
+      },
+      {
+        "printed_page": 159,
+        "funding_fy": 2011,
+        "dollar_basis": "Current",
+        "row": "Defense-Wide",
+        "previous_value_usd_m": 115407,
+        "corrected_value_usd_m": 110407
+      },
+      {
+        "printed_page": 161,
+        "funding_fy": 2029,
+        "dollar_basis": "Current",
+        "row": "Navy",
+        "previous_value_usd_m": 282474,
+        "corrected_value_usd_m": 282471
+      }
+    ]
+  }
 }

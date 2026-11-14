@@ -109,7 +109,7 @@ funding_fy,dollar_basis,published_total_usd_m,component_sum_usd_m,difference_usd
 2000,Constant FY2025,550794,550794,0,Within rounding tolerance
 2001,Constant FY2025,585763,585764,1,Within rounding tolerance
 2002,Constant FY2025,618476,618477,1,Within rounding tolerance
-2003,Current,437301,437801,500,Review exception
+2003,Current,437801,437801,0,Within rounding tolerance
 2004,Current,471011,471011,0,Within rounding tolerance
 2005,Current,483913,483913,0,Within rounding tolerance
 2006,Current,536462,536462,0,Within rounding tolerance
@@ -117,7 +117,7 @@ funding_fy,dollar_basis,published_total_usd_m,component_sum_usd_m,difference_usd
 2008,Current,673487,673486,-1,Within rounding tolerance
 2009,Current,664524,664525,1,Within rounding tolerance
 2010,Current,695673,695674,1,Within rounding tolerance
-2011,Current,690781,695780,4999,Review exception
+2011,Current,690781,690780,-1,Within rounding tolerance
 2012,Current,655388,655389,1,Within rounding tolerance
 2013,Current,585361,585361,0,Within rounding tolerance
 2003,Constant FY2025,757866,757867,1,Within rounding tolerance
@@ -155,7 +155,7 @@ funding_fy,dollar_basis,published_total_usd_m,component_sum_usd_m,difference_usd
 2026,Current,899345,899345,0,Within rounding tolerance
 2027,Current,917723,917723,0,Within rounding tolerance
 2028,Current,936573,936574,1,Within rounding tolerance
-2029,Current,956115,956119,4,Review exception
+2029,Current,956115,956116,1,Within rounding tolerance
 2023,Constant FY2025,923690,923689,-1,Within rounding tolerance
 2024,Constant FY2025,859341,859340,-1,Within rounding tolerance
 2025,Constant FY2025,872126,872126,0,Within rounding tolerance

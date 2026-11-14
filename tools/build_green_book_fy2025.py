@@ -15,8 +15,6 @@ QA_COLUMNS = ("funding_fy", "dollar_basis", "published_total_usd_m",
               "component_sum_usd_m", "difference_usd_m", "reconciliation_status")
 COMPONENTS = ("Army", "Navy", "Air Force", "Defense-Wide")
 BASIS = ("Current", "Constant FY2025")
-EXPECTED_EXCEPTIONS = {(2003, "Current"): 500, (2011, "Current"): 4999,
-                       (2029, "Current"): 4}
 
 
 def csv_text(header, rows):
@@ -79,9 +77,9 @@ def build(source):
                         historical.append(fact)
     if years != list(range(1948, 2030)):
         raise ValueError("Missing, duplicated or out-of-order fiscal years")
-    if exceptions != EXPECTED_EXCEPTIONS:
+    if exceptions:
         raise ValueError(f"Unexpected reconciliation exceptions: {exceptions}")
-    if (len(facts), len(qa), len(historical)) != (820, 164, 750):
+    if (len(facts), len(qa), len(historical)) != (820, 164, 760):
         raise ValueError("Unexpected output cardinality")
     if len({(r[1], r[3], r[5]) for r in facts}) != len(facts):
         raise ValueError("Duplicate fact grain")

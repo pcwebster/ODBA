@@ -1,23 +1,45 @@
 ODBA historical baseline: budget authority by military department
 
-Import Historical_QA_Passed.csv first. Use either Current (nominal)
+Import historical_qa_passed.csv first. Use either Current (nominal)
 or Constant FY2025 (inflation-adjusted) dollar basis, never both in a sum.
 Use row_grain=Component for department comparisons. Use Published total
 for the official DoD-wide series; never add it to component rows.
 
 Source: National Defense Budget Estimates for FY2025, Table 6-10, printed
-pages 154–161. Extracted from the official PDF's indexed text.
+pages 154–161 (PDF pages 161–168). The indexed text snapshot has been
+checked against all 820 amounts in the user-provided FY2025 PDF.
 https://comptroller.defense.gov/Portals/45/Documents/defbudget/FY2025/fy25_Green_Book.pdf
 
-Budget_Authority.csv contains all 820 source observations for FY1948–2029.
-Reconciliation.csv tests sums against the same table's published total.
-161 of 164 pairs reconcile within $2 million. Source values were retained.
-Three nominal pairs are excluded from the QA-passed view. FY2003: Table
-6-10 indexed total is $437,301M, but the component sum and Tables 6-8/6-9
-are $437,801M. FY2011: the $690,781M total agrees with Tables 6-8/6-9,
-but Table 6-10's indexed component sum is $695,780M. FY2029: total
-$956,115M also appears in other tables; component sum is $956,119M.
-These findings are cross-checks, not corrections.
+budget_authority.csv contains all 820 source observations for FY1948–2029.
+reconciliation.csv tests sums against the same table's published total.
+All 164 year-and-dollar-basis pairs reconcile within $2 million.
+historical_qa_passed.csv contains 760 rows: all five rows for each of the
+76 historical years (FY1948–2023) in both dollar bases. Component rows
+and published totals remain separate; do not add them together.
+
+## Source verification and corrections
+
+The PDF was supplied by the user after a request to the official URL
+returned HTTP 403. Its SHA-256 is
+`c0796fd7ed2de188b2721ec94b1e349fb1df36848afd32cc32f9aa9f6c809250`.
+The binary is not committed. Its filename, hash, page mapping, full
+820-value comparison, and correction history are recorded in
+table_6_10_indexed.json. This records verification against the uploaded
+binary; no independently downloaded PDF is claimed.
+
+Three transcription errors in the original indexed snapshot were
+corrected to match the PDF (all Current dollars, USD millions):
+
+| Printed page | Entry | Original indexed value | PDF-verified value |
+| --- | --- | ---: | ---: |
+| 159 | FY2003 DoD total | 437,301 | 437,801 |
+| 159 | FY2011 Defense-Wide | 115,407 | 110,407 |
+| 161 | FY2029 Navy | 282,474 | 282,471 |
+
+These were snapshot transcription errors, not published-source anomalies.
+The corrected component-minus-total differences are 0, -1, and +1 million,
+respectively. No nominal year/basis pairs are excluded; the historical
+export now includes FY2003 and FY2011 Current-dollar rows.
 
 Data dictionary:
 source_vintage_fy identifies the President's Budget edition; funding_fy
@@ -31,7 +53,7 @@ budget_authority is not obligations or outlays. funding_scope includes
 discretionary and mandatory; the source includes war and supplemental
 funding. source_table, source_printed_page and source_url identify the
 source. reconciliation_status flags the entire year and basis, not an
-individual component. Historical_QA_Passed omits flagged basis/year
+individual component. historical_qa_passed.csv omits flagged basis/year
 pairs and all nonhistorical years. It is an aggregate view, not exhibit
 or program-level data.
 
