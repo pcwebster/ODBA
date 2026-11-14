@@ -118,6 +118,25 @@ All figures below are **FY2027 President's Budget = Budget Request** stage, Defe
 | RF-1 (DWCF) | 3 | — (totals pending validation) |
 | **Total** | **635** | |
 
+## Consolidated PB27 O-1 detail sidecar (DBDP-90)
+
+The [O-1 detail sidecar](data/o1/pb2027_candidate/README.md) independently
+imports all 397 printed detail rows across the O&M title and indefinite
+accounts. The original official PDF was checked across printed pp. 1–56
+(physical PDF pages 6–61): no omitted or extra rows, and all 2,779 monetary
+cells match (1,866 reported amounts and 913 blanks). PDF SHA-256:
+`8c209bc2af590e460977649ba4e37645fd2ee8e3c8dbf61c227b7d3a27079c4d`.
+
+The sidecar retains separate FY26 discretionary enacted and reconciliation
+spend-plan columns, signed amounts, both Air Force line 999 records, two
+PDF-only FY25 rows, and separate workbook-only FY25 lanes. It includes the
+health details once; do not union it with the earlier health pilot. Its
+42 selected headline controls are non-additive, and coverage of other
+printed summaries and remaining source limitations is documented in its
+README. This table is separate from the existing ETL and canonical dataset
+summarized above; neither is changed by this import. RF-1 and reimbursements
+are excluded from this O-1 sidecar.
+
 ## License
 
 MIT
