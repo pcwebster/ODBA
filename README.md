@@ -173,6 +173,22 @@ corrections and source limitations. Overseas-operations-cost subsets,
 RF-1 and repeated summaries are not added to detail totals. Existing
 ingestion and the canonical dataset remain unchanged.
 
+## Offline Budget Explorer
+
+The [Budget Explorer](apps/budget_explorer/README.md) is a standalone,
+offline HTML preview for the consolidated PB25–PB27 O-1 imports, Green
+Book department history, and sampled exhibit requests. Download or open
+[index.html](apps/budget_explorer/index.html) locally; no login or internet
+is required for the interface. Official PDF links require connectivity.
+
+The preview keeps budget editions, fiscal years, stages and funding bases
+separate. Its read-only O-1 payload contains 1,238 detail rows and 125
+selected controls pinned to commit `b9ea2eb`, with 6,930 published
+amount/blank cells checked against the stored PDF references. See the app
+README for exact rebuild commands, test results and browser-verification
+limits. Existing ingestion and data artifacts are unchanged. This addition
+does not publish a hosted site.
+
 ## License
 
 MIT
