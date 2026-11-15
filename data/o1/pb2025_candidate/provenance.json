@@ -1,0 +1,401 @@
+{
+  "submission_fy": 2025,
+  "exhibit": "O-1",
+  "measure": "Total Obligational Authority",
+  "unit": "USD thousands",
+  "workbook_url": "https://defensebudgetdata.org/api/ex/source?file=O-1_PB2025.xlsx",
+  "workbook_sha256": "f8865c13ed77c31f34740bb43d2590c5279edeeb252e631a77136dee038de985",
+  "worksheet": "OM Title plus Indefinite",
+  "workbook_status": "Third-party mirror; publisher-workbook byte equivalence unverified",
+  "pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2025/FY2025_o1.pdf",
+  "pdf_status": "Original official PDF independently checked across printed O-1 pages 1\u201367 (physical PDF pages 5\u201371). All 434 detail identities and 1,302 monetary cells match in both directions. Printed and workbook labels remain separate; RF-1, OOC subsets and repeated summaries are not additive detail facts.",
+  "last_o1_printed_page": 67,
+  "workbook_cr_footnote_rows_438_to_440": [
+    "*A full-year FY 2024 appropriation for this account was not enacted at the time the budget was prepared;\n therefore, the budget assumes this",
+    "account is operating under the Further Additional Continuing Appropriations and Other Extensions Act, 2024 (Public Law 118-35). The amounts",
+    "included for FY 2024 reflect the annualized level provided by the continuing resolution."
+  ],
+  "official_controls": {
+    "om_title": [
+      337808030,
+      320219807,
+      338057174
+    ],
+    "indefinite_accounts": [
+      52524,
+      38923,
+      41300
+    ],
+    "om_title_plus_indefinite": [
+      337860554,
+      320258730,
+      338098474
+    ]
+  },
+  "military_department_controls": {
+    "army_accounts": {
+      "accounts": [
+        "2020A",
+        "2080A",
+        "2065A",
+        "2099A"
+      ],
+      "amounts": [
+        75601820,
+        70795367,
+        71688100
+      ]
+    },
+    "navy_accounts": {
+      "accounts": [
+        "1804N",
+        "1106N",
+        "1806N",
+        "1107N"
+      ],
+      "amounts": [
+        81861566,
+        79668703,
+        87265128
+      ]
+    },
+    "air_force_accounts": {
+      "accounts": [
+        "3400F",
+        "3410F",
+        "3740F",
+        "3840F"
+      ],
+      "amounts": [
+        76963843,
+        75326992,
+        81487573
+      ]
+    }
+  },
+  "other_controls": {
+    "miscellaneous_accounts": {
+      "accounts": [
+        "0833D",
+        "0838D"
+      ],
+      "amounts": [
+        1295,
+        10377,
+        null
+      ],
+      "page": 3
+    },
+    "transfer_accounts": {
+      "accounts": [
+        "0105D",
+        "0810A",
+        "0810N",
+        "0810F",
+        "0810D",
+        "0811D"
+      ],
+      "amounts": [
+        170,
+        2597746,
+        2076670
+      ],
+      "page": 2
+    },
+    "defense_wide_accounts": {
+      "accounts": [
+        "0100D",
+        "0107D",
+        "0104D",
+        "0130D",
+        "0819D",
+        "0134D",
+        "5751D",
+        "0111D"
+      ],
+      "amounts": [
+        103379336,
+        91820622,
+        95539703
+      ],
+      "page": 2
+    }
+  },
+  "official_detail_checks": [
+    {
+      "account": "0100D",
+      "activity": "20",
+      "line": "490",
+      "bli": "CR24",
+      "amounts": [
+        null,
+        -1288238,
+        null
+      ],
+      "printed_page": 56
+    },
+    {
+      "account": "5751D",
+      "activity": "01",
+      "line": "010",
+      "bli": "1PL3",
+      "amounts": [
+        3731,
+        null,
+        null
+      ],
+      "printed_page": 63
+    },
+    {
+      "account": "0838D",
+      "activity": "20",
+      "line": "170",
+      "bli": "CR24",
+      "amounts": [
+        null,
+        10377,
+        null
+      ],
+      "printed_page": 66,
+      "printed_line_title": "Support for International Sporting Competitions, Defense"
+    }
+  ],
+  "pdf_sha256": "f4934028d923998791f672ee9f11e2094a3537ba89e406f9c42a324e2cf12111",
+  "pdf_reference_file": "pdf_detail_reference.json",
+  "pdf_reference_sha256": "4215b8a9839127f34422bf55a01803beda644184f5e0147abd2bad2223edc6ce",
+  "pdf_comparison": {
+    "printed_page_range": [
+      1,
+      67
+    ],
+    "physical_pdf_page_range": [
+      5,
+      71
+    ],
+    "detail_rows": 434,
+    "accounts": 31,
+    "monetary_cells": 1302,
+    "reported_amounts": 1102,
+    "blank_cells": 200,
+    "negative_amounts": 15,
+    "numeric_zero_cells": 0,
+    "missing_candidate_rows": 0,
+    "extra_candidate_rows": 0,
+    "amount_or_blank_mismatches": 0,
+    "printed_code_or_classification_mismatches": 0,
+    "workbook_printed_title_differences": 18,
+    "unprinted_activity_subactivity_rows": 28,
+    "pdf_acquisition": "Original official PDF uploaded by the user; binary not committed",
+    "method": "Independent word-coordinate extraction using all three printed monetary headings, scoped account/line/activity identities and multiline titles, a separate plain-text row inventory, and rendered ambiguity checks."
+  },
+  "printed_workbook_title_differences": [
+    {
+      "identity": [
+        "0105D",
+        "010",
+        ""
+      ],
+      "printed_page": 65,
+      "pdf": "Drug Interdiction and Counter-Drug Activities, Defense",
+      "candidate": "Counter-Narcotics Support"
+    },
+    {
+      "identity": [
+        "0105D",
+        "020",
+        ""
+      ],
+      "printed_page": 65,
+      "pdf": "Drug Interdiction and Counter-Drug Activities, Defense",
+      "candidate": "Drug Demand Reduction Program"
+    },
+    {
+      "identity": [
+        "0105D",
+        "030",
+        ""
+      ],
+      "printed_page": 65,
+      "pdf": "Drug Interdiction and Counter-Drug Activities, Defense",
+      "candidate": "National Guard Counter-Drug Program"
+    },
+    {
+      "identity": [
+        "0105D",
+        "040",
+        ""
+      ],
+      "printed_page": 65,
+      "pdf": "Drug Interdiction and Counter-Drug Activities, Defense",
+      "candidate": "National Guard Counter-Drug Schools"
+    },
+    {
+      "identity": [
+        "0105D",
+        "050",
+        ""
+      ],
+      "printed_page": 65,
+      "pdf": "Drug Interdiction and Counter-Drug Activities, Defense",
+      "candidate": "Adj to Match Continuing Resolution"
+    },
+    {
+      "identity": [
+        "0105D",
+        "999",
+        ""
+      ],
+      "printed_page": 65,
+      "pdf": "Drug Interdiction and Counter-Drug Activities, Defense",
+      "candidate": "Classified Programs"
+    },
+    {
+      "identity": [
+        "0810A",
+        "070",
+        ""
+      ],
+      "printed_page": 65,
+      "pdf": "Environmental Restoration, Army",
+      "candidate": "Adj to Match Continuing Resolution"
+    },
+    {
+      "identity": [
+        "0810N",
+        "090",
+        ""
+      ],
+      "printed_page": 65,
+      "pdf": "Environmental Restoration, Navy",
+      "candidate": "Adj. to Match Continuing Resolution"
+    },
+    {
+      "identity": [
+        "0810F",
+        "110",
+        ""
+      ],
+      "printed_page": 65,
+      "pdf": "Environmental Restoration, Air Force",
+      "candidate": "Adj to Match Continuing Resolution"
+    },
+    {
+      "identity": [
+        "0810D",
+        "130",
+        ""
+      ],
+      "printed_page": 65,
+      "pdf": "Environmental Restoration, Defense",
+      "candidate": "Adj. to Match Continuing Resolution"
+    },
+    {
+      "identity": [
+        "0811D",
+        "140",
+        ""
+      ],
+      "printed_page": 65,
+      "pdf": "Environmental Restoration, Formerly Used Defense Sites",
+      "candidate": "Environmental Restoration Formerly Used Sites"
+    },
+    {
+      "identity": [
+        "0811D",
+        "150",
+        ""
+      ],
+      "printed_page": 65,
+      "pdf": "Environmental Restoration, Formerly Used Defense Sites",
+      "candidate": "Adj to Match Continuing Resolution"
+    },
+    {
+      "identity": [
+        "0838D",
+        "160",
+        ""
+      ],
+      "printed_page": 66,
+      "pdf": "Support for International Sporting Competitions , Defense",
+      "candidate": "Support of International Sporting Competitions, Defense"
+    },
+    {
+      "identity": [
+        "0838D",
+        "170",
+        ""
+      ],
+      "printed_page": 66,
+      "pdf": "Support for International Sporting Competitions , Defense",
+      "candidate": "Adj to Match Continuing Resolution"
+    },
+    {
+      "identity": [
+        "5188D",
+        "230",
+        ""
+      ],
+      "printed_page": 66,
+      "pdf": "Disposal of Department of Defense Real Property",
+      "candidate": "Disposal of DoD Real Property"
+    },
+    {
+      "identity": [
+        "5188D",
+        "240",
+        ""
+      ],
+      "printed_page": 66,
+      "pdf": "Disposal of Department of Defense Real Property",
+      "candidate": "Disposal of DoD Real Property"
+    },
+    {
+      "identity": [
+        "5189D",
+        "270",
+        ""
+      ],
+      "printed_page": 66,
+      "pdf": "Lease of Department of Defense Real Property",
+      "candidate": "Lease of DoD Real Property"
+    },
+    {
+      "identity": [
+        "5189D",
+        "280",
+        ""
+      ],
+      "printed_page": 66,
+      "pdf": "Lease of Department of Defense Real Property",
+      "candidate": "Lease of DoD Real Property"
+    }
+  ],
+  "summary_control_coverage": {
+    "row_grain": "non_additive_control",
+    "recorded_cells": 27,
+    "reported_amounts": 26,
+    "blank_cells": 1,
+    "recorded_printed_pages": [
+      1,
+      2,
+      3
+    ],
+    "other_printed_summaries": "Individual appropriation/account summaries, account/activity subtotals, and lower activity-group summaries are not additive facts or additional checks in headline_controls.csv. Repeated appearances are duplicate evidence.",
+    "distinct_account_activity_scopes": 63,
+    "printed_account_activity_summary_appearances": 105
+  },
+  "excluded_sources": {
+    "overseas_operations_cost_subsets": "Overlapping workbook presentations are not imported; only the combined OM Title plus Indefinite sheet is used. No separate OOC section is present inside the checked printed O-1 pages.",
+    "rf1": "Physical PDF page 72 is the RF-1 table of contents; physical page 73 starts RF-1. These pages and later material are excluded."
+  },
+  "indexed_printed_title_variants": [
+    {
+      "account": "0838D",
+      "line": "170",
+      "printed_page": 66,
+      "initial_indexed_title": "Support for International Sporting Competitions, Defense",
+      "exact_printed_title": "Support for International Sporting Competitions , Defense",
+      "difference": "The PDF prints a space before the comma; the initial indexed label omits that space. Both are retained separately; line_title_printed is authoritative for exact PDF text."
+    }
+  ]
+}

@@ -155,6 +155,24 @@ non-additive control coverage, and remaining workbook-metadata limitations.
 This separate PB26 import does not alter existing ingestion or include
 RF-1, reimbursements, or execution data.
 
+## Consolidated PB25 O-1 detail sidecar (DBDP-90)
+
+The [PB25 O-1 detail sidecar](data/o1/pb2025_candidate/README.md) contains
+all 434 printed detail rows. Original printed pp. 1–67 (physical PDF pages
+5–71) were checked in both directions with no omissions or extras. All
+1,302 monetary cells match: 1,102 reported amounts and 200 blanks,
+including 15 negatives. PDF SHA-256:
+`f4934028d923998791f672ee9f11e2094a3537ba89e406f9c42a324e2cf12111`.
+
+FY23 actuals, FY24 request with continuing-resolution adjustments, and
+FY25 request remain separate. Both activity-specific 3400F/999 records
+and the distinct 5751D/0134D accounts sharing a BLI are preserved. A
+hash-pinned PDF reference and separate printed/workbook labels retain
+the original evidence; the sidecar README records title variants,
+corrections and source limitations. Overseas-operations-cost subsets,
+RF-1 and repeated summaries are not added to detail totals. Existing
+ingestion and the canonical dataset remain unchanged.
+
 ## License
 
 MIT
