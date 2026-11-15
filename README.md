@@ -137,6 +137,24 @@ README. This table is separate from the existing ETL and canonical dataset
 summarized above; neither is changed by this import. RF-1 and reimbursements
 are excluded from this O-1 sidecar.
 
+## Consolidated PB26 O-1 detail sidecar (DBDP-90)
+
+The [PB26 O-1 detail sidecar](data/o1/pb2026_candidate/README.md) contains
+all 407 printed detail rows. Original printed pp. 1–55 (physical PDF pages
+6–60) were independently checked in both directions: no omitted or extra
+rows, and all 2,849 monetary cells match (1,856 reported amounts and 993
+blanks, including five negative amounts). PDF SHA-256:
+`41c4970437c11fefc325bb1fa9d4ab5799ccecf14b78d3a00794bcf1d9a53b65`.
+
+The hash-pinned reference preserves the blank 5286A line ID and separate
+printed/workbook labels. Six confirmed p. 55 FY25 triplets retain their
+published totals instead of adding repeated enacted and supplemental
+figures. PB26's FY26 reconciliation request remains distinct from PB27's
+FY26 spend plan. The sidecar README records the exact exceptions, selected
+non-additive control coverage, and remaining workbook-metadata limitations.
+This separate PB26 import does not alter existing ingestion or include
+RF-1, reimbursements, or execution data.
+
 ## License
 
 MIT
