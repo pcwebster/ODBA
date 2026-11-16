@@ -2,11 +2,11 @@
 
 A local-first, PPBE-native analytics platform for U.S. Department of Defense budget data. ODBA parses official DoD Comptroller budget justification exhibits into a single, queryable, source-traceable dataset for cross-appropriation analysis.
 
-> **Lifecycle stage — canonical dataset.** FY2027 values in the canonical exhibit dataset (`output/fact_budget_line_items.parquet`) and its Excel report represent the **President's Budget Request** — the *Budget Request* stage of the PPBE data lifecycle:
+> **Lifecycle stage — canonical FY2027 report.** The FY2027 PB27 report slice of the canonical exhibit dataset (`output/fact_budget_line_items.parquet`), shown in its Excel report, represents the **President's Budget Request** — the *Budget Request* stage of the PPBE data lifecycle:
 >
 > **Budget Request → Enacted → Reprogrammed → Obligated → Outlayed**
 >
-> No enacted appropriations, reprogramming actions, or execution (obligation/outlay) data are included in the canonical dataset. Read its FY2027 dollar figures as **Budget Request** stage unless explicitly labeled otherwise.
+> This report slice contains no enacted appropriations, reprogramming actions, or execution (obligation/outlay) data. Read its FY2027 dollar figures as **Budget Request** stage unless explicitly labeled otherwise. Other fiscal-year columns and submission vintages in the Parquet retain their own reporting bases.
 >
 > **Separate consolidated O-1 exhibits:** the PB25–PB27 sidecars and Budget Explorer's O-1 view preserve as-published columns, including requests, enacted amounts, supplemental funding, spend plans, published totals, and actuals as reported. These TOA observations retain their own budget edition, funding fiscal year, and column basis; the canonical dataset's request-only warning does not apply to them.
 
