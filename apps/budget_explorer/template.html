@@ -1,0 +1,194 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ODBA | Budget Explorer</title>
+<style>
+:root{color-scheme:dark;--base:#0b1726;--card:#122439;--ink:#edf4ff;--sub:#aebfd6;--accent:#6ae0d6;--border:#294259}*{box-sizing:border-box}body{margin:0;background:var(--base);color:var(--ink);font:16px/1.55 system-ui,sans-serif}main{max-width:1200px;margin:auto;padding:32px 18px 70px}header{padding:28px 30px;background:linear-gradient(120deg,#17364c,#122439);border:1px solid var(--border);border-radius:20px}header p{max-width:70ch;margin-bottom:0}h1{font-size:clamp(30px,5vw,52px);line-height:1.1;margin:5px 0}h2{margin-top:0}small,.muted{color:var(--sub)}.kicker{color:var(--accent);letter-spacing:.14em;font-weight:750;text-transform:uppercase}nav{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}button,input,select{background:#142940;color:var(--ink);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font:inherit}button{cursor:pointer}button[aria-pressed=true]{background:var(--accent);color:var(--base)}a{color:var(--accent)}section,.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px}section[hidden]{display:none}.row{display:flex;align-items:end;gap:12px;flex-wrap:wrap}label{display:flex;flex-direction:column;color:var(--sub);font-size:14px;gap:3px}.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:10px;margin:16px 0}.metric{font-size:25px;font-weight:700;display:block}.table{overflow:auto;margin-top:12px}table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}td,th{text-align:left;padding:7px 10px;border-bottom:1px solid var(--border)}th{color:var(--accent);white-space:nowrap}svg{width:100%;height:auto;background:#0b1726;border-radius:10px}.note{border-left:4px solid var(--accent);padding:5px 12px;color:var(--sub)}.detail{margin-top:14px;white-space:pre-wrap;overflow-wrap:anywhere}.tabs a{white-space:nowrap}.badge{display:inline-block;border:1px solid var(--border);border-radius:999px;padding:3px 10px;margin:6px 5px 2px 0;color:var(--sub)}code{overflow-wrap:anywhere}
+.sectionhead{display:flex;gap:.8rem;align-items:start;justify-content:space-between;flex-wrap:wrap}
+.sectionhead h2{font-size:clamp(1.5rem,4vw,2.3rem);margin:.2rem 0 0;line-height:1.15}
+.ocompare,.odrill{margin-top:1rem;background:#0f1e30}
+.ocompare h3,.odrill h3{margin:0 0 .5rem}
+.ocomparelist{display:grid;gap:.75rem;margin:1rem 0}
+.ocrow{padding:.7rem .8rem;border:1px solid var(--border);border-radius:9px}
+.ocrow-head{display:flex;gap:.2rem 1rem;justify-content:space-between;align-items:baseline;flex-wrap:wrap}
+.ocrow-head strong{font-variant-numeric:tabular-nums;font-size:1.15rem;color:var(--ink)}
+.ocrow a,.ocrow small{font-size:.85rem}
+.otrack{height:.34rem;background:#253b52;border-radius:5px;overflow:hidden;margin-top:.45rem}
+.obar{height:100%;background:#6ae0d6}
+.ocompare details summary,.oline summary{cursor:pointer}
+.osearch{flex:1 1 15rem}
+.ocompare select,.odrill select,.odrill input{width:100%;min-width:0}
+.ocompare label,.odrill label{max-width:100%;min-width:0}
+.oline{border-top:1px solid var(--border);padding:.65rem 0;overflow-wrap:anywhere}
+.oline summary{font-weight:620;line-height:1.35;padding:.15rem 0}
+.oline small{display:block;margin:.28rem 0 .35rem}
+.olvalid{padding:.5rem .72rem;border-left:2px solid #edc481;background:#1b2c3d}
+.olamount{margin:.65rem 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:.5rem}
+.olamount div{display:flex;flex-direction:column;background:#152941;border:1px solid var(--border);border-radius:8px;padding:.45rem .65rem}
+.olamount dt{color:var(--sub);font-size:.83rem}
+.olamount dd{margin:.18rem 0 0;font-variant-numeric:tabular-nums;font-weight:650}
+#omore{margin-top:.65rem}
+#oone a:focus-visible,#oone button:focus-visible,#oone summary:focus-visible,#oone input:focus-visible,#oone select:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(max-width:540px){main{padding:14px 10px 38px}header{padding:19px 15px}section,.card{padding:12px}.ocompare label,.odrill label{flex:1 0 100%}.sectionhead .badge{margin-top:0}.ocrow-head strong{margin-top:2px}}
+</style>
+<main><header><div class=kicker>Open Defense Budget Analytics</div><h1>Budget Explorer</h1><p>Compare public budget history across military departments. Follow operations and maintenance funding across budget submissions, then drill into published accounts and lines.</p><div class=badge>Offline preview</div><div class=badge>Real public data</div></header>
+<nav aria-label="Dashboard views" id="nav"><button data-view="oone">O&amp;M funding</button><button data-view="history">Department trends</button><button data-view="variance">Year-over-year variance</button><button data-view="agency">Agency &amp; program</button><button data-view="pipeline">Pipeline &amp; sources</button></nav>
+<section id="oone" hidden>
+ <div class="sectionhead"><div><div class="kicker">Consolidated O-1 · PB25–PB27</div><h2>Operations &amp; maintenance</h2></div><span class="badge">USD, current dollars</span></div>
+ <p>Follow the same funding year across budget submissions, or drill into the accounts and lines as printed in a single exhibit.</p>
+ <div class="card ocompare">
+  <h3>Follow a funding year</h3>
+  <div class="row"><label>Funding fiscal year<select id="ofiscal"></select></label><label>Published scope<select id="oscope"></select></label></div>
+  <div id="ocompare" class="ocomparelist" aria-live="polite"></div>
+  <aside id="oguide" class="note" aria-live="polite"></aside>
+  <details id="oextra"><summary>Other published amounts for this year</summary><div id="oother" class="ocomparelist"></div></details>
+  <p class="note">Amounts are total obligational authority (TOA) as printed, not cash spending. Each row is a separate stage or funding basis. Do not add the rows together. A missing stage does not mean zero.</p>
+ </div>
+ <div class="card odrill">
+  <h3>Find an account or budget line</h3>
+  <p class="muted">Choose one submission. The line details retain printed labels and funding columns. Matching IDs or titles across submissions do not establish that a program is the same.</p>
+  <div class="row"><label>Budget submission<select id="ovintage"></select></label><label>Organization<select id="oorganization"></select></label><label>Appropriation account<select id="oaccount"></select></label><label class="osearch">Title, account, or BLI<input type="search" id="osearch" placeholder="e.g. 0130D or Private Sector Care"></label></div>
+  <p id="ocount" class="muted" aria-live="polite"></p>
+  <div id="olines"></div>
+  <button type="button" id="omore" hidden>Show more lines</button>
+ </div>
+</section>
+<section id=history hidden><h2>Department trends</h2><p class=note>Historical budget authority, not execution. FY2025 Green Book, Table 6-10. Each point retains its source page.</p><div class=row><label>Military department<select id=dep></select></label><label>Dollar basis<select id=basis></select></label></div><div class=metrics id=metrics></div><div id=chart></div><aside id=hcontext class=note hidden></aside><div class=table><table id=histtable></table></div></section>
+<section id=variance hidden><h2>Year-over-year variance</h2><p class=note>One dollar basis and the same historical budget-authority measure for both years. Missing prior-year figures stay missing. Component ranking excludes the published DoD total. Percentage change is not shown when the prior value is zero or negative or when the series crosses from positive to negative.</p><div class=row><label>Funding fiscal year<select id=vy></select></label><label>Dollar basis<select id=vb></select></label></div><div class=table><table id=vt></table></div><aside id=vcontext class=note hidden></aside></section>
+<section id=agency hidden><h2>Agency &amp; program</h2><p class=note>Sampled budget-book records only. Organization names are the original export labels, not verified cross-year agency IDs. Amounts are individual request records; no portfolio totals or matched program variances. Enacted and execution are not available here.</p><div class=row><label>President’s Budget<select id=ay></select></label><label>Exhibit<select id=ae></select></label><label>Organization label<select id=ao></select></label><label>Find title or program ID<input type=search id=aq></label></div><p id=ac class=muted></p><div class=table><table id=at></table></div><div id=detail class="card detail" hidden></div></section>
+<section id=pipeline hidden><h2>Pipeline &amp; sources</h2><p>The verified O-1 editions, historical Green Book, and sampled requests are separate. Amounts across these sources are not joined or added together.</p><div id=pc></div></section>
+<noscript>Enable JavaScript in your browser to use this offline preview.</noscript></main>
+<script type="application/json" id=payload>__PAYLOAD__</script>
+<script>
+'use strict';
+const data=JSON.parse(document.getElementById('payload').textContent), $=id=>document.getElementById(id);
+const nf=new Intl.NumberFormat('en-US',{maximumFractionDigits:3}), signed=x=> (x>0?'+':'')+nf.format(x);
+const elt=(tag,value)=>{const n=document.createElement(tag);if(value!==undefined)n.textContent=value;return n};
+function opts(id,values){const el=$(id),old=el.value;el.replaceChildren(...values.map(v=>{let n=elt('option',v);n.value=v;return n}));if(values.includes(old))el.value=old}
+function tbl(id,headers,rows){const t=$(id),head=elt('thead'),tr=elt('tr'),body=elt('tbody');headers.forEach(x=>tr.append(elt('th',x)));head.append(tr);for(const r of rows){const rr=elt('tr');for(const v of r){const cell=elt('td');if(v instanceof Node)cell.append(v);else cell.textContent=v;rr.append(cell)}body.append(rr)}t.replaceChildren(head,body)}
+function link(u,label){let n=elt('a',label);n.href=u;n.target='_blank';n.rel='noopener noreferrer';return n}
+const gb='https://comptroller.defense.gov/Portals/45/Documents/defbudget/FY2025/fy25_Green_Book.pdf';
+const gulf='https://history.defense.gov/Portals/70/Documents/annual_reports/1993_DoD_AR.pdf?ver=2014-06-24-152422-603';
+function context1991(id,show){
+ const n=$(id);n.hidden=!show;if(!show)return;
+ const p=elt('p','FY1991 Defense-Wide is published at −$10.636B in current dollars (−$18.794B in constant FY2025 dollars). That is the budget authority level, not the year-over-year change or actual spending. DoD-wide FY1991 current-dollar budget authority was positive ($276.208B).');
+ const note=elt('p','Historical context: the Defense Department documented a sharp rise in offsetting allied contributions during Desert Shield/Storm in FY1991–92. Table 6-10 does not break down the exact drivers of the negative Defense-Wide figure.');
+ n.replaceChildren(p,link(gb,'FY2025 Green Book, Table 6-10, p. 157'),note,link(gulf,'1993 DoD Annual Report, Appendix A'));
+}
+const deps=['Army','Navy','Air Force','Defense-Wide','DoD total'], bases=['Constant FY2025','Current'];
+const index=new Map(data.history.map(r=>[[r.year,r.dep,r.basis].join('|'),r]));const find=(y,d,b)=>index.get([y,d,b].join('|'));
+opts('dep',deps);$('dep').value='Navy';opts('basis',bases);opts('vb',bases);opts('vy',Array.from({length:75},(_,i)=>String(2023-i)));
+function hist(){
+ const d=$('dep').value,b=$('basis').value,rs=data.history.filter(r=>r.dep===d&&r.basis===b).sort((a,b)=>a.year-b.year);
+ context1991('hcontext',d==='Defense-Wide');
+ const first=rs[0],last=rs.at(-1),previous=find(last.year-1,d,b);
+ const panels=[[last.year+' budget authority',nf.format(last.v/1000)+'B USD'],['Prior-year change',previous?signed((last.v-previous.v)/1000)+'B USD':'Unavailable'],['Historical coverage',first.year+'–'+last.year]];
+ $('metrics').replaceChildren(...panels.map(([k,v])=>{const div=elt('div'),metric=elt('span',v);div.className='card';metric.className='metric';div.append(elt('small',k),metric);return div}));
+ const yMin=Math.min(0,...rs.map(r=>r.v)),yMax=Math.max(...rs.map(r=>r.v));const x=y=>72+(y-1948)*808/75, y=v=>220-(v-yMin)*195/(yMax-yMin);
+ let path='',prev=null;for(const r of rs){path+=(prev!==null&&r.year===prev+1?'L':'M')+x(r.year).toFixed(2)+','+y(r.v).toFixed(2)+' ';prev=r.year}
+ const ns='http://www.w3.org/2000/svg',make=(tag,attrs,t)=>{const n=document.createElementNS(ns,tag);Object.entries(attrs).forEach(([k,v])=>n.setAttribute(k,v));if(t!==undefined)n.textContent=t;return n};
+ const svg=make('svg',{viewBox:'0 0 900 255',role:'img','aria-label':d+' historical budget authority, '+b});
+ for(let i=0;i<5;i++){const v=yMin+(yMax-yMin)*i/4,yy=y(v);svg.append(make('line',{x1:72,y1:yy,x2:880,y2:yy,stroke:'#294259'}),make('text',{x:64,y:yy+4,'text-anchor':'end',fill:'#aebfd6','font-size':12},nf.format(v/1000)+'B'))}
+ for(const yr of [1948,1960,1980,2000,2023])svg.append(make('text',{x:x(yr),y:244,'text-anchor':'middle',fill:'#aebfd6','font-size':12},yr));
+ svg.append(make('path',{d:path,stroke:'#6ae0d6','stroke-width':3,fill:'none'}));
+ $('chart').replaceChildren(svg);
+ tbl('histtable',['Funding FY','BA ($M)','Source'],rs.slice(-12).reverse().map(r=>[r.year,nf.format(r.v),link(gb,'Table 6-10, p. '+r.p)]));
+}
+function variance(){
+ const year=+$('vy').value,b=$('vb').value;
+ context1991('vcontext',year===1991||year===1992);
+ const rows=deps.slice(0,4).map(d=>{const r=find(year,d,b),p=find(year-1,d,b);return {d,r,p,delta:r&&p?r.v-p.v:null}}).sort((a,b)=>Math.abs(b.delta??-1)-Math.abs(a.delta??-1));
+ tbl('vt',['Department',year+' ($M)',(year-1)+' ($M)','Δ ($M)','Δ (%)'],rows.map(({d,r,p,delta})=>[d,r?nf.format(r.v):'Missing',p?nf.format(p.v):'Missing',delta===null?'Unavailable':signed(delta),delta===null||p.v<=0||r.v<0?'Unavailable':signed(100*delta/p.v)+'%']));
+}
+opts('ay',['2026','2027']);opts('ae',['All exhibits',...new Set(data.request.map(r=>r.exhibit_type).sort())]);
+const org=r=>r.service_agency_name||r.service_agency_acronym||'Unlabeled in source';
+const title=r=>r.line_item_title||'No title in extract';
+const code=r=>r.program_element||r.line_item_number||'—';
+function renderDetail(r){const n=$('detail');n.hidden=false;n.replaceChildren(elt('h3',title(r)),elt('p',[org(r),r.exhibit_type,code(r),r.appropriation_name||r.appropriation_code||'Appropriation not labeled'].join(' · ')),elt('p','PB '+r.year+' request: $'+nf.format(r.amount)+' million. Enacted and execution are not in this preview.'),elt('h4','What is being requested'),elt('p',r.description?.trim()?r.description.trim().slice(0,1000)+(r.description.trim().length>1000?'…':''):'No narrative in the extract. The title is shown as published; no cause or purchase description is inferred.'),elt('p','Source file: '+r.source_file+' · Acquired '+r.vintage),link(r.url,'Open registered source exhibit'));n.scrollIntoView({block:'nearest'})}
+function agency(){let rs=data.request.filter(r=>String(r.year)===$('ay').value&&($('ae').value==='All exhibits'||r.exhibit_type===$('ae').value));opts('ao',['All labels',...new Set(rs.map(org).sort())]);const o=$('ao').value,q=$('aq').value.trim().toLowerCase();rs=rs.filter(r=>(o==='All labels'||org(r)===o)&&(!q||[title(r),code(r),org(r),r.source_file].some(s=>s.toLowerCase().includes(q)))).sort((a,b)=>Math.abs(b.amount)-Math.abs(a.amount));$('ac').textContent=rs.length?rs.length+' matched records · Showing up to 50, ranked by absolute request amount':'No matching request records in this extract.';$('detail').hidden=true;tbl('at',['Title / program','Organization as exported','Exhibit','Request ($M)'],rs.slice(0,50).map(r=>{const bt=elt('button',title(r)+(code(r)==='—'?'':' · '+code(r)));bt.onclick=()=>renderDetail(r);return [bt,org(r),r.exhibit_type,nf.format(r.amount)]}))}
+function pipeline(){
+ const box=$('pc');
+ const tables=[
+ ['Green Book historical view',data.history.length+' observations, FY1948–2023, two dollar bases. Uses the corrected historical export from GitHub main after PR #11 (79c6b39). FY2003 and FY2011 nominal rows are restored; FY2029 is outside the historical view.','Published historical BA',link(gb,'Official FY2025 Green Book')],
+ ['ODBA exhibit extract',data.total_records+' exhibit records / '+data.all_amount_rows+' amount observations in the package. This view requires a registered official source URL and includes '+data.request.length+' current submission request rows. PB27 has no official URLs in this package registry, so this drilldown shows PB26 only.','Request detail only',link('https://github.com/pcwebster/ODBA/pull/10','Repository export context')],
+ ['Consolidated O-1', data.o1.detail.length+' verified detail rows across PB25–PB27. Published controls by exhibit and funding stage are not additive. Includes reported actuals and published enacted amounts where available; no RF-1 working-capital transactions.','Verified O-1 exhibits',link('https://github.com/pcwebster/ODBA/pull/15','O-1 source and validation on GitHub')],
+ ['Execution','No dated obligations or outlays in this preview. Prior-year budget book columns are not treated as execution.','Not ingested in preview',link('https://comptroller.defense.gov/Budget-Execution/1416QrtlyRptsfy2022/','Candidate execution archive')]
+ ];
+ for(const [h,desc,status,a] of tables){const div=elt('div');div.className='card';div.style.marginTop='10px';div.append(elt('h3',h),elt('small',status),elt('p',desc),a);box.append(div)}
+ const cover=elt('div');cover.className='card';cover.style.marginTop='10px';cover.append(elt('h3','Request coverage by submission and exhibit'));const stats=new Map();for(const r of data.request){const k='PB '+r.year+' · '+r.exhibit_type;stats.set(k,(stats.get(k)||0)+1)}for(const [k,v] of [...stats.entries()].sort())cover.append(elt('div',k+': '+v+' records'));box.append(cover);
+ const sources=elt('div');sources.className='card';sources.style.marginTop='10px';sources.append(elt('h3','Consolidated O-1 coverage'));for(const [v,p] of Object.entries(data.o1.provenance)){const row=elt('p');row.append(elt('strong',vintageLabel(v)+' · '),elt('span',p.detailCount+' detail lines · '+p.controlCount+' selected control cells · '),oSource(p.pdfUrl));sources.append(row,elt('small',p.pdfStatus))}box.append(sources);
+ const detail=elt('details');detail.append(elt('summary','Input fingerprints (SHA-256)'));for(const [k,v] of Object.entries(data.hashes))detail.append(elt('p',k+': '+v));for(const [v,p] of Object.entries(data.o1.provenance))detail.append(elt('p',vintageLabel(v)+' original PDF: '+p.pdfSha256));box.append(detail)
+}
+const o=data.o1;
+const laneById=new Map(o.lanes.map(l=>[l.id,l]));
+const vintageLabel=v=>'PB'+String(v).replace(/^pb/i,'').slice(-2);
+const optPairs=(id,pairs)=>{const e=$(id),old=e.value;e.replaceChildren(...pairs.map(([key,label])=>{const n=elt('option',label);n.value=key;return n}));if(pairs.some(([key])=>key===old))e.value=old};
+const oAmount=v=>v===null||v===undefined?'Not reported':(v<0?'−':'')+'$'+nf.format(Math.abs(v)/1000)+'M';
+const oBillions=v=>v===null||v===undefined?'Not reported':(v<0?'−':'')+'$'+new Intl.NumberFormat('en-US',{minimumFractionDigits:3,maximumFractionDigits:6}).format(Math.abs(v)/1e6)+'B';
+const orgLabel=k=>({A:'Army',N:'Navy',F:'Air Force',DEFW:'Defense-Wide',DHA:'Defense Health Agency',SOCOM:'Special Operations Command'}[k]??(k||'Not identified in source'));
+const oVintage=[...new Set(o.lanes.map(l=>String(l.vintage)))].sort();
+const defaultScope=o.defaultScope||'om_title_plus_indefinite';
+optPairs('ofiscal',[...new Set(o.lanes.map(l=>Number(l.fy)))].sort().map(y=>[String(y),'FY'+y]));
+$('ofiscal').value=String(o.defaultFY||2025);
+optPairs('oscope',o.scopes.map(s=>[s.id,s.label]));
+$('oscope').value=defaultScope;
+optPairs('ovintage',oVintage.map(v=>[v,vintageLabel(v)]));
+$('ovintage').value=oVintage.at(-1);
+const oAllowedSource=u=>{try{const p=new URL(u);return p.protocol==='https:'&&['comptroller.defense.gov','comptroller.war.gov'].includes(p.hostname)&&!p.username&&!p.password}catch{return false}};
+function oSource(u,p){return oAllowedSource(u)?link(u,p?'Official O-1 · printed p. '+p:'Official O-1 exhibit'):elt('small','Exhibit page not available')}
+let oLimit=20;
+function oCompare(){
+ const fy=+$('ofiscal').value,scope=$('oscope').value;
+ const all=o.controls.filter(c=>c.scope===scope&&Number(laneById.get(c.lane)?.fy)===fy);
+ const sortEdition=(a,b)=>String(laneById.get(a.lane).vintage).localeCompare(String(laneById.get(b.lane).vintage),undefined,{numeric:true});
+ const separateKinds=new Set(['supplemental','reconciliation_request','spend_plan','mandatory_request']);
+ const core=all.filter(c=>!separateKinds.has(laneById.get(c.lane).kind)).sort(sortEdition);
+ const other=all.filter(c=>!core.includes(c)).sort(sortEdition);
+ const guidance={2024:'The PB25 FY24 figure is the President’s Budget request adjusted for the continuing resolution, not an enacted or actual amount.',2025:'Use PB26’s published total rather than adding its enacted and supplemental columns. Six indefinite-account lines repeat amounts across the printed columns; adding them would overstate the combined O&M scope by $41.3M.',2026:'PB26 requested reconciliation funding; PB27 shows a later statutory spend plan. Those are distinct stages. Expand the other published amounts to see each separately.',2027:'PB27 separates discretionary and mandatory requests. Neither the request nor its published total is an enacted amount.'};
+ const tip=fy===2025&&!['om_title_plus_indefinite','indefinite_accounts'].includes(scope)?'PB26’s published total is shown as reported, not as a sum calculated by the Explorer.':guidance[fy];
+ $('oguide').hidden=!tip;$('oguide').textContent=tip||'';
+ const max=Math.max(0,...core.map(c=>c.amount??0));
+ function make(c,bars){const l=laneById.get(c.lane),row=elt('div'),top=elt('div');row.className='ocrow';top.className='ocrow-head';top.append(elt('span',vintageLabel(l.vintage)+' · '+l.label),elt('strong',oBillions(c.amount)));row.append(top,oSource(c.url,c.page));
+  if(bars&&c.amount>=0&&c.amount!==null&&max>0){const track=elt('div'),bar=elt('div');track.className='otrack';track.setAttribute('aria-hidden','true');bar.className='obar';bar.style.width=(100*c.amount/max).toFixed(4)+'%';track.append(bar);row.append(track)}
+  return row;
+ }
+ $('ocompare').replaceChildren(...(core.length?core.map(c=>make(c,true)):[elt('p','No main-stage controls are available for this fiscal year and scope.')]));
+ $('oextra').hidden=!other.length;
+ $('oother').replaceChildren(...other.map(c=>make(c,false)));
+}
+function oFacet(){
+ const v=$('ovintage').value;
+ const rows=o.detail.filter(d=>String(d.vintage)===v);
+ const orgs=[...new Set(rows.map(d=>d.organization||'UNKNOWN'))].sort((a,b)=>orgLabel(a).localeCompare(orgLabel(b)));
+ optPairs('oorganization',[['','All organizations'],...orgs.map(k=>[k,k==='UNKNOWN'?'Not identified in source':orgLabel(k)])]);
+ const organization=$('oorganization').value;
+ const accounts=new Map(rows.filter(d=>!organization||(d.organization||'UNKNOWN')===organization).map(d=>[d.account,d.accountTitle||d.account]));
+ optPairs('oaccount',[['','All accounts'],...[...accounts].sort(([a],[b])=>a.localeCompare(b)).map(([k,n])=>[k,k+' · '+n])]);
+}
+function oDrill(){
+ const v=$('ovintage').value,org=$('oorganization').value,acc=$('oaccount').value,q=$('osearch').value.trim().toLowerCase();
+ const rows=o.detail.filter(d=>String(d.vintage)===v&&(!org||(d.organization||'UNKNOWN')===org)&&(!acc||d.account===acc)&&(!q||[d.title,d.publishedTitle,d.bli,d.account,d.accountTitle,d.line,d.organization,orgLabel(d.organization)].some(x=>String(x??'').toLowerCase().includes(q))));
+ const shown=Math.min(rows.length,oLimit);
+ const open=new Set(Array.from($('olines').querySelectorAll('details[open]'),d=>d.dataset.lineId));
+ $('ocount').textContent=rows.length?shown+' of '+rows.length+' matching lines · '+vintageLabel(v):'No matching lines in '+vintageLabel(v)+'. Try clearing a filter.';
+ $('omore').hidden=shown===rows.length;
+ $('olines').replaceChildren(...rows.slice(0,shown).map(d=>{
+  const detail=elt('details'),title=d.publishedTitle||d.title||'Untitled line';detail.className='oline';detail.dataset.lineId=v+'|'+d.id;detail.open=open.has(detail.dataset.lineId);
+  detail.append(elt('summary',title),elt('small',[orgLabel(d.organization),d.account,d.accountTitle,d.ba&&'BA '+d.ba,d.activity,d.activityGroupTitle,d.line?'Line '+d.line:'Line number not printed',d.bli&&'BLI '+d.bli].filter(Boolean).join(' · ')));
+  const makeAmounts=lanes=>{const amounts=elt('dl');amounts.className='olamount';for(const l of lanes){const cell=elt('div');cell.append(elt('dt','FY'+l.fy+' '+l.label),elt('dd',oAmount(d.amounts[l.id])));amounts.append(cell)}return amounts};
+  const lanes=o.lanes.filter(l=>String(l.vintage)===v);
+  detail.append(makeAmounts(lanes.filter(l=>l.primary)),oSource(d.url,d.page));
+  if(lanes.some(l=>!l.primary)){const more=elt('details');more.append(elt('summary','Workbook-only columns'),elt('small','Not separate amounts from the original printed PDF. These overlap the printed actuals and are not additive to them.'),makeAmounts(lanes.filter(l=>!l.primary)));detail.append(more)}
+  if(d.publishedTitle&&d.title&&d.publishedTitle!==d.title)detail.append(elt('small','Workbook label: '+d.title));
+  if(d.qaFlags?.length){const alert=elt('p','Source note: '+d.qaFlags.map(f=>f==='pb26_fy25_nonadditive'?'This line repeats the same amount in the FY25 enacted, supplemental, and published-total columns. Use the printed total; do not add the columns.':f).join('; '));alert.className='olvalid';detail.append(alert)}
+  return detail;
+ }));
+}
+function oShow(){oCompare();oFacet();oDrill()}
+for(const key of ['ofiscal','oscope'])$(key).addEventListener('change',oCompare);
+for(const key of ['ovintage','oorganization','oaccount'])$(key).addEventListener('change',()=>{oLimit=20;if(key!=='oaccount')oFacet();oDrill()});
+$('osearch').addEventListener('input',()=>{oLimit=20;oDrill()});
+$('omore').onclick=()=>{oLimit+=20;oDrill()};
+
+const funcs={oone:oShow,history:hist,variance,agency,pipeline:()=>{}};
+$('nav').addEventListener('click',e=>{const v=e.target.dataset.view;if(!v)return;Object.keys(funcs).forEach(k=>$(k).hidden=k!==v);for(const b of $('nav').querySelectorAll('button'))b.setAttribute('aria-pressed',String(b.dataset.view===v));funcs[v]()});
+for(const [ids,f] of [[['dep','basis'],hist],[['vy','vb'],variance],[['ay','ae','ao'],agency]])ids.forEach(k=>$(k).addEventListener('change',f));$('aq').addEventListener('input',agency);
+pipeline();$('nav').querySelector('button').click();
+</script></html>

@@ -1,0 +1,437 @@
+{
+  "submission_fy": 2026,
+  "exhibit": "O-1",
+  "measure": "Total Obligational Authority",
+  "unit": "USD thousands",
+  "workbook_url": "https://defensebudgetdata.org/api/ex/source?file=O-1_PB2026.xlsx",
+  "workbook_sha256": "8df01ce1b421f64e1ccb5aeee2e37458d394d528c61a996d0925fdea33bda84b",
+  "worksheet": "OM Title plus Indefinite",
+  "workbook_status": "Third-party mirror; byte equivalence to publisher workbook unverified",
+  "pdf_url": "https://comptroller.defense.gov/Portals/45/Documents/defbudget/FY2026/FY2026_o1.pdf",
+  "pdf_status": "Original official PDF independently checked across printed O-1 pages 1\u201355 (physical PDF pages 6\u201360). All 407 detail identities and all 2,849 monetary cells match in both directions. Printed and workbook labels remain separate; six exact printed FY25 nonadditive triplets are retained.",
+  "last_o1_printed_page": 55,
+  "official_controls": {
+    "om_title": [
+      344722213,
+      338417709,
+      3899152,
+      342316861,
+      337569236,
+      22708023,
+      360277259
+    ],
+    "indefinite_accounts": [
+      38598,
+      41300,
+      41300,
+      41300,
+      40294,
+      null,
+      40294
+    ],
+    "om_title_plus_indefinite": [
+      344760811,
+      338459009,
+      3940452,
+      342358161,
+      337609530,
+      22708023,
+      360317553
+    ]
+  },
+  "military_department_controls": {
+    "army_accounts": {
+      "accounts": [
+        "2020A",
+        "2080A",
+        "2065A",
+        "2099A"
+      ],
+      "amounts": [
+        76525723,
+        69263497,
+        497553,
+        69761050,
+        71320740,
+        2315317,
+        73636057
+      ]
+    },
+    "navy_accounts": {
+      "accounts": [
+        "1804N",
+        "1106N",
+        "1806N",
+        "1107N"
+      ],
+      "amounts": [
+        86627938,
+        84975645,
+        1463053,
+        86438698,
+        86888420,
+        6466955,
+        93355375
+      ]
+    },
+    "air_force_accounts": {
+      "accounts": [
+        "3400F",
+        "3410F",
+        "3740F",
+        "3840F"
+      ],
+      "amounts": [
+        79499229,
+        79172738,
+        1006536,
+        80179274,
+        79972914,
+        4527303,
+        84500217
+      ]
+    }
+  },
+  "fy25_repeated_triplets_printed_page": 55,
+  "fy25_repeated_triplets_usd_thousands": [
+    [
+      "5188D",
+      "190",
+      3262
+    ],
+    [
+      "5188D",
+      "210",
+      540
+    ],
+    [
+      "5188D",
+      "230",
+      3318
+    ],
+    [
+      "5189D",
+      "260",
+      16434
+    ],
+    [
+      "5189D",
+      "280",
+      7539
+    ],
+    [
+      "5189D",
+      "300",
+      10207
+    ]
+  ],
+  "official_indexed_titles": [
+    {
+      "account": "0833D",
+      "lines": [
+        "110",
+        "120",
+        "130"
+      ],
+      "page": 54,
+      "title": "Emergency Response Fund, Defense"
+    },
+    {
+      "account": "0833D",
+      "lines": [
+        "140",
+        "150",
+        "160",
+        "170"
+      ],
+      "page": 55,
+      "title": "Emergency Response Fund, Defense"
+    },
+    {
+      "account": "5286A",
+      "lines": [
+        ""
+      ],
+      "page": 55,
+      "title": "National Science Center, Army"
+    }
+  ],
+  "printed_account_group_controls": {
+    "transfer_accounts": {
+      "accounts": [
+        "0105D",
+        "0810A",
+        "0810N",
+        "0810F",
+        "0810D",
+        "0811D"
+      ],
+      "amounts": [
+        582,
+        2313575,
+        null,
+        2313575,
+        1996510,
+        null,
+        1996510
+      ],
+      "page": 54
+    },
+    "miscellaneous_accounts": {
+      "accounts": [
+        "0833D",
+        "0838D"
+      ],
+      "amounts": [
+        2481,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "page": 55
+    }
+  },
+  "pdf_sha256": "41c4970437c11fefc325bb1fa9d4ab5799ccecf14b78d3a00794bcf1d9a53b65",
+  "pdf_reference_file": "pdf_detail_reference.json",
+  "pdf_reference_sha256": "3a0ec8ed65f8e09c76ba6ddc175e65026f3d9d4c008df09112a4ad3a657fd25d",
+  "pdf_comparison": {
+    "printed_page_range": [
+      1,
+      55
+    ],
+    "physical_pdf_page_range": [
+      6,
+      60
+    ],
+    "detail_rows": 407,
+    "accounts": 30,
+    "monetary_cells": 2849,
+    "reported_amounts": 1856,
+    "blank_cells": 993,
+    "negative_amounts": 5,
+    "numeric_zero_cells": 0,
+    "missing_candidate_rows": 0,
+    "extra_candidate_rows": 0,
+    "amount_or_blank_mismatches": 0,
+    "workbook_printed_title_differences": 19,
+    "unprinted_activity_subactivity_rows": 25,
+    "blank_printed_line_id": {
+      "account": "5286A",
+      "printed_page": 55,
+      "line": null,
+      "workbook_locator": "OM Title plus Indefinite!108"
+    },
+    "pdf_acquisition": "User-provided original official PDF after direct official downloads returned HTTP403; binary not committed",
+    "method": "Independent word-coordinate extraction using all seven printed headings, scoped account/line/activity and multiline labels; separate plain-text row inventory and rendered sign, blank-ID and exact FY25 triplet checks."
+  },
+  "printed_workbook_title_differences": [
+    {
+      "identity": [
+        "0105D",
+        "010",
+        ""
+      ],
+      "printed_page": 54,
+      "pdf": "Drug Interdiction and Counter-Drug Activities, Defense",
+      "candidate": "Counter-Narcotics Support"
+    },
+    {
+      "identity": [
+        "0105D",
+        "020",
+        ""
+      ],
+      "printed_page": 54,
+      "pdf": "Drug Interdiction and Counter-Drug Activities, Defense",
+      "candidate": "Drug Demand Reduction Program"
+    },
+    {
+      "identity": [
+        "0105D",
+        "030",
+        ""
+      ],
+      "printed_page": 54,
+      "pdf": "Drug Interdiction and Counter-Drug Activities, Defense",
+      "candidate": "National Guard Counter-Drug Program"
+    },
+    {
+      "identity": [
+        "0105D",
+        "040",
+        ""
+      ],
+      "printed_page": 54,
+      "pdf": "Drug Interdiction and Counter-Drug Activities, Defense",
+      "candidate": "National Guard Counter-Drug Schools"
+    },
+    {
+      "identity": [
+        "0105D",
+        "999",
+        ""
+      ],
+      "printed_page": 54,
+      "pdf": "Drug Interdiction and Counter-Drug Activities, Defense",
+      "candidate": "Classified Programs"
+    },
+    {
+      "identity": [
+        "0811D",
+        "090",
+        ""
+      ],
+      "printed_page": 54,
+      "pdf": "Environmental Restoration, Formerly Used Defense Sites",
+      "candidate": "Environmental Restoration Formerly Used Sites"
+    },
+    {
+      "identity": [
+        "0838D",
+        "100",
+        ""
+      ],
+      "printed_page": 54,
+      "pdf": "Support for International Sporting Competitions , Defense",
+      "candidate": "Support of International Sporting Competitions, Defense"
+    },
+    {
+      "identity": [
+        "0833D",
+        "110",
+        ""
+      ],
+      "printed_page": 54,
+      "pdf": "Emergency Response Fund, Defense",
+      "candidate": "Increase Situational Awareness"
+    },
+    {
+      "identity": [
+        "0833D",
+        "120",
+        ""
+      ],
+      "printed_page": 54,
+      "pdf": "Emergency Response Fund, Defense",
+      "candidate": "Enhanced Force Protection"
+    },
+    {
+      "identity": [
+        "0833D",
+        "130",
+        ""
+      ],
+      "printed_page": 54,
+      "pdf": "Emergency Response Fund, Defense",
+      "candidate": "Improved Command and Control"
+    },
+    {
+      "identity": [
+        "0833D",
+        "140",
+        ""
+      ],
+      "printed_page": 55,
+      "pdf": "Emergency Response Fund, Defense",
+      "candidate": "Increase Worldwide Posture"
+    },
+    {
+      "identity": [
+        "0833D",
+        "150",
+        ""
+      ],
+      "printed_page": 55,
+      "pdf": "Emergency Response Fund, Defense",
+      "candidate": "Initial Crisis Response"
+    },
+    {
+      "identity": [
+        "0833D",
+        "160",
+        ""
+      ],
+      "printed_page": 55,
+      "pdf": "Emergency Response Fund, Defense",
+      "candidate": "Pentagon Repair/Upgrade"
+    },
+    {
+      "identity": [
+        "0833D",
+        "170",
+        ""
+      ],
+      "printed_page": 55,
+      "pdf": "Emergency Response Fund, Defense",
+      "candidate": "Other Requirements"
+    },
+    {
+      "identity": [
+        "5286A",
+        null,
+        ""
+      ],
+      "printed_page": 55,
+      "pdf": "National Science Center, Army",
+      "candidate": ""
+    },
+    {
+      "identity": [
+        "5188D",
+        "210",
+        ""
+      ],
+      "printed_page": 55,
+      "pdf": "Disposal of Department of Defense Real Property",
+      "candidate": "Disposal of DoD Real Property"
+    },
+    {
+      "identity": [
+        "5188D",
+        "230",
+        ""
+      ],
+      "printed_page": 55,
+      "pdf": "Disposal of Department of Defense Real Property",
+      "candidate": "Disposal of DoD Real Property"
+    },
+    {
+      "identity": [
+        "5189D",
+        "280",
+        ""
+      ],
+      "printed_page": 55,
+      "pdf": "Lease of Department of Defense Real Property",
+      "candidate": "Lease of DoD Real Property"
+    },
+    {
+      "identity": [
+        "5189D",
+        "300",
+        ""
+      ],
+      "printed_page": 55,
+      "pdf": "Lease of Department of Defense Real Property",
+      "candidate": "Lease of DoD Real Property"
+    }
+  ],
+  "summary_control_coverage": {
+    "row_grain": "non_additive_control",
+    "recorded_cells": 56,
+    "reported_amounts": 47,
+    "blank_cells": 9,
+    "recorded_printed_pages": [
+      1,
+      3,
+      54,
+      55
+    ],
+    "other_printed_summaries": "Defense-Wide p2, individual appropriation/account summaries, account/activity subtotals and lower activity-group summaries are not additive facts or additional checks in headline_controls.csv. Repeated appearances are duplicate evidence.",
+    "distinct_account_activity_scopes": 43,
+    "printed_account_activity_summary_appearances": 73
+  }
+}

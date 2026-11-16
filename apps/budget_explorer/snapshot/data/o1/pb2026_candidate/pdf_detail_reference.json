@@ -1,0 +1,7883 @@
+{
+  "source_file": "FY2026_o1.pdf",
+  "source_pdf_sha256": "41c4970437c11fefc325bb1fa9d4ab5799ccecf14b78d3a00794bcf1d9a53b65",
+  "source_url": "https://comptroller.defense.gov/Portals/45/Documents/defbudget/FY2026/FY2026_o1.pdf",
+  "measure": "Total Obligational Authority",
+  "unit": "USD thousands",
+  "submission_fy": 2026,
+  "printed_pages_scanned": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55
+  ],
+  "physical_pdf_pages_scanned": [
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60
+  ],
+  "columns": [
+    "fy24_actuals_as_reported",
+    "fy25_enacted",
+    "fy25_supplemental",
+    "fy25_published_total",
+    "fy26_discretionary_request",
+    "fy26_reconciliation_request",
+    "fy26_published_total"
+  ],
+  "row_count": 407,
+  "reported_amount_count": 1856,
+  "blank_cell_count": 993,
+  "extraction": "Independent PDF word coordinates: account/printed line identity and activity scopes, seven heading positions, separately read nullable signed amounts, geometric multiline-title blocks; printed pp. 1\u20133 summary rows excluded from additive details. Independent raw-text row inventory also finds 407 details without filtering classification.",
+  "visual_checks_printed_pages": [
+    33,
+    36,
+    54,
+    55
+  ],
+  "limitations": [
+    "Twenty-five detail rows on printed pp. 54\u201355 do not print activity/subactivity codes; these fields remain null in this reference and corresponding workbook raw metadata is not PDF-verified.",
+    "Account 5286A prints no line ID. Its line is null; no replacement identifier is invented.",
+    "Nineteen exact printed line titles differ from workbook labels. The PDF titles are retained here separately; workbook labels must remain attributable to the workbook.",
+    "Six printed p. 55 FY25 Enacted/Supplemental/Total triplets repeat the same value in all three columns. Each column is transcribed independently; published totals are not replaced with inferred sums."
+  ],
+  "workbook_title_difference_count": 19,
+  "rows": [
+    {
+      "account": "2020A",
+      "activity": "01",
+      "line": "010",
+      "subactivity": "111",
+      "line_title": "Maneuver Units",
+      "classification": "U",
+      "printed_page": 4,
+      "pdf_page": 9,
+      "amounts": [
+        5496093,
+        4300944,
+        null,
+        4300944,
+        4671407,
+        null,
+        4671407
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "01",
+      "line": "020",
+      "subactivity": "112",
+      "line_title": "Modular Support Brigades",
+      "classification": "U",
+      "printed_page": 4,
+      "pdf_page": 9,
+      "amounts": [
+        208689,
+        190233,
+        null,
+        190233,
+        221578,
+        null,
+        221578
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "01",
+      "line": "030",
+      "subactivity": "113",
+      "line_title": "Echelons Above Brigade",
+      "classification": "U",
+      "printed_page": 4,
+      "pdf_page": 9,
+      "amounts": [
+        1063294,
+        786520,
+        null,
+        786520,
+        927219,
+        null,
+        927219
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "01",
+      "line": "040",
+      "subactivity": "114",
+      "line_title": "Theater Level Assets",
+      "classification": "U",
+      "printed_page": 4,
+      "pdf_page": 9,
+      "amounts": [
+        2599705,
+        2308252,
+        null,
+        2308252,
+        2220746,
+        null,
+        2220746
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "01",
+      "line": "050",
+      "subactivity": "115",
+      "line_title": "Land Forces Operations Support",
+      "classification": "U",
+      "printed_page": 4,
+      "pdf_page": 9,
+      "amounts": [
+        1201171,
+        1156537,
+        null,
+        1156537,
+        1333769,
+        null,
+        1333769
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "01",
+      "line": "060",
+      "subactivity": "116",
+      "line_title": "Aviation Assets",
+      "classification": "U",
+      "printed_page": 4,
+      "pdf_page": 9,
+      "amounts": [
+        2061810,
+        1947161,
+        79333,
+        2026494,
+        1829054,
+        23000,
+        1852054
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "01",
+      "line": "070",
+      "subactivity": "121",
+      "line_title": "Force Readiness Operations Support",
+      "classification": "U",
+      "printed_page": 4,
+      "pdf_page": 9,
+      "amounts": [
+        8678801,
+        6975983,
+        null,
+        6975983,
+        7497735,
+        66300,
+        7564035
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "01",
+      "line": "080",
+      "subactivity": "122",
+      "line_title": "Land Forces Systems Readiness",
+      "classification": "U",
+      "printed_page": 4,
+      "pdf_page": 9,
+      "amounts": [
+        485854,
+        528542,
+        null,
+        528542,
+        583196,
+        null,
+        583196
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "01",
+      "line": "090",
+      "subactivity": "123",
+      "line_title": "Land Forces Depot Maintenance",
+      "classification": "U",
+      "printed_page": 5,
+      "pdf_page": 10,
+      "amounts": [
+        1596759,
+        1204189,
+        20000,
+        1224189,
+        152404,
+        1488300,
+        1640704
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "01",
+      "line": "100",
+      "subactivity": "124",
+      "line_title": "Medical Readiness",
+      "classification": "U",
+      "printed_page": 5,
+      "pdf_page": 10,
+      "amounts": [
+        909215,
+        857970,
+        null,
+        857970,
+        844140,
+        null,
+        844140
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "01",
+      "line": "110",
+      "subactivity": "131",
+      "line_title": "Base Operations Support",
+      "classification": "U",
+      "printed_page": 5,
+      "pdf_page": 10,
+      "amounts": [
+        9952103,
+        9912446,
+        1937,
+        9914383,
+        10694915,
+        30000,
+        10724915
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "01",
+      "line": "120",
+      "subactivity": "132",
+      "line_title": "Facilities Sustainment, Restoration & Modernization",
+      "classification": "U",
+      "printed_page": 5,
+      "pdf_page": 10,
+      "amounts": [
+        5375781,
+        4081281,
+        350621,
+        4431902,
+        6159744,
+        427213,
+        6586957
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "01",
+      "line": "130",
+      "subactivity": "133",
+      "line_title": "Management and Operational Headquarters",
+      "classification": "U",
+      "printed_page": 5,
+      "pdf_page": 10,
+      "amounts": [
+        300403,
+        308494,
+        null,
+        308494,
+        263147,
+        null,
+        263147
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "01",
+      "line": "140",
+      "subactivity": "135",
+      "line_title": "Additional Activities",
+      "classification": "U",
+      "printed_page": 5,
+      "pdf_page": 10,
+      "amounts": [
+        421190,
+        302625,
+        null,
+        302625,
+        392457,
+        null,
+        392457
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "01",
+      "line": "150",
+      "subactivity": "137",
+      "line_title": "RESET",
+      "classification": "U",
+      "printed_page": 5,
+      "pdf_page": 10,
+      "amounts": [
+        446706,
+        317526,
+        null,
+        317526,
+        111688,
+        null,
+        111688
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "01",
+      "line": "160",
+      "subactivity": "141",
+      "line_title": "US Africa Command",
+      "classification": "U",
+      "printed_page": 5,
+      "pdf_page": 10,
+      "amounts": [
+        448853,
+        423898,
+        null,
+        423898,
+        413046,
+        null,
+        413046
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "01",
+      "line": "170",
+      "subactivity": "142",
+      "line_title": "US European Command",
+      "classification": "U",
+      "printed_page": 5,
+      "pdf_page": 10,
+      "amounts": [
+        352375,
+        320431,
+        null,
+        320431,
+        385744,
+        null,
+        385744
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "01",
+      "line": "180",
+      "subactivity": "143",
+      "line_title": "US Southern Command",
+      "classification": "U",
+      "printed_page": 5,
+      "pdf_page": 10,
+      "amounts": [
+        303356,
+        257429,
+        null,
+        257429,
+        224971,
+        null,
+        224971
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "01",
+      "line": "190",
+      "subactivity": "144",
+      "line_title": "US Forces Korea",
+      "classification": "U",
+      "printed_page": 5,
+      "pdf_page": 10,
+      "amounts": [
+        87522,
+        70738,
+        null,
+        70738,
+        77049,
+        null,
+        77049
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "01",
+      "line": "200",
+      "subactivity": "151",
+      "line_title": "Cyberspace Activities - Cyberspace Operations",
+      "classification": "U",
+      "printed_page": 5,
+      "pdf_page": 10,
+      "amounts": [
+        499697,
+        416160,
+        null,
+        416160,
+        331467,
+        3097,
+        334564
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "01",
+      "line": "210",
+      "subactivity": "153",
+      "line_title": "Cyberspace Activities - Cybersecurity",
+      "classification": "U",
+      "printed_page": 5,
+      "pdf_page": 10,
+      "amounts": [
+        706296,
+        589584,
+        null,
+        589584,
+        550089,
+        10000,
+        560089
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "02",
+      "line": "220",
+      "subactivity": "211",
+      "line_title": "Strategic Mobility",
+      "classification": "U",
+      "printed_page": 6,
+      "pdf_page": 11,
+      "amounts": [
+        586440,
+        530130,
+        null,
+        530130,
+        134892,
+        null,
+        134892
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "02",
+      "line": "230",
+      "subactivity": "212",
+      "line_title": "Army Prepositioned Stocks",
+      "classification": "U",
+      "printed_page": 6,
+      "pdf_page": 11,
+      "amounts": [
+        457299,
+        416852,
+        null,
+        416852,
+        330812,
+        null,
+        330812
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "02",
+      "line": "240",
+      "subactivity": "213",
+      "line_title": "Industrial Preparedness",
+      "classification": "U",
+      "printed_page": 6,
+      "pdf_page": 11,
+      "amounts": [
+        4244,
+        4298,
+        null,
+        4298,
+        3162,
+        null,
+        3162
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "03",
+      "line": "250",
+      "subactivity": "311",
+      "line_title": "Officer Acquisition",
+      "classification": "U",
+      "printed_page": 6,
+      "pdf_page": 11,
+      "amounts": [
+        175043,
+        200216,
+        null,
+        200216,
+        172424,
+        null,
+        172424
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "03",
+      "line": "260",
+      "subactivity": "312",
+      "line_title": "Recruit Training",
+      "classification": "U",
+      "printed_page": 6,
+      "pdf_page": 11,
+      "amounts": [
+        73959,
+        97158,
+        null,
+        97158,
+        78929,
+        null,
+        78929
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "03",
+      "line": "270",
+      "subactivity": "313",
+      "line_title": "One Station Unit Training",
+      "classification": "U",
+      "printed_page": 6,
+      "pdf_page": 11,
+      "amounts": [
+        109141,
+        92471,
+        null,
+        92471,
+        88033,
+        null,
+        88033
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "03",
+      "line": "280",
+      "subactivity": "314",
+      "line_title": "Senior Reserve Officers Training Corps",
+      "classification": "U",
+      "printed_page": 6,
+      "pdf_page": 11,
+      "amounts": [
+        549204,
+        555221,
+        null,
+        555221,
+        508982,
+        null,
+        508982
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "03",
+      "line": "290",
+      "subactivity": "321",
+      "line_title": "Specialized Skill Training",
+      "classification": "U",
+      "printed_page": 7,
+      "pdf_page": 12,
+      "amounts": [
+        1090786,
+        1027447,
+        null,
+        1027447,
+        988901,
+        null,
+        988901
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "03",
+      "line": "300",
+      "subactivity": "322",
+      "line_title": "Flight Training",
+      "classification": "U",
+      "printed_page": 7,
+      "pdf_page": 12,
+      "amounts": [
+        1331213,
+        1410905,
+        null,
+        1410905,
+        1398974,
+        null,
+        1398974
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "03",
+      "line": "310",
+      "subactivity": "323",
+      "line_title": "Professional Development Education",
+      "classification": "U",
+      "printed_page": 7,
+      "pdf_page": 12,
+      "amounts": [
+        194185,
+        212609,
+        null,
+        212609,
+        202738,
+        null,
+        202738
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "03",
+      "line": "320",
+      "subactivity": "324",
+      "line_title": "Training Support",
+      "classification": "U",
+      "printed_page": 7,
+      "pdf_page": 12,
+      "amounts": [
+        674890,
+        731289,
+        null,
+        731289,
+        596528,
+        null,
+        596528
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "03",
+      "line": "330",
+      "subactivity": "331",
+      "line_title": "Recruiting and Advertising",
+      "classification": "U",
+      "printed_page": 7,
+      "pdf_page": 12,
+      "amounts": [
+        745244,
+        819126,
+        null,
+        819126,
+        747712,
+        null,
+        747712
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "03",
+      "line": "340",
+      "subactivity": "332",
+      "line_title": "Examining",
+      "classification": "U",
+      "printed_page": 7,
+      "pdf_page": 12,
+      "amounts": [
+        194233,
+        203737,
+        3,
+        203740,
+        177666,
+        null,
+        177666
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "03",
+      "line": "350",
+      "subactivity": "333",
+      "line_title": "Off-Duty and Voluntary Education",
+      "classification": "U",
+      "printed_page": 7,
+      "pdf_page": 12,
+      "amounts": [
+        257177,
+        242025,
+        null,
+        242025,
+        181211,
+        30000,
+        211211
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "03",
+      "line": "360",
+      "subactivity": "334",
+      "line_title": "Civilian Education and Training",
+      "classification": "U",
+      "printed_page": 7,
+      "pdf_page": 12,
+      "amounts": [
+        246833,
+        245401,
+        null,
+        245401,
+        227476,
+        null,
+        227476
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "03",
+      "line": "370",
+      "subactivity": "335",
+      "line_title": "Junior Reserve Officer Training Corps",
+      "classification": "U",
+      "printed_page": 7,
+      "pdf_page": 12,
+      "amounts": [
+        205026,
+        206163,
+        null,
+        206163,
+        190668,
+        null,
+        190668
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "04",
+      "line": "999",
+      "subactivity": "9999",
+      "line_title": "Classified Programs",
+      "classification": "U",
+      "printed_page": 7,
+      "pdf_page": 12,
+      "amounts": [
+        2394923,
+        2378719,
+        null,
+        2378719,
+        2385523,
+        33500,
+        2419023
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "04",
+      "line": "390",
+      "subactivity": "421",
+      "line_title": "Servicewide Transportation",
+      "classification": "U",
+      "printed_page": 8,
+      "pdf_page": 13,
+      "amounts": [
+        823297,
+        783676,
+        null,
+        783676,
+        1306690,
+        null,
+        1306690
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "04",
+      "line": "400",
+      "subactivity": "422",
+      "line_title": "Central Supply Activities",
+      "classification": "U",
+      "printed_page": 8,
+      "pdf_page": 13,
+      "amounts": [
+        879351,
+        897415,
+        null,
+        897415,
+        740581,
+        null,
+        740581
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "04",
+      "line": "410",
+      "subactivity": "423",
+      "line_title": "Logistic Support Activities",
+      "classification": "U",
+      "printed_page": 8,
+      "pdf_page": 13,
+      "amounts": [
+        845864,
+        731859,
+        null,
+        731859,
+        588151,
+        null,
+        588151
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "04",
+      "line": "420",
+      "subactivity": "424",
+      "line_title": "Ammunition Management",
+      "classification": "U",
+      "printed_page": 8,
+      "pdf_page": 13,
+      "amounts": [
+        462728,
+        410330,
+        null,
+        410330,
+        344948,
+        null,
+        344948
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "04",
+      "line": "430",
+      "subactivity": "431",
+      "line_title": "Administration",
+      "classification": "U",
+      "printed_page": 8,
+      "pdf_page": 13,
+      "amounts": [
+        531165,
+        503263,
+        null,
+        503263,
+        408825,
+        null,
+        408825
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "04",
+      "line": "440",
+      "subactivity": "432",
+      "line_title": "Servicewide Communications",
+      "classification": "U",
+      "printed_page": 8,
+      "pdf_page": 13,
+      "amounts": [
+        2073619,
+        1719878,
+        null,
+        1719878,
+        2171607,
+        null,
+        2171607
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "04",
+      "line": "450",
+      "subactivity": "433",
+      "line_title": "Manpower Management",
+      "classification": "U",
+      "printed_page": 8,
+      "pdf_page": 13,
+      "amounts": [
+        369876,
+        370028,
+        null,
+        370028,
+        313323,
+        null,
+        313323
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "04",
+      "line": "460",
+      "subactivity": "434",
+      "line_title": "Other Personnel Support",
+      "classification": "U",
+      "printed_page": 8,
+      "pdf_page": 13,
+      "amounts": [
+        855406,
+        925725,
+        null,
+        925725,
+        853139,
+        null,
+        853139
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "04",
+      "line": "470",
+      "subactivity": "435",
+      "line_title": "Other Service Support",
+      "classification": "U",
+      "printed_page": 8,
+      "pdf_page": 13,
+      "amounts": [
+        2320470,
+        2375420,
+        null,
+        2375420,
+        2078411,
+        null,
+        2078411
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "04",
+      "line": "480",
+      "subactivity": "436",
+      "line_title": "Army Claims Activities",
+      "classification": "U",
+      "printed_page": 8,
+      "pdf_page": 13,
+      "amounts": [
+        188344,
+        202441,
+        null,
+        202441,
+        223611,
+        null,
+        223611
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "04",
+      "line": "490",
+      "subactivity": "437",
+      "line_title": "Real Estate Management",
+      "classification": "U",
+      "printed_page": 8,
+      "pdf_page": 13,
+      "amounts": [
+        293320,
+        294852,
+        null,
+        294852,
+        294705,
+        null,
+        294705
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "04",
+      "line": "500",
+      "subactivity": "438",
+      "line_title": "Financial Management and Audit Readiness",
+      "classification": "U",
+      "printed_page": 8,
+      "pdf_page": 13,
+      "amounts": [
+        488109,
+        590946,
+        null,
+        590946,
+        618471,
+        null,
+        618471
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "04",
+      "line": "510",
+      "subactivity": "43Q",
+      "line_title": "Def Acquisition Workforce Development Account",
+      "classification": "U",
+      "printed_page": 8,
+      "pdf_page": 13,
+      "amounts": [
+        39200,
+        40261,
+        null,
+        40261,
+        36510,
+        null,
+        36510
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "04",
+      "line": "520",
+      "subactivity": "441",
+      "line_title": "International Military Headquarters",
+      "classification": "U",
+      "printed_page": 8,
+      "pdf_page": 13,
+      "amounts": [
+        600520,
+        594715,
+        null,
+        594715,
+        664510,
+        null,
+        664510
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "04",
+      "line": "530",
+      "subactivity": "442",
+      "line_title": "Misc. Support of Other Nations",
+      "classification": "U",
+      "printed_page": 8,
+      "pdf_page": 13,
+      "amounts": [
+        37068,
+        33945,
+        null,
+        33945,
+        31387,
+        null,
+        31387
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "04",
+      "line": "540",
+      "subactivity": "451",
+      "line_title": "Closed Account Adjustments",
+      "classification": "U",
+      "printed_page": 9,
+      "pdf_page": 14,
+      "amounts": [
+        14787,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "04",
+      "line": "550",
+      "subactivity": "471",
+      "line_title": "Foreign Currency Fluctuation",
+      "classification": "U",
+      "printed_page": 9,
+      "pdf_page": 14,
+      "amounts": [
+        74906,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "04",
+      "line": "560",
+      "subactivity": "493",
+      "line_title": "Defense Environmental Restoration Account (DERA)",
+      "classification": "U",
+      "printed_page": 9,
+      "pdf_page": 14,
+      "amounts": [
+        499601,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "04",
+      "line": "570",
+      "subactivity": "461",
+      "line_title": "Judgment Fund",
+      "classification": "U",
+      "printed_page": 9,
+      "pdf_page": 14,
+      "amounts": [
+        688,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "04",
+      "line": "580",
+      "subactivity": "482",
+      "line_title": "Energy Savings",
+      "classification": "U",
+      "printed_page": 9,
+      "pdf_page": 14,
+      "amounts": [
+        65594,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "2020A",
+      "activity": "04",
+      "line": "590",
+      "subactivity": "483",
+      "line_title": "Agricultural and Grazing Program",
+      "classification": "U",
+      "printed_page": 9,
+      "pdf_page": 14,
+      "amounts": [
+        3581,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "2080A",
+      "activity": "01",
+      "line": "010",
+      "subactivity": "112",
+      "line_title": "Modular Support Brigades",
+      "classification": "U",
+      "printed_page": 10,
+      "pdf_page": 15,
+      "amounts": [
+        11688,
+        12098,
+        null,
+        12098,
+        14651,
+        null,
+        14651
+      ]
+    },
+    {
+      "account": "2080A",
+      "activity": "01",
+      "line": "020",
+      "subactivity": "113",
+      "line_title": "Echelons Above Brigade",
+      "classification": "U",
+      "printed_page": 10,
+      "pdf_page": 15,
+      "amounts": [
+        728914,
+        643056,
+        null,
+        643056,
+        703286,
+        null,
+        703286
+      ]
+    },
+    {
+      "account": "2080A",
+      "activity": "01",
+      "line": "030",
+      "subactivity": "114",
+      "line_title": "Theater Level Assets",
+      "classification": "U",
+      "printed_page": 10,
+      "pdf_page": 15,
+      "amounts": [
+        148261,
+        133896,
+        null,
+        133896,
+        146794,
+        null,
+        146794
+      ]
+    },
+    {
+      "account": "2080A",
+      "activity": "01",
+      "line": "040",
+      "subactivity": "115",
+      "line_title": "Land Forces Operations Support",
+      "classification": "U",
+      "printed_page": 10,
+      "pdf_page": 15,
+      "amounts": [
+        668739,
+        666146,
+        null,
+        666146,
+        685541,
+        null,
+        685541
+      ]
+    },
+    {
+      "account": "2080A",
+      "activity": "01",
+      "line": "050",
+      "subactivity": "116",
+      "line_title": "Aviation Assets",
+      "classification": "U",
+      "printed_page": 10,
+      "pdf_page": 15,
+      "amounts": [
+        139152,
+        129256,
+        9000,
+        138256,
+        55155,
+        null,
+        55155
+      ]
+    },
+    {
+      "account": "2080A",
+      "activity": "01",
+      "line": "060",
+      "subactivity": "121",
+      "line_title": "Force Readiness Operations Support",
+      "classification": "U",
+      "printed_page": 10,
+      "pdf_page": 15,
+      "amounts": [
+        393388,
+        384190,
+        null,
+        384190,
+        438508,
+        null,
+        438508
+      ]
+    },
+    {
+      "account": "2080A",
+      "activity": "01",
+      "line": "070",
+      "subactivity": "122",
+      "line_title": "Land Forces Systems Readiness",
+      "classification": "U",
+      "printed_page": 10,
+      "pdf_page": 15,
+      "amounts": [
+        78599,
+        42853,
+        null,
+        42853,
+        23783,
+        null,
+        23783
+      ]
+    },
+    {
+      "account": "2080A",
+      "activity": "01",
+      "line": "080",
+      "subactivity": "123",
+      "line_title": "Land Forces Depot Maintenance",
+      "classification": "U",
+      "printed_page": 10,
+      "pdf_page": 15,
+      "amounts": [
+        41783,
+        49840,
+        null,
+        49840,
+        40426,
+        null,
+        40426
+      ]
+    },
+    {
+      "account": "2080A",
+      "activity": "01",
+      "line": "090",
+      "subactivity": "131",
+      "line_title": "Base Operations Support",
+      "classification": "U",
+      "printed_page": 11,
+      "pdf_page": 16,
+      "amounts": [
+        621700,
+        551588,
+        null,
+        551588,
+        557465,
+        null,
+        557465
+      ]
+    },
+    {
+      "account": "2080A",
+      "activity": "01",
+      "line": "100",
+      "subactivity": "132",
+      "line_title": "Facilities Sustainment, Restoration & Modernization",
+      "classification": "U",
+      "printed_page": 11,
+      "pdf_page": 16,
+      "amounts": [
+        519631,
+        454503,
+        10594,
+        465097,
+        504922,
+        76053,
+        580975
+      ]
+    },
+    {
+      "account": "2080A",
+      "activity": "01",
+      "line": "110",
+      "subactivity": "133",
+      "line_title": "Management and Operational Headquarters",
+      "classification": "U",
+      "printed_page": 11,
+      "pdf_page": 16,
+      "amounts": [
+        23412,
+        24512,
+        null,
+        24512,
+        20531,
+        null,
+        20531
+      ]
+    },
+    {
+      "account": "2080A",
+      "activity": "01",
+      "line": "120",
+      "subactivity": "151",
+      "line_title": "Cyberspace Activities - Cyberspace Operations",
+      "classification": "U",
+      "printed_page": 11,
+      "pdf_page": 16,
+      "amounts": [
+        3153,
+        2241,
+        null,
+        2241,
+        2174,
+        null,
+        2174
+      ]
+    },
+    {
+      "account": "2080A",
+      "activity": "01",
+      "line": "130",
+      "subactivity": "153",
+      "line_title": "Cyberspace Activities - Cybersecurity",
+      "classification": "U",
+      "printed_page": 11,
+      "pdf_page": 16,
+      "amounts": [
+        19591,
+        18598,
+        null,
+        18598,
+        19041,
+        null,
+        19041
+      ]
+    },
+    {
+      "account": "2080A",
+      "activity": "04",
+      "line": "140",
+      "subactivity": "421",
+      "line_title": "Servicewide Transportation",
+      "classification": "U",
+      "printed_page": 11,
+      "pdf_page": 16,
+      "amounts": [
+        14785,
+        17092,
+        null,
+        17092,
+        14629,
+        null,
+        14629
+      ]
+    },
+    {
+      "account": "2080A",
+      "activity": "04",
+      "line": "150",
+      "subactivity": "431",
+      "line_title": "Administration",
+      "classification": "U",
+      "printed_page": 11,
+      "pdf_page": 16,
+      "amounts": [
+        29862,
+        18888,
+        null,
+        18888,
+        16798,
+        null,
+        16798
+      ]
+    },
+    {
+      "account": "2080A",
+      "activity": "04",
+      "line": "160",
+      "subactivity": "432",
+      "line_title": "Servicewide Communications",
+      "classification": "U",
+      "printed_page": 11,
+      "pdf_page": 16,
+      "amounts": [
+        45414,
+        6727,
+        null,
+        6727,
+        6432,
+        null,
+        6432
+      ]
+    },
+    {
+      "account": "2080A",
+      "activity": "04",
+      "line": "170",
+      "subactivity": "433",
+      "line_title": "Manpower Management",
+      "classification": "U",
+      "printed_page": 12,
+      "pdf_page": 17,
+      "amounts": [
+        11759,
+        7477,
+        null,
+        7477,
+        7186,
+        null,
+        7186
+      ]
+    },
+    {
+      "account": "2080A",
+      "activity": "04",
+      "line": "180",
+      "subactivity": "434",
+      "line_title": "Other Personnel Support",
+      "classification": "U",
+      "printed_page": 12,
+      "pdf_page": 17,
+      "amounts": [
+        64183,
+        70556,
+        null,
+        70556,
+        56856,
+        null,
+        56856
+      ]
+    },
+    {
+      "account": "2080A",
+      "activity": "04",
+      "line": "190",
+      "subactivity": "451",
+      "line_title": "Closed Account Adjustments",
+      "classification": "U",
+      "printed_page": 12,
+      "pdf_page": 17,
+      "amounts": [
+        278,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "2080A",
+      "activity": "04",
+      "line": "200",
+      "subactivity": "461",
+      "line_title": "Judgement Fund",
+      "classification": "U",
+      "printed_page": 12,
+      "pdf_page": 17,
+      "amounts": [
+        180,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "2080A",
+      "activity": "04",
+      "line": "210",
+      "subactivity": "482",
+      "line_title": "Energy Savings",
+      "classification": "U",
+      "printed_page": 12,
+      "pdf_page": 17,
+      "amounts": [
+        5065,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "2065A",
+      "activity": "01",
+      "line": "010",
+      "subactivity": "111",
+      "line_title": "Maneuver Units",
+      "classification": "U",
+      "printed_page": 13,
+      "pdf_page": 18,
+      "amounts": [
+        909123,
+        812398,
+        null,
+        812398,
+        911525,
+        null,
+        911525
+      ]
+    },
+    {
+      "account": "2065A",
+      "activity": "01",
+      "line": "020",
+      "subactivity": "112",
+      "line_title": "Modular Support Brigades",
+      "classification": "U",
+      "printed_page": 13,
+      "pdf_page": 18,
+      "amounts": [
+        194240,
+        195141,
+        null,
+        195141,
+        210737,
+        null,
+        210737
+      ]
+    },
+    {
+      "account": "2065A",
+      "activity": "01",
+      "line": "030",
+      "subactivity": "113",
+      "line_title": "Echelons Above Brigade",
+      "classification": "U",
+      "printed_page": 13,
+      "pdf_page": 18,
+      "amounts": [
+        773906,
+        813851,
+        null,
+        813851,
+        879111,
+        null,
+        879111
+      ]
+    },
+    {
+      "account": "2065A",
+      "activity": "01",
+      "line": "040",
+      "subactivity": "114",
+      "line_title": "Theater Level Assets",
+      "classification": "U",
+      "printed_page": 13,
+      "pdf_page": 18,
+      "amounts": [
+        94537,
+        82156,
+        null,
+        82156,
+        88001,
+        null,
+        88001
+      ]
+    },
+    {
+      "account": "2065A",
+      "activity": "01",
+      "line": "050",
+      "subactivity": "115",
+      "line_title": "Land Forces Operations Support",
+      "classification": "U",
+      "printed_page": 13,
+      "pdf_page": 18,
+      "amounts": [
+        256631,
+        334809,
+        null,
+        334809,
+        350261,
+        null,
+        350261
+      ]
+    },
+    {
+      "account": "2065A",
+      "activity": "01",
+      "line": "060",
+      "subactivity": "116",
+      "line_title": "Aviation Assets",
+      "classification": "U",
+      "printed_page": 13,
+      "pdf_page": 18,
+      "amounts": [
+        1167270,
+        1128409,
+        null,
+        1128409,
+        1128195,
+        null,
+        1128195
+      ]
+    },
+    {
+      "account": "2065A",
+      "activity": "01",
+      "line": "070",
+      "subactivity": "121",
+      "line_title": "Force Readiness Operations Support",
+      "classification": "U",
+      "printed_page": 13,
+      "pdf_page": 18,
+      "amounts": [
+        815994,
+        709939,
+        null,
+        709939,
+        810263,
+        null,
+        810263
+      ]
+    },
+    {
+      "account": "2065A",
+      "activity": "01",
+      "line": "080",
+      "subactivity": "122",
+      "line_title": "Land Forces Systems Readiness",
+      "classification": "U",
+      "printed_page": 13,
+      "pdf_page": 18,
+      "amounts": [
+        57888,
+        34206,
+        null,
+        34206,
+        34354,
+        null,
+        34354
+      ]
+    },
+    {
+      "account": "2065A",
+      "activity": "01",
+      "line": "090",
+      "subactivity": "123",
+      "line_title": "Land Forces Depot Maintenance",
+      "classification": "U",
+      "printed_page": 13,
+      "pdf_page": 18,
+      "amounts": [
+        218407,
+        214113,
+        null,
+        214113,
+        179622,
+        null,
+        179622
+      ]
+    },
+    {
+      "account": "2065A",
+      "activity": "01",
+      "line": "100",
+      "subactivity": "131",
+      "line_title": "Base Operations Support",
+      "classification": "U",
+      "printed_page": 14,
+      "pdf_page": 19,
+      "amounts": [
+        1319977,
+        1229797,
+        null,
+        1229797,
+        1246273,
+        null,
+        1246273
+      ]
+    },
+    {
+      "account": "2065A",
+      "activity": "01",
+      "line": "110",
+      "subactivity": "132",
+      "line_title": "Facilities Sustainment, Restoration & Modernization",
+      "classification": "U",
+      "printed_page": 14,
+      "pdf_page": 19,
+      "amounts": [
+        1074494,
+        1147554,
+        26065,
+        1173619,
+        1275984,
+        127854,
+        1403838
+      ]
+    },
+    {
+      "account": "2065A",
+      "activity": "01",
+      "line": "120",
+      "subactivity": "133",
+      "line_title": "Management and Operational Headquarters",
+      "classification": "U",
+      "printed_page": 14,
+      "pdf_page": 19,
+      "amounts": [
+        1209001,
+        1301466,
+        null,
+        1301466,
+        1203158,
+        null,
+        1203158
+      ]
+    },
+    {
+      "account": "2065A",
+      "activity": "01",
+      "line": "130",
+      "subactivity": "151",
+      "line_title": "Cyberspace Activities - Cyberspace Operations",
+      "classification": "U",
+      "printed_page": 14,
+      "pdf_page": 19,
+      "amounts": [
+        9295,
+        5119,
+        null,
+        5119,
+        5136,
+        null,
+        5136
+      ]
+    },
+    {
+      "account": "2065A",
+      "activity": "01",
+      "line": "140",
+      "subactivity": "153",
+      "line_title": "Cyberspace Activities - Cybersecurity",
+      "classification": "U",
+      "printed_page": 14,
+      "pdf_page": 19,
+      "amounts": [
+        13673,
+        20202,
+        null,
+        20202,
+        24096,
+        null,
+        24096
+      ]
+    },
+    {
+      "account": "2065A",
+      "activity": "04",
+      "line": "150",
+      "subactivity": "421",
+      "line_title": "Servicewide Transportation",
+      "classification": "U",
+      "printed_page": 14,
+      "pdf_page": 19,
+      "amounts": [
+        4879,
+        7598,
+        null,
+        7598,
+        6460,
+        null,
+        6460
+      ]
+    },
+    {
+      "account": "2065A",
+      "activity": "04",
+      "line": "160",
+      "subactivity": "431",
+      "line_title": "Administration",
+      "classification": "U",
+      "printed_page": 14,
+      "pdf_page": 19,
+      "amounts": [
+        71906,
+        52447,
+        null,
+        52447,
+        45919,
+        null,
+        45919
+      ]
+    },
+    {
+      "account": "2065A",
+      "activity": "04",
+      "line": "170",
+      "subactivity": "432",
+      "line_title": "Servicewide Communications",
+      "classification": "U",
+      "printed_page": 15,
+      "pdf_page": 20,
+      "amounts": [
+        115936,
+        17672,
+        null,
+        17672,
+        9373,
+        null,
+        9373
+      ]
+    },
+    {
+      "account": "2065A",
+      "activity": "04",
+      "line": "180",
+      "subactivity": "433",
+      "line_title": "Manpower Management",
+      "classification": "U",
+      "printed_page": 15,
+      "pdf_page": 20,
+      "amounts": [
+        13822,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "2065A",
+      "activity": "04",
+      "line": "190",
+      "subactivity": "434",
+      "line_title": "Other Personnel Support",
+      "classification": "U",
+      "printed_page": 15,
+      "pdf_page": 20,
+      "amounts": [
+        260356,
+        285112,
+        null,
+        285112,
+        261622,
+        null,
+        261622
+      ]
+    },
+    {
+      "account": "2065A",
+      "activity": "04",
+      "line": "200",
+      "subactivity": "437",
+      "line_title": "Real Estate Management",
+      "classification": "U",
+      "printed_page": 15,
+      "pdf_page": 20,
+      "amounts": [
+        4106,
+        3828,
+        null,
+        3828,
+        3891,
+        null,
+        3891
+      ]
+    },
+    {
+      "account": "2065A",
+      "activity": "04",
+      "line": "210",
+      "subactivity": "482",
+      "line_title": "Energy Savings",
+      "classification": "U",
+      "printed_page": 15,
+      "pdf_page": 20,
+      "amounts": [
+        19788,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "2099A",
+      "activity": "01",
+      "line": "010",
+      "subactivity": "110",
+      "line_title": "IRAQ",
+      "classification": "U",
+      "printed_page": 16,
+      "pdf_page": 21,
+      "amounts": [
+        241950,
+        380758,
+        null,
+        380758,
+        212516,
+        null,
+        212516
+      ]
+    },
+    {
+      "account": "2099A",
+      "activity": "01",
+      "line": "020",
+      "subactivity": "120",
+      "line_title": "SYRIA",
+      "classification": "U",
+      "printed_page": 16,
+      "pdf_page": 21,
+      "amounts": [
+        156000,
+        147941,
+        null,
+        147941,
+        130000,
+        null,
+        130000
+      ]
+    },
+    {
+      "account": "2099A",
+      "activity": "01",
+      "line": "030",
+      "subactivity": "150",
+      "line_title": "Lebanon",
+      "classification": "U",
+      "printed_page": 16,
+      "pdf_page": 21,
+      "amounts": [
+        null,
+        null,
+        null,
+        null,
+        15000,
+        null,
+        15000
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "01",
+      "line": "010",
+      "subactivity": "1A1A",
+      "line_title": "Mission and Other Flight Operations",
+      "classification": "U",
+      "printed_page": 17,
+      "pdf_page": 22,
+      "amounts": [
+        7886304,
+        6877059,
+        null,
+        6877059,
+        7720210,
+        null,
+        7720210
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "01",
+      "line": "020",
+      "subactivity": "1A2A",
+      "line_title": "Fleet Air Training",
+      "classification": "U",
+      "printed_page": 17,
+      "pdf_page": 22,
+      "amounts": [
+        2769180,
+        2926546,
+        null,
+        2926546,
+        2925791,
+        null,
+        2925791
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "01",
+      "line": "030",
+      "subactivity": "1A3A",
+      "line_title": "Aviation Technical Data & Engineering Services",
+      "classification": "U",
+      "printed_page": 17,
+      "pdf_page": 22,
+      "amounts": [
+        70428,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "01",
+      "line": "040",
+      "subactivity": "1A4A",
+      "line_title": "Air Operations and Safety Support",
+      "classification": "U",
+      "printed_page": 17,
+      "pdf_page": 22,
+      "amounts": [
+        215873,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "01",
+      "line": "050",
+      "subactivity": "1A4N",
+      "line_title": "Air Systems Support",
+      "classification": "U",
+      "printed_page": 17,
+      "pdf_page": 22,
+      "amounts": [
+        1241473,
+        1412449,
+        null,
+        1412449,
+        1447480,
+        48000,
+        1495480
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "01",
+      "line": "060",
+      "subactivity": "1A5A",
+      "line_title": "Aircraft Depot Maintenance",
+      "classification": "U",
+      "printed_page": 17,
+      "pdf_page": 22,
+      "amounts": [
+        1764354,
+        1673163,
+        null,
+        1673163,
+        1661933,
+        119000,
+        1780933
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "01",
+      "line": "070",
+      "subactivity": "1A6A",
+      "line_title": "Aircraft Depot Operations Support",
+      "classification": "U",
+      "printed_page": 17,
+      "pdf_page": 22,
+      "amounts": [
+        67941,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "01",
+      "line": "080",
+      "subactivity": "1A9A",
+      "line_title": "Aviation Logistics",
+      "classification": "U",
+      "printed_page": 17,
+      "pdf_page": 22,
+      "amounts": [
+        1788121,
+        1989926,
+        null,
+        1989926,
+        2147907,
+        null,
+        2147907
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "01",
+      "line": "090",
+      "subactivity": "1B1B",
+      "line_title": "Mission and Other Ship Operations",
+      "classification": "U",
+      "printed_page": 18,
+      "pdf_page": 23,
+      "amounts": [
+        7460169,
+        7258014,
+        null,
+        7258014,
+        5350073,
+        1907000,
+        7257073
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "01",
+      "line": "100",
+      "subactivity": "1B2B",
+      "line_title": "Ship Operations Support & Training",
+      "classification": "U",
+      "printed_page": 18,
+      "pdf_page": 23,
+      "amounts": [
+        1372331,
+        1536668,
+        null,
+        1536668,
+        1719580,
+        null,
+        1719580
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "01",
+      "line": "110",
+      "subactivity": "1B4B",
+      "line_title": "Ship Depot Maintenance",
+      "classification": "U",
+      "printed_page": 18,
+      "pdf_page": 23,
+      "amounts": [
+        11502495,
+        11763594,
+        null,
+        11763594,
+        13803188,
+        null,
+        13803188
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "01",
+      "line": "120",
+      "subactivity": "1B5B",
+      "line_title": "Ship Depot Operations Support",
+      "classification": "U",
+      "printed_page": 18,
+      "pdf_page": 23,
+      "amounts": [
+        2714238,
+        2671812,
+        null,
+        2671812,
+        2760878,
+        null,
+        2760878
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "01",
+      "line": "130",
+      "subactivity": "1C1C",
+      "line_title": "Combat Communications and Electronic Warfare",
+      "classification": "U",
+      "printed_page": 18,
+      "pdf_page": 23,
+      "amounts": [
+        1829534,
+        1786977,
+        null,
+        1786977,
+        1830993,
+        null,
+        1830993
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "01",
+      "line": "140",
+      "subactivity": "1C1M",
+      "line_title": "Medical Readiness",
+      "classification": "U",
+      "printed_page": 18,
+      "pdf_page": 23,
+      "amounts": [
+        null,
+        null,
+        null,
+        null,
+        604287,
+        null,
+        604287
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "01",
+      "line": "150",
+      "subactivity": "1C3C",
+      "line_title": "Space Systems and Surveillance",
+      "classification": "U",
+      "printed_page": 18,
+      "pdf_page": 23,
+      "amounts": [
+        507197,
+        419504,
+        null,
+        419504,
+        453847,
+        null,
+        453847
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "01",
+      "line": "160",
+      "subactivity": "1C4C",
+      "line_title": "Warfare Tactics",
+      "classification": "U",
+      "printed_page": 18,
+      "pdf_page": 23,
+      "amounts": [
+        1005680,
+        1018130,
+        null,
+        1018130,
+        1000516,
+        null,
+        1000516
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "01",
+      "line": "170",
+      "subactivity": "1C5C",
+      "line_title": "Operational Meteorology and Oceanography",
+      "classification": "U",
+      "printed_page": 18,
+      "pdf_page": 23,
+      "amounts": [
+        469513,
+        441968,
+        null,
+        441968,
+        454803,
+        null,
+        454803
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "01",
+      "line": "180",
+      "subactivity": "1C6C",
+      "line_title": "Combat Support Forces",
+      "classification": "U",
+      "printed_page": 18,
+      "pdf_page": 23,
+      "amounts": [
+        2501934,
+        2359834,
+        null,
+        2359834,
+        2291340,
+        57517,
+        2348857
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "01",
+      "line": "190",
+      "subactivity": "1C7C",
+      "line_title": "Equipment Maintenance and Depot Operations Support",
+      "classification": "U",
+      "printed_page": 18,
+      "pdf_page": 23,
+      "amounts": [
+        188964,
+        49284,
+        null,
+        49284,
+        62495,
+        null,
+        62495
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "01",
+      "line": "200",
+      "subactivity": "1CCH",
+      "line_title": "Combatant Commanders Core Operations",
+      "classification": "U",
+      "printed_page": 18,
+      "pdf_page": 23,
+      "amounts": [
+        98251,
+        107199,
+        null,
+        107199,
+        105914,
+        null,
+        105914
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "01",
+      "line": "210",
+      "subactivity": "1CCM",
+      "line_title": "Combatant Commanders Direct Mission Support",
+      "classification": "U",
+      "printed_page": 18,
+      "pdf_page": 23,
+      "amounts": [
+        545999,
+        395278,
+        null,
+        395278,
+        386657,
+        312870,
+        699527
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "01",
+      "line": "220",
+      "subactivity": "1CCY",
+      "line_title": "Cyberspace Activities",
+      "classification": "U",
+      "printed_page": 18,
+      "pdf_page": 23,
+      "amounts": [
+        548630,
+        556240,
+        null,
+        556240,
+        634746,
+        14871,
+        649617
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "01",
+      "line": "230",
+      "subactivity": "1D2D",
+      "line_title": "Fleet Ballistic Missile",
+      "classification": "U",
+      "printed_page": 19,
+      "pdf_page": 24,
+      "amounts": [
+        1750616,
+        1861566,
+        null,
+        1861566,
+        1837670,
+        44249,
+        1881919
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "01",
+      "line": "240",
+      "subactivity": "1D4D",
+      "line_title": "Weapons Maintenance",
+      "classification": "U",
+      "printed_page": 19,
+      "pdf_page": 24,
+      "amounts": [
+        1761930,
+        1572124,
+        null,
+        1572124,
+        1601768,
+        152859,
+        1754627
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "01",
+      "line": "250",
+      "subactivity": "1D7D",
+      "line_title": "Other Weapon Systems Support",
+      "classification": "U",
+      "printed_page": 19,
+      "pdf_page": 24,
+      "amounts": [
+        690606,
+        772190,
+        null,
+        772190,
+        839619,
+        null,
+        839619
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "01",
+      "line": "260",
+      "subactivity": "BSIT",
+      "line_title": "Enterprise Information",
+      "classification": "U",
+      "printed_page": 19,
+      "pdf_page": 24,
+      "amounts": [
+        1756391,
+        1803714,
+        null,
+        1803714,
+        2185422,
+        null,
+        2185422
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "01",
+      "line": "270",
+      "subactivity": "BSM1",
+      "line_title": "Sustainment, Restoration and Modernization",
+      "classification": "U",
+      "printed_page": 19,
+      "pdf_page": 24,
+      "amounts": [
+        4711542,
+        4468586,
+        1454153,
+        5922739,
+        3991438,
+        1686916,
+        5678354
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "01",
+      "line": "280",
+      "subactivity": "BSS1",
+      "line_title": "Base Operating Support",
+      "classification": "U",
+      "printed_page": 19,
+      "pdf_page": 24,
+      "amounts": [
+        6304050,
+        6211021,
+        null,
+        6211021,
+        6166266,
+        25000,
+        6191266
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "02",
+      "line": "290",
+      "subactivity": "2A1F",
+      "line_title": "Ship Prepositioning and Surge",
+      "classification": "U",
+      "printed_page": 19,
+      "pdf_page": 24,
+      "amounts": [
+        547620,
+        463722,
+        null,
+        463722,
+        388627,
+        null,
+        388627
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "02",
+      "line": "300",
+      "subactivity": "2A2F",
+      "line_title": "Ready Reserve Force",
+      "classification": "U",
+      "printed_page": 19,
+      "pdf_page": 24,
+      "amounts": [
+        667592,
+        780558,
+        null,
+        780558,
+        785052,
+        null,
+        785052
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "02",
+      "line": "310",
+      "subactivity": "2B2G",
+      "line_title": "Ship Activations/Inactivations",
+      "classification": "U",
+      "printed_page": 19,
+      "pdf_page": 24,
+      "amounts": [
+        283272,
+        1010215,
+        null,
+        1010215,
+        583296,
+        null,
+        583296
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "02",
+      "line": "320",
+      "subactivity": "2C1H",
+      "line_title": "Expeditionary Health Services Systems",
+      "classification": "U",
+      "printed_page": 20,
+      "pdf_page": 25,
+      "amounts": [
+        150722,
+        162431,
+        null,
+        162431,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "02",
+      "line": "330",
+      "subactivity": "2C3H",
+      "line_title": "Coast Guard Support",
+      "classification": "U",
+      "printed_page": 20,
+      "pdf_page": 25,
+      "amounts": [
+        21016,
+        21714,
+        null,
+        21714,
+        22192,
+        null,
+        22192
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "03",
+      "line": "340",
+      "subactivity": "3A1J",
+      "line_title": "Officer Acquisition",
+      "classification": "U",
+      "printed_page": 20,
+      "pdf_page": 25,
+      "amounts": [
+        201937,
+        206282,
+        null,
+        206282,
+        202397,
+        null,
+        202397
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "03",
+      "line": "350",
+      "subactivity": "3A2J",
+      "line_title": "Recruit Training",
+      "classification": "U",
+      "printed_page": 20,
+      "pdf_page": 25,
+      "amounts": [
+        27036,
+        18638,
+        null,
+        18638,
+        16945,
+        null,
+        16945
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "03",
+      "line": "360",
+      "subactivity": "3A3J",
+      "line_title": "Reserve Officers Training Corps",
+      "classification": "U",
+      "printed_page": 20,
+      "pdf_page": 25,
+      "amounts": [
+        153943,
+        155044,
+        null,
+        155044,
+        164348,
+        null,
+        164348
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "03",
+      "line": "370",
+      "subactivity": "3B1K",
+      "line_title": "Specialized Skill Training",
+      "classification": "U",
+      "printed_page": 20,
+      "pdf_page": 25,
+      "amounts": [
+        1200502,
+        1213888,
+        null,
+        1213888,
+        1026076,
+        null,
+        1026076
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "03",
+      "line": "380",
+      "subactivity": "3B3K",
+      "line_title": "Professional Development Education",
+      "classification": "U",
+      "printed_page": 20,
+      "pdf_page": 25,
+      "amounts": [
+        322344,
+        348317,
+        null,
+        348317,
+        272964,
+        null,
+        272964
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "03",
+      "line": "390",
+      "subactivity": "3B4K",
+      "line_title": "Training Support",
+      "classification": "U",
+      "printed_page": 20,
+      "pdf_page": 25,
+      "amounts": [
+        396082,
+        422998,
+        null,
+        422998,
+        463572,
+        null,
+        463572
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "03",
+      "line": "400",
+      "subactivity": "3C1L",
+      "line_title": "Recruiting and Advertising",
+      "classification": "U",
+      "printed_page": 21,
+      "pdf_page": 26,
+      "amounts": [
+        292808,
+        281107,
+        null,
+        281107,
+        303177,
+        null,
+        303177
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "03",
+      "line": "410",
+      "subactivity": "3C3L",
+      "line_title": "Off-Duty and Voluntary Education",
+      "classification": "U",
+      "printed_page": 21,
+      "pdf_page": 26,
+      "amounts": [
+        78805,
+        73023,
+        null,
+        73023,
+        914,
+        25000,
+        25914
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "03",
+      "line": "420",
+      "subactivity": "3C4L",
+      "line_title": "Civilian Education and Training",
+      "classification": "U",
+      "printed_page": 21,
+      "pdf_page": 26,
+      "amounts": [
+        70673,
+        71710,
+        null,
+        71710,
+        65819,
+        null,
+        65819
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "03",
+      "line": "430",
+      "subactivity": "3C5L",
+      "line_title": "Junior ROTC",
+      "classification": "U",
+      "printed_page": 21,
+      "pdf_page": 26,
+      "amounts": [
+        62191,
+        59649,
+        null,
+        59649,
+        25334,
+        null,
+        25334
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "04",
+      "line": "999",
+      "subactivity": "9999",
+      "line_title": "Classified Programs",
+      "classification": "U",
+      "printed_page": 21,
+      "pdf_page": 26,
+      "amounts": [
+        668936,
+        656005,
+        null,
+        656005,
+        731405,
+        null,
+        731405
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "04",
+      "line": "440",
+      "subactivity": "4A1M",
+      "line_title": "Administration",
+      "classification": "U",
+      "printed_page": 21,
+      "pdf_page": 26,
+      "amounts": [
+        1453363,
+        1408462,
+        null,
+        1408462,
+        1357428,
+        null,
+        1357428
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "04",
+      "line": "450",
+      "subactivity": "4A3M",
+      "line_title": "Civilian Manpower and Personnel Management",
+      "classification": "U",
+      "printed_page": 21,
+      "pdf_page": 26,
+      "amounts": [
+        234193,
+        249463,
+        null,
+        249463,
+        239918,
+        null,
+        239918
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "04",
+      "line": "460",
+      "subactivity": "4A4M",
+      "line_title": "Military Manpower and Personnel Management",
+      "classification": "U",
+      "printed_page": 21,
+      "pdf_page": 26,
+      "amounts": [
+        725320,
+        694351,
+        null,
+        694351,
+        690712,
+        null,
+        690712
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "04",
+      "line": "470",
+      "subactivity": "4A6S",
+      "line_title": "Spectrum Relocation Pre-Auction",
+      "classification": "U",
+      "printed_page": 21,
+      "pdf_page": 26,
+      "amounts": [
+        54,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "04",
+      "line": "480",
+      "subactivity": "4A8M",
+      "line_title": "Medical Activities",
+      "classification": "U",
+      "printed_page": 21,
+      "pdf_page": 26,
+      "amounts": [
+        322370,
+        313552,
+        null,
+        313552,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "04",
+      "line": "490",
+      "subactivity": "4B1A",
+      "line_title": "Def Acquisition Workforce Development Account",
+      "classification": "U",
+      "printed_page": 22,
+      "pdf_page": 27,
+      "amounts": [
+        64215,
+        67848,
+        null,
+        67848,
+        61046,
+        null,
+        61046
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "04",
+      "line": "500",
+      "subactivity": "4B1N",
+      "line_title": "Servicewide Transportation",
+      "classification": "U",
+      "printed_page": 22,
+      "pdf_page": 27,
+      "amounts": [
+        435071,
+        263379,
+        null,
+        263379,
+        289748,
+        null,
+        289748
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "04",
+      "line": "510",
+      "subactivity": "4B2E",
+      "line_title": "Environmental Programs",
+      "classification": "U",
+      "printed_page": 22,
+      "pdf_page": 27,
+      "amounts": [
+        409625,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "04",
+      "line": "520",
+      "subactivity": "4B2N",
+      "line_title": "Planning, Engineering, and Program Support",
+      "classification": "U",
+      "printed_page": 22,
+      "pdf_page": 27,
+      "amounts": [
+        604374,
+        598531,
+        null,
+        598531,
+        543911,
+        219930,
+        763841
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "04",
+      "line": "530",
+      "subactivity": "4B3N",
+      "line_title": "Acquisition, Logistics, and Oversight",
+      "classification": "U",
+      "printed_page": 22,
+      "pdf_page": 27,
+      "amounts": [
+        825895,
+        857326,
+        null,
+        857326,
+        853340,
+        null,
+        853340
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "04",
+      "line": "540",
+      "subactivity": "4C1P",
+      "line_title": "Investigative and Security Services",
+      "classification": "U",
+      "printed_page": 22,
+      "pdf_page": 27,
+      "amounts": [
+        891289,
+        976135,
+        null,
+        976135,
+        1007078,
+        266,
+        1007344
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "04",
+      "line": "590",
+      "subactivity": "4S09",
+      "line_title": "HQ Transition Process Management",
+      "classification": "U",
+      "printed_page": 22,
+      "pdf_page": 27,
+      "amounts": [
+        477,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "04",
+      "line": "600",
+      "subactivity": "4S11",
+      "line_title": "USMC METOC-3",
+      "classification": "U",
+      "printed_page": 22,
+      "pdf_page": 27,
+      "amounts": [
+        1255,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "04",
+      "line": "610",
+      "subactivity": "4S52",
+      "line_title": "DON TRR-1 (Afloat)",
+      "classification": "U",
+      "printed_page": 22,
+      "pdf_page": 27,
+      "amounts": [
+        1398,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "04",
+      "line": "620",
+      "subactivity": "4S56",
+      "line_title": "DON Robotics Transition Support",
+      "classification": "U",
+      "printed_page": 22,
+      "pdf_page": 27,
+      "amounts": [
+        12,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "04",
+      "line": "630",
+      "subactivity": "4S59",
+      "line_title": "DON HQ Transition Process Management",
+      "classification": "U",
+      "printed_page": 22,
+      "pdf_page": 27,
+      "amounts": [
+        3456,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "04",
+      "line": "640",
+      "subactivity": "4S60",
+      "line_title": "DON UAS Video 5 (Afloat)",
+      "classification": "U",
+      "printed_page": 22,
+      "pdf_page": 27,
+      "amounts": [
+        4896,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "04",
+      "line": "650",
+      "subactivity": "4S61",
+      "line_title": "Spectrum Efficient National Surveillance Radar",
+      "classification": "U",
+      "printed_page": 22,
+      "pdf_page": 27,
+      "amounts": [
+        312,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "04",
+      "line": "660",
+      "subactivity": "4S63",
+      "line_title": "CBRS (3550 MHz)",
+      "classification": "U",
+      "printed_page": 22,
+      "pdf_page": 27,
+      "amounts": [
+        782,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "04",
+      "line": "670",
+      "subactivity": "4S64",
+      "line_title": "AMBIT Pre-Auction",
+      "classification": "U",
+      "printed_page": 23,
+      "pdf_page": 28,
+      "amounts": [
+        38,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "04",
+      "line": "680",
+      "subactivity": "4S71",
+      "line_title": "DON CIO Oversight and Implementation",
+      "classification": "U",
+      "printed_page": 23,
+      "pdf_page": 28,
+      "amounts": [
+        1203,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "04",
+      "line": "690",
+      "subactivity": "4S75",
+      "line_title": "USN Training Ranges - Spectrum Sensing",
+      "classification": "U",
+      "printed_page": 23,
+      "pdf_page": 28,
+      "amounts": [
+        67,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "04",
+      "line": "700",
+      "subactivity": "4S81",
+      "line_title": "USN Engineering and Sharing Support",
+      "classification": "U",
+      "printed_page": 23,
+      "pdf_page": 28,
+      "amounts": [
+        734,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "04",
+      "line": "710",
+      "subactivity": "4S82",
+      "line_title": "USN EME Sensing and Monitoring",
+      "classification": "U",
+      "printed_page": 23,
+      "pdf_page": 28,
+      "amounts": [
+        98,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "04",
+      "line": "720",
+      "subactivity": "4S83",
+      "line_title": "USN CBRS Sharing Ecosystem Assessment",
+      "classification": "U",
+      "printed_page": 23,
+      "pdf_page": 28,
+      "amounts": [
+        134,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "04",
+      "line": "730",
+      "subactivity": "4S85",
+      "line_title": "USN EMI Recognition",
+      "classification": "U",
+      "printed_page": 23,
+      "pdf_page": 28,
+      "amounts": [
+        134,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "04",
+      "line": "740",
+      "subactivity": "4S89",
+      "line_title": "DON Oversight and Implementation",
+      "classification": "U",
+      "printed_page": 23,
+      "pdf_page": 28,
+      "amounts": [
+        956,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "04",
+      "line": "750",
+      "subactivity": "4EMM",
+      "line_title": "Cancelled Account Adjustments",
+      "classification": "U",
+      "printed_page": 23,
+      "pdf_page": 28,
+      "amounts": [
+        25616,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1804N",
+      "activity": "04",
+      "line": "760",
+      "subactivity": "4EPJ",
+      "line_title": "Judgement Fund",
+      "classification": "U",
+      "printed_page": 23,
+      "pdf_page": 28,
+      "amounts": [
+        3709,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1106N",
+      "activity": "01",
+      "line": "010",
+      "subactivity": "1A1A",
+      "line_title": "Operational Forces",
+      "classification": "U",
+      "printed_page": 24,
+      "pdf_page": 29,
+      "amounts": [
+        1834726,
+        1690352,
+        1750,
+        1692102,
+        1950784,
+        176035,
+        2126819
+      ]
+    },
+    {
+      "account": "1106N",
+      "activity": "01",
+      "line": "020",
+      "subactivity": "1A2A",
+      "line_title": "Field Logistics",
+      "classification": "U",
+      "printed_page": 24,
+      "pdf_page": 29,
+      "amounts": [
+        1834651,
+        1924317,
+        null,
+        1924317,
+        1981840,
+        null,
+        1981840
+      ]
+    },
+    {
+      "account": "1106N",
+      "activity": "01",
+      "line": "030",
+      "subactivity": "1A3A",
+      "line_title": "Depot Maintenance",
+      "classification": "U",
+      "printed_page": 24,
+      "pdf_page": 29,
+      "amounts": [
+        208260,
+        231118,
+        null,
+        231118,
+        236,
+        286000,
+        286236
+      ]
+    },
+    {
+      "account": "1106N",
+      "activity": "01",
+      "line": "040",
+      "subactivity": "1B1B",
+      "line_title": "Maritime Prepositioning",
+      "classification": "U",
+      "printed_page": 24,
+      "pdf_page": 29,
+      "amounts": [
+        131131,
+        152365,
+        null,
+        152365,
+        175091,
+        null,
+        175091
+      ]
+    },
+    {
+      "account": "1106N",
+      "activity": "01",
+      "line": "050",
+      "subactivity": "1CCY",
+      "line_title": "Cyberspace Activities",
+      "classification": "U",
+      "printed_page": 24,
+      "pdf_page": 29,
+      "amounts": [
+        209591,
+        263918,
+        null,
+        263918,
+        349082,
+        null,
+        349082
+      ]
+    },
+    {
+      "account": "1106N",
+      "activity": "01",
+      "line": "060",
+      "subactivity": "BSM1",
+      "line_title": "Sustainment, Restoration & Modernization",
+      "classification": "U",
+      "printed_page": 25,
+      "pdf_page": 30,
+      "amounts": [
+        1269214,
+        1163423,
+        1995,
+        1165418,
+        2079890,
+        1242442,
+        3322332
+      ]
+    },
+    {
+      "account": "1106N",
+      "activity": "01",
+      "line": "070",
+      "subactivity": "BSS1",
+      "line_title": "Base Operating Support",
+      "classification": "U",
+      "printed_page": 25,
+      "pdf_page": 30,
+      "amounts": [
+        3043287,
+        2941050,
+        5155,
+        2946205,
+        2834721,
+        134000,
+        2968721
+      ]
+    },
+    {
+      "account": "1106N",
+      "activity": "03",
+      "line": "080",
+      "subactivity": "3A1C",
+      "line_title": "Recruit Training",
+      "classification": "U",
+      "printed_page": 25,
+      "pdf_page": 30,
+      "amounts": [
+        24689,
+        26047,
+        null,
+        26047,
+        26350,
+        null,
+        26350
+      ]
+    },
+    {
+      "account": "1106N",
+      "activity": "03",
+      "line": "090",
+      "subactivity": "3A2C",
+      "line_title": "Officer Acquisition",
+      "classification": "U",
+      "printed_page": 25,
+      "pdf_page": 30,
+      "amounts": [
+        1314,
+        1277,
+        null,
+        1277,
+        1282,
+        null,
+        1282
+      ]
+    },
+    {
+      "account": "1106N",
+      "activity": "03",
+      "line": "100",
+      "subactivity": "3B1D",
+      "line_title": "Specialized Skill Training",
+      "classification": "U",
+      "printed_page": 25,
+      "pdf_page": 30,
+      "amounts": [
+        120302,
+        122045,
+        null,
+        122045,
+        119526,
+        null,
+        119526
+      ]
+    },
+    {
+      "account": "1106N",
+      "activity": "03",
+      "line": "110",
+      "subactivity": "3B3D",
+      "line_title": "Professional Development Education",
+      "classification": "U",
+      "printed_page": 25,
+      "pdf_page": 30,
+      "amounts": [
+        63971,
+        61926,
+        null,
+        61926,
+        58696,
+        null,
+        58696
+      ]
+    },
+    {
+      "account": "1106N",
+      "activity": "03",
+      "line": "120",
+      "subactivity": "3B4D",
+      "line_title": "Training Support",
+      "classification": "U",
+      "printed_page": 25,
+      "pdf_page": 30,
+      "amounts": [
+        558104,
+        537811,
+        null,
+        537811,
+        538812,
+        null,
+        538812
+      ]
+    },
+    {
+      "account": "1106N",
+      "activity": "03",
+      "line": "130",
+      "subactivity": "3C1F",
+      "line_title": "Recruiting and Advertising",
+      "classification": "U",
+      "printed_page": 25,
+      "pdf_page": 30,
+      "amounts": [
+        289058,
+        231427,
+        null,
+        231427,
+        237004,
+        null,
+        237004
+      ]
+    },
+    {
+      "account": "1106N",
+      "activity": "03",
+      "line": "140",
+      "subactivity": "3C2F",
+      "line_title": "Off-Duty and Voluntary Education",
+      "classification": "U",
+      "printed_page": 26,
+      "pdf_page": 31,
+      "amounts": [
+        46617,
+        48916,
+        null,
+        48916,
+        27500,
+        15000,
+        42500
+      ]
+    },
+    {
+      "account": "1106N",
+      "activity": "03",
+      "line": "150",
+      "subactivity": "3C3F",
+      "line_title": "Junior ROTC",
+      "classification": "U",
+      "printed_page": 26,
+      "pdf_page": 31,
+      "amounts": [
+        29381,
+        29631,
+        null,
+        29631,
+        30808,
+        null,
+        30808
+      ]
+    },
+    {
+      "account": "1106N",
+      "activity": "04",
+      "line": "999",
+      "subactivity": "9999",
+      "line_title": "Classified Programs",
+      "classification": "U",
+      "printed_page": 26,
+      "pdf_page": 31,
+      "amounts": [
+        65532,
+        64646,
+        null,
+        64646,
+        73788,
+        null,
+        73788
+      ]
+    },
+    {
+      "account": "1106N",
+      "activity": "04",
+      "line": "160",
+      "subactivity": "4A1W",
+      "line_title": "Agriculture and Grazing",
+      "classification": "U",
+      "printed_page": 26,
+      "pdf_page": 31,
+      "amounts": [
+        306,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1106N",
+      "activity": "04",
+      "line": "170",
+      "subactivity": "4A2W",
+      "line_title": "Recycling",
+      "classification": "U",
+      "printed_page": 26,
+      "pdf_page": 31,
+      "amounts": [
+        4568,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1106N",
+      "activity": "04",
+      "line": "180",
+      "subactivity": "4A3G",
+      "line_title": "Servicewide Transportation",
+      "classification": "U",
+      "printed_page": 26,
+      "pdf_page": 31,
+      "amounts": [
+        95382,
+        94435,
+        null,
+        94435,
+        87509,
+        null,
+        87509
+      ]
+    },
+    {
+      "account": "1106N",
+      "activity": "04",
+      "line": "190",
+      "subactivity": "4A4G",
+      "line_title": "Administration",
+      "classification": "U",
+      "printed_page": 26,
+      "pdf_page": 31,
+      "amounts": [
+        424865,
+        432971,
+        null,
+        432971,
+        431282,
+        null,
+        431282
+      ]
+    },
+    {
+      "account": "1106N",
+      "activity": "04",
+      "line": "210",
+      "subactivity": "4A3W",
+      "line_title": "Forestry Program",
+      "classification": "U",
+      "printed_page": 26,
+      "pdf_page": 31,
+      "amounts": [
+        240,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1106N",
+      "activity": "04",
+      "line": "220",
+      "subactivity": "4S36",
+      "line_title": "DON UAS Video 5",
+      "classification": "U",
+      "printed_page": 26,
+      "pdf_page": 31,
+      "amounts": [
+        1129,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1106N",
+      "activity": "04",
+      "line": "230",
+      "subactivity": "4S53",
+      "line_title": "DON TRR (Ashore)",
+      "classification": "U",
+      "printed_page": 26,
+      "pdf_page": 31,
+      "amounts": [
+        1638,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1106N",
+      "activity": "04",
+      "line": "240",
+      "subactivity": "4S54",
+      "line_title": "DoN TRR 3 Transition Support",
+      "classification": "U",
+      "printed_page": 27,
+      "pdf_page": 32,
+      "amounts": [
+        1310,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1106N",
+      "activity": "04",
+      "line": "250",
+      "subactivity": "4S67",
+      "line_title": "HQMC Transition Management Support",
+      "classification": "U",
+      "printed_page": 27,
+      "pdf_page": 32,
+      "amounts": [
+        53,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1106N",
+      "activity": "04",
+      "line": "260",
+      "subactivity": "4S68",
+      "line_title": "USMC Commercial Industry Deployment Coordination",
+      "classification": "U",
+      "printed_page": 27,
+      "pdf_page": 32,
+      "amounts": [
+        147,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1106N",
+      "activity": "04",
+      "line": "270",
+      "subactivity": "4S69",
+      "line_title": "USMC G/ATOR System Modifications",
+      "classification": "U",
+      "printed_page": 27,
+      "pdf_page": 32,
+      "amounts": [
+        6272,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1106N",
+      "activity": "04",
+      "line": "280",
+      "subactivity": "4S70",
+      "line_title": "USMC Engineering Analysis & Operational Compliance",
+      "classification": "U",
+      "printed_page": 27,
+      "pdf_page": 32,
+      "amounts": [
+        108,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1106N",
+      "activity": "04",
+      "line": "290",
+      "subactivity": "4S86",
+      "line_title": "USMC Engineering and Sharing Support",
+      "classification": "U",
+      "printed_page": 27,
+      "pdf_page": 32,
+      "amounts": [
+        158,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1106N",
+      "activity": "04",
+      "line": "300",
+      "subactivity": "4EMM",
+      "line_title": "Cancelled Account Adjustment",
+      "classification": "U",
+      "printed_page": 27,
+      "pdf_page": 32,
+      "amounts": [
+        699,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1806N",
+      "activity": "01",
+      "line": "010",
+      "subactivity": "1A1A",
+      "line_title": "Mission and Other Flight Operations",
+      "classification": "U",
+      "printed_page": 28,
+      "pdf_page": 33,
+      "amounts": [
+        717518,
+        700801,
+        null,
+        700801,
+        759843,
+        null,
+        759843
+      ]
+    },
+    {
+      "account": "1806N",
+      "activity": "01",
+      "line": "020",
+      "subactivity": "1A3A",
+      "line_title": "Intermediate Maintenance",
+      "classification": "U",
+      "printed_page": 28,
+      "pdf_page": 33,
+      "amounts": [
+        8518,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1806N",
+      "activity": "01",
+      "line": "030",
+      "subactivity": "1A4N",
+      "line_title": "Air Systems Support",
+      "classification": "U",
+      "printed_page": 28,
+      "pdf_page": 33,
+      "amounts": [
+        null,
+        10250,
+        null,
+        10250,
+        9972,
+        null,
+        9972
+      ]
+    },
+    {
+      "account": "1806N",
+      "activity": "01",
+      "line": "040",
+      "subactivity": "1A5A",
+      "line_title": "Aircraft Depot Maintenance",
+      "classification": "U",
+      "printed_page": 28,
+      "pdf_page": 33,
+      "amounts": [
+        171401,
+        137492,
+        null,
+        137492,
+        204603,
+        null,
+        204603
+      ]
+    },
+    {
+      "account": "1806N",
+      "activity": "01",
+      "line": "050",
+      "subactivity": "1A6A",
+      "line_title": "Aircraft Depot Operations Support",
+      "classification": "U",
+      "printed_page": 28,
+      "pdf_page": 33,
+      "amounts": [
+        226,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1806N",
+      "activity": "01",
+      "line": "060",
+      "subactivity": "1A9A",
+      "line_title": "Aviation Logistics",
+      "classification": "U",
+      "printed_page": 28,
+      "pdf_page": 33,
+      "amounts": [
+        19678,
+        33200,
+        null,
+        33200,
+        24469,
+        null,
+        24469
+      ]
+    },
+    {
+      "account": "1806N",
+      "activity": "01",
+      "line": "070",
+      "subactivity": "1C1C",
+      "line_title": "Combat Communications",
+      "classification": "U",
+      "printed_page": 28,
+      "pdf_page": 33,
+      "amounts": [
+        16017,
+        18582,
+        null,
+        18582,
+        19698,
+        null,
+        19698
+      ]
+    },
+    {
+      "account": "1806N",
+      "activity": "01",
+      "line": "080",
+      "subactivity": "1C6C",
+      "line_title": "Combat Support Forces",
+      "classification": "U",
+      "printed_page": 28,
+      "pdf_page": 33,
+      "amounts": [
+        187248,
+        198409,
+        null,
+        198409,
+        186946,
+        null,
+        186946
+      ]
+    },
+    {
+      "account": "1806N",
+      "activity": "01",
+      "line": "090",
+      "subactivity": "1CCY",
+      "line_title": "Cyberspace Activities",
+      "classification": "U",
+      "printed_page": 28,
+      "pdf_page": 33,
+      "amounts": [
+        362,
+        291,
+        null,
+        291,
+        294,
+        null,
+        294
+      ]
+    },
+    {
+      "account": "1806N",
+      "activity": "01",
+      "line": "100",
+      "subactivity": "BSIT",
+      "line_title": "Enterprise Information",
+      "classification": "U",
+      "printed_page": 29,
+      "pdf_page": 34,
+      "amounts": [
+        32919,
+        32454,
+        null,
+        32454,
+        33414,
+        null,
+        33414
+      ]
+    },
+    {
+      "account": "1806N",
+      "activity": "01",
+      "line": "110",
+      "subactivity": "BSMR",
+      "line_title": "Sustainment, Restoration and Modernization",
+      "classification": "U",
+      "printed_page": 29,
+      "pdf_page": 34,
+      "amounts": [
+        74218,
+        50200,
+        null,
+        50200,
+        58213,
+        null,
+        58213
+      ]
+    },
+    {
+      "account": "1806N",
+      "activity": "01",
+      "line": "120",
+      "subactivity": "BSSR",
+      "line_title": "Base Operating Support",
+      "classification": "U",
+      "printed_page": 29,
+      "pdf_page": 34,
+      "amounts": [
+        116508,
+        117024,
+        null,
+        117024,
+        118361,
+        null,
+        118361
+      ]
+    },
+    {
+      "account": "1806N",
+      "activity": "04",
+      "line": "130",
+      "subactivity": "4A1M",
+      "line_title": "Administration",
+      "classification": "U",
+      "printed_page": 29,
+      "pdf_page": 34,
+      "amounts": [
+        2446,
+        2067,
+        null,
+        2067,
+        2539,
+        null,
+        2539
+      ]
+    },
+    {
+      "account": "1806N",
+      "activity": "04",
+      "line": "140",
+      "subactivity": "4A4M",
+      "line_title": "Military Manpower and Personnel Management",
+      "classification": "U",
+      "printed_page": 29,
+      "pdf_page": 34,
+      "amounts": [
+        11153,
+        13575,
+        null,
+        13575,
+        22185,
+        null,
+        22185
+      ]
+    },
+    {
+      "account": "1806N",
+      "activity": "04",
+      "line": "150",
+      "subactivity": "4B3N",
+      "line_title": "Acquisition and Program Management",
+      "classification": "U",
+      "printed_page": 29,
+      "pdf_page": 34,
+      "amounts": [
+        2074,
+        2173,
+        null,
+        2173,
+        1517,
+        null,
+        1517
+      ]
+    },
+    {
+      "account": "1806N",
+      "activity": "04",
+      "line": "160",
+      "subactivity": "4EMM",
+      "line_title": "Cancelled Account Adjustments",
+      "classification": "U",
+      "printed_page": 29,
+      "pdf_page": 34,
+      "amounts": [
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "1107N",
+      "activity": "01",
+      "line": "010",
+      "subactivity": "1A1A",
+      "line_title": "Operating Forces",
+      "classification": "U",
+      "printed_page": 31,
+      "pdf_page": 36,
+      "amounts": [
+        125861,
+        131193,
+        null,
+        131193,
+        117987,
+        null,
+        117987
+      ]
+    },
+    {
+      "account": "1107N",
+      "activity": "01",
+      "line": "020",
+      "subactivity": "1A3A",
+      "line_title": "Depot Maintenance",
+      "classification": "U",
+      "printed_page": 31,
+      "pdf_page": 36,
+      "amounts": [
+        20967,
+        22073,
+        null,
+        22073,
+        22686,
+        null,
+        22686
+      ]
+    },
+    {
+      "account": "1107N",
+      "activity": "01",
+      "line": "030",
+      "subactivity": "BSM1",
+      "line_title": "Sustainment, Restoration and Modernization",
+      "classification": "U",
+      "printed_page": 31,
+      "pdf_page": 36,
+      "amounts": [
+        46476,
+        46948,
+        null,
+        46948,
+        48519,
+        null,
+        48519
+      ]
+    },
+    {
+      "account": "1107N",
+      "activity": "01",
+      "line": "040",
+      "subactivity": "BSS1",
+      "line_title": "Base Operating Support",
+      "classification": "U",
+      "printed_page": 31,
+      "pdf_page": 36,
+      "amounts": [
+        116258,
+        121355,
+        null,
+        121355,
+        123079,
+        null,
+        123079
+      ]
+    },
+    {
+      "account": "1107N",
+      "activity": "04",
+      "line": "050",
+      "subactivity": "4A4G",
+      "line_title": "Administration",
+      "classification": "U",
+      "printed_page": 32,
+      "pdf_page": 37,
+      "amounts": [
+        11117,
+        12689,
+        null,
+        12689,
+        49774,
+        null,
+        49774
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "01",
+      "line": "999",
+      "subactivity": "9999",
+      "line_title": "Classified Programs",
+      "classification": "U",
+      "printed_page": 33,
+      "pdf_page": 38,
+      "amounts": [
+        1794569,
+        1854779,
+        null,
+        1854779,
+        1805672,
+        3000,
+        1808672
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "01",
+      "line": "010",
+      "subactivity": "011A",
+      "line_title": "Primary Combat Forces",
+      "classification": "U",
+      "printed_page": 33,
+      "pdf_page": 38,
+      "amounts": [
+        1163286,
+        842615,
+        3381,
+        845996,
+        1425125,
+        11137,
+        1436262
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "01",
+      "line": "020",
+      "subactivity": "011C",
+      "line_title": "Combat Enhancement Forces",
+      "classification": "U",
+      "printed_page": 33,
+      "pdf_page": 38,
+      "amounts": [
+        2865151,
+        2470432,
+        22579,
+        2493011,
+        2753789,
+        32296,
+        2786085
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "01",
+      "line": "030",
+      "subactivity": "011D",
+      "line_title": "Air Operations Training (OJT, Maintain Skills)",
+      "classification": "U",
+      "printed_page": 33,
+      "pdf_page": 38,
+      "amounts": [
+        1641416,
+        1454709,
+        205,
+        1454914,
+        1701493,
+        5979,
+        1707472
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "01",
+      "line": "040",
+      "subactivity": "011M",
+      "line_title": "Depot Purchase Equipment Maintenance",
+      "classification": "U",
+      "printed_page": 33,
+      "pdf_page": 38,
+      "amounts": [
+        4236102,
+        4738731,
+        null,
+        4738731,
+        4676962,
+        694405,
+        5371367
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "01",
+      "line": "050",
+      "subactivity": "011R",
+      "line_title": "Facilities Sustainment, Restoration & Modernization",
+      "classification": "U",
+      "printed_page": 33,
+      "pdf_page": 38,
+      "amounts": [
+        4494175,
+        4170729,
+        830912,
+        5001641,
+        3093331,
+        2500000,
+        5593331
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "01",
+      "line": "060",
+      "subactivity": "011V",
+      "line_title": "Cyberspace Sustainment",
+      "classification": "U",
+      "printed_page": 33,
+      "pdf_page": 38,
+      "amounts": [
+        236430,
+        253330,
+        null,
+        253330,
+        245874,
+        null,
+        245874
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "01",
+      "line": "070",
+      "subactivity": "011W",
+      "line_title": "Contractor Logistics Support and System Support",
+      "classification": "U",
+      "printed_page": 34,
+      "pdf_page": 39,
+      "amounts": [
+        9756153,
+        10004030,
+        null,
+        10004030,
+        9283958,
+        704609,
+        9988567
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "01",
+      "line": "080",
+      "subactivity": "011Y",
+      "line_title": "Flying Hour Program",
+      "classification": "U",
+      "printed_page": 34,
+      "pdf_page": 39,
+      "amounts": [
+        6583017,
+        6519621,
+        null,
+        6519621,
+        6772468,
+        71762,
+        6844230
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "01",
+      "line": "090",
+      "subactivity": "011Z",
+      "line_title": "Base Support",
+      "classification": "U",
+      "printed_page": 34,
+      "pdf_page": 39,
+      "amounts": [
+        11060824,
+        11131043,
+        44378,
+        11175421,
+        11328614,
+        30000,
+        11358614
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "01",
+      "line": "100",
+      "subactivity": "012A",
+      "line_title": "Global C3I and Early Warning",
+      "classification": "U",
+      "printed_page": 34,
+      "pdf_page": 39,
+      "amounts": [
+        1316803,
+        1233952,
+        2247,
+        1236199,
+        1239641,
+        21811,
+        1261452
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "01",
+      "line": "110",
+      "subactivity": "012C",
+      "line_title": "Other Combat Ops Spt Programs",
+      "classification": "U",
+      "printed_page": 34,
+      "pdf_page": 39,
+      "amounts": [
+        1903293,
+        1877901,
+        5826,
+        1883727,
+        1896441,
+        125000,
+        2021441
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "01",
+      "line": "120",
+      "subactivity": "012D",
+      "line_title": "Cyberspace Activities",
+      "classification": "U",
+      "printed_page": 34,
+      "pdf_page": 39,
+      "amounts": [
+        805661,
+        851978,
+        null,
+        851978,
+        858321,
+        12484,
+        870805
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "01",
+      "line": "140",
+      "subactivity": "012Q",
+      "line_title": "Medical Readiness",
+      "classification": "U",
+      "printed_page": 34,
+      "pdf_page": 39,
+      "amounts": [
+        499829,
+        537823,
+        null,
+        537823,
+        554180,
+        null,
+        554180
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "01",
+      "line": "150",
+      "subactivity": "015C",
+      "line_title": "US NORTHCOM/NORAD",
+      "classification": "U",
+      "printed_page": 34,
+      "pdf_page": 39,
+      "amounts": [
+        285066,
+        207320,
+        null,
+        207320,
+        266248,
+        null,
+        266248
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "01",
+      "line": "160",
+      "subactivity": "015D",
+      "line_title": "US STRATCOM",
+      "classification": "U",
+      "printed_page": 34,
+      "pdf_page": 39,
+      "amounts": [
+        529452,
+        523909,
+        null,
+        523909,
+        593503,
+        null,
+        593503
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "01",
+      "line": "170",
+      "subactivity": "015F",
+      "line_title": "US CENTCOM",
+      "classification": "U",
+      "printed_page": 34,
+      "pdf_page": 39,
+      "amounts": [
+        356889,
+        322500,
+        null,
+        322500,
+        350566,
+        null,
+        350566
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "01",
+      "line": "180",
+      "subactivity": "015G",
+      "line_title": "US SOCOM",
+      "classification": "U",
+      "printed_page": 34,
+      "pdf_page": 39,
+      "amounts": [
+        32347,
+        28431,
+        null,
+        28431,
+        28018,
+        null,
+        28018
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "01",
+      "line": "190",
+      "subactivity": "015H",
+      "line_title": "US TRANSCOM",
+      "classification": "U",
+      "printed_page": 34,
+      "pdf_page": 39,
+      "amounts": [
+        221,
+        681,
+        null,
+        681,
+        703,
+        null,
+        703
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "01",
+      "line": "200",
+      "subactivity": "015U",
+      "line_title": "CENTCOM Cyberspace Sustainment",
+      "classification": "U",
+      "printed_page": 34,
+      "pdf_page": 39,
+      "amounts": [
+        1457,
+        1466,
+        null,
+        1466,
+        928,
+        null,
+        928
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "01",
+      "line": "210",
+      "subactivity": "015X",
+      "line_title": "USSPACECOM",
+      "classification": "U",
+      "printed_page": 34,
+      "pdf_page": 39,
+      "amounts": [
+        361087,
+        417903,
+        null,
+        417903,
+        369658,
+        null,
+        369658
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "02",
+      "line": "220",
+      "subactivity": "021A",
+      "line_title": "Airlift Operations",
+      "classification": "U",
+      "printed_page": 35,
+      "pdf_page": 40,
+      "amounts": [
+        3577172,
+        3848792,
+        3250,
+        3852042,
+        3391672,
+        38863,
+        3430535
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "02",
+      "line": "230",
+      "subactivity": "021D",
+      "line_title": "Mobilization Preparedness",
+      "classification": "U",
+      "printed_page": 35,
+      "pdf_page": 40,
+      "amounts": [
+        240143,
+        247868,
+        null,
+        247868,
+        279205,
+        null,
+        279205
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "03",
+      "line": "240",
+      "subactivity": "031A",
+      "line_title": "Officer Acquisition",
+      "classification": "U",
+      "printed_page": 35,
+      "pdf_page": 40,
+      "amounts": [
+        219511,
+        219090,
+        null,
+        219090,
+        250380,
+        null,
+        250380
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "03",
+      "line": "250",
+      "subactivity": "031B",
+      "line_title": "Recruit Training",
+      "classification": "U",
+      "printed_page": 35,
+      "pdf_page": 40,
+      "amounts": [
+        31085,
+        28119,
+        null,
+        28119,
+        29335,
+        null,
+        29335
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "03",
+      "line": "260",
+      "subactivity": "031D",
+      "line_title": "Reserve Officers Training Corps (ROTC)",
+      "classification": "U",
+      "printed_page": 35,
+      "pdf_page": 40,
+      "amounts": [
+        130312,
+        134336,
+        null,
+        134336,
+        131342,
+        null,
+        131342
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "03",
+      "line": "270",
+      "subactivity": "032A",
+      "line_title": "Specialized Skill Training",
+      "classification": "U",
+      "printed_page": 35,
+      "pdf_page": 40,
+      "amounts": [
+        600126,
+        614517,
+        null,
+        614517,
+        522068,
+        null,
+        522068
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "03",
+      "line": "280",
+      "subactivity": "032B",
+      "line_title": "Flight Training",
+      "classification": "U",
+      "printed_page": 35,
+      "pdf_page": 40,
+      "amounts": [
+        778789,
+        843561,
+        null,
+        843561,
+        1065465,
+        null,
+        1065465
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "03",
+      "line": "290",
+      "subactivity": "032C",
+      "line_title": "Professional Development Education",
+      "classification": "U",
+      "printed_page": 35,
+      "pdf_page": 40,
+      "amounts": [
+        291089,
+        300857,
+        null,
+        300857,
+        284442,
+        null,
+        284442
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "03",
+      "line": "300",
+      "subactivity": "032D",
+      "line_title": "Training Support",
+      "classification": "U",
+      "printed_page": 35,
+      "pdf_page": 40,
+      "amounts": [
+        215652,
+        189593,
+        null,
+        189593,
+        181966,
+        null,
+        181966
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "03",
+      "line": "310",
+      "subactivity": "033A",
+      "line_title": "Recruiting and Advertising",
+      "classification": "U",
+      "printed_page": 36,
+      "pdf_page": 41,
+      "amounts": [
+        235367,
+        215264,
+        null,
+        215264,
+        256687,
+        null,
+        256687
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "03",
+      "line": "320",
+      "subactivity": "033B",
+      "line_title": "Examining",
+      "classification": "U",
+      "printed_page": 36,
+      "pdf_page": 41,
+      "amounts": [
+        7716,
+        7845,
+        null,
+        7845,
+        6990,
+        null,
+        6990
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "03",
+      "line": "330",
+      "subactivity": "033C",
+      "line_title": "Off-Duty and Voluntary Education",
+      "classification": "U",
+      "printed_page": 36,
+      "pdf_page": 41,
+      "amounts": [
+        227625,
+        255167,
+        null,
+        255167,
+        224340,
+        30000,
+        254340
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "03",
+      "line": "340",
+      "subactivity": "033D",
+      "line_title": "Civilian Education and Training",
+      "classification": "U",
+      "printed_page": 36,
+      "pdf_page": 41,
+      "amounts": [
+        366269,
+        360604,
+        null,
+        360604,
+        360260,
+        null,
+        360260
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "03",
+      "line": "350",
+      "subactivity": "033E",
+      "line_title": "Junior ROTC",
+      "classification": "U",
+      "printed_page": 36,
+      "pdf_page": 41,
+      "amounts": [
+        75866,
+        74659,
+        null,
+        74659,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "04",
+      "line": "999",
+      "subactivity": "9999",
+      "line_title": "Classified Programs",
+      "classification": "U",
+      "printed_page": 36,
+      "pdf_page": 41,
+      "amounts": [
+        1508244,
+        1509026,
+        null,
+        1509026,
+        1735598,
+        10400,
+        1745998
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "04",
+      "line": "360",
+      "subactivity": "041A",
+      "line_title": "Logistics Operations",
+      "classification": "U",
+      "printed_page": 36,
+      "pdf_page": 41,
+      "amounts": [
+        1002536,
+        1098024,
+        null,
+        1098024,
+        1155659,
+        1932,
+        1157591
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "04",
+      "line": "370",
+      "subactivity": "041B",
+      "line_title": "Technical Support Activities",
+      "classification": "U",
+      "printed_page": 36,
+      "pdf_page": 41,
+      "amounts": [
+        172880,
+        163313,
+        null,
+        163313,
+        158965,
+        null,
+        158965
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "04",
+      "line": "380",
+      "subactivity": "042A",
+      "line_title": "Administration",
+      "classification": "U",
+      "printed_page": 37,
+      "pdf_page": 42,
+      "amounts": [
+        1264200,
+        1241705,
+        null,
+        1241705,
+        1221364,
+        null,
+        1221364
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "04",
+      "line": "390",
+      "subactivity": "042B",
+      "line_title": "Servicewide Communications",
+      "classification": "U",
+      "printed_page": 37,
+      "pdf_page": 42,
+      "amounts": [
+        69911,
+        34538,
+        null,
+        34538,
+        45228,
+        153,
+        45381
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "04",
+      "line": "400",
+      "subactivity": "042D",
+      "line_title": "Defense Environmental Restoration Account",
+      "classification": "U",
+      "printed_page": 37,
+      "pdf_page": 42,
+      "amounts": [
+        379029,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "04",
+      "line": "410",
+      "subactivity": "042G",
+      "line_title": "Other Servicewide Activities",
+      "classification": "U",
+      "printed_page": 37,
+      "pdf_page": 42,
+      "amounts": [
+        1787509,
+        1827493,
+        null,
+        1827493,
+        1712600,
+        null,
+        1712600
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "04",
+      "line": "420",
+      "subactivity": "042I",
+      "line_title": "Civil Air Patrol",
+      "classification": "U",
+      "printed_page": 37,
+      "pdf_page": 42,
+      "amounts": [
+        54599,
+        56500,
+        null,
+        56500,
+        32394,
+        null,
+        32394
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "04",
+      "line": "430",
+      "subactivity": "042W",
+      "line_title": "Def Acquisition Workforce Development account",
+      "classification": "U",
+      "printed_page": 37,
+      "pdf_page": 42,
+      "amounts": [
+        45851,
+        50732,
+        null,
+        50732,
+        48741,
+        null,
+        48741
+      ]
+    },
+    {
+      "account": "3400F",
+      "activity": "04",
+      "line": "450",
+      "subactivity": "044A",
+      "line_title": "International Support",
+      "classification": "U",
+      "printed_page": 37,
+      "pdf_page": 42,
+      "amounts": [
+        90060,
+        84738,
+        null,
+        84738,
+        89341,
+        null,
+        89341
+      ]
+    },
+    {
+      "account": "3410F",
+      "activity": "01",
+      "line": "999",
+      "subactivity": "9999",
+      "line_title": "Classified Programs",
+      "classification": "U",
+      "printed_page": 38,
+      "pdf_page": 43,
+      "amounts": [
+        385155,
+        529307,
+        83771,
+        613078,
+        641519,
+        6390,
+        647909
+      ]
+    },
+    {
+      "account": "3410F",
+      "activity": "01",
+      "line": "010",
+      "subactivity": "012A",
+      "line_title": "Global C3I & Early Warning",
+      "classification": "U",
+      "printed_page": 38,
+      "pdf_page": 43,
+      "amounts": [
+        623245,
+        643482,
+        640,
+        644122,
+        846856,
+        795,
+        847651
+      ]
+    },
+    {
+      "account": "3410F",
+      "activity": "01",
+      "line": "020",
+      "subactivity": "013A",
+      "line_title": "Space Launch Operations",
+      "classification": "U",
+      "printed_page": 38,
+      "pdf_page": 43,
+      "amounts": [
+        369468,
+        369001,
+        null,
+        369001,
+        397822,
+        null,
+        397822
+      ]
+    },
+    {
+      "account": "3410F",
+      "activity": "01",
+      "line": "030",
+      "subactivity": "013C",
+      "line_title": "Space Operations",
+      "classification": "U",
+      "printed_page": 38,
+      "pdf_page": 43,
+      "amounts": [
+        847501,
+        890977,
+        365,
+        891342,
+        983784,
+        null,
+        983784
+      ]
+    },
+    {
+      "account": "3410F",
+      "activity": "01",
+      "line": "040",
+      "subactivity": "013E",
+      "line_title": "Education & Training",
+      "classification": "U",
+      "printed_page": 38,
+      "pdf_page": 43,
+      "amounts": [
+        190357,
+        221103,
+        null,
+        221103,
+        302939,
+        null,
+        302939
+      ]
+    },
+    {
+      "account": "3410F",
+      "activity": "01",
+      "line": "060",
+      "subactivity": "013M",
+      "line_title": "Depot Maintenance",
+      "classification": "U",
+      "printed_page": 38,
+      "pdf_page": 43,
+      "amounts": [
+        68059,
+        65571,
+        null,
+        65571,
+        67126,
+        null,
+        67126
+      ]
+    },
+    {
+      "account": "3410F",
+      "activity": "01",
+      "line": "070",
+      "subactivity": "013R",
+      "line_title": "Facilities Sustainment, Restoration & Modernization",
+      "classification": "U",
+      "printed_page": 38,
+      "pdf_page": 43,
+      "amounts": [
+        716169,
+        439158,
+        5373,
+        444531,
+        557175,
+        null,
+        557175
+      ]
+    },
+    {
+      "account": "3410F",
+      "activity": "01",
+      "line": "080",
+      "subactivity": "013W",
+      "line_title": "Contractor Logistics and System Support",
+      "classification": "U",
+      "printed_page": 38,
+      "pdf_page": 43,
+      "amounts": [
+        1355119,
+        1329611,
+        null,
+        1329611,
+        1495242,
+        null,
+        1495242
+      ]
+    },
+    {
+      "account": "3410F",
+      "activity": "01",
+      "line": "090",
+      "subactivity": "013Z",
+      "line_title": "Space Operations -BOS",
+      "classification": "U",
+      "printed_page": 38,
+      "pdf_page": 43,
+      "amounts": [
+        227396,
+        236983,
+        81,
+        237064,
+        233546,
+        15000,
+        248546
+      ]
+    },
+    {
+      "account": "3410F",
+      "activity": "01",
+      "line": "100",
+      "subactivity": "013D",
+      "line_title": "Cyberspace Activities",
+      "classification": "U",
+      "printed_page": 39,
+      "pdf_page": 44,
+      "amounts": [
+        null,
+        122142,
+        null,
+        122142,
+        141512,
+        null,
+        141512
+      ]
+    },
+    {
+      "account": "3410F",
+      "activity": "04",
+      "line": "110",
+      "subactivity": "041A",
+      "line_title": "Logistics Operations",
+      "classification": "U",
+      "printed_page": 39,
+      "pdf_page": 44,
+      "amounts": [
+        29887,
+        31313,
+        null,
+        31313,
+        35889,
+        null,
+        35889
+      ]
+    },
+    {
+      "account": "3410F",
+      "activity": "04",
+      "line": "120",
+      "subactivity": "042A",
+      "line_title": "Administration",
+      "classification": "U",
+      "printed_page": 39,
+      "pdf_page": 44,
+      "amounts": [
+        130224,
+        165556,
+        null,
+        165556,
+        184753,
+        null,
+        184753
+      ]
+    },
+    {
+      "account": "3410F",
+      "activity": "04",
+      "line": "130",
+      "subactivity": "042G",
+      "line_title": "Other Servicewide Activities",
+      "classification": "U",
+      "printed_page": 39,
+      "pdf_page": 44,
+      "amounts": [
+        2427,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "3740F",
+      "activity": "01",
+      "line": "010",
+      "subactivity": "011A",
+      "line_title": "Primary Combat Forces",
+      "classification": "U",
+      "printed_page": 40,
+      "pdf_page": 45,
+      "amounts": [
+        1954479,
+        1824396,
+        null,
+        1824396,
+        2010793,
+        null,
+        2010793
+      ]
+    },
+    {
+      "account": "3740F",
+      "activity": "01",
+      "line": "020",
+      "subactivity": "011G",
+      "line_title": "Mission Support Operations",
+      "classification": "U",
+      "printed_page": 40,
+      "pdf_page": 45,
+      "amounts": [
+        205668,
+        177080,
+        null,
+        177080,
+        214701,
+        null,
+        214701
+      ]
+    },
+    {
+      "account": "3740F",
+      "activity": "01",
+      "line": "030",
+      "subactivity": "011M",
+      "line_title": "Depot Purchase Equipment Maintenance",
+      "classification": "U",
+      "printed_page": 40,
+      "pdf_page": 45,
+      "amounts": [
+        644253,
+        597172,
+        null,
+        597172,
+        702575,
+        25642,
+        728217
+      ]
+    },
+    {
+      "account": "3740F",
+      "activity": "01",
+      "line": "040",
+      "subactivity": "011R",
+      "line_title": "Facilities Sustainment, Restoration & Modernization",
+      "classification": "U",
+      "printed_page": 40,
+      "pdf_page": 45,
+      "amounts": [
+        148218,
+        123394,
+        1319,
+        124713,
+        188802,
+        null,
+        188802
+      ]
+    },
+    {
+      "account": "3740F",
+      "activity": "01",
+      "line": "050",
+      "subactivity": "011W",
+      "line_title": "Contractor Logistics Support and System Support",
+      "classification": "U",
+      "printed_page": 40,
+      "pdf_page": 45,
+      "amounts": [
+        346367,
+        601302,
+        null,
+        601302,
+        493324,
+        34951,
+        528275
+      ]
+    },
+    {
+      "account": "3740F",
+      "activity": "01",
+      "line": "060",
+      "subactivity": "011Z",
+      "line_title": "Base Support",
+      "classification": "U",
+      "printed_page": 40,
+      "pdf_page": 45,
+      "amounts": [
+        499499,
+        585943,
+        null,
+        585943,
+        585430,
+        null,
+        585430
+      ]
+    },
+    {
+      "account": "3740F",
+      "activity": "01",
+      "line": "070",
+      "subactivity": "012D",
+      "line_title": "Cyberspace Activities",
+      "classification": "U",
+      "printed_page": 40,
+      "pdf_page": 45,
+      "amounts": [
+        1667,
+        2331,
+        null,
+        2331,
+        2484,
+        null,
+        2484
+      ]
+    },
+    {
+      "account": "3740F",
+      "activity": "04",
+      "line": "080",
+      "subactivity": "042A",
+      "line_title": "Administration",
+      "classification": "U",
+      "printed_page": 41,
+      "pdf_page": 46,
+      "amounts": [
+        88840,
+        82732,
+        null,
+        82732,
+        98418,
+        null,
+        98418
+      ]
+    },
+    {
+      "account": "3740F",
+      "activity": "04",
+      "line": "090",
+      "subactivity": "042J",
+      "line_title": "Recruiting and Advertising",
+      "classification": "U",
+      "printed_page": 41,
+      "pdf_page": 46,
+      "amounts": [
+        9266,
+        10855,
+        null,
+        10855,
+        10618,
+        null,
+        10618
+      ]
+    },
+    {
+      "account": "3740F",
+      "activity": "04",
+      "line": "100",
+      "subactivity": "042K",
+      "line_title": "Military Manpower and Pers Mgmt (ARPC)",
+      "classification": "U",
+      "printed_page": 41,
+      "pdf_page": 46,
+      "amounts": [
+        15441,
+        17188,
+        null,
+        17188,
+        14951,
+        null,
+        14951
+      ]
+    },
+    {
+      "account": "3740F",
+      "activity": "04",
+      "line": "110",
+      "subactivity": "042L",
+      "line_title": "Other Pers Support (Disability Comp)",
+      "classification": "U",
+      "printed_page": 41,
+      "pdf_page": 46,
+      "amounts": [
+        5251,
+        6304,
+        null,
+        6304,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "3740F",
+      "activity": "04",
+      "line": "120",
+      "subactivity": "042M",
+      "line_title": "Audiovisual",
+      "classification": "U",
+      "printed_page": 41,
+      "pdf_page": 46,
+      "amounts": [
+        451,
+        527,
+        null,
+        527,
+        521,
+        null,
+        521
+      ]
+    },
+    {
+      "account": "3840F",
+      "activity": "01",
+      "line": "010",
+      "subactivity": "011F",
+      "line_title": "Aircraft Operations",
+      "classification": "U",
+      "printed_page": 42,
+      "pdf_page": 47,
+      "amounts": [
+        2668524,
+        2559508,
+        null,
+        2559508,
+        2501226,
+        null,
+        2501226
+      ]
+    },
+    {
+      "account": "3840F",
+      "activity": "01",
+      "line": "020",
+      "subactivity": "011G",
+      "line_title": "Mission Support Operations",
+      "classification": "U",
+      "printed_page": 42,
+      "pdf_page": 47,
+      "amounts": [
+        684852,
+        654385,
+        null,
+        654385,
+        627680,
+        null,
+        627680
+      ]
+    },
+    {
+      "account": "3840F",
+      "activity": "01",
+      "line": "030",
+      "subactivity": "011M",
+      "line_title": "Depot Purchase Equipment Maintenance",
+      "classification": "U",
+      "printed_page": 42,
+      "pdf_page": 47,
+      "amounts": [
+        927538,
+        984771,
+        null,
+        984771,
+        1024171,
+        43967,
+        1068138
+      ]
+    },
+    {
+      "account": "3840F",
+      "activity": "01",
+      "line": "040",
+      "subactivity": "011R",
+      "line_title": "Facilities Sustainment, Restoration & Modernization",
+      "classification": "U",
+      "printed_page": 42,
+      "pdf_page": 47,
+      "amounts": [
+        573596,
+        433077,
+        2209,
+        435286,
+        549496,
+        27073,
+        576569
+      ]
+    },
+    {
+      "account": "3840F",
+      "activity": "01",
+      "line": "050",
+      "subactivity": "011W",
+      "line_title": "Contractor Logistics Support and System Support",
+      "classification": "U",
+      "printed_page": 42,
+      "pdf_page": 47,
+      "amounts": [
+        1153925,
+        1334383,
+        null,
+        1334383,
+        1258081,
+        79654,
+        1337735
+      ]
+    },
+    {
+      "account": "3840F",
+      "activity": "01",
+      "line": "060",
+      "subactivity": "011Z",
+      "line_title": "Base Support",
+      "classification": "U",
+      "printed_page": 42,
+      "pdf_page": 47,
+      "amounts": [
+        1178108,
+        1094310,
+        null,
+        1094310,
+        1110875,
+        null,
+        1110875
+      ]
+    },
+    {
+      "account": "3840F",
+      "activity": "01",
+      "line": "070",
+      "subactivity": "011V",
+      "line_title": "Cyberspace Sustainment",
+      "classification": "U",
+      "printed_page": 42,
+      "pdf_page": 47,
+      "amounts": [
+        21977,
+        14291,
+        null,
+        14291,
+        16134,
+        null,
+        16134
+      ]
+    },
+    {
+      "account": "3840F",
+      "activity": "01",
+      "line": "080",
+      "subactivity": "012D",
+      "line_title": "Cyberspace Activities",
+      "classification": "U",
+      "printed_page": 43,
+      "pdf_page": 48,
+      "amounts": [
+        23442,
+        53162,
+        null,
+        53162,
+        112205,
+        null,
+        112205
+      ]
+    },
+    {
+      "account": "3840F",
+      "activity": "04",
+      "line": "090",
+      "subactivity": "042A",
+      "line_title": "Administration",
+      "classification": "U",
+      "printed_page": 43,
+      "pdf_page": 48,
+      "amounts": [
+        59466,
+        71454,
+        null,
+        71454,
+        82280,
+        null,
+        82280
+      ]
+    },
+    {
+      "account": "3840F",
+      "activity": "04",
+      "line": "100",
+      "subactivity": "042J",
+      "line_title": "Recruiting and Advertising",
+      "classification": "U",
+      "printed_page": 43,
+      "pdf_page": 48,
+      "amounts": [
+        48625,
+        49745,
+        null,
+        49745,
+        50451,
+        null,
+        50451
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "01",
+      "line": "010",
+      "subactivity": "1PL1",
+      "line_title": "Joint Chiefs of Staff",
+      "classification": "U",
+      "printed_page": 44,
+      "pdf_page": 49,
+      "amounts": [
+        454777,
+        444943,
+        null,
+        444943,
+        414097,
+        null,
+        414097
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "01",
+      "line": "020",
+      "subactivity": "8PL1",
+      "line_title": "Joint Chiefs of Staff - JTEEP",
+      "classification": "U",
+      "printed_page": 44,
+      "pdf_page": 49,
+      "amounts": [
+        682598,
+        669508,
+        null,
+        669508,
+        1026502,
+        null,
+        1026502
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "01",
+      "line": "030",
+      "subactivity": "8PL2",
+      "line_title": "Joint Chiefs of Staff - CYBER",
+      "classification": "U",
+      "printed_page": 44,
+      "pdf_page": 49,
+      "amounts": [
+        8195,
+        8991,
+        null,
+        8991,
+        9086,
+        null,
+        9086
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "01",
+      "line": "040",
+      "subactivity": "1GTM",
+      "line_title": "Office of the Secretary of Defense - MISO",
+      "classification": "U",
+      "printed_page": 44,
+      "pdf_page": 49,
+      "amounts": [
+        252091,
+        250142,
+        null,
+        250142,
+        209442,
+        18518,
+        227960
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "01",
+      "line": "050",
+      "subactivity": "1PL6",
+      "line_title": "Special Operations Command Combat Development Activities",
+      "classification": "U",
+      "printed_page": 44,
+      "pdf_page": 49,
+      "amounts": [
+        2275874,
+        1977474,
+        null,
+        1977474,
+        2136165,
+        184777,
+        2320942
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "01",
+      "line": "060",
+      "subactivity": "1PL7",
+      "line_title": "Special Operations Command Maintenance",
+      "classification": "U",
+      "printed_page": 44,
+      "pdf_page": 49,
+      "amounts": [
+        1250964,
+        1224492,
+        null,
+        1224492,
+        1273409,
+        55210,
+        1328619
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "01",
+      "line": "070",
+      "subactivity": "1PLM",
+      "line_title": "Special Operations Command Management/Operational Headquarters",
+      "classification": "U",
+      "printed_page": 44,
+      "pdf_page": 49,
+      "amounts": [
+        195061,
+        189886,
+        null,
+        189886,
+        181122,
+        null,
+        181122
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "01",
+      "line": "080",
+      "subactivity": "1PLR",
+      "line_title": "Special Operations Command Theater Forces",
+      "classification": "U",
+      "printed_page": 44,
+      "pdf_page": 49,
+      "amounts": [
+        3402253,
+        3357049,
+        null,
+        3357049,
+        3409285,
+        58955,
+        3468240
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "01",
+      "line": "090",
+      "subactivity": "1PLS",
+      "line_title": "Special Operations Command Cyberspace Activities",
+      "classification": "U",
+      "printed_page": 44,
+      "pdf_page": 49,
+      "amounts": [
+        49689,
+        50649,
+        null,
+        50649,
+        77241,
+        null,
+        77241
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "01",
+      "line": "100",
+      "subactivity": "1PLU",
+      "line_title": "Special Operations Command Intelligence",
+      "classification": "U",
+      "printed_page": 44,
+      "pdf_page": 49,
+      "amounts": [
+        1420388,
+        1250583,
+        null,
+        1250583,
+        1187600,
+        null,
+        1187600
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "01",
+      "line": "110",
+      "subactivity": "1PLV",
+      "line_title": "Special Operations Command Operational Support",
+      "classification": "U",
+      "printed_page": 44,
+      "pdf_page": 49,
+      "amounts": [
+        1496239,
+        1435667,
+        null,
+        1435667,
+        1579137,
+        175803,
+        1754940
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "01",
+      "line": "120",
+      "subactivity": "012D",
+      "line_title": "Cyberspace Operations",
+      "classification": "U",
+      "printed_page": 44,
+      "pdf_page": 49,
+      "amounts": [
+        1219657,
+        1314422,
+        null,
+        1314422,
+        1300384,
+        248342,
+        1548726
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "01",
+      "line": "130",
+      "subactivity": "015E",
+      "line_title": "USCYBERCOM Headquarters",
+      "classification": "U",
+      "printed_page": 44,
+      "pdf_page": 49,
+      "amounts": [
+        285718,
+        315096,
+        null,
+        315096,
+        314284,
+        11613,
+        325897
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "03",
+      "line": "140",
+      "subactivity": "3EV2",
+      "line_title": "Defense Acquisition University",
+      "classification": "U",
+      "printed_page": 44,
+      "pdf_page": 49,
+      "amounts": [
+        182769,
+        182418,
+        null,
+        182418,
+        173265,
+        null,
+        173265
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "03",
+      "line": "150",
+      "subactivity": "3PL1",
+      "line_title": "Joint Chiefs of Staff",
+      "classification": "U",
+      "printed_page": 45,
+      "pdf_page": 50,
+      "amounts": [
+        116867,
+        128622,
+        null,
+        128622,
+        124869,
+        null,
+        124869
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "03",
+      "line": "160",
+      "subactivity": "3EV8",
+      "line_title": "Special Operations Command/Professional Development Education",
+      "classification": "U",
+      "printed_page": 45,
+      "pdf_page": 50,
+      "amounts": [
+        33816,
+        31452,
+        null,
+        31452,
+        28697,
+        null,
+        28697
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "04",
+      "line": "170",
+      "subactivity": "4GT3",
+      "line_title": "Civil Military Programs",
+      "classification": "U",
+      "printed_page": 45,
+      "pdf_page": 50,
+      "amounts": [
+        280804,
+        280786,
+        null,
+        280786,
+        126637,
+        null,
+        126637
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "04",
+      "line": "180",
+      "subactivity": "4GDC",
+      "line_title": "Defense Contract Audit Agency - CYBER",
+      "classification": "U",
+      "printed_page": 45,
+      "pdf_page": 50,
+      "amounts": [
+        4012,
+        4904,
+        null,
+        4904,
+        3844,
+        null,
+        3844
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "04",
+      "line": "190",
+      "subactivity": "4GT6",
+      "line_title": "Defense Contract Audit Agency",
+      "classification": "U",
+      "printed_page": 45,
+      "pdf_page": 50,
+      "amounts": [
+        654427,
+        658329,
+        null,
+        658329,
+        632959,
+        null,
+        632959
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "04",
+      "line": "200",
+      "subactivity": "4GTO",
+      "line_title": "Defense Contract Management Agency",
+      "classification": "U",
+      "printed_page": 45,
+      "pdf_page": 50,
+      "amounts": [
+        1556832,
+        1520661,
+        null,
+        1520661,
+        1441456,
+        null,
+        1441456
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "04",
+      "line": "210",
+      "subactivity": "4GTP",
+      "line_title": "Defense Contract Management Agency - CYBER",
+      "classification": "U",
+      "printed_page": 45,
+      "pdf_page": 50,
+      "amounts": [
+        29203,
+        42069,
+        null,
+        42069,
+        43434,
+        null,
+        43434
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "04",
+      "line": "220",
+      "subactivity": "4GTE",
+      "line_title": "Defense Counterintelligence and Security Agency",
+      "classification": "U",
+      "printed_page": 45,
+      "pdf_page": 50,
+      "amounts": [
+        990915,
+        904532,
+        null,
+        904532,
+        1168366,
+        null,
+        1168366
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "04",
+      "line": "240",
+      "subactivity": "4GTG",
+      "line_title": "Defense Counterintelligence and Security Agency - CYBER",
+      "classification": "U",
+      "printed_page": 45,
+      "pdf_page": 50,
+      "amounts": [
+        9835,
+        9271,
+        null,
+        9271,
+        11120,
+        null,
+        11120
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "04",
+      "line": "250",
+      "subactivity": "4GSE",
+      "line_title": "Defense Human Resources Activity - CYBER",
+      "classification": "U",
+      "printed_page": 45,
+      "pdf_page": 50,
+      "amounts": [
+        37384,
+        39004,
+        null,
+        39004,
+        46621,
+        null,
+        46621
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "04",
+      "line": "260",
+      "subactivity": "4GT8",
+      "line_title": "Defense Human Resources Activity",
+      "classification": "U",
+      "printed_page": 45,
+      "pdf_page": 50,
+      "amounts": [
+        1060194,
+        1042610,
+        null,
+        1042610,
+        932144,
+        null,
+        932144
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "04",
+      "line": "290",
+      "subactivity": "4GT9",
+      "line_title": "Defense Information Systems Agency",
+      "classification": "U",
+      "printed_page": 45,
+      "pdf_page": 50,
+      "amounts": [
+        2627907,
+        2547778,
+        null,
+        2547778,
+        3042559,
+        null,
+        3042559
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "04",
+      "line": "300",
+      "subactivity": "4GU9",
+      "line_title": "Defense Information Systems Agency - CYBER",
+      "classification": "U",
+      "printed_page": 45,
+      "pdf_page": 50,
+      "amounts": [
+        515093,
+        491348,
+        null,
+        491348,
+        559426,
+        null,
+        559426
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "04",
+      "line": "310",
+      "subactivity": "4GTA",
+      "line_title": "Defense Legal Services Agency",
+      "classification": "U",
+      "printed_page": 45,
+      "pdf_page": 50,
+      "amounts": [
+        196301,
+        190852,
+        null,
+        190852,
+        164770,
+        null,
+        164770
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "04",
+      "line": "320",
+      "subactivity": "4GTB",
+      "line_title": "Defense Logistics Agency",
+      "classification": "U",
+      "printed_page": 45,
+      "pdf_page": 50,
+      "amounts": [
+        449683,
+        397325,
+        213,
+        397538,
+        401513,
+        null,
+        401513
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "04",
+      "line": "330",
+      "subactivity": "ES18",
+      "line_title": "Defense Media Activity",
+      "classification": "U",
+      "printed_page": 45,
+      "pdf_page": 50,
+      "amounts": [
+        243974,
+        241361,
+        null,
+        241361,
+        226665,
+        null,
+        226665
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "04",
+      "line": "340",
+      "subactivity": "4GTC",
+      "line_title": "Defense POW/MIA Office",
+      "classification": "U",
+      "printed_page": 46,
+      "pdf_page": 51,
+      "amounts": [
+        185159,
+        185857,
+        null,
+        185857,
+        171339,
+        null,
+        171339
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "04",
+      "line": "350",
+      "subactivity": "4GTD",
+      "line_title": "Defense Security Cooperation Agency",
+      "classification": "U",
+      "printed_page": 46,
+      "pdf_page": 51,
+      "amounts": [
+        9875664,
+        2714760,
+        null,
+        2714760,
+        2864252,
+        850000,
+        3714252
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "04",
+      "line": "360",
+      "subactivity": "4GTH",
+      "line_title": "Defense Technology Security Administration",
+      "classification": "U",
+      "printed_page": 46,
+      "pdf_page": 51,
+      "amounts": [
+        41857,
+        41909,
+        null,
+        41909,
+        40052,
+        null,
+        40052
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "04",
+      "line": "370",
+      "subactivity": "4GTI",
+      "line_title": "Defense Threat Reduction Agency",
+      "classification": "U",
+      "printed_page": 46,
+      "pdf_page": 51,
+      "amounts": [
+        938404,
+        841176,
+        null,
+        841176,
+        708214,
+        null,
+        708214
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "04",
+      "line": "390",
+      "subactivity": "4GTL",
+      "line_title": "Defense Threat Reduction Agency - CYBER",
+      "classification": "U",
+      "printed_page": 46,
+      "pdf_page": 51,
+      "amounts": [
+        61428,
+        52769,
+        null,
+        52769,
+        71925,
+        null,
+        71925
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "04",
+      "line": "400",
+      "subactivity": "4GTJ",
+      "line_title": "Department of Defense Education Activity",
+      "classification": "U",
+      "printed_page": 46,
+      "pdf_page": 51,
+      "amounts": [
+        3535269,
+        3543005,
+        null,
+        3543005,
+        3600175,
+        null,
+        3600175
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "04",
+      "line": "410",
+      "subactivity": "011A",
+      "line_title": "Missile Defense Agency",
+      "classification": "U",
+      "printed_page": 46,
+      "pdf_page": 51,
+      "amounts": [
+        569336,
+        598506,
+        null,
+        598506,
+        720365,
+        null,
+        720365
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "04",
+      "line": "420",
+      "subactivity": "4GTM",
+      "line_title": "Office of the Local Defense Community Cooperation",
+      "classification": "U",
+      "printed_page": 46,
+      "pdf_page": 51,
+      "amounts": [
+        496798,
+        155268,
+        null,
+        155268,
+        159534,
+        null,
+        159534
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "04",
+      "line": "460",
+      "subactivity": "4GTC",
+      "line_title": "Office of the Secretary of Defense - CYBER",
+      "classification": "U",
+      "printed_page": 46,
+      "pdf_page": 51,
+      "amounts": [
+        90990,
+        101537,
+        null,
+        101537,
+        98034,
+        null,
+        98034
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "04",
+      "line": "470",
+      "subactivity": "4GTN",
+      "line_title": "Office of the Secretary of Defense",
+      "classification": "U",
+      "printed_page": 46,
+      "pdf_page": 51,
+      "amounts": [
+        2692989,
+        2841025,
+        null,
+        2841025,
+        2093717,
+        430490,
+        2524207
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "04",
+      "line": "480",
+      "subactivity": "NSSF",
+      "line_title": "National Security Systems Fund",
+      "classification": "U",
+      "printed_page": 46,
+      "pdf_page": 51,
+      "amounts": [
+        null,
+        null,
+        913440,
+        913440,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "04",
+      "line": "490",
+      "subactivity": "REC1",
+      "line_title": "Homeland Defense Initiatives",
+      "classification": "U",
+      "printed_page": 46,
+      "pdf_page": 51,
+      "amounts": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        5000000,
+        5000000
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "04",
+      "line": "500",
+      "subactivity": "REC2",
+      "line_title": "Munitions and Supply Chain Initiatives",
+      "classification": "U",
+      "printed_page": 46,
+      "pdf_page": 51,
+      "amounts": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        250000,
+        250000
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "04",
+      "line": "510",
+      "subactivity": "S142",
+      "line_title": "Section 1421 CENTCOM and EUCOM",
+      "classification": "U",
+      "printed_page": 46,
+      "pdf_page": 51,
+      "amounts": [
+        null,
+        8000000,
+        null,
+        8000000,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "04",
+      "line": "520",
+      "subactivity": "S806",
+      "line_title": "Section 8066 AFRICOM and SOUTHCOM",
+      "classification": "U",
+      "printed_page": 46,
+      "pdf_page": 51,
+      "amounts": [
+        null,
+        100000,
+        null,
+        100000,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "04",
+      "line": "530",
+      "subactivity": "4GTQ",
+      "line_title": "Washington Headquarters Services",
+      "classification": "U",
+      "printed_page": 46,
+      "pdf_page": 51,
+      "amounts": [
+        415061,
+        471736,
+        null,
+        471736,
+        411182,
+        null,
+        411182
+      ]
+    },
+    {
+      "account": "0100D",
+      "activity": "04",
+      "line": "999",
+      "subactivity": "9999",
+      "line_title": "Classified Programs",
+      "classification": "U",
+      "printed_page": 46,
+      "pdf_page": 51,
+      "amounts": [
+        20301291,
+        20459853,
+        995,
+        20460848,
+        22750830,
+        114740,
+        22865570
+      ]
+    },
+    {
+      "account": "0107D",
+      "activity": "01",
+      "line": "010",
+      "subactivity": "4GTV",
+      "line_title": "Office of the Inspector General",
+      "classification": "U",
+      "printed_page": 47,
+      "pdf_page": 52,
+      "amounts": [
+        530219,
+        534545,
+        null,
+        534545,
+        494865,
+        null,
+        494865
+      ]
+    },
+    {
+      "account": "0107D",
+      "activity": "01",
+      "line": "020",
+      "subactivity": "4GXX",
+      "line_title": "Office of the Inspector General - CYBER",
+      "classification": "U",
+      "printed_page": 47,
+      "pdf_page": 52,
+      "amounts": [
+        1948,
+        1988,
+        null,
+        1988,
+        2030,
+        null,
+        2030
+      ]
+    },
+    {
+      "account": "0107D",
+      "activity": "02",
+      "line": "030",
+      "subactivity": "4GTV",
+      "line_title": "Office of the Inspector General",
+      "classification": "U",
+      "printed_page": 47,
+      "pdf_page": 52,
+      "amounts": [
+        3400,
+        1900,
+        null,
+        1900,
+        4625,
+        null,
+        4625
+      ]
+    },
+    {
+      "account": "0107D",
+      "activity": "03",
+      "line": "040",
+      "subactivity": "4GTV",
+      "line_title": "Office of the Inspector General",
+      "classification": "U",
+      "printed_page": 47,
+      "pdf_page": 52,
+      "amounts": [
+        1098,
+        1336,
+        null,
+        1336,
+        1079,
+        null,
+        1079
+      ]
+    },
+    {
+      "account": "0104D",
+      "activity": "04",
+      "line": "010",
+      "subactivity": "4GTT",
+      "line_title": "Us Court of Appeals for the Armed Forces, Defense",
+      "classification": "U",
+      "printed_page": 48,
+      "pdf_page": 53,
+      "amounts": [
+        16619,
+        21035,
+        null,
+        21035,
+        21243,
+        null,
+        21243
+      ]
+    },
+    {
+      "account": "0130D",
+      "activity": "01",
+      "line": "010",
+      "subactivity": "1",
+      "line_title": "In-House Care",
+      "classification": "U",
+      "printed_page": 49,
+      "pdf_page": 54,
+      "amounts": [
+        10003759,
+        10238751,
+        null,
+        10238751,
+        10731135,
+        700000,
+        11431135
+      ]
+    },
+    {
+      "account": "0130D",
+      "activity": "01",
+      "line": "020",
+      "subactivity": "2",
+      "line_title": "Private Sector Care",
+      "classification": "U",
+      "printed_page": 49,
+      "pdf_page": 54,
+      "amounts": [
+        19494565,
+        20599128,
+        null,
+        20599128,
+        21023765,
+        null,
+        21023765
+      ]
+    },
+    {
+      "account": "0130D",
+      "activity": "01",
+      "line": "030",
+      "subactivity": "3",
+      "line_title": "Consolidated Health Support",
+      "classification": "U",
+      "printed_page": 49,
+      "pdf_page": 54,
+      "amounts": [
+        1738307,
+        1971828,
+        null,
+        1971828,
+        2116278,
+        null,
+        2116278
+      ]
+    },
+    {
+      "account": "0130D",
+      "activity": "01",
+      "line": "040",
+      "subactivity": "4",
+      "line_title": "Information Management",
+      "classification": "U",
+      "printed_page": 49,
+      "pdf_page": 54,
+      "amounts": [
+        2329851,
+        2454204,
+        null,
+        2454204,
+        2271798,
+        100000,
+        2371798
+      ]
+    },
+    {
+      "account": "0130D",
+      "activity": "01",
+      "line": "050",
+      "subactivity": "5",
+      "line_title": "Management Activities",
+      "classification": "U",
+      "printed_page": 49,
+      "pdf_page": 54,
+      "amounts": [
+        354454,
+        341254,
+        null,
+        341254,
+        303898,
+        null,
+        303898
+      ]
+    },
+    {
+      "account": "0130D",
+      "activity": "01",
+      "line": "060",
+      "subactivity": "6",
+      "line_title": "Education and Training",
+      "classification": "U",
+      "printed_page": 49,
+      "pdf_page": 54,
+      "amounts": [
+        355782,
+        356611,
+        null,
+        356611,
+        371426,
+        null,
+        371426
+      ]
+    },
+    {
+      "account": "0130D",
+      "activity": "01",
+      "line": "070",
+      "subactivity": "7",
+      "line_title": "Base Operations/Communications",
+      "classification": "U",
+      "printed_page": 49,
+      "pdf_page": 54,
+      "amounts": [
+        2122228,
+        2298159,
+        17362,
+        2315521,
+        2356290,
+        1200000,
+        3556290
+      ]
+    },
+    {
+      "account": "0130D",
+      "activity": "02",
+      "line": "080",
+      "subactivity": "0601",
+      "line_title": "R&D Research",
+      "classification": "U",
+      "printed_page": 49,
+      "pdf_page": 54,
+      "amounts": [
+        49158,
+        41476,
+        null,
+        41476,
+        41660,
+        null,
+        41660
+      ]
+    },
+    {
+      "account": "0130D",
+      "activity": "02",
+      "line": "090",
+      "subactivity": "0602",
+      "line_title": "R&D Exploratry Development",
+      "classification": "U",
+      "printed_page": 49,
+      "pdf_page": 54,
+      "amounts": [
+        262771,
+        188564,
+        null,
+        188564,
+        183398,
+        null,
+        183398
+      ]
+    },
+    {
+      "account": "0130D",
+      "activity": "02",
+      "line": "100",
+      "subactivity": "0603",
+      "line_title": "R&D Advanced Development",
+      "classification": "U",
+      "printed_page": 49,
+      "pdf_page": 54,
+      "amounts": [
+        2068082,
+        1031825,
+        null,
+        1031825,
+        333072,
+        null,
+        333072
+      ]
+    },
+    {
+      "account": "0130D",
+      "activity": "02",
+      "line": "110",
+      "subactivity": "0604",
+      "line_title": "R&D Demonstration/Validation",
+      "classification": "U",
+      "printed_page": 49,
+      "pdf_page": 54,
+      "amounts": [
+        219476,
+        195518,
+        null,
+        195518,
+        178983,
+        null,
+        178983
+      ]
+    },
+    {
+      "account": "0130D",
+      "activity": "02",
+      "line": "120",
+      "subactivity": "0605",
+      "line_title": "R&D Engineering Development",
+      "classification": "U",
+      "printed_page": 49,
+      "pdf_page": 54,
+      "amounts": [
+        198588,
+        130931,
+        null,
+        130931,
+        117190,
+        null,
+        117190
+      ]
+    },
+    {
+      "account": "0130D",
+      "activity": "02",
+      "line": "130",
+      "subactivity": "0606",
+      "line_title": "R&D Management and Support",
+      "classification": "U",
+      "printed_page": 49,
+      "pdf_page": 54,
+      "amounts": [
+        87096,
+        88425,
+        null,
+        88425,
+        99338,
+        null,
+        99338
+      ]
+    },
+    {
+      "account": "0130D",
+      "activity": "02",
+      "line": "140",
+      "subactivity": "0607",
+      "line_title": "R&D Capabilities Enhancement",
+      "classification": "U",
+      "printed_page": 49,
+      "pdf_page": 54,
+      "amounts": [
+        17700,
+        18697,
+        null,
+        18697,
+        19071,
+        null,
+        19071
+      ]
+    },
+    {
+      "account": "0130D",
+      "activity": "03",
+      "line": "150",
+      "subactivity": "7720",
+      "line_title": "PROC Initial Outfitting",
+      "classification": "U",
+      "printed_page": 49,
+      "pdf_page": 54,
+      "amounts": [
+        22344,
+        23449,
+        null,
+        23449,
+        24597,
+        null,
+        24597
+      ]
+    },
+    {
+      "account": "0130D",
+      "activity": "03",
+      "line": "160",
+      "subactivity": "7721",
+      "line_title": "PROC Replacement & Modernization",
+      "classification": "U",
+      "printed_page": 49,
+      "pdf_page": 54,
+      "amounts": [
+        238435,
+        243184,
+        null,
+        243184,
+        222445,
+        null,
+        222445
+      ]
+    },
+    {
+      "account": "0130D",
+      "activity": "03",
+      "line": "170",
+      "subactivity": "7746",
+      "line_title": "PROC Joint Operational Medicine Information System",
+      "classification": "U",
+      "printed_page": 50,
+      "pdf_page": 55,
+      "amounts": [
+        29537,
+        30129,
+        null,
+        30129,
+        30732,
+        null,
+        30732
+      ]
+    },
+    {
+      "account": "0130D",
+      "activity": "03",
+      "line": "180",
+      "subactivity": "7759",
+      "line_title": "PROC Military Health System - Desktop to Datacenter",
+      "classification": "U",
+      "printed_page": 50,
+      "pdf_page": 55,
+      "amounts": [
+        74055,
+        75536,
+        null,
+        75536,
+        77047,
+        null,
+        77047
+      ]
+    },
+    {
+      "account": "0130D",
+      "activity": "03",
+      "line": "190",
+      "subactivity": "7787",
+      "line_title": "PROC DoD Healthcare Management System Modernization",
+      "classification": "U",
+      "printed_page": 50,
+      "pdf_page": 55,
+      "amounts": [
+        17510,
+        26569,
+        null,
+        26569,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "0819D",
+      "activity": "01",
+      "line": "010",
+      "subactivity": "4GTD",
+      "line_title": "Overseas Humanitarian, Disaster and Civic Aid",
+      "classification": "U",
+      "printed_page": 51,
+      "pdf_page": 56,
+      "amounts": [
+        225750,
+        115335,
+        null,
+        115335,
+        100793,
+        null,
+        100793
+      ]
+    },
+    {
+      "account": "0134D",
+      "activity": "01",
+      "line": "010",
+      "subactivity": "1PL3",
+      "line_title": "Cooperative Threat Reduction",
+      "classification": "U",
+      "printed_page": 52,
+      "pdf_page": 57,
+      "amounts": [
+        350999,
+        296076,
+        null,
+        296076,
+        282830,
+        null,
+        282830
+      ]
+    },
+    {
+      "account": "0111D",
+      "activity": "01",
+      "line": "010",
+      "subactivity": "012",
+      "line_title": "Acq Workforce Dev Fd",
+      "classification": "U",
+      "printed_page": 53,
+      "pdf_page": 58,
+      "amounts": [
+        64763,
+        56176,
+        null,
+        56176,
+        45346,
+        null,
+        45346
+      ]
+    },
+    {
+      "account": "0105D",
+      "activity": null,
+      "line": "010",
+      "subactivity": null,
+      "line_title": "Drug Interdiction and Counter-Drug Activities, Defense",
+      "classification": "U",
+      "printed_page": 54,
+      "pdf_page": 59,
+      "amounts": [
+        null,
+        339292,
+        null,
+        339292,
+        398424,
+        null,
+        398424
+      ]
+    },
+    {
+      "account": "0105D",
+      "activity": null,
+      "line": "020",
+      "subactivity": null,
+      "line_title": "Drug Interdiction and Counter-Drug Activities, Defense",
+      "classification": "U",
+      "printed_page": 54,
+      "pdf_page": 59,
+      "amounts": [
+        null,
+        135567,
+        null,
+        135567,
+        134938,
+        null,
+        134938
+      ]
+    },
+    {
+      "account": "0105D",
+      "activity": null,
+      "line": "030",
+      "subactivity": null,
+      "line_title": "Drug Interdiction and Counter-Drug Activities, Defense",
+      "classification": "U",
+      "printed_page": 54,
+      "pdf_page": 59,
+      "amounts": [
+        null,
+        295000,
+        null,
+        295000,
+        110125,
+        null,
+        110125
+      ]
+    },
+    {
+      "account": "0105D",
+      "activity": null,
+      "line": "040",
+      "subactivity": null,
+      "line_title": "Drug Interdiction and Counter-Drug Activities, Defense",
+      "classification": "U",
+      "printed_page": 54,
+      "pdf_page": 59,
+      "amounts": [
+        null,
+        26167,
+        null,
+        26167,
+        6354,
+        null,
+        6354
+      ]
+    },
+    {
+      "account": "0105D",
+      "activity": null,
+      "line": "999",
+      "subactivity": null,
+      "line_title": "Drug Interdiction and Counter-Drug Activities, Defense",
+      "classification": "U",
+      "printed_page": 54,
+      "pdf_page": 59,
+      "amounts": [
+        null,
+        314410,
+        null,
+        314410,
+        254460,
+        null,
+        254460
+      ]
+    },
+    {
+      "account": "0810A",
+      "activity": null,
+      "line": "050",
+      "subactivity": null,
+      "line_title": "Environmental Restoration, Army",
+      "classification": "U",
+      "printed_page": 54,
+      "pdf_page": 59,
+      "amounts": [
+        582,
+        283069,
+        null,
+        283069,
+        148070,
+        null,
+        148070
+      ]
+    },
+    {
+      "account": "0810N",
+      "activity": null,
+      "line": "060",
+      "subactivity": null,
+      "line_title": "Environmental Restoration, Navy",
+      "classification": "U",
+      "printed_page": 54,
+      "pdf_page": 59,
+      "amounts": [
+        null,
+        343591,
+        null,
+        343591,
+        357949,
+        null,
+        357949
+      ]
+    },
+    {
+      "account": "0810F",
+      "activity": null,
+      "line": "070",
+      "subactivity": null,
+      "line_title": "Environmental Restoration, Air Force",
+      "classification": "U",
+      "printed_page": 54,
+      "pdf_page": 59,
+      "amounts": [
+        null,
+        330524,
+        null,
+        330524,
+        342149,
+        null,
+        342149
+      ]
+    },
+    {
+      "account": "0810D",
+      "activity": null,
+      "line": "080",
+      "subactivity": null,
+      "line_title": "Environmental Restoration, Defense",
+      "classification": "U",
+      "printed_page": 54,
+      "pdf_page": 59,
+      "amounts": [
+        null,
+        9480,
+        null,
+        9480,
+        8885,
+        null,
+        8885
+      ]
+    },
+    {
+      "account": "0811D",
+      "activity": null,
+      "line": "090",
+      "subactivity": null,
+      "line_title": "Environmental Restoration, Formerly Used Defense Sites",
+      "classification": "U",
+      "printed_page": 54,
+      "pdf_page": 59,
+      "amounts": [
+        null,
+        236475,
+        null,
+        236475,
+        235156,
+        null,
+        235156
+      ]
+    },
+    {
+      "account": "0838D",
+      "activity": null,
+      "line": "100",
+      "subactivity": null,
+      "line_title": "Support for International Sporting Competitions , Defense",
+      "classification": "U",
+      "printed_page": 54,
+      "pdf_page": 59,
+      "amounts": [
+        957,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "0833D",
+      "activity": null,
+      "line": "110",
+      "subactivity": null,
+      "line_title": "Emergency Response Fund, Defense",
+      "classification": "U",
+      "printed_page": 54,
+      "pdf_page": 59,
+      "amounts": [
+        -224,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "0833D",
+      "activity": null,
+      "line": "120",
+      "subactivity": null,
+      "line_title": "Emergency Response Fund, Defense",
+      "classification": "U",
+      "printed_page": 54,
+      "pdf_page": 59,
+      "amounts": [
+        -7140,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "0833D",
+      "activity": null,
+      "line": "130",
+      "subactivity": null,
+      "line_title": "Emergency Response Fund, Defense",
+      "classification": "U",
+      "printed_page": 54,
+      "pdf_page": 59,
+      "amounts": [
+        -140,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "0833D",
+      "activity": null,
+      "line": "140",
+      "subactivity": null,
+      "line_title": "Emergency Response Fund, Defense",
+      "classification": "U",
+      "printed_page": 55,
+      "pdf_page": 60,
+      "amounts": [
+        7292,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "0833D",
+      "activity": null,
+      "line": "150",
+      "subactivity": null,
+      "line_title": "Emergency Response Fund, Defense",
+      "classification": "U",
+      "printed_page": 55,
+      "pdf_page": 60,
+      "amounts": [
+        -798,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "0833D",
+      "activity": null,
+      "line": "160",
+      "subactivity": null,
+      "line_title": "Emergency Response Fund, Defense",
+      "classification": "U",
+      "printed_page": 55,
+      "pdf_page": 60,
+      "amounts": [
+        -518,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "0833D",
+      "activity": null,
+      "line": "170",
+      "subactivity": null,
+      "line_title": "Emergency Response Fund, Defense",
+      "classification": "U",
+      "printed_page": 55,
+      "pdf_page": 60,
+      "amounts": [
+        3052,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "5286A",
+      "activity": null,
+      "line": null,
+      "subactivity": null,
+      "line_title": "National Science Center, Army",
+      "classification": "U",
+      "printed_page": 55,
+      "pdf_page": 60,
+      "amounts": [
+        24,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "account": "5188D",
+      "activity": null,
+      "line": "190",
+      "subactivity": null,
+      "line_title": "Disposal of Department of Defense Real Property",
+      "classification": "U",
+      "printed_page": 55,
+      "pdf_page": 60,
+      "amounts": [
+        7883,
+        3262,
+        3262,
+        3262,
+        6594,
+        null,
+        6594
+      ]
+    },
+    {
+      "account": "5188D",
+      "activity": null,
+      "line": "210",
+      "subactivity": null,
+      "line_title": "Disposal of Department of Defense Real Property",
+      "classification": "U",
+      "printed_page": 55,
+      "pdf_page": 60,
+      "amounts": [
+        340,
+        540,
+        540,
+        540,
+        284,
+        null,
+        284
+      ]
+    },
+    {
+      "account": "5188D",
+      "activity": null,
+      "line": "230",
+      "subactivity": null,
+      "line_title": "Disposal of Department of Defense Real Property",
+      "classification": "U",
+      "printed_page": 55,
+      "pdf_page": 60,
+      "amounts": [
+        29,
+        3318,
+        3318,
+        3318,
+        24,
+        null,
+        24
+      ]
+    },
+    {
+      "account": "5189D",
+      "activity": null,
+      "line": "260",
+      "subactivity": null,
+      "line_title": "Lease of Department of Defense Real Property",
+      "classification": "U",
+      "printed_page": 55,
+      "pdf_page": 60,
+      "amounts": [
+        15500,
+        16434,
+        16434,
+        16434,
+        17069,
+        null,
+        17069
+      ]
+    },
+    {
+      "account": "5189D",
+      "activity": null,
+      "line": "280",
+      "subactivity": null,
+      "line_title": "Lease of Department of Defense Real Property",
+      "classification": "U",
+      "printed_page": 55,
+      "pdf_page": 60,
+      "amounts": [
+        6256,
+        7539,
+        7539,
+        7539,
+        6889,
+        null,
+        6889
+      ]
+    },
+    {
+      "account": "5189D",
+      "activity": null,
+      "line": "300",
+      "subactivity": null,
+      "line_title": "Lease of Department of Defense Real Property",
+      "classification": "U",
+      "printed_page": 55,
+      "pdf_page": 60,
+      "amounts": [
+        8566,
+        10207,
+        10207,
+        10207,
+        9434,
+        null,
+        9434
+      ]
+    }
+  ]
+}

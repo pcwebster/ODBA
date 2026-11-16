@@ -2,11 +2,13 @@
 
 A local-first, PPBE-native analytics platform for U.S. Department of Defense budget data. ODBA parses official DoD Comptroller budget justification exhibits into a single, queryable, source-traceable dataset for cross-appropriation analysis.
 
-> **Lifecycle stage — read this first.** All FY2027 data in this repository represents the **President's Budget Request** — the *Budget Request* stage of the PPBE data lifecycle:
+> **Lifecycle stage — canonical FY2027 report.** The FY2027 PB27 report slice of the canonical exhibit dataset (`output/fact_budget_line_items.parquet`), shown in its Excel report, represents the **President's Budget Request** — the *Budget Request* stage of the PPBE data lifecycle:
 >
 > **Budget Request → Enacted → Reprogrammed → Obligated → Outlayed**
 >
-> No enacted appropriations, reprogramming actions, or execution (obligation/outlay) data are included. Every dollar figure produced by ODBA should be read as **Budget Request** stage unless it is explicitly labeled otherwise.
+> This report slice contains no enacted appropriations, reprogramming actions, or execution (obligation/outlay) data. Read its FY2027 dollar figures as **Budget Request** stage unless explicitly labeled otherwise. Other fiscal-year columns and submission vintages in the Parquet retain their own reporting bases.
+>
+> **Separate consolidated O-1 exhibits:** the PB25–PB27 sidecars and Budget Explorer's O-1 view preserve as-published columns, including requests, enacted amounts, supplemental funding, spend plans, published totals, and actuals as reported. These TOA observations retain their own budget edition, funding fiscal year, and column basis; the canonical dataset's request-only warning does not apply to them.
 
 ## What ODBA Is
 
@@ -46,9 +48,9 @@ pip install pandas pyarrow duckdb openpyxl
 
 ## Data Sources
 
-All source data is the **FY2027 President's Budget (PB27)** submission — **Budget Request** lifecycle stage — published by the DoD Comptroller. The public budget-materials index is at <https://comptroller.defense.gov/Budget-Materials/> (FY2027 Budget Justification); the download scripts fetch the individual files directly from the Comptroller portal via anonymous HTTPS (no account or API key required).
+The canonical pipeline's FY2027 sources are the **FY2027 President's Budget (PB27)** submission — **Budget Request** lifecycle stage — published by the DoD Comptroller. The public budget-materials index is at <https://comptroller.defense.gov/Budget-Materials/> (FY2027 Budget Justification); the download scripts fetch the individual files directly from the Comptroller portal via anonymous HTTPS (no account or API key required). The separate O-1 sidecars cover PB25, PB26, and PB27 with the reporting bases described above and in their source READMEs.
 
-Source files are **not** committed to this repository — run the download scripts to fetch them.
+Raw XML/JSON source files for the canonical pipeline are **not** committed to this repository — run the download scripts to fetch them.
 
 | Folder | Exhibit(s) | Format |
 |---|---|---|
@@ -59,7 +61,7 @@ Source files are **not** committed to this repository — run the download scrip
 | `09_Defense_Health_Program/` | DHP J-Book (O-1, OP-5, P-1, P-40, R-1 sections) | JSON |
 | `09_Military_Health_System/` | MHS J-Book (Vol 1 COMP/PSCP, Vol 2 SMR) | XML (SpreadsheetML) |
 
-**Coverage caveat:** the current dataset is **Defense-Wide agencies only** (e.g., SOCOM, DISA, OSW, CYBERCOM, DARPA, MDA). It does **not** include Army, Navy, Air Force, Space Force, or Marine Corps appropriations, and should not be presented as the full FY2027 DoD budget.
+**Canonical dataset coverage:** the canonical exhibit dataset is **Defense-Wide agencies only** (e.g., SOCOM, DISA, OSW, CYBERCOM, DARPA, MDA). It does **not** include Army, Navy, Air Force, Space Force, or Marine Corps appropriations, and should not be presented as the full FY2027 DoD budget. This coverage limit describes the canonical dataset, not the separate consolidated O-1 sidecars.
 
 ## Directory Structure
 
@@ -105,9 +107,9 @@ Both are written to `output/`:
 - **`fact_budget_line_items.parquet`** — the unified, line-item-level budget dataset (the canonical ODBA table). See the [Data Dictionary](https://fmtransformation.atlassian.net/wiki/spaces/ODBA/pages/54886402/Data+Dictionary+fact_budget_line_items) for every field, its type, source exhibit, and population status.
 - **`ODBA_FY2027_Budget_Report.xlsx`** — a multi-tab Excel workbook with cross-appropriation analytical views generated from the Parquet dataset.
 
-## Dataset Summary (FY2027 PB — Budget Request stage)
+## Canonical Dataset Summary (FY2027 PB — Budget Request stage)
 
-All figures below are **FY2027 President's Budget = Budget Request** stage, Defense-Wide agencies only.
+The figures below describe only the canonical dataset's **FY2027 President's Budget = Budget Request** slice, Defense-Wide agencies only.
 
 | Exhibit | Records | FY2027 total (Budget Request) |
 |---|---|---|
@@ -172,6 +174,22 @@ the original evidence; the sidecar README records title variants,
 corrections and source limitations. Overseas-operations-cost subsets,
 RF-1 and repeated summaries are not added to detail totals. Existing
 ingestion and the canonical dataset remain unchanged.
+
+## Offline Budget Explorer
+
+The [Budget Explorer](apps/budget_explorer/README.md) is a standalone,
+offline HTML preview for the consolidated PB25–PB27 O-1 imports, Green
+Book department history, and sampled exhibit requests. Download or open
+[index.html](apps/budget_explorer/index.html) locally; no login or internet
+is required for the interface. Official PDF links require connectivity.
+
+The preview keeps budget editions, fiscal years, stages and funding bases
+separate. Its read-only O-1 payload contains 1,238 detail rows and 125
+selected controls pinned to commit `b9ea2eb`, with 6,930 published
+amount/blank cells checked against the stored PDF references. See the app
+README for exact rebuild commands, test results and browser-verification
+limits. Existing ingestion and data artifacts are unchanged. This addition
+does not publish a hosted site.
 
 ## License
 

@@ -1,0 +1,169 @@
+{
+  "submission_fy": 2027,
+  "exhibit": "O-1",
+  "measure": "Total Obligational Authority",
+  "unit": "USD thousands",
+  "workbook_url": "https://defensebudgetdata.org/api/ex/source?file=O-1_PB2027.xlsx",
+  "workbook_sha256": "53d9e6e2614be3c0ec7a754cd4c82f58e3d5b8259a89403bbb270a052bd2cd29",
+  "worksheet": "OM Title plus Indefinite",
+  "workbook_status": "Third-party mirror; byte equivalence to the public publisher's original workbook is unverified.",
+  "pdf_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2027/FY2027_o1.pdf",
+  "pdf_status": "Original official O-1 PDF independently checked across all detail rows on printed pages 1\u201356 (physical PDF pages 6\u201361): exact both-direction identity coverage and all seven monetary columns match. Printed summaries are non-additive and separately scoped below.",
+  "control_printed_page": 3,
+  "spending_plan_is_not_enacted_or_actual": true,
+  "official_control_columns": [
+    "fy25_printed_actuals_lane",
+    "fy26_discretionary_enacted",
+    "fy26_pl11921_spend_plan",
+    "fy26_published_total",
+    "fy27_discretionary_request",
+    "fy27_mandatory_request",
+    "fy27_published_total"
+  ],
+  "official_controls": {
+    "om_title": [
+      350048375,
+      335078124,
+      19991335,
+      355069459,
+      382566098,
+      48165669,
+      430731767
+    ],
+    "indefinite_accounts": [
+      53327,
+      40293,
+      null,
+      40293,
+      45019,
+      null,
+      45019
+    ],
+    "om_title_plus_indefinite": [
+      350101702,
+      335118417,
+      19991335,
+      355109752,
+      382611117,
+      48165669,
+      430776786
+    ]
+  },
+  "pdf_only_detail": [
+    {
+      "printed_page": 55,
+      "account": "0833D",
+      "account_title_on_page_3": "Emergency Response Fund, Defense",
+      "line": "110",
+      "line_title": "Undistributed",
+      "classification": "U",
+      "scope": "om_title",
+      "fy25_printed_actuals": 9
+    },
+    {
+      "printed_page": 56,
+      "account": "5286A",
+      "account_title_on_page_3": "National Science Center, Army",
+      "line": "120",
+      "line_title": "Undistributed",
+      "classification": "U",
+      "scope": "indefinite_accounts",
+      "fy25_printed_actuals": 12
+    }
+  ],
+  "military_department_controls": {
+    "army_accounts": {
+      "accounts": [
+        "2020A",
+        "2080A",
+        "2065A",
+        "2099A"
+      ],
+      "amounts": [
+        74736203,
+        69697893,
+        3340190,
+        73038083,
+        76234240,
+        12347721,
+        88581961
+      ]
+    },
+    "navy_accounts": {
+      "accounts": [
+        "1804N",
+        "1106N",
+        "1806N",
+        "1107N"
+      ],
+      "amounts": [
+        89938797,
+        86683458,
+        5572890,
+        92256348,
+        100439259,
+        10221263,
+        110660522
+      ]
+    },
+    "air_force_accounts": {
+      "accounts": [
+        "3400F",
+        "3410F",
+        "3740F",
+        "3840F"
+      ],
+      "amounts": [
+        81894844,
+        77645775,
+        5679831,
+        83325606,
+        96185229,
+        6480301,
+        102665530
+      ]
+    }
+  },
+  "pdf_sha256": "8c209bc2af590e460977649ba4e37645fd2ee8e3c8dbf61c227b7d3a27079c4d",
+  "pdf_reference_file": "pdf_detail_reference.json",
+  "pdf_reference_sha256": "6fea2b31c7e99ac65a704e6b5034f37b51ef0f28a440084d425a247b33975bc1",
+  "pdf_comparison": {
+    "printed_page_range": [
+      1,
+      56
+    ],
+    "physical_pdf_page_range": [
+      6,
+      61
+    ],
+    "detail_rows": 397,
+    "accounts": 31,
+    "monetary_cells": 2779,
+    "reported_amounts": 1866,
+    "blank_cells": 913,
+    "missing_candidate_rows": 0,
+    "extra_candidate_rows": 0,
+    "amount_or_blank_mismatches": 0,
+    "printed_title_or_metadata_mismatches": 0,
+    "unprinted_activity_subactivity_rows": 18,
+    "pdf_acquisition": "User-uploaded original official PDF, independently hashed and checked; binary not committed",
+    "method": "Independent word-coordinate extraction by printed account/line and activity, seven monetary heading positions, geometric multiline titles, plus a separate plain-text detail inventory and rendered special-case checks."
+  },
+  "summary_control_coverage": {
+    "row_grain": "non_additive_control",
+    "recorded_control_cells": 42,
+    "recorded_reported_amounts": 40,
+    "recorded_blank_cells": 2,
+    "recorded_scopes": [
+      "army_accounts",
+      "navy_accounts",
+      "air_force_accounts",
+      "om_title",
+      "indefinite_accounts",
+      "om_title_plus_indefinite"
+    ],
+    "other_printed_summaries": "Not additive detail facts and not retained in headline_controls.csv: Defense-Wide, Transfer Accounts, Miscellaneous Accounts, individual appropriation summaries and account totals, account/activity and lower activity-group subtotals. Repeated printed summaries are duplicate evidence, not additional amounts.",
+    "distinct_account_activity_scopes": 44,
+    "printed_account_activity_summary_appearances": 74
+  }
+}
