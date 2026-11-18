@@ -7,6 +7,7 @@ committed parquet are missing; the skip reason says which.
 """
 import importlib.util
 import json
+import os
 import re
 import sys
 import tempfile
@@ -22,6 +23,13 @@ SKIP_REASON = ("needs duckdb, openpyxl and pandas (pip install -r requirements.t
 
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
+
+# query_budget pins openpyxl's standard-library XML writer when it is
+# imported. Under `unittest discover` another test may import openpyxl
+# first, so pin it here too, before any test runs (DBDP-43 round 2).
+os.environ["OPENPYXL_LXML"] = "False"
+HAVE_LXML = importlib.util.find_spec("lxml") is not None
+COMMITTED_XLSX = ROOT / "output" / "ODBA_FY2027_Budget_Report.xlsx"
 
 
 @unittest.skipUnless(HAVE_DEPS and PARQUET.exists(), SKIP_REASON)
@@ -168,20 +176,59 @@ class RunSummarySheetTests(unittest.TestCase):
         self.assertEqual(prov["Records in report slice"], len(self.sheets["All Records"]))
         self.assertTrue((summary["checks"]["Result"] == "PASS").all())
 
-    def test_byte_identical_across_processes(self):
-        """Two separate processes on the same parquet write identical bytes."""
+    BUILD = ("import sys; sys.path.insert(0, sys.argv[1]); import query_budget as q; "
+             "s, r = q.run_queries(q.PARQUET_FILE); "
+             "q.save_workbook_deterministic(q.build_workbook(s, r), sys.argv[2], r['vintage'])")
+
+    def _build_in_subprocess(self, name, openpyxl_lxml, prelude=""):
         import hashlib
         import subprocess
-        code = ("import sys; sys.path.insert(0, sys.argv[1]); import query_budget as q; "
-                "s, r = q.run_queries(q.PARQUET_FILE); "
-                "q.save_workbook_deterministic(q.build_workbook(s, r), sys.argv[2], r['vintage'])")
+        env = dict(os.environ)
+        if openpyxl_lxml is None:
+            env.pop("OPENPYXL_LXML", None)
+        else:
+            env["OPENPYXL_LXML"] = openpyxl_lxml
+        out = Path(self.tmp.name) / name
+        res = subprocess.run([sys.executable, "-c", prelude + self.BUILD, str(ROOT), str(out)],
+                             env=env, capture_output=True, text=True)
+        digest = hashlib.sha256(out.read_bytes()).hexdigest() if out.exists() else None
+        return res, digest
+
+    def test_byte_identical_across_processes(self):
+        """Separate processes write identical bytes, whatever the caller's
+        OPENPYXL_LXML setting: query_budget pins the stdlib XML writer."""
         digests = []
-        for i in range(2):
-            out = Path(self.tmp.name) / f"proc{i}.xlsx"
-            subprocess.run([sys.executable, "-c", code, str(ROOT), str(out)],
-                           check=True, capture_output=True)
-            digests.append(hashlib.sha256(out.read_bytes()).hexdigest())
-        self.assertEqual(digests[0], digests[1])
+        for i, setting in enumerate((None, None, "True", "False")):
+            res, digest = self._build_in_subprocess(f"proc{i}.xlsx", setting)
+            self.assertEqual(res.returncode, 0, res.stderr)
+            digests.append(digest)
+        self.assertEqual(len(set(digests)), 1, digests)
+
+    def test_xml_writer_is_pinned_to_stdlib(self):
+        import openpyxl.xml
+        self.assertIs(openpyxl.xml.LXML, False)
+
+    @unittest.skipUnless(HAVE_LXML, "lxml is not installed, so openpyxl cannot pick it")
+    def test_refuses_to_save_with_lxml_writer(self):
+        """If openpyxl was imported with lxml before query_budget, the save
+        stops instead of writing different bytes."""
+        res, digest = self._build_in_subprocess(
+            "lxml.xlsx", "True", prelude="import openpyxl; ")
+        self.assertNotEqual(res.returncode, 0)
+        self.assertIn("OPENPYXL_LXML=False", res.stderr)
+        self.assertIsNone(digest)
+
+    def test_committed_workbook_is_current(self):
+        """A fresh build matches the committed output workbook byte for byte
+        (supported stack: requirements.txt pins and this Python's zlib)."""
+        import hashlib
+        import zlib
+        res, digest = self._build_in_subprocess("fresh.xlsx", None)
+        self.assertEqual(res.returncode, 0, res.stderr)
+        committed = hashlib.sha256(COMMITTED_XLSX.read_bytes()).hexdigest()
+        self.assertEqual(digest, committed,
+                         f"fresh build differs from {COMMITTED_XLSX.name}; regenerate it with "
+                         f"python3 query_budget.py (zlib {zlib.ZLIB_RUNTIME_VERSION})")
 
 
 if __name__ == "__main__":

@@ -18,6 +18,7 @@
 
 import hashlib
 import io
+import os
 import re
 import sys
 import zipfile
@@ -29,6 +30,14 @@ import pandas as pd
 # DBDP-94 c10336 Ruling 1: the schema column list has exactly one home —
 # etl_budget.COLUMNS. No second hardcoded enumeration may exist here.
 from etl_budget import COLUMNS
+
+# DBDP-43 review round 2: openpyxl picks its XML writer when it is first
+# imported (lxml when installed, else the standard library), and the two
+# write different bytes. Pin the standard-library writer so the workbook
+# does not depend on whether lxml happens to be installed. This must run
+# before the first openpyxl import in the process; save_workbook_deterministic
+# refuses to write if openpyxl was already imported with lxml on.
+os.environ["OPENPYXL_LXML"] = "False"
 
 from openpyxl import load_workbook
 from openpyxl.styles import (Font, PatternFill, Alignment, Border, Side,
@@ -485,7 +494,8 @@ def run_summary_queries(con, parquet_path, vintage):
         ("Report slice", f"FY2027 | {REPORT_STAGE} | data_vintage {vintage}"),
         ("Data vintage (source acquisition date, download manifest)", vintage),
         ("Run timestamp", "Not stamped. The data vintage and dataset SHA-256 "
-                          "identify the input snapshot. Re-running on the same "
+                          "identify the input snapshot. With the pinned "
+                          "requirements.txt packages, re-running on the same "
                           "dataset writes a byte-identical workbook."),
         ("Source files contributing records", int(n_files)),
         ("Records in report slice", int(n_slice)),
@@ -589,6 +599,12 @@ def write_run_summary(wb, summary):
 # the core created/modified dates become the data vintage (midnight UTC) and
 # every zip entry gets the fixed 1980-01-01 DOS epoch. Entry order, content
 # and compression are left exactly as openpyxl wrote them.
+#
+# Supported stack for byte-identical output: the requirements.txt pins and
+# openpyxl's standard-library XML writer (pinned at the top of this file).
+# Deflate output also depends on the zlib build Python links against; a
+# different zlib (for example zlib-ng) can change the compressed bytes
+# without changing any cell, style or package part.
 
 ZIP_EPOCH = (1980, 1, 1, 0, 0, 0)
 _CORE_DATE = re.compile(
@@ -599,6 +615,13 @@ def save_workbook_deterministic(wb, path, vintage):
     stamp = f"{vintage}T00:00:00Z"
     if not re.fullmatch(r"\d{4}-\d{2}-\d{2}T00:00:00Z", stamp):
         raise ValueError(f"data vintage is not an ISO date: {vintage!r}")
+    import openpyxl.xml
+    if openpyxl.xml.LXML:
+        raise RuntimeError(
+            "openpyxl was imported with its lxml XML writer before "
+            "query_budget pinned the standard-library writer, so the "
+            "workbook bytes would not be reproducible. Import query_budget "
+            "before openpyxl, or set OPENPYXL_LXML=False.")
     buf = io.BytesIO()
     wb.save(buf)
     out = io.BytesIO()
