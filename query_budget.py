@@ -10,10 +10,13 @@
 #   5. Procurement      -- P-1 line items with full funding profile
 #   6. RDT&E            -- R-1 program elements with full funding profile
 #   7. All Records      -- complete data dump (all schema columns)
+#   8. ETL Run Summary  -- record counts, FY2027 totals, blank-field counts,
+#                          lifecycle confirmation and provenance (DBDP-43)
 #
 # Output: output/ODBA_FY2027_Budget_Report.xlsx
 # =============================================================================
 
+import hashlib
 import sys
 from pathlib import Path
 
@@ -54,6 +57,14 @@ THIN = Side(style="thin", color="B8CCE4")
 BORDER = Border(left=THIN, right=THIN, top=THIN, bottom=THIN)
 
 NUM_FMT  = '#,##0.0'      # millions with one decimal
+COUNT_FMT = '#,##0'
+
+# ── DBDP-43: ETL Run Summary sheet ────────────────────────────────────────────
+RUN_SUMMARY_SHEET = "ETL Run Summary"
+# Key fields whose blank/null counts are reported per exhibit type.
+RUN_SUMMARY_KEY_FIELDS = ("line_item_title", "budget_activity_number",
+                          "program_element")
+REPORT_STAGE = "Budget Request"
 PCT_FMT  = '+0.0%;-0.0%;0.0%'
 DELTA_FMT = '+#,##0.0;-#,##0.0;0.0'
 
@@ -310,6 +321,8 @@ def run_queries(parquet_path):
     # cells without touching the parquet's NULL state.
     q_all = q_all.astype(object).where(q_all.notna(), None)
 
+    run_summary = run_summary_queries(con, parquet_path, vintage)
+
     return {
         "Summary":        q_summary,
         "By Agency":      q_agency,
@@ -318,14 +331,248 @@ def run_queries(parquet_path):
         "Procurement":    q_proc,
         "RDT&E":          q_rdte,
         "All Records":    q_all,
-    }
+    }, run_summary
+
+
+# =============================================================================
+# DBDP-43: ETL Run Summary
+# =============================================================================
+# Everything on this sheet derives from the parquet bytes and the manifest
+# values already carried in it (data_vintage, data_lifecycle_stage). Nothing
+# derives from the wall clock or file mtimes, so the same parquet always gives
+# the same sheet (CLAUDE.md byte-identical rule). That is why the sheet shows
+# the data vintage and the parquet SHA-256 instead of an ETL run timestamp.
+
+def sha256_file(path):
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def _blank(col):
+    """SQL predicate: value is NULL or an empty/whitespace-only string."""
+    return f"NULLIF(TRIM(CAST({col} AS VARCHAR)), '') IS NULL"
+
+
+def _check(label, ok_count, total, detail):
+    ok_count = int(ok_count or 0)
+    total = int(total or 0)
+    return {"Check":           label,
+            "Result":          "PASS" if total > 0 and ok_count == total else "FAIL",
+            "Records Passing": ok_count,
+            "Records Checked": total,
+            "Detail":          detail}
+
+
+def run_summary_queries(con, parquet_path, vintage):
+    """Build the DBDP-43 sections from the validated report_slice view.
+
+    Returns a dict of DataFrames: provenance, checks, exhibits, missing.
+    Row order is fixed by ORDER BY on unique group keys, so it is stable
+    across runs.
+    """
+    p = str(parquet_path).replace("\\", "/")
+
+    n_slice = con.execute("SELECT COUNT(*) FROM report_slice").fetchone()[0]
+    n_files = con.execute(
+        "SELECT COUNT(DISTINCT source_file) FROM report_slice").fetchone()[0]
+
+    # (1)+(2) records and FY2027 request by exhibit type. SUM over all-NULL
+    # stays NULL (blank cell), never 0: blank is not zero. Rounded to $K
+    # (3 decimals in $M) only to drop float noise.
+    exhibits = con.execute("""
+        SELECT
+            exhibit_type                         AS "Exhibit Type",
+            appropriation_type                   AS "Appropriation Type",
+            COUNT(*)                             AS "Records",
+            COUNT(cost_fy2027)                   AS "Records with FY2027 Amount",
+            ROUND(SUM(cost_fy2027), 3)           AS "FY2027 Request ($M)",
+            COUNT(DISTINCT source_file)          AS "Source Files"
+        FROM report_slice
+        GROUP BY 1, 2
+        ORDER BY 2, 1
+    """).df()
+    total = con.execute("""
+        SELECT 'Total', '', COUNT(*), COUNT(cost_fy2027),
+               ROUND(SUM(cost_fy2027), 3), COUNT(DISTINCT source_file)
+        FROM report_slice
+    """).fetchone()
+    exhibits = pd.concat(
+        [exhibits, pd.DataFrame([list(total)], columns=exhibits.columns)],
+        ignore_index=True)
+    exhibits = exhibits.astype(object).where(exhibits.notna(), None)
+
+    # (3) blank/null counts in key fields, per exhibit type
+    blank_cols = ",\n".join(
+        f'            SUM(CASE WHEN {_blank(c)} THEN 1 ELSE 0 END) AS "{c} blank"'
+        for c in RUN_SUMMARY_KEY_FIELDS)
+    missing = con.execute(f"""
+        SELECT
+            exhibit_type                         AS "Exhibit Type",
+            COUNT(*)                             AS "Records",
+{blank_cols}
+        FROM report_slice
+        GROUP BY 1
+        ORDER BY 1
+    """).df()
+    missing_total = ["Total"] + [int(missing[c].sum()) for c in missing.columns[1:]]
+    missing = pd.concat(
+        [missing, pd.DataFrame([missing_total], columns=missing.columns)],
+        ignore_index=True)
+    for c in missing.columns[1:]:
+        missing[c] = missing[c].astype(int)
+
+    # (4) lifecycle confirmation over ALL FY2027 rows in the parquet, not
+    # just the slice: the slice is filtered on the stage, so counting it
+    # there would prove nothing.
+    n_fy27, n_fy27_br = con.execute("""
+        SELECT COUNT(*),
+               SUM(CASE WHEN data_lifecycle_stage = ? THEN 1 ELSE 0 END)
+        FROM read_parquet(?) WHERE budget_year = 2027.0
+    """, [REPORT_STAGE, p]).fetchone()
+    n_unique = con.execute("""
+        SELECT COUNT(*) FROM (SELECT DISTINCT record_id, data_vintage
+                              FROM report_slice)
+    """).fetchone()[0]
+    n_fmt = con.execute("""
+        SELECT COUNT(*) FROM report_slice
+        WHERE regexp_full_match(record_id, '[0-9a-f]{20}')
+    """).fetchone()[0]
+    n_src = con.execute(f"""
+        SELECT COUNT(*) FROM report_slice WHERE NOT ({_blank("source_file")})
+    """).fetchone()[0]
+    n_vint = con.execute(f"""
+        SELECT COUNT(*) FROM report_slice WHERE NOT ({_blank("data_vintage")})
+    """).fetchone()[0]
+    checks = pd.DataFrame([
+        _check("data_lifecycle_stage = Budget Request", n_fy27_br, n_fy27,
+               "All FY2027 records in the dataset, not only the report slice"),
+        _check("(record_id, data_vintage) unique", n_unique, n_slice,
+               "Distinct composite keys in the report slice"),
+        _check("record_id format", n_fmt, n_slice,
+               "20 lowercase hex characters"),
+        _check("source_file populated", n_src, n_slice,
+               "Every record names the file it was parsed from"),
+        _check("data_vintage populated", n_vint, n_slice,
+               "Source acquisition date from the download manifest"),
+    ])
+
+    years = [int(y) for (y,) in con.execute(
+        "SELECT DISTINCT budget_year FROM read_parquet(?) "
+        "WHERE budget_year IS NOT NULL ORDER BY 1", [p]).fetchall()]
+    stages = [s for (s,) in con.execute(
+        "SELECT DISTINCT data_lifecycle_stage FROM read_parquet(?) ORDER BY 1",
+        [p]).fetchall()]
+    n_all = con.execute("SELECT COUNT(*) FROM read_parquet(?)", [p]).fetchone()[0]
+
+    # (5) provenance. No run timestamp: see the block comment above.
+    provenance = pd.DataFrame([
+        ("Report slice", f"FY2027 | {REPORT_STAGE} | data_vintage {vintage}"),
+        ("Data vintage (source acquisition date, download manifest)", vintage),
+        ("Run timestamp", "Not stamped. The same dataset always produces the "
+                          "same report, so the data vintage and dataset "
+                          "SHA-256 identify the run."),
+        ("Source files contributing records", int(n_files)),
+        ("Records in report slice", int(n_slice)),
+        ("Dataset file", Path(parquet_path).name),
+        ("Dataset SHA-256", sha256_file(parquet_path)),
+        ("Records in dataset (all budget years)", int(n_all)),
+        ("Budget years in dataset", ", ".join(str(y) for y in years)),
+        ("Lifecycle stages in dataset", ", ".join(stages)),
+    ], columns=["Item", "Value"])
+
+    return {"provenance": provenance, "checks": checks,
+            "exhibits": exhibits, "missing": missing}
+
+
+def _style_total_row(ws, row, ncols):
+    for c in range(1, ncols + 1):
+        cell = ws.cell(row=row, column=c)
+        cell.fill = TOTAL_FILL
+        cell.font = TOTAL_FONT
+
+
+def _section(ws, row, text):
+    ws.cell(row=row, column=1, value=text).font = Font(bold=True, size=12,
+                                                       color="1F3864")
+    return row + 1
+
+
+def _note(ws, row, text):
+    ws.cell(row=row, column=1, value=text).font = Font(italic=True, size=9,
+                                                       color="595959")
+    return row + 1
+
+
+def write_run_summary(wb, summary):
+    """Append the DBDP-43 ETL Run Summary sheet to the workbook."""
+    ws = wb.create_sheet(title=RUN_SUMMARY_SHEET)
+    row = add_title(
+        ws, "ETL Run Summary -- Data Completeness and Provenance",
+        "Check these figures before relying on the other sheets  |  "
+        "Dollars in Millions  |  Lifecycle Stage: Budget Request")
+    count_cols = (["Records", "Records with FY2027 Amount", "Source Files",
+                   "Records Passing", "Records Checked"]
+                  + [f"{c} blank" for c in RUN_SUMMARY_KEY_FIELDS])
+
+    def table(df, start):
+        end = write_df(ws, df, start_row=start,
+                       number_cols=["FY2027 Request ($M)"])
+        for c_idx, name in enumerate(df.columns, 1):
+            if name in count_cols:
+                for r in range(start + 1, end):
+                    cell = ws.cell(row=r, column=c_idx)
+                    cell.number_format = COUNT_FMT
+                    cell.alignment = Alignment(horizontal="right")
+        return end
+
+    row += 1
+    row = _section(ws, row, "Provenance")
+    row = table(summary["provenance"], row)
+    for r in range(row - len(summary["provenance"]), row):
+        v = ws.cell(row=r, column=2)
+        if isinstance(v.value, int):
+            v.number_format = COUNT_FMT
+        v.alignment = Alignment(horizontal="left")
+
+    row += 1
+    row = _section(ws, row, "Validation checks")
+    row = table(summary["checks"], row)
+    for r in range(row - len(summary["checks"]), row):
+        res = ws.cell(row=r, column=2)
+        res.font = Font(bold=True, size=10,
+                        color="375623" if res.value == "PASS" else "C00000")
+
+    row += 1
+    row = _section(ws, row, "Records and FY2027 request by exhibit type")
+    row = table(summary["exhibits"], row)
+    _style_total_row(ws, row - 1, len(summary["exhibits"].columns))
+    row = _note(ws, row, "Exhibit types are the source exhibits the records "
+                "were parsed from (OP-5 for O&M, P-40 for Procurement, R-2 for "
+                "RDT&E, RF-1 for DWCF, DHP-J-Book and DHP-SMR for DHP).")
+    row = _note(ws, row, "A blank FY2027 amount means no record in that group "
+                "carries an FY2027 value. Blank is not zero.")
+
+    row += 1
+    row = _section(ws, row, "Records with blank or null key fields")
+    row = table(summary["missing"], row)
+    _style_total_row(ws, row - 1, len(summary["missing"].columns))
+    _note(ws, row, "Counts of records where the field is null or empty. "
+          "Whether a field applies to an exhibit type is not judged here.")
+
+    autofit(ws)
+    ws.column_dimensions["A"].width = 58
+    ws.column_dimensions["B"].width = 66
+    return ws
 
 
 # =============================================================================
 # Build workbook
 # =============================================================================
 
-def build_workbook(sheets):
+def build_workbook(sheets, run_summary=None):
     import openpyxl
     wb = openpyxl.Workbook()
     wb.remove(wb.active)  # remove default blank sheet
@@ -382,6 +629,9 @@ def build_workbook(sheets):
         last_col = get_column_letter(len(df.columns))
         ws.auto_filter.ref = f"A{data_start}:{last_col}{data_start}"
 
+    if run_summary is not None:          # DBDP-43: 8th sheet
+        write_run_summary(wb, run_summary)
+
     return wb
 
 
@@ -409,12 +659,13 @@ def main():
     print(f"  Output : {OUTPUT_FILE.name}")
     print()
 
-    sheets = run_queries(PARQUET_FILE)
+    sheets, run_summary = run_queries(PARQUET_FILE)
 
     total_rows = sum(len(df) for df in sheets.values())
-    print(f"  Building Excel workbook ({len(sheets)} sheets, {total_rows:,} total rows)...")
+    n_sheets = len(sheets) + 1           # + DBDP-43 ETL Run Summary
+    print(f"  Building Excel workbook ({n_sheets} sheets, {total_rows:,} total rows)...")
 
-    wb = build_workbook(sheets)
+    wb = build_workbook(sheets, run_summary)
     wb.save(OUTPUT_FILE)
 
     size_kb = round(OUTPUT_FILE.stat().st_size / 1024, 1)
@@ -422,11 +673,12 @@ def main():
     print("=" * 65)
     print("  Done!")
     print(f"  Report saved: {OUTPUT_FILE}")
-    print(f"  Size: {size_kb} KB  |  Sheets: {len(sheets)}")
+    print(f"  Size: {size_kb} KB  |  Sheets: {n_sheets}")
     print()
     print("  Tabs in the workbook:")
     for name, df in sheets.items():
         print(f"    {name:<23} {len(df):>5} rows")
+    print(f"    {RUN_SUMMARY_SHEET:<23}  provenance and completeness checks")
     print("=" * 65)
     print()
 
