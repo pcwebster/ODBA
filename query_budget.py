@@ -611,27 +611,38 @@ def write_run_summary(wb, summary):
 # DBDP-44: FYDP Trends
 # =============================================================================
 # Sums the absolute year columns (cost_fy2025..cost_fy2031) over the validated
-# report_slice by appropriation type. Each year is labelled with the basis the
-# consumption layer assigns it for the FY2027 submission (amount_basis_for,
-# c10575): FY2025 actual, FY2026 estimate, FY2027 request, FY2028-FY2031 FYDP
-# projection. Every figure is from the FY2027 President's Budget Request
-# submission (AR c10045); the basis says which column of that submission it
-# is. A year with no amounts for a type stays blank, never zero.
+# report_slice by appropriation type. Three things are kept apart on the sheet
+# (OpenAI review @ efceec0):
+#   * submission provenance: every figure is from the FY2027 President's
+#     Budget Request submission (AR c10045);
+#   * the ODBA amount-basis model for each year (amount_basis_for, c10575),
+#     shown as a model, not as the heading printed in each source exhibit,
+#     which was not checked exhibit by exhibit;
+#   * coverage breaks: where records that carry an amount in one year carry
+#     none in the next, the change between those years is not comparable.
+# A year with no amounts for a type stays blank, never zero.
+
+# A type-year is flagged when the records that drop out (amount in the prior
+# year, none in this year) carried at least this share of the type's
+# prior-year total. Flagged points are left off the chart; the table keeps
+# the summed figure. Implementation threshold, open to review.
+FYDP_BREAK_SHARE = 0.25
+
 
 def fydp_year_columns():
-    """[(column, fiscal_year, header label)] in fiscal-year order."""
+    """[(column, fiscal_year, header, basis)] in fiscal-year order."""
     out = []
     for col in ABSOLUTE_COST_COLUMNS:
         fy = int(col.removeprefix("cost_fy"))
         basis = BASIS_LABELS[amount_basis_for(fy, REPORT_BUDGET_YEAR)]
-        out.append((col, fy, f"FY{fy} {basis} ($M)"))
+        out.append((col, fy, f"FY{fy} ($M)", basis))
     return sorted(out, key=lambda t: t[1])
 
 
 def fydp_trend_queries(con):
     years = fydp_year_columns()
-    sums = ",\n".join(f'ROUND(SUM({c}), 1) AS "{label}"' for c, _, label in years)
-    counts = ",\n".join(f'COUNT({c}) AS "FY{fy}"' for c, fy, _ in years)
+    sums = ",\n".join(f'ROUND(SUM({c}), 1) AS "{h}"' for c, _, h, _ in years)
+    counts = ",\n".join(f'COUNT({c}) AS "FY{fy}"' for c, fy, _, _ in years)
     amounts = con.execute(f"""
         SELECT appropriation_type AS "Appropriation Type", {sums}
         FROM report_slice GROUP BY 1
@@ -642,91 +653,172 @@ def fydp_trend_queries(con):
         FROM report_slice GROUP BY 1
     """).df()
 
-    def ordered(df):
-        types = list(df["Appropriation Type"])
+    # Coverage breaks between consecutive years, per type. Only years where
+    # the type has amounts on both sides are compared.
+    breaks = []
+    for (prev_col, prev_fy, _, _), (col, fy, _, _) in zip(years, years[1:]):
+        rows = con.execute(f"""
+            SELECT appropriation_type,
+                   COUNT(*) FILTER (WHERE {prev_col} IS NOT NULL AND {col} IS NULL),
+                   SUM({prev_col}) FILTER (WHERE {prev_col} IS NOT NULL AND {col} IS NULL),
+                   SUM({prev_col}),
+                   COUNT({col})
+            FROM report_slice GROUP BY 1 ORDER BY 1
+        """).fetchall()
+        for typ, n_drop, amt_drop, prev_total, n_cur in rows:
+            if not n_drop or not n_cur or not prev_total:
+                continue
+            share = float(amt_drop) / float(prev_total)
+            breaks.append({
+                "Appropriation Type": typ,
+                "Year": f"FY{fy}",
+                "Records dropped (prior-year amount, none this year)": int(n_drop),
+                "Their prior-year amount ($M)": round(float(amt_drop), 1),
+                "Share of type's prior-year total": share,
+                "Comparable with prior year": "No" if share >= FYDP_BREAK_SHARE else "Yes",
+            })
+
+    def ordered(df, key="Appropriation Type"):
+        types = list(dict.fromkeys(df[key]))
         order = ([t for t in FYDP_APPROP_ORDER if t in types]
                  + sorted(t for t in types if t not in FYDP_APPROP_ORDER))
-        df = df.set_index("Appropriation Type").loc[order].reset_index()
+        rank = {t: i for i, t in enumerate(order)}
+        by = ["_r", "Year"] if "Year" in df.columns else ["_r"]
+        df = df.assign(_r=df[key].map(rank)).sort_values(
+            by, kind="mergesort").drop(columns="_r").reset_index(drop=True)
         # blank stays blank: pandas NaN -> None so openpyxl writes no value
         return df.astype(object).where(df.notna(), None)
 
     amounts, records = ordered(amounts), ordered(records)
     for name in records.columns[1:]:
         records[name] = [int(v) for v in records[name]]
-    return {"amounts": amounts, "records": records,
-            "years": [(fy, label) for _, fy, label in years]}
+    breaks = (ordered(pd.DataFrame(breaks)) if breaks else
+              pd.DataFrame(columns=["Appropriation Type", "Year"]))
+
+    # Chart series: the table's figures with flagged (non-comparable) years
+    # left blank, so the chart shows a gap instead of a drop.
+    flagged = {(b["Appropriation Type"], b["Year"]) for _, b in breaks.iterrows()
+               if b.get("Comparable with prior year") == "No"}
+    chart = amounts.copy()
+    for i, r in chart.iterrows():
+        for _, fy, h, _ in years:
+            if (r["Appropriation Type"], f"FY{fy}") in flagged:
+                chart.at[i, h] = None
+    roles = pd.DataFrame(
+        [(f"FY{fy}", basis) for _, fy, _, basis in years],
+        columns=["Fiscal Year", f"Role in the FY{REPORT_BUDGET_YEAR} submission "
+                                "(ODBA amount-basis model)"])
+    return {"amounts": amounts, "records": records, "breaks": breaks,
+            "chart": chart, "roles": roles, "flagged": sorted(flagged),
+            "years": [(fy, h) for _, fy, h, _ in years]}
 
 
 def write_fydp_trends(wb, fydp, vintage):
-    """Append the DBDP-44 FYDP Trends sheet: table, coverage, chart."""
+    """Append the DBDP-44 FYDP Trends sheet: tables, coverage, chart."""
     ws = wb.create_sheet(title=FYDP_SHEET)
     years = fydp["years"]
     first_fy, last_fy = years[0][0], years[-1][0]
-    by_basis = {}
-    for fy, label in years:
-        by_basis.setdefault(label.split(" ", 1)[1].removesuffix(" ($M)"), []).append(fy)
+    money = [h for _, h in years]
 
-    def span(fys):
-        return f"FY{fys[0]}" if len(fys) == 1 else f"FY{fys[0]}-FY{fys[-1]}"
+    def header_height(r, df):
+        # Explicit height for a wrapped header row: Excel and LibreOffice then
+        # agree on where the chart below sits (no auto-height drift).
+        lines = max(-(-len(str(c)) // 16) for c in df.columns)
+        if lines > 1:
+            ws.row_dimensions[r].height = 14 * lines + 2
+
+    def counts(df, start, end, cols):
+        for c_idx, name in enumerate(df.columns, 1):
+            if name in cols:
+                for r in range(start + 1, end):
+                    cell = ws.cell(row=r, column=c_idx)
+                    cell.number_format = COUNT_FMT
+                    cell.alignment = Alignment(horizontal="right")
 
     row = add_title(
         ws, f"FYDP Trends -- FY{first_fy}-FY{last_fy} by Appropriation Type",
         f"Dollars in Millions  |  Lifecycle Stage: {REPORT_STAGE}  |  "
         f"FY{REPORT_BUDGET_YEAR} submission, data vintage {vintage}")
     row = _note(ws, row,
-                f"Every figure on this sheet is from the FY{REPORT_BUDGET_YEAR} "
-                "President's Budget Request submission. None of it is enacted, "
-                "apportioned or execution data recorded by ODBA.")
-    basis_text = "; ".join(f"{span(fys)} {b if b.startswith('FYDP') else b.lower()}"
-                           for b, fys in by_basis.items())
+                f"Every figure on this sheet is an amount printed in the "
+                f"FY{REPORT_BUDGET_YEAR} President's Budget Request submission. "
+                "ODBA has loaded no separate enacted, apportioned or execution "
+                "data for these years.")
     row = _note(ws, row,
-                "Each year is labelled with its column in that submission: "
-                f"{basis_text}. Prior- and current-year columns are as printed "
-                "in the request exhibits.")
+                "Year roles below come from ODBA's amount-basis model, not from "
+                "the headings printed in each exhibit, which were not checked "
+                "exhibit by exhibit and can differ (the PB27 R-1, for example, "
+                "heads FY2026 as discretionary enacted).")
     row += 1
 
     row = _section(ws, row, "Funding by appropriation type")
-    table_header = row
-    money = [label for _, label in years]
     row = write_df(ws, fydp["amounts"], start_row=row, number_cols=money)
-    table_end = row - 1
     row = _note(ws, row, "A blank cell means no record of that appropriation "
                 "type carries an amount for that year. Blank is not zero.")
     row = _note(ws, row, "Types differ in which years their exhibits publish, so "
-                "do not read a drop to blank as a funding cut. A change between "
-                "years can also come from records that carry an amount in one "
-                "year and not the next; compare the record counts below.")
+                "do not read a drop to blank as a funding cut. Check coverage "
+                "breaks below before reading a change between years.")
+    row += 1
+
+    row = _section(ws, row, "Year roles")
+    header_height(row, fydp["roles"])
+    row = write_df(ws, fydp["roles"], start_row=row)
+    row += 1
+
+    row = _section(ws, row, "Coverage breaks between years")
+    breaks = fydp["breaks"]
+    if len(breaks):
+        start = row
+        header_height(row, breaks)
+        row = write_df(ws, breaks, start_row=row,
+                       number_cols=["Their prior-year amount ($M)"])
+        share_col = list(breaks.columns).index("Share of type's prior-year total") + 1
+        for r in range(start + 1, row):
+            ws.cell(row=r, column=share_col).number_format = "0.0%"
+            flag = ws.cell(row=r, column=len(breaks.columns))
+            if flag.value == "No":
+                for c in range(1, len(breaks.columns) + 1):
+                    ws.cell(row=r, column=c).fill = NEG_FILL
+                flag.font = Font(bold=True, size=10, color="C00000")
+        counts(breaks, start, row, [c for c in breaks.columns if c.startswith("Records")])
+    row = _note(ws, row,
+                "Records that carry an amount in the prior year and none in this "
+                "year, by type. Where they held at least "
+                f"{FYDP_BREAK_SHARE:.0%} of the type's prior-year total, the "
+                "change is marked not comparable and that point is left off the "
+                "chart. The cause is not established here; it may be a parsing "
+                "gap or a real change in the exhibit.")
     row += 1
 
     row = _section(ws, row, "Records with an amount, by year")
     end = write_df(ws, fydp["records"], start_row=row)
-    for r in range(row + 1, end):
-        for c in range(2, len(fydp["records"].columns) + 1):
-            cell = ws.cell(row=r, column=c)
-            cell.number_format = COUNT_FMT
-            cell.alignment = Alignment(horizontal="right")
+    counts(fydp["records"], row, end, list(fydp["records"].columns[1:]))
     row = end + 1
 
-    # Chart: one line per appropriation type that has any amount. Blank
-    # years show as gaps, not as zero.
+    row = _section(ws, row, "Chart data (non-comparable points left blank)")
+    chart_header = row
+    row = write_df(ws, fydp["chart"], start_row=row, number_cols=money)
+    row += 1
+
     chart = LineChart()
     chart.title = f"FY{REPORT_BUDGET_YEAR} President's Budget Request ($M)"
     chart.y_axis.title = "$M"
-    chart.x_axis.title = "Fiscal year (amount basis)"
+    chart.x_axis.title = (f"Fiscal year (FY{first_fy}-FY{REPORT_BUDGET_YEAR - 1}: "
+                          "prior- and current-year columns of the request)")
     chart.display_blanks = "gap"
     chart.x_axis.delete = False          # openpyxl 3.1 hides axes by default
     chart.y_axis.delete = False
     chart.height, chart.width = 9, 22
-    ncols = len(fydp["amounts"].columns)
-    for i, values in enumerate(fydp["amounts"].itertuples(index=False)):
+    ncols = len(fydp["chart"].columns)
+    for i, values in enumerate(fydp["chart"].itertuples(index=False)):
         if all(v is None for v in values[1:]):
             continue
-        r = table_header + 1 + i
+        r = chart_header + 1 + i
         chart.add_data(Reference(ws, min_col=1, max_col=ncols, min_row=r, max_row=r),
                        from_rows=True, titles_from_data=True)
     # Year headers are text, so point the categories at them as strings.
     cats = Reference(ws, min_col=2, max_col=ncols,
-                     min_row=table_header, max_row=table_header)
+                     min_row=chart_header, max_row=chart_header)
     for series in chart.series:
         series.cat = AxDataSource(strRef=StrRef(f=str(cats)))
         series.smooth = False            # straight segments: no invented curve
@@ -734,7 +826,7 @@ def write_fydp_trends(wb, fydp, vintage):
 
     autofit(ws)
     ws.column_dimensions["A"].width = 22
-    for c in range(2, ncols + 1):
+    for c in range(2, max(ncols, len(breaks.columns)) + 1):
         ws.column_dimensions[get_column_letter(c)].width = 18
     return ws
 

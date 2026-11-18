@@ -58,12 +58,38 @@ class FydpTrendsSheetTests(unittest.TestCase):
         self.assertEqual(len(self.wb.sheetnames), 9)
         self.assertEqual(self.wb.sheetnames[-1], "FYDP Trends")
 
+    def section_rows(self, title):
+        """Rows of the table under a section title, header first."""
+        rows = self.rows()
+        i = next(n for n, r in enumerate(rows) if r[0] == title) + 1
+        out = []
+        while i < len(rows) and rows[i][0] is not None:
+            out.append(rows[i])
+            i += 1
+        return out
+
     def test_budget_request_label_on_sheet(self):
         """AR c10045: the sheet must say the figures are Budget Request data."""
         t = self.text()
         self.assertIn("Lifecycle Stage: Budget Request", t)
         self.assertIn("FY2027 President's Budget Request submission", t)
-        self.assertIn("None of it is enacted, apportioned or execution data", t)
+
+    def test_provenance_kept_apart_from_basis_model(self):
+        """Review @ efceec0 finding 1: no blanket claim about what the amounts
+        are; year roles are labelled as ODBA's model, not as source headings."""
+        t = self.text()
+        self.assertNotIn("None of it is enacted", t)
+        self.assertNotIn("as printed in the request exhibits", t)
+        self.assertIn("ODBA's amount-basis model", t)
+        self.assertIn("not from the headings printed in each exhibit", t)
+        self.assertIn("discretionary enacted", t)
+        # year headers carry no basis word
+        for fy, label in self.fydp["years"]:
+            self.assertEqual(label, f"FY{fy} ($M)")
+        # the x axis says the prior/current-year lanes are request columns
+        with zipfile.ZipFile(self.path) as z:
+            xml = z.read("xl/charts/chart1.xml").decode("utf-8")
+        self.assertIn("prior- and current-year columns of the request", xml)
 
     def test_years_and_basis_labels_follow_consumption_rule(self):
         from etl_budget import amount_basis_for
@@ -71,8 +97,11 @@ class FydpTrendsSheetTests(unittest.TestCase):
         self.assertEqual(years, list(range(2025, 2032)))
         names = {"actual": "Actual", "estimate": "Estimate", "request": "Request",
                  "fydp_projection": "FYDP projection"}
-        for fy, label in self.fydp["years"]:
-            self.assertEqual(label, f"FY{fy} {names[amount_basis_for(fy, 2027)]} ($M)")
+        roles = dict(self.fydp["roles"].itertuples(index=False))
+        for fy, _ in self.fydp["years"]:
+            self.assertEqual(roles[f"FY{fy}"], names[amount_basis_for(fy, 2027)])
+        self.assertEqual(self.section_rows("Year roles")[1:],
+                         [(k, v) + (None,) * 7 for k, v in roles.items()])
         self.assertEqual(list(self.fydp["amounts"].columns),
                          ["Appropriation Type"] + [l for _, l in self.fydp["years"]])
 
@@ -101,7 +130,7 @@ class FydpTrendsSheetTests(unittest.TestCase):
         for _, a in self.fydp["amounts"].iterrows():
             s = summ[summ["Appropriation Type"] == a["Appropriation Type"]]
             expect = float(s["FY2027 Request ($M)"].sum())
-            got = a["FY2027 Request ($M)"]
+            got = a["FY2027 ($M)"]
             if got is None:
                 self.assertEqual(expect, 0)        # Summary COALESCEs to 0
             else:
@@ -119,9 +148,10 @@ class FydpTrendsSheetTests(unittest.TestCase):
         self.assertEqual(len(m), len(long), "every FY2027 long row is in the slice")
         names = {"actual": "Actual", "estimate": "Estimate", "request": "Request",
                  "fydp_projection": "FYDP projection"}
-        for fy, label in self.fydp["years"]:
+        roles = dict(self.fydp["roles"].itertuples(index=False))
+        for fy, _ in self.fydp["years"]:
             bases = set(m[m["funding_fy"] == fy]["amount_basis"])
-            self.assertEqual({f"FY{fy} {names[b]} ($M)" for b in bases}, {label})
+            self.assertEqual({names[b] for b in bases}, {roles[f"FY{fy}"]})
         for _, a in self.fydp["amounts"].iterrows():
             for fy, label in self.fydp["years"]:
                 sub = m[(m["appropriation_type"] == a["Appropriation Type"])
@@ -133,15 +163,72 @@ class FydpTrendsSheetTests(unittest.TestCase):
                                            places=6)
 
     def test_blank_is_not_zero(self):
-        rows = {r[0]: r for r in self.rows()
-                if r[0] in ("O&M", "Procurement", "RDT&E", "DWCF", "DHP")
-                and r[1] is not None and not isinstance(r[1], int)
-                or (r[0] == "DWCF" and r[2] is None)}
+        rows = {r[0]: r for r in self.section_rows("Funding by appropriation type")}
         dwcf = rows["DWCF"]
         self.assertTrue(all(v is None for v in dwcf[1:8]), dwcf)
         om = rows["O&M"]
         self.assertIsNotNone(om[3])          # FY2027 request present
         self.assertTrue(all(v is None for v in om[4:8]), om)   # no FY2028+ in OP-5
+
+    def test_dhp_fy2027_coverage_break_flagged(self):
+        """Review @ efceec0 finding 2: the DHP record that drops out in FY2027
+        held about half of DHP's FY2026 total, so FY2027 is not comparable."""
+        b = self.fydp["breaks"]
+        flagged = b[b["Comparable with prior year"] == "No"]
+        self.assertEqual([tuple(r) for r in flagged[["Appropriation Type", "Year"]]
+                          .itertuples(index=False)], [("DHP", "FY2027")])
+        dhp = flagged.iloc[0]
+        self.assertEqual(dhp["Records dropped (prior-year amount, none this year)"], 1)
+        self.assertAlmostEqual(dhp["Share of type's prior-year total"], 0.5065, places=3)
+        self.assertEqual(self.fydp["flagged"], [("DHP", "FY2027")])
+        # every row's share agrees with the threshold
+        for _, r in b.iterrows():
+            self.assertEqual(r["Comparable with prior year"] == "No",
+                             r["Share of type's prior-year total"] >= self.qb.FYDP_BREAK_SHARE)
+        # and the table is on the sheet
+        sheet = self.section_rows("Coverage breaks between years")
+        self.assertIn(("DHP", "FY2027", 1), [r[:3] for r in sheet])
+
+    def test_dhp_break_recomputed_from_records(self):
+        """The break comes from the data, not a hard-coded type."""
+        df = self.records[self.records["appropriation_type"] == "DHP"]
+        drop = df[df["cost_fy2026"].notna() & df["cost_fy2027"].isna()]
+        share = drop["cost_fy2026"].sum() / df["cost_fy2026"].sum()
+        self.assertEqual(len(drop), 1)
+        self.assertGreaterEqual(share, self.qb.FYDP_BREAK_SHARE)
+
+    def test_table_keeps_summed_figure_and_chart_data_blanks_break(self):
+        amounts = self.fydp["amounts"].set_index("Appropriation Type")
+        chart = self.fydp["chart"].set_index("Appropriation Type")
+        flagged = set(self.fydp["flagged"])
+        # table unchanged: DHP FY2027 is still the summed figure, not zero/blank
+        dhp27 = self.records[self.records["appropriation_type"] == "DHP"]["cost_fy2027"]
+        self.assertAlmostEqual(amounts.at["DHP", "FY2027 ($M)"],
+                               round(dhp27.dropna().sum(), 1), places=6)
+        for typ in amounts.index:
+            for fy, label in self.fydp["years"]:
+                if (typ, f"FY{fy}") in flagged:
+                    self.assertIsNone(chart.at[typ, label])
+                else:
+                    self.assertEqual(chart.at[typ, label], amounts.at[typ, label])
+        sheet = {r[0]: r for r in self.section_rows(
+            "Chart data (non-comparable points left blank)")}
+        self.assertEqual(sheet["DHP"][1:4], (38916.5, 41011.9, None))
+        main = {r[0]: r for r in self.section_rows("Funding by appropriation type")}
+        self.assertEqual(main["DHP"][3], amounts.at["DHP", "FY2027 ($M)"])
+
+    def test_chart_reads_chart_data_block(self):
+        """Series point at the chart-data rows, so the DHP line stops at FY2026."""
+        rows = self.rows()
+        start = next(n for n, r in enumerate(rows)
+                     if r[0] == "Chart data (non-comparable points left blank)") + 2
+        with zipfile.ZipFile(self.path) as z:
+            xml = z.read("xl/charts/chart1.xml").decode("utf-8")
+        refs = re.findall(r"<(?:c:)?val><(?:c:)?numRef><(?:c:)?f>([^<]+)<", xml)
+        self.assertEqual(len(refs), 4)
+        for ref in refs:
+            row = int(re.search(r"\$(\d+)$", ref).group(1))
+            self.assertGreater(row, start)
 
     def test_chart_one_line_per_type_with_data_and_gaps(self):
         with zipfile.ZipFile(self.path) as z:
