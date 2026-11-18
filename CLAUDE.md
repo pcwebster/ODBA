@@ -34,9 +34,15 @@ Who does what
 Workflow (DBDP)
 - Build tickets: Ready -> In Progress (builder starts) -> Review (draft
   PR and builder check posted) -> Done (after Peter's merge).
-  Changes requested: Review -> In Progress.
+  Changes requested: Review -> In Progress. Jira does not offer that
+  transition yet (2026-11-18: Review offers only Done, Research and
+  Blocked). Until it does, the ticket stays in Review: the builder
+  records the requested fixes on the ticket, pushes them, and posts a
+  new builder check and review request for the new full SHA.
 - Research and design tickets: Research -> Review -> Research for
   changes. An approved design goes to Ready only after Peter's review.
+  Research is for design and research revisions, not for routine
+  build fixes.
 
 Review and sign-off
 - Branch from current `main`. Ticket key leads the PR title
