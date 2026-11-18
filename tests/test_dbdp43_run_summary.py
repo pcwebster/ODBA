@@ -55,7 +55,8 @@ class RunSummarySheetTests(unittest.TestCase):
         return [r for r in self.ws.iter_rows(values_only=True)]
 
     def test_is_eighth_sheet_and_existing_sheets_unchanged(self):
-        self.assertEqual(self.wb.sheetnames,
+        # DBDP-44 appends FYDP Trends as the 9th sheet after this one.
+        self.assertEqual(self.wb.sheetnames[:8],
                          ["Summary", "By Agency", "Year-over-Year", "RDT&E by BA",
                           "Procurement", "RDT&E", "All Records", "ETL Run Summary"])
 

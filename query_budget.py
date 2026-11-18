@@ -12,6 +12,8 @@
 #   7. All Records      -- complete data dump (all schema columns)
 #   8. ETL Run Summary  -- record counts, FY2027 totals, blank-field counts,
 #                          lifecycle confirmation and provenance (DBDP-43)
+#   9. FYDP Trends      -- FY2025-FY2031 by appropriation type, each year
+#                          labelled with its amount basis, plus a chart (DBDP-44)
 #
 # Output: output/ODBA_FY2027_Budget_Report.xlsx
 # =============================================================================
@@ -30,6 +32,9 @@ import pandas as pd
 # DBDP-94 c10336 Ruling 1: the schema column list has exactly one home —
 # etl_budget.COLUMNS. No second hardcoded enumeration may exist here.
 from etl_budget import COLUMNS
+# DBDP-44: the year columns and their amount basis have one home too: the
+# consumption layer's ABSOLUTE_COST_COLUMNS and amount_basis_for (c10575).
+from etl_budget import ABSOLUTE_COST_COLUMNS, amount_basis_for
 
 # DBDP-43 review round 2: openpyxl picks its XML writer when it is first
 # imported (lxml when installed, else the standard library), and the two
@@ -42,6 +47,8 @@ os.environ["OPENPYXL_LXML"] = "False"
 from openpyxl import load_workbook
 from openpyxl.styles import (Font, PatternFill, Alignment, Border, Side,
                               numbers)
+from openpyxl.chart import LineChart, Reference
+from openpyxl.chart.data_source import AxDataSource, StrRef
 from openpyxl.utils import get_column_letter
 from openpyxl.utils.dataframe import dataframe_to_rows
 
@@ -77,6 +84,13 @@ RUN_SUMMARY_SHEET = "ETL Run Summary"
 RUN_SUMMARY_KEY_FIELDS = ("line_item_title", "budget_activity_number",
                           "program_element")
 REPORT_STAGE = "Budget Request"
+REPORT_BUDGET_YEAR = 2027
+FYDP_SHEET = "FYDP Trends"
+# Ticket order (DBDP-44); any other appropriation type in the slice follows
+# alphabetically so nothing is silently dropped.
+FYDP_APPROP_ORDER = ("O&M", "Procurement", "RDT&E", "DWCF", "DHP")
+BASIS_LABELS = {"actual": "Actual", "estimate": "Estimate",
+                "request": "Request", "fydp_projection": "FYDP projection"}
 PCT_FMT  = '+0.0%;-0.0%;0.0%'
 DELTA_FMT = '+#,##0.0;-#,##0.0;0.0'
 
@@ -341,6 +355,8 @@ def run_queries(parquet_path):
     q_all = q_all.astype(object).where(q_all.notna(), None)
 
     run_summary = run_summary_queries(con, parquet_path, vintage)
+    # DBDP-44 rides in the same extras dict so run_queries keeps its shape.
+    run_summary["fydp_trends"] = fydp_trend_queries(con)
 
     return {
         "Summary":        q_summary,
@@ -592,6 +608,138 @@ def write_run_summary(wb, summary):
 
 
 # =============================================================================
+# DBDP-44: FYDP Trends
+# =============================================================================
+# Sums the absolute year columns (cost_fy2025..cost_fy2031) over the validated
+# report_slice by appropriation type. Each year is labelled with the basis the
+# consumption layer assigns it for the FY2027 submission (amount_basis_for,
+# c10575): FY2025 actual, FY2026 estimate, FY2027 request, FY2028-FY2031 FYDP
+# projection. Every figure is from the FY2027 President's Budget Request
+# submission (AR c10045); the basis says which column of that submission it
+# is. A year with no amounts for a type stays blank, never zero.
+
+def fydp_year_columns():
+    """[(column, fiscal_year, header label)] in fiscal-year order."""
+    out = []
+    for col in ABSOLUTE_COST_COLUMNS:
+        fy = int(col.removeprefix("cost_fy"))
+        basis = BASIS_LABELS[amount_basis_for(fy, REPORT_BUDGET_YEAR)]
+        out.append((col, fy, f"FY{fy} {basis} ($M)"))
+    return sorted(out, key=lambda t: t[1])
+
+
+def fydp_trend_queries(con):
+    years = fydp_year_columns()
+    sums = ",\n".join(f'ROUND(SUM({c}), 1) AS "{label}"' for c, _, label in years)
+    counts = ",\n".join(f'COUNT({c}) AS "FY{fy}"' for c, fy, _ in years)
+    amounts = con.execute(f"""
+        SELECT appropriation_type AS "Appropriation Type", {sums}
+        FROM report_slice GROUP BY 1
+    """).df()
+    records = con.execute(f"""
+        SELECT appropriation_type AS "Appropriation Type",
+               COUNT(*) AS "Records", {counts}
+        FROM report_slice GROUP BY 1
+    """).df()
+
+    def ordered(df):
+        types = list(df["Appropriation Type"])
+        order = ([t for t in FYDP_APPROP_ORDER if t in types]
+                 + sorted(t for t in types if t not in FYDP_APPROP_ORDER))
+        df = df.set_index("Appropriation Type").loc[order].reset_index()
+        # blank stays blank: pandas NaN -> None so openpyxl writes no value
+        return df.astype(object).where(df.notna(), None)
+
+    amounts, records = ordered(amounts), ordered(records)
+    for name in records.columns[1:]:
+        records[name] = [int(v) for v in records[name]]
+    return {"amounts": amounts, "records": records,
+            "years": [(fy, label) for _, fy, label in years]}
+
+
+def write_fydp_trends(wb, fydp, vintage):
+    """Append the DBDP-44 FYDP Trends sheet: table, coverage, chart."""
+    ws = wb.create_sheet(title=FYDP_SHEET)
+    years = fydp["years"]
+    first_fy, last_fy = years[0][0], years[-1][0]
+    by_basis = {}
+    for fy, label in years:
+        by_basis.setdefault(label.split(" ", 1)[1].removesuffix(" ($M)"), []).append(fy)
+
+    def span(fys):
+        return f"FY{fys[0]}" if len(fys) == 1 else f"FY{fys[0]}-FY{fys[-1]}"
+
+    row = add_title(
+        ws, f"FYDP Trends -- FY{first_fy}-FY{last_fy} by Appropriation Type",
+        f"Dollars in Millions  |  Lifecycle Stage: {REPORT_STAGE}  |  "
+        f"FY{REPORT_BUDGET_YEAR} submission, data vintage {vintage}")
+    row = _note(ws, row,
+                f"Every figure on this sheet is from the FY{REPORT_BUDGET_YEAR} "
+                "President's Budget Request submission. None of it is enacted, "
+                "apportioned or execution data recorded by ODBA.")
+    basis_text = "; ".join(f"{span(fys)} {b if b.startswith('FYDP') else b.lower()}"
+                           for b, fys in by_basis.items())
+    row = _note(ws, row,
+                "Each year is labelled with its column in that submission: "
+                f"{basis_text}. Prior- and current-year columns are as printed "
+                "in the request exhibits.")
+    row += 1
+
+    row = _section(ws, row, "Funding by appropriation type")
+    table_header = row
+    money = [label for _, label in years]
+    row = write_df(ws, fydp["amounts"], start_row=row, number_cols=money)
+    table_end = row - 1
+    row = _note(ws, row, "A blank cell means no record of that appropriation "
+                "type carries an amount for that year. Blank is not zero.")
+    row = _note(ws, row, "Types differ in which years their exhibits publish, so "
+                "do not read a drop to blank as a funding cut. A change between "
+                "years can also come from records that carry an amount in one "
+                "year and not the next; compare the record counts below.")
+    row += 1
+
+    row = _section(ws, row, "Records with an amount, by year")
+    end = write_df(ws, fydp["records"], start_row=row)
+    for r in range(row + 1, end):
+        for c in range(2, len(fydp["records"].columns) + 1):
+            cell = ws.cell(row=r, column=c)
+            cell.number_format = COUNT_FMT
+            cell.alignment = Alignment(horizontal="right")
+    row = end + 1
+
+    # Chart: one line per appropriation type that has any amount. Blank
+    # years show as gaps, not as zero.
+    chart = LineChart()
+    chart.title = f"FY{REPORT_BUDGET_YEAR} President's Budget Request ($M)"
+    chart.y_axis.title = "$M"
+    chart.x_axis.title = "Fiscal year (amount basis)"
+    chart.display_blanks = "gap"
+    chart.x_axis.delete = False          # openpyxl 3.1 hides axes by default
+    chart.y_axis.delete = False
+    chart.height, chart.width = 9, 22
+    ncols = len(fydp["amounts"].columns)
+    for i, values in enumerate(fydp["amounts"].itertuples(index=False)):
+        if all(v is None for v in values[1:]):
+            continue
+        r = table_header + 1 + i
+        chart.add_data(Reference(ws, min_col=1, max_col=ncols, min_row=r, max_row=r),
+                       from_rows=True, titles_from_data=True)
+    # Year headers are text, so point the categories at them as strings.
+    cats = Reference(ws, min_col=2, max_col=ncols,
+                     min_row=table_header, max_row=table_header)
+    for series in chart.series:
+        series.cat = AxDataSource(strRef=StrRef(f=str(cats)))
+        series.smooth = False            # straight segments: no invented curve
+    ws.add_chart(chart, f"A{row}")
+
+    autofit(ws)
+    ws.column_dimensions["A"].width = 22
+    for c in range(2, ncols + 1):
+        ws.column_dimensions[get_column_letter(c)].width = 18
+    return ws
+
+
+# =============================================================================
 # Deterministic save (DBDP-43 review: byte-identical re-runs)
 # =============================================================================
 # openpyxl stamps the save time into docProps/core.xml and into every zip
@@ -708,6 +856,9 @@ def build_workbook(sheets, run_summary=None):
 
     if run_summary is not None:          # DBDP-43: 8th sheet
         write_run_summary(wb, run_summary)
+        if "fydp_trends" in run_summary:  # DBDP-44: 9th sheet
+            write_fydp_trends(wb, run_summary["fydp_trends"],
+                              run_summary["vintage"])
 
     return wb
 
@@ -739,7 +890,7 @@ def main():
     sheets, run_summary = run_queries(PARQUET_FILE)
 
     total_rows = sum(len(df) for df in sheets.values())
-    n_sheets = len(sheets) + 1           # + DBDP-43 ETL Run Summary
+    n_sheets = len(sheets) + 2           # + DBDP-43 Run Summary, DBDP-44 FYDP
     print(f"  Building Excel workbook ({n_sheets} sheets, {total_rows:,} total rows)...")
 
     wb = build_workbook(sheets, run_summary)
@@ -756,6 +907,7 @@ def main():
     for name, df in sheets.items():
         print(f"    {name:<23} {len(df):>5} rows")
     print(f"    {RUN_SUMMARY_SHEET:<23}  provenance and completeness checks")
+    print(f"    {FYDP_SHEET:<23}  FY2025-FY2031 by appropriation type, chart")
     print("=" * 65)
     print()
 
