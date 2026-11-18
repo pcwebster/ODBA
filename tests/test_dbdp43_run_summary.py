@@ -137,6 +137,35 @@ class RunSummarySheetTests(unittest.TestCase):
         ws2 = load_workbook(p2)[self.qb.RUN_SUMMARY_SHEET]
         self.assertEqual(self.rows(), list(ws2.iter_rows(values_only=True)))
 
+    def test_saved_package_carries_no_clock_values(self):
+        """core.xml dates are the data vintage; zip entries use the 1980 epoch."""
+        import zipfile
+        out = Path(self.tmp.name) / "det.xlsx"
+        self.qb.save_workbook_deterministic(
+            self.qb.build_workbook(self.sheets, self.summary), out,
+            self.summary["vintage"])
+        stamp = f"{self.summary['vintage']}T00:00:00Z"
+        with zipfile.ZipFile(out) as z:
+            self.assertIsNone(z.testzip())
+            self.assertEqual({i.date_time for i in z.infolist()}, {self.qb.ZIP_EPOCH})
+            core = z.read("docProps/core.xml").decode("utf-8")
+        self.assertEqual(len(re.findall(re.escape(stamp), core)), 2, core)
+
+    def test_byte_identical_across_processes(self):
+        """Two separate processes on the same parquet write identical bytes."""
+        import hashlib
+        import subprocess
+        code = ("import sys; sys.path.insert(0, sys.argv[1]); import query_budget as q; "
+                "s, r = q.run_queries(q.PARQUET_FILE); "
+                "q.save_workbook_deterministic(q.build_workbook(s, r), sys.argv[2], r['vintage'])")
+        digests = []
+        for i in range(2):
+            out = Path(self.tmp.name) / f"proc{i}.xlsx"
+            subprocess.run([sys.executable, "-c", code, str(ROOT), str(out)],
+                           check=True, capture_output=True)
+            digests.append(hashlib.sha256(out.read_bytes()).hexdigest())
+        self.assertEqual(digests[0], digests[1])
+
 
 if __name__ == "__main__":
     unittest.main()

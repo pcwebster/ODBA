@@ -17,7 +17,10 @@
 # =============================================================================
 
 import hashlib
+import io
+import re
 import sys
+import zipfile
 from pathlib import Path
 
 import duckdb
@@ -192,6 +195,10 @@ def run_queries(parquet_path):
 
     print("  Running queries...")
 
+    # Every ORDER BY below ends in a unique key (group keys, or record_id,
+    # which is unique within the single-vintage slice) so tied rows cannot
+    # swap places between runs (byte-identical re-runs; DBDP-43 review).
+
     # 1. Summary by appropriation type
     q_summary = con.execute("""
         SELECT
@@ -207,7 +214,7 @@ def run_queries(parquet_path):
         FROM report_slice
         -- DBDP-66 TC-ER-09R: no dollar filter, so every appropriation_type (incl. DWCF) gets a Summary row
         GROUP BY 1, 2
-        ORDER BY "FY2027 Request ($M)" DESC NULLS LAST
+        ORDER BY "FY2027 Request ($M)" DESC NULLS LAST, 1, 2
     """).df()
 
     # 2. By agency
@@ -225,7 +232,7 @@ def run_queries(parquet_path):
                  ELSE NULL END                         AS "Change (%)"
         FROM report_slice
         GROUP BY 1, 2, 3
-        ORDER BY "FY2027 Request ($M)" DESC NULLS LAST
+        ORDER BY "FY2027 Request ($M)" DESC NULLS LAST, 1, 2, 3
     """).df()
 
     # 3. Year-over-year by line item (XML records with both years populated)
@@ -246,7 +253,7 @@ def run_queries(parquet_path):
         WHERE file_format = 'XML'
           AND cost_prior_year IS NOT NULL
           AND cost_fy2027     IS NOT NULL
-        ORDER BY ABS(cost_fy2027 - cost_prior_year) DESC NULLS LAST
+        ORDER BY ABS(cost_fy2027 - cost_prior_year) DESC NULLS LAST, record_id
     """).df()
 
     # 4. RDT&E by Budget Activity
@@ -264,7 +271,7 @@ def run_queries(parquet_path):
         FROM report_slice
         WHERE appropriation_type = 'RDT&E'
         GROUP BY 1, 2
-        ORDER BY CAST(budget_activity_number AS INTEGER) NULLS LAST
+        ORDER BY CAST(budget_activity_number AS INTEGER) NULLS LAST, 1, 2
     """).df()
 
     # 5. Procurement detail
@@ -286,7 +293,8 @@ def run_queries(parquet_path):
             source_file                                AS "Source File"
         FROM report_slice
         WHERE appropriation_type = 'Procurement'
-        ORDER BY service_agency_acronym, budget_activity_number, line_item_number
+        ORDER BY service_agency_acronym, budget_activity_number, line_item_number,
+                 record_id
     """).df()
 
     # 6. RDT&E detail
@@ -306,7 +314,8 @@ def run_queries(parquet_path):
             source_file                                AS "Source File"
         FROM report_slice
         WHERE appropriation_type = 'RDT&E'
-        ORDER BY service_agency_acronym, budget_activity_number, program_element
+        ORDER BY service_agency_acronym, budget_activity_number, program_element,
+                 record_id
     """).df()
 
     # 7. All records — SELECT * so the sheet always carries the full schema
@@ -314,7 +323,8 @@ def run_queries(parquet_path):
     q_all = con.execute("""
         SELECT *
         FROM report_slice
-        ORDER BY appropriation_type, service_agency_acronym, line_item_number
+        ORDER BY appropriation_type, service_agency_acronym, line_item_number,
+                 record_id
     """).df()
     # funding_type / funding_type_signal are genuinely NULL until the B5
     # classifier lands; openpyxl cannot write pandas NA — render as empty
@@ -471,9 +481,9 @@ def run_summary_queries(con, parquet_path, vintage):
     provenance = pd.DataFrame([
         ("Report slice", f"FY2027 | {REPORT_STAGE} | data_vintage {vintage}"),
         ("Data vintage (source acquisition date, download manifest)", vintage),
-        ("Run timestamp", "Not stamped. The same dataset always produces the "
-                          "same report, so the data vintage and dataset "
-                          "SHA-256 identify the run."),
+        ("Run timestamp", "Not stamped. The data vintage and dataset SHA-256 "
+                          "identify the input snapshot. Re-running on the same "
+                          "dataset writes a byte-identical workbook."),
         ("Source files contributing records", int(n_files)),
         ("Records in report slice", int(n_slice)),
         ("Dataset file", Path(parquet_path).name),
@@ -484,7 +494,7 @@ def run_summary_queries(con, parquet_path, vintage):
     ], columns=["Item", "Value"])
 
     return {"provenance": provenance, "checks": checks,
-            "exhibits": exhibits, "missing": missing}
+            "exhibits": exhibits, "missing": missing, "vintage": vintage}
 
 
 def _style_total_row(ws, row, ncols):
@@ -566,6 +576,47 @@ def write_run_summary(wb, summary):
     ws.column_dimensions["A"].width = 58
     ws.column_dimensions["B"].width = 66
     return ws
+
+
+# =============================================================================
+# Deterministic save (DBDP-43 review: byte-identical re-runs)
+# =============================================================================
+# openpyxl stamps the save time into docProps/core.xml and into every zip
+# entry header. Both are replaced here with values derived from the data:
+# the core created/modified dates become the data vintage (midnight UTC) and
+# every zip entry gets the fixed 1980-01-01 DOS epoch. Entry order, content
+# and compression are left exactly as openpyxl wrote them.
+
+ZIP_EPOCH = (1980, 1, 1, 0, 0, 0)
+_CORE_DATE = re.compile(
+    r"(<dcterms:(created|modified)\b[^>]*>)[^<]*(</dcterms:\2>)")
+
+
+def save_workbook_deterministic(wb, path, vintage):
+    stamp = f"{vintage}T00:00:00Z"
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}T00:00:00Z", stamp):
+        raise ValueError(f"data vintage is not an ISO date: {vintage!r}")
+    buf = io.BytesIO()
+    wb.save(buf)
+    out = io.BytesIO()
+    with zipfile.ZipFile(io.BytesIO(buf.getvalue())) as src, \
+         zipfile.ZipFile(out, "w") as dst:
+        for info in src.infolist():
+            data = src.read(info.filename)
+            if info.filename == "docProps/core.xml":
+                text, n = _CORE_DATE.subn(
+                    lambda m: f"{m.group(1)}{stamp}{m.group(3)}",
+                    data.decode("utf-8"))
+                if n != 2:
+                    raise RuntimeError("core.xml: expected created and "
+                                       f"modified dates, found {n}")
+                data = text.encode("utf-8")
+            zi = zipfile.ZipInfo(info.filename, date_time=ZIP_EPOCH)
+            zi.compress_type = info.compress_type
+            zi.create_system = 0
+            zi.external_attr = 0
+            dst.writestr(zi, data)
+    Path(path).write_bytes(out.getvalue())
 
 
 # =============================================================================
@@ -666,7 +717,7 @@ def main():
     print(f"  Building Excel workbook ({n_sheets} sheets, {total_rows:,} total rows)...")
 
     wb = build_workbook(sheets, run_summary)
-    wb.save(OUTPUT_FILE)
+    save_workbook_deterministic(wb, OUTPUT_FILE, run_summary["vintage"])
 
     size_kb = round(OUTPUT_FILE.stat().st_size / 1024, 1)
     print()
