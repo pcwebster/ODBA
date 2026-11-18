@@ -619,7 +619,9 @@ def write_run_summary(wb, summary):
 #     shown as a model, not as the heading printed in each source exhibit,
 #     which was not checked exhibit by exhibit;
 #   * coverage breaks: where records that carry an amount in one year carry
-#     none in the next, the change between those years is not comparable.
+#     none in the next, the change between those years is flagged. Below
+#     the threshold a break is listed but not flagged; that does not prove
+#     the years are comparable.
 # A year with no amounts for a type stays blank, never zero.
 
 # A type-year is flagged when the records that drop out (amount in the prior
@@ -675,7 +677,8 @@ def fydp_trend_queries(con):
                 "Records dropped (prior-year amount, none this year)": int(n_drop),
                 "Their prior-year amount ($M)": round(float(amt_drop), 1),
                 "Share of type's prior-year total": share,
-                "Comparable with prior year": "No" if share >= FYDP_BREAK_SHARE else "Yes",
+                "Threshold status": ("Flagged" if share >= FYDP_BREAK_SHARE
+                                     else "Below threshold"),
             })
 
     def ordered(df, key="Appropriation Type"):
@@ -695,10 +698,10 @@ def fydp_trend_queries(con):
     breaks = (ordered(pd.DataFrame(breaks)) if breaks else
               pd.DataFrame(columns=["Appropriation Type", "Year"]))
 
-    # Chart series: the table's figures with flagged (non-comparable) years
+    # Chart series: the table's figures with flagged years
     # left blank, so the chart shows a gap instead of a drop.
     flagged = {(b["Appropriation Type"], b["Year"]) for _, b in breaks.iterrows()
-               if b.get("Comparable with prior year") == "No"}
+               if b.get("Threshold status") == "Flagged"}
     chart = amounts.copy()
     for i, r in chart.iterrows():
         for _, fy, h, _ in years:
@@ -776,7 +779,7 @@ def write_fydp_trends(wb, fydp, vintage):
         for r in range(start + 1, row):
             ws.cell(row=r, column=share_col).number_format = "0.0%"
             flag = ws.cell(row=r, column=len(breaks.columns))
-            if flag.value == "No":
+            if flag.value == "Flagged":
                 for c in range(1, len(breaks.columns) + 1):
                     ws.cell(row=r, column=c).fill = NEG_FILL
                 flag.font = Font(bold=True, size=10, color="C00000")
@@ -785,9 +788,11 @@ def write_fydp_trends(wb, fydp, vintage):
                 "Records that carry an amount in the prior year and none in this "
                 "year, by type. Where they held at least "
                 f"{FYDP_BREAK_SHARE:.0%} of the type's prior-year total, the "
-                "change is marked not comparable and that point is left off the "
-                "chart. The cause is not established here; it may be a parsing "
-                "gap or a real change in the exhibit.")
+                "year is flagged and that point is left off the chart. Below "
+                "threshold does not mean the years are comparable: those records "
+                "are still missing and the change still includes their absence. "
+                "The cause is not established here; it may be a parsing gap or a "
+                "real change in the exhibit.")
     row += 1
 
     row = _section(ws, row, "Records with an amount, by year")
@@ -795,7 +800,7 @@ def write_fydp_trends(wb, fydp, vintage):
     counts(fydp["records"], row, end, list(fydp["records"].columns[1:]))
     row = end + 1
 
-    row = _section(ws, row, "Chart data (non-comparable points left blank)")
+    row = _section(ws, row, "Chart data (flagged points left blank)")
     chart_header = row
     row = write_df(ws, fydp["chart"], start_row=row, number_cols=money)
     row += 1

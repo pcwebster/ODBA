@@ -172,9 +172,11 @@ class FydpTrendsSheetTests(unittest.TestCase):
 
     def test_dhp_fy2027_coverage_break_flagged(self):
         """Review @ efceec0 finding 2: the DHP record that drops out in FY2027
-        held about half of DHP's FY2026 total, so FY2027 is not comparable."""
+        held about half of DHP's FY2026 total, so FY2027 is flagged."""
         b = self.fydp["breaks"]
-        flagged = b[b["Comparable with prior year"] == "No"]
+        self.assertNotIn("Comparable with prior year", b.columns)
+        self.assertEqual(set(b["Threshold status"]), {"Flagged", "Below threshold"})
+        flagged = b[b["Threshold status"] == "Flagged"]
         self.assertEqual([tuple(r) for r in flagged[["Appropriation Type", "Year"]]
                           .itertuples(index=False)], [("DHP", "FY2027")])
         dhp = flagged.iloc[0]
@@ -183,11 +185,25 @@ class FydpTrendsSheetTests(unittest.TestCase):
         self.assertEqual(self.fydp["flagged"], [("DHP", "FY2027")])
         # every row's share agrees with the threshold
         for _, r in b.iterrows():
-            self.assertEqual(r["Comparable with prior year"] == "No",
+            self.assertEqual(r["Threshold status"] == "Flagged",
                              r["Share of type's prior-year total"] >= self.qb.FYDP_BREAK_SHARE)
         # and the table is on the sheet
         sheet = self.section_rows("Coverage breaks between years")
         self.assertIn(("DHP", "FY2027", 1), [r[:3] for r in sheet])
+
+    def test_below_threshold_is_not_called_comparable(self):
+        """Review @ 488c7cc: below threshold must not read as comparable."""
+        b = self.fydp["breaks"].set_index(["Appropriation Type", "Year"])
+        proc = b.loc[("Procurement", "FY2027")]
+        self.assertEqual(proc["Threshold status"], "Below threshold")
+        self.assertAlmostEqual(proc["Share of type's prior-year total"], 0.2243, places=3)
+        sheet = self.section_rows("Coverage breaks between years")
+        self.assertEqual(sheet[0][5], "Threshold status")
+        self.assertNotIn("Yes", [r[5] for r in sheet[1:]])
+        t = self.text()
+        self.assertIn("Below threshold does not mean the years are comparable", t)
+        self.assertNotIn("Comparable with prior year", t)
+        self.assertNotIn("non-comparable", t)
 
     def test_dhp_break_recomputed_from_records(self):
         """The break comes from the data, not a hard-coded type."""
@@ -212,7 +228,7 @@ class FydpTrendsSheetTests(unittest.TestCase):
                 else:
                     self.assertEqual(chart.at[typ, label], amounts.at[typ, label])
         sheet = {r[0]: r for r in self.section_rows(
-            "Chart data (non-comparable points left blank)")}
+            "Chart data (flagged points left blank)")}
         self.assertEqual(sheet["DHP"][1:4], (38916.5, 41011.9, None))
         main = {r[0]: r for r in self.section_rows("Funding by appropriation type")}
         self.assertEqual(main["DHP"][3], amounts.at["DHP", "FY2027 ($M)"])
@@ -221,7 +237,7 @@ class FydpTrendsSheetTests(unittest.TestCase):
         """Series point at the chart-data rows, so the DHP line stops at FY2026."""
         rows = self.rows()
         start = next(n for n, r in enumerate(rows)
-                     if r[0] == "Chart data (non-comparable points left blank)") + 2
+                     if r[0] == "Chart data (flagged points left blank)") + 2
         with zipfile.ZipFile(self.path) as z:
             xml = z.read("xl/charts/chart1.xml").decode("utf-8")
         refs = re.findall(r"<(?:c:)?val><(?:c:)?numRef><(?:c:)?f>([^<]+)<", xml)
