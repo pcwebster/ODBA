@@ -151,6 +151,23 @@ class RunSummarySheetTests(unittest.TestCase):
             core = z.read("docProps/core.xml").decode("utf-8")
         self.assertEqual(len(re.findall(re.escape(stamp), core)), 2, core)
 
+    def test_null_stage_outside_slice_is_labelled_not_fatal(self):
+        """An out-of-slice row with a NULL or empty lifecycle stage must not
+        break the sheet; FY2027 slice figures stay unchanged."""
+        import pandas as pd
+        df = pd.read_parquet(PARQUET)
+        extra = df[df["budget_year"] != 2027.0].head(2).copy()
+        self.assertEqual(len(extra), 2, "fixture needs two non-FY2027 rows")
+        extra["data_lifecycle_stage"] = [None, ""]
+        fixture = Path(self.tmp.name) / "null_stage.parquet"
+        pd.concat([df, extra], ignore_index=True).to_parquet(fixture, index=False)
+        sheets, summary = self.qb.run_queries(fixture)
+        prov = dict(summary["provenance"].itertuples(index=False))
+        self.assertIn("(null)", prov["Lifecycle stages in dataset"])
+        self.assertIn("(blank)", prov["Lifecycle stages in dataset"])
+        self.assertEqual(prov["Records in report slice"], len(self.sheets["All Records"]))
+        self.assertTrue((summary["checks"]["Result"] == "PASS").all())
+
     def test_byte_identical_across_processes(self):
         """Two separate processes on the same parquet write identical bytes."""
         import hashlib

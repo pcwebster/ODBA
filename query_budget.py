@@ -472,9 +472,12 @@ def run_summary_queries(con, parquet_path, vintage):
     years = [int(y) for (y,) in con.execute(
         "SELECT DISTINCT budget_year FROM read_parquet(?) "
         "WHERE budget_year IS NOT NULL ORDER BY 1", [p]).fetchall()]
-    stages = [s for (s,) in con.execute(
-        "SELECT DISTINCT data_lifecycle_stage FROM read_parquet(?) ORDER BY 1",
-        [p]).fetchall()]
+    # NULL / empty stages outside the slice are shown as labels, never
+    # dropped or allowed to break the join (DBDP-43 review advisory).
+    stages = ["(null)" if s is None else (s if s.strip() else "(blank)")
+              for (s,) in con.execute(
+                  "SELECT DISTINCT data_lifecycle_stage FROM read_parquet(?) "
+                  "ORDER BY 1 NULLS LAST", [p]).fetchall()]
     n_all = con.execute("SELECT COUNT(*) FROM read_parquet(?)", [p]).fetchone()[0]
 
     # (5) provenance. No run timestamp: see the block comment above.
