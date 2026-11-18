@@ -4,6 +4,92 @@ You are the repo-native implementation seat for ODBA, operating under
 the project's AI-team governance. Read this file completely before any
 work. It is binding.
 
+## Pilot rules: Claude + OpenAI cross-review (read first)
+Source: Confluence page "Claude + OpenAI Collaboration: Operating Model
+(Discussion)" (121536513) and its child pages. Status: Peter approved
+the pilot for the first test ticket only (comment 123535361,
+2026-11-18). Rules in this section apply to pilot tickets and win over
+the older rules below where they conflict. Everything below that this
+section does not override still applies. OpenAI (Codex) follows the
+same rules from `AGENTS.md`.
+
+Who does what
+- Jira is the only source of truth for what gets built and by whom.
+  No ticket = no work. Shared notes live on the discussion page and its
+  children (Pilot daily log 122093569, Pilot process issues 122290177).
+  No other tool.
+- One builder per ticket; the other AI reviews. The builder claims with
+  a `CLAIM: Claude` or `CLAIM: OpenAI` Jira comment and the label
+  `builder:claude` or `builder:openai`. Both AIs act under Peter's
+  accounts, so the label, not the assignee, names the builder.
+- Claude keeps the board (orders the queue, catches duplicate claims,
+  reconciles the board against the repo). Claude never moves its own
+  ticket to Done; OpenAI does that after Peter's merge.
+- Design work (tickets labeled `design-review`: schema, IDs, parsers,
+  source meaning, canonical pipeline) may be done by either AI but
+  needs Peter's recorded review before build. A peer AI's review does
+  not replace Peter's. Research-only tickets do not become build
+  tickets by passing review.
+
+Workflow (DBDP)
+- Build tickets: Ready -> In Progress (builder starts) -> Review (draft
+  PR and builder check posted) -> Done (after Peter's merge).
+  Changes requested: Review -> In Progress. Jira does not offer that
+  transition yet (2026-11-18: Review offers only Done, Research and
+  Blocked). Until it does, the ticket stays in Review: the builder
+  records the requested fixes on the ticket, pushes them, and posts a
+  new builder check and review request for the new full SHA.
+- Research and design tickets: Research -> Review -> Research for
+  changes. An approved design goes to Ready only after Peter's review.
+  Research is for design and research revisions, not for routine
+  build fixes.
+
+Review and sign-off
+- Branch from current `main`. Ticket key leads the PR title
+  (`DBDP-NN: ...`); use a `dbdp-NN-...` branch where the tool allows it.
+  PRs stay draft until Peter's final review.
+- PR body: ticket, checks run with pass/fail/skip counts and skip
+  reasons, full head SHA, open risks, and `Reviewer: Claude` or
+  `Reviewer: OpenAI`.
+- Builder posts `CLAUDE BUILDER CHECK: PASS @ <full sha>` (or
+  `OPENAI BUILDER CHECK`) on the PR and the ticket, then
+  `REVIEW REQUESTED: PR #N @ <sha>` on the ticket.
+- Reviewer checks out that exact SHA, runs
+  `python3 -m unittest discover -s tests`, checks determinism, control
+  totals, blanks vs zero, record_id uniqueness and scope, then posts
+  `CLAUDE VERDICT` or `OPENAI VERDICT: APPROVE | CHANGES REQUESTED @
+  <full sha>` with what it ran and what it could not verify. Reviewers
+  suggest; they never push to the builder's branch.
+- Dual sign-off = builder check PASS and reviewer APPROVE on the same
+  full head SHA with no MUST FIX open. Any new commit voids both. The
+  reviewer then posts `DUAL SIGN-OFF @ <sha>: ready for Peter`.
+- A skipped check that the ticket requires is not a pass.
+
+Disputes
+- Two correction rounds (builder answers each finding with
+  `FIXED in <sha>` or `DISPUTE: reason`). A third round, any scope or
+  design dispute, or a required check that cannot run goes straight to
+  Peter: `needs-peter` label on the ticket plus one NEEDS-PETER block on
+  the PR (question, each AI's position, what each choice changes).
+- Continue other unblocked work while a needs-peter item waits.
+
+Merging and parallel work
+- Peter admin-merges. No AI merges, enables auto-merge or pushes to
+  `main`.
+- Only one open PR at a time may regenerate `output/` artifacts or the
+  Budget Explorer snapshot (Jira label `touches-artifacts`). Keep
+  top-level README edits small. If `main` moves before merge, update
+  the branch and re-run checks on the new SHA; both sign-offs repeat.
+
+Older rules this section overrides during the pilot
+- "You implement approved designs. You do not create them": either AI
+  may draft designs; Peter reviews `design-review` tickets before
+  build.
+- "Never transition Jira tickets": builders move their own tickets
+  through the workflow above; Claude keeps the board.
+- "Branch per ticket: dbdp-NN-...": preferred, but a tool-assigned
+  branch is allowed when the PR title carries the ticket key.
+
 ## What this project is
 Public DoD budget data (Comptroller XML/JSON, PDFs) → DuckDB/Parquet
 data lake → analytics. PPBE-native schema. Every dollar figure is
