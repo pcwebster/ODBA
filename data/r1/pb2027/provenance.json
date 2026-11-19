@@ -1,0 +1,92 @@
+{
+  "source_file": "FY2027_r1.pdf",
+  "source_url": "https://comptroller.war.gov/Portals/45/Documents/defbudget/FY2027/FY2027_r1.pdf",
+  "source_role": "publisher_pdf",
+  "sha256": "1aa8846edb69d4c3a54e03b383b0cabb77f93433162b8139ab8cbb55bcc7882a",
+  "exhibit_type": "R-1",
+  "exhibit_title": "Exhibit R-1 — Research, Development, Test, & Evaluation Programs",
+  "submission_edition": "PB27",
+  "submission_fy": 2027,
+  "publication_context": "President's Budget; each funding column retains its own basis",
+  "publication_month_as_printed": "2026-04",
+  "acquisition_date": "2026-11-16",
+  "acquisition_evidence": "https://fmtransformation.atlassian.net/browse/DBDP-90?focusedCommentId=10678",
+  "publication_cadence": "Annual, President's Budget release",
+  "design_receipt": "https://fmtransformation.atlassian.net/browse/DBDP-90?focusedCommentId=10688",
+  "approval_receipt": "https://fmtransformation.atlassian.net/browse/DBDP-90?focusedCommentId=10694",
+  "unit": "USD thousands, TOA as printed",
+  "identity": [
+    "submission_edition",
+    "appropriation",
+    "budget_activity",
+    "printed_line",
+    "program_element"
+  ],
+  "funding_lanes": [
+    {
+      "field": "fy25_actual_as_reported",
+      "funding_fy": 2025,
+      "published_label": "FY 2025 Actuals",
+      "basis": "historical_toa_as_reported",
+      "is_published_total": false
+    },
+    {
+      "field": "fy26_discretionary_enacted",
+      "funding_fy": 2026,
+      "published_label": "FY 2026 Discretionary Enacted",
+      "basis": "discretionary_enacted",
+      "is_published_total": false
+    },
+    {
+      "field": "fy26_pl11921_spend_plan",
+      "funding_fy": 2026,
+      "published_label": "FY 2026 PL 119-21 Spend Plan",
+      "basis": "pl11921_spend_plan",
+      "is_published_total": false
+    },
+    {
+      "field": "fy26_published_total",
+      "funding_fy": 2026,
+      "published_label": "FY 2026 Total",
+      "basis": "published_total",
+      "is_published_total": true
+    },
+    {
+      "field": "fy27_discretionary_request",
+      "funding_fy": 2027,
+      "published_label": "FY 2027 Discretionary Request",
+      "basis": "discretionary_request",
+      "is_published_total": false
+    },
+    {
+      "field": "fy27_mandatory_request",
+      "funding_fy": 2027,
+      "published_label": "FY 2027 Mandatory Request",
+      "basis": "mandatory_request",
+      "is_published_total": false
+    },
+    {
+      "field": "fy27_published_total",
+      "funding_fy": 2027,
+      "published_label": "FY 2027 Total",
+      "basis": "published_total",
+      "is_published_total": true
+    }
+  ],
+  "coverage": {
+    "physical_pdf_pages": 125,
+    "detail_keys_in_title": 1148,
+    "detail_keys_outside_title": 15,
+    "source_occurrences": 1452,
+    "repeat_occurrences": 289,
+    "verified_nullable_occurrence_positions": 10164,
+    "appropriation_control_positions": 70,
+    "scope_total_positions": 14
+  },
+  "sidecar_artifact_sha256": {
+    "detail_in_title.csv": "a78418df76cc7b365b23ac6493d91443b07fbee75c1389b6f52261f884265f84",
+    "detail_outside_title.csv": "caebcd08b2a04ac965638f30dd17e183b4b2560f3f890fa5995d617b054817c7",
+    "source_occurrences.csv": "0c5873158c4b4948564bf128e297c0a3c8af5697554e99bd5e24d15d889181ee",
+    "published_controls.csv": "ee639444d259df3221cce6f402114fdb2433ded53d55a266fb2f7025e0861726"
+  }
+}
