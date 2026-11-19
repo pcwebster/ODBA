@@ -36,6 +36,7 @@
  <div class="card ocompare">
   <h3>Follow a funding year</h3>
   <div class="row"><label>Funding fiscal year<select id="ofiscal"></select></label><label>Published scope<select id="oscope"></select></label></div>
+  <p id="ocontext" class="muted" aria-live="polite"></p>
   <div id="ocompare" class="ocomparelist" aria-live="polite"></div>
   <aside id="oguide" class="note" aria-live="polite"></aside>
   <details id="oextra"><summary>Other published amounts for this year</summary><div id="oother" class="ocomparelist"></div></details>
@@ -119,6 +120,7 @@ function pipeline(){
 const o=data.o1;
 const laneById=new Map(o.lanes.map(l=>[l.id,l]));
 const vintageLabel=v=>'PB'+String(v).replace(/^pb/i,'').slice(-2);
+const oLaneLabel=l=>'FY'+l.fy+' · '+vintageLabel(l.vintage)+' · '+l.label+' · TOA';
 const optPairs=(id,pairs)=>{const e=$(id),old=e.value;e.replaceChildren(...pairs.map(([key,label])=>{const n=elt('option',label);n.value=key;return n}));if(pairs.some(([key])=>key===old))e.value=old};
 const oAmount=v=>v===null||v===undefined?'Not reported':(v<0?'−':'')+'$'+nf.format(Math.abs(v)/1000)+'M';
 const oBillions=v=>v===null||v===undefined?'Not reported':(v<0?'−':'')+'$'+new Intl.NumberFormat('en-US',{minimumFractionDigits:3,maximumFractionDigits:6}).format(Math.abs(v)/1e6)+'B';
@@ -136,6 +138,8 @@ function oSource(u,p){return oAllowedSource(u)?link(u,p?'Official O-1 · printed
 let oLimit=20;
 function oCompare(){
  const fy=+$('ofiscal').value,scope=$('oscope').value;
+ const scopeLabel=o.scopes.find(s=>s.id===scope)?.label||'Published scope';
+ $('ocontext').textContent='Funding FY'+fy+' · '+scopeLabel+' · as-published total obligational authority (TOA)';
  const all=o.controls.filter(c=>c.scope===scope&&Number(laneById.get(c.lane)?.fy)===fy);
  const sortEdition=(a,b)=>String(laneById.get(a.lane).vintage).localeCompare(String(laneById.get(b.lane).vintage),undefined,{numeric:true});
  const separateKinds=new Set(['supplemental','reconciliation_request','spend_plan','mandatory_request']);
@@ -145,7 +149,7 @@ function oCompare(){
  const tip=fy===2025&&!['om_title_plus_indefinite','indefinite_accounts'].includes(scope)?'PB26’s published total is shown as reported, not as a sum calculated by the Explorer.':guidance[fy];
  $('oguide').hidden=!tip;$('oguide').textContent=tip||'';
  const max=Math.max(0,...core.map(c=>c.amount??0));
- function make(c,bars){const l=laneById.get(c.lane),row=elt('div'),top=elt('div');row.className='ocrow';top.className='ocrow-head';top.append(elt('span',vintageLabel(l.vintage)+' · '+l.label),elt('strong',oBillions(c.amount)));row.append(top,oSource(c.url,c.page));
+ function make(c,bars){const l=laneById.get(c.lane),row=elt('div'),top=elt('div');row.className='ocrow';top.className='ocrow-head';top.append(elt('span',oLaneLabel(l)),elt('strong',oBillions(c.amount)));row.append(top,oSource(c.url,c.page));
   if(bars&&c.amount>=0&&c.amount!==null&&max>0){const track=elt('div'),bar=elt('div');track.className='otrack';track.setAttribute('aria-hidden','true');bar.className='obar';bar.style.width=(100*c.amount/max).toFixed(4)+'%';track.append(bar);row.append(track)}
   return row;
  }
@@ -172,7 +176,7 @@ function oDrill(){
  $('olines').replaceChildren(...rows.slice(0,shown).map(d=>{
   const detail=elt('details'),title=d.publishedTitle||d.title||'Untitled line';detail.className='oline';detail.dataset.lineId=v+'|'+d.id;detail.open=open.has(detail.dataset.lineId);
   detail.append(elt('summary',title),elt('small',[orgLabel(d.organization),d.account,d.accountTitle,d.ba&&'BA '+d.ba,d.activity,d.activityGroupTitle,d.line?'Line '+d.line:'Line number not printed',d.bli&&'BLI '+d.bli].filter(Boolean).join(' · ')));
-  const makeAmounts=lanes=>{const amounts=elt('dl');amounts.className='olamount';for(const l of lanes){const cell=elt('div');cell.append(elt('dt','FY'+l.fy+' '+l.label),elt('dd',oAmount(d.amounts[l.id])));amounts.append(cell)}return amounts};
+  const makeAmounts=lanes=>{const amounts=elt('dl');amounts.className='olamount';for(const l of lanes){const cell=elt('div');cell.append(elt('dt',oLaneLabel(l)),elt('dd',oAmount(d.amounts[l.id])));amounts.append(cell)}return amounts};
   const lanes=o.lanes.filter(l=>String(l.vintage)===v);
   detail.append(makeAmounts(lanes.filter(l=>l.primary)),oSource(d.url,d.page));
   if(lanes.some(l=>!l.primary)){const more=elt('details');more.append(elt('summary','Workbook-only columns'),elt('small','Not separate amounts from the original printed PDF. These overlap the printed actuals and are not additive to them.'),makeAmounts(lanes.filter(l=>!l.primary)));detail.append(more)}

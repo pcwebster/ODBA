@@ -3,8 +3,9 @@
 Open `index.html` in Edge, Chrome, Firefox, or Safari.
 No terminal, login, or internet is needed; links to source PDFs require a
 connection. The O&M funding tab uses PB25, PB26, and PB27. Select a funding
-year and published scope for comparable observations; search and expand budget
-lines within one budget submission. Existing Green Book and sampled program
+year and published scope for comparable observations. Each O-1 amount is
+labeled with its funding fiscal year, budget edition, published basis, and
+TOA measure. Search and expand budget lines within one budget submission. Existing Green Book and sampled program
 views remain available, separate from O-1.
 
 The default FY25 comparison shows the $338.098474B PB25 request, $338.459009B
@@ -43,7 +44,7 @@ provenance, the data contract, and source limitations.
 ## Validation and scope
 
 The supplied HTML is committed as index.html with unchanged bytes. Its
-SHA-256 is `6085d8a4f953e950b8aa7326b162830db6da85269a07948702792390d4c38bd0`.
+SHA-256 is `d22a08af345a8d835dac2a892f4d474fb1cd792260b85b985205f4e292f12611`.
 The incoming source ZIP did not include a checksum manifest; all 13 O-1
 input pins were instead verified against both the bundled snapshot and
 Git blobs at the declared commit. Snapshot/Git payloads and full HTML
