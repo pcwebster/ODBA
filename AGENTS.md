@@ -30,6 +30,12 @@ comments before work. Preserve existing engineering, data and provenance control
   revisions. Peter's explicit Jira design approval is required before
   Ready for build. An AI verdict is not that approval, and research-only
   items never become build work just by passing review.
+- Research tickets close only on Peter's written approval (Peter,
+  2026-11-19, [Pilot daily log](https://fmtransformation.atlassian.net/wiki/spaces/ODBA/pages/122093569?focusedCommentId=125566977)).
+  The lead moves the ticket to Review for the reviewer. After the
+  reviewer's APPROVE it stays in Review until Peter posts his written
+  approval on the ticket; then the lead moves it to Done. His written
+  approval plays the part his merge plays for build tickets.
 
 ## Branch, test and review
 

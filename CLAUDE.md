@@ -43,6 +43,11 @@ Workflow (DBDP)
   changes. An approved design goes to Ready only after Peter's review.
   Research is for design and research revisions, not for routine
   build fixes.
+- Closing research tickets (Peter, 2026-11-19, Pilot daily log comment
+  125566977): the lead moves the ticket to Review for the reviewer. After
+  the reviewer's APPROVE the ticket stays in Review until Peter posts his
+  written approval on the ticket. Then the lead moves it to Done. Peter's
+  written approval plays the part his merge plays for build tickets.
 
 Review and sign-off
 - Branch from current `main`. Ticket key leads the PR title
