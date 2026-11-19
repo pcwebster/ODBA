@@ -37,13 +37,13 @@ For project scope, architecture, and governance, see the **[ODBA Project Charter
 
 ## Prerequisites
 
-- **Python 3.10+**
+- **64-bit CPython 3.10+** (wheel availability is platform-dependent)
 - **PowerShell 5+** (for the download scripts and launchers)
 
 Install the Python dependencies:
 
 ```bash
-pip install pandas pyarrow duckdb openpyxl
+python -m pip install --require-hashes --only-binary=:all: -r requirements.txt
 ```
 
 ## Data Sources
@@ -190,6 +190,36 @@ amount/blank cells checked against the stored PDF references. See the app
 README for exact rebuild commands, test results and browser-verification
 limits. Existing ingestion and data artifacts are unchanged. This addition
 does not publish a hosted site.
+
+## Dependency lock maintenance (DBDP-70/71)
+
+Both launchers require `requirements.txt` and stop before running ETL/reporting
+if the file is missing or pip fails. There is no unpinned fallback. Install into
+a fresh virtual environment for package-integrity verification; pip does not
+re-hash packages already installed in an existing environment.
+
+`requirements.in` holds the five runtime pins and NumPy/python-dateutil compatibility
+constraints. NumPy uses separate pins before/after Python 3.14 to retain Python
+3.10 support without losing 3.14 wheels. `requirements.txt` locks their complete runtime
+dependency closure, with SHA-256 hashes from official PyPI. Windows and Linux
+wheels are allowed; source builds are deliberately disabled to avoid fetching
+unlocked build dependencies. An unsupported interpreter/platform fails closed.
+
+To refresh the lock in a separate maintainer environment with uv 0.13.9 installed (not a runtime dependency):
+
+```sh
+uv pip compile --universal --python-version 3.10 --default-index https://pypi.org/simple --generate-hashes --output-file requirements.txt requirements.in
+```
+
+Use universal resolution so inactive Python markers are retained; a native-only
+lock can silently lose another interpreter's NumPy pin.
+
+Review every version/hash change, verify a clean hash-checked install and
+`python -m pip check`, run `pip-audit -r requirements.txt` and the test suite,
+and check Windows/Linux wheel resolution before committing the lock. Do not
+regenerate budget artifacts as part of dependency maintenance. Hashes protect
+the reviewed distributions against substitution, not vulnerabilities or a
+compromise that predates lock generation.
 
 ## License
 
