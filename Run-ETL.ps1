@@ -8,6 +8,13 @@ $ETLScript  = Join-Path $ScriptDir "etl_budget.py"
 $OutputDir  = Join-Path $ScriptDir "output"
 $OutputFile = Join-Path $OutputDir "fact_budget_line_items.parquet"
 
+# Fail before Python/package operations on an incomplete checkout.
+$ReqFile = Join-Path $ScriptDir "requirements.txt"
+if (-not (Test-Path -LiteralPath $ReqFile -PathType Leaf)) {
+    Write-Host "  [ERROR] requirements.txt is required. Restore it from Git or re-clone ODBA. Nothing was installed." -ForegroundColor Red
+    exit 1
+}
+
 function Pause-And-Exit {
     Write-Host ""
     Write-Host "  Press any key to close this window..." -ForegroundColor DarkGray
@@ -53,20 +60,13 @@ if (-not $PythonCmd) {
 Write-Host ""
 Write-Host "  [2/3] Installing required Python packages from requirements.txt..." -ForegroundColor White
 
-$ReqFile = Join-Path $ScriptDir "requirements.txt"
-if (Test-Path $ReqFile) {
-    & $PythonCmd -m pip install -r $ReqFile --quiet 2>&1 | Out-Null
-    if ($LASTEXITCODE -ne 0) {
-        Write-Host "        [WARN] pip returned an error installing requirements" -ForegroundColor Yellow
-    } else {
-        Write-Host "        [OK] all packages installed" -ForegroundColor Green
-    }
-} else {
-    Write-Host "        [WARN] requirements.txt not found -- installing unpinned fallback" -ForegroundColor Yellow
-    foreach ($pkg in @("pandas", "pyarrow", "defusedxml")) {
-        & $PythonCmd -m pip install $pkg --quiet 2>&1 | Out-Null
-    }
+# Wheels only: do not execute source-build tooling outside the hashed lock.
+& $PythonCmd -m pip install --require-hashes --only-binary=:all: -r $ReqFile
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "  [ERROR] Verified dependency installation failed. The pipeline will not run. Restore requirements.txt from Git and retry." -ForegroundColor Red
+    exit 1
 }
+Write-Host "        [OK] locked packages installed" -ForegroundColor Green
 
 # ── Step 3: Run ETL ───────────────────────────────────────────────────────────
 Write-Host ""
