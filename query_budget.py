@@ -207,13 +207,15 @@ def run_queries(parquet_path):
               "B7 tier-2 redesign — refusing to render a mixed workbook.")
         sys.exit(1)
     vintage = vintages[0]
-    # Pin all report queries to the validated slice. Literals are inlined
-    # only after validation above, escaped, sourced from the parquet itself.
-    slice_sql = ("SELECT * FROM read_parquet('{}') WHERE budget_year = 2027.0 "
-                 "AND data_lifecycle_stage = 'Budget Request' "
-                 "AND data_vintage = '{}'").format(
-                     p.replace("'", "''"), vintage.replace("'", "''"))
-    con.execute(f"CREATE TEMP VIEW report_slice AS {slice_sql}")
+    # Pin all report queries to the validated slice. DBDP-110: materialized
+    # as a temp table with bound parameters (a view definition cannot hold
+    # ? parameters), so no path or vintage is spliced into SQL text.
+    con.execute("""
+        CREATE TEMP TABLE report_slice AS
+        SELECT * FROM read_parquet(?)
+        WHERE budget_year = 2027.0 AND data_lifecycle_stage = 'Budget Request'
+          AND data_vintage = ?
+    """, [p, vintage])
     print(f"  Report slice: budget_year=2027.0 | Budget Request | vintage {vintage}")
 
     print("  Running queries...")
@@ -402,7 +404,7 @@ def _check(label, ok_count, total, detail):
 
 
 def run_summary_queries(con, parquet_path, vintage):
-    """Build the DBDP-43 sections from the validated report_slice view.
+    """Build the DBDP-43 sections from the validated report_slice table.
 
     Returns a dict of DataFrames: provenance, checks, exhibits, missing.
     Row order is fixed by ORDER BY on unique group keys, so it is stable

@@ -104,10 +104,15 @@ def canned_plan(name, arg):
     return None
 
 
-def connect():
-    con = duckdb.connect()   # in-memory; read_parquet cannot write back
-    path = str(PARQUET_FILE).replace("'", "''")
-    con.execute(f"CREATE VIEW budget AS SELECT * FROM read_parquet('{path}')")
+def connect(parquet_file=None):
+    """In-memory connection with a read-only view 'budget' over the parquet.
+
+    DBDP-111: the path is handed to DuckDB as a value through the relation
+    API, never spliced into SQL text (Bandit B608). A view, not a temp table,
+    so 'budget' stays read-only: read_parquet cannot write back and DML on a
+    view is refused (e.g. EXPLAIN ANALYZE DELETE, which is an exempt token)."""
+    con = duckdb.connect()
+    con.read_parquet(str(parquet_file or PARQUET_FILE)).create_view("budget")
     return con
 
 
@@ -124,6 +129,25 @@ def _fmt(v):
     if isinstance(v, list):
         return "; ".join(str(x) for x in v)
     return str(v)
+
+
+# DBDP-97 (CWE-1236): a CSV cell starting with one of these can run as a
+# formula when the file is opened in Excel/LibreOffice.
+CSV_FORMULA_TRIGGERS = ("=", "+", "-", "@", "\t", "\r")
+
+
+def _csv_cell(v):
+    """_fmt() for the CSV export only, with formula triggers neutralized.
+
+    Only text cells are neutralized (str, and list cells such as
+    array_agg(source_file)); a single quote is prefixed. Numeric values
+    (int, float, Decimal) are left as written so a negative amount such as
+    -12.5 stays a number in the spreadsheet; they cannot carry a formula.
+    The console renderer keeps using _fmt() unchanged."""
+    s = _fmt(v)
+    if isinstance(v, (str, list)) and s.startswith(CSV_FORMULA_TRIGGERS):
+        return "'" + s
+    return s
 
 
 def shape_result(cols, types, rows, title, vertical=False, csv_path=None,
@@ -150,7 +174,7 @@ def shape_result(cols, types, rows, title, vertical=False, csv_path=None,
             w = csv.writer(f)
             w.writerow(cols)
             for r in rows:
-                w.writerow([_fmt(v) for v in r])
+                w.writerow([_csv_cell(v) for v in r])
         print(f"-- {title}: wrote {len(rows)} row(s) to {csv_path}")
         return True
 
