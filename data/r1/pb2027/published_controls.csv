@@ -1,0 +1,13 @@
+submission_edition,scope,source_file,role,control_grain,control_code,published_label,printed_page,physical_pdf_page,fy25_actual_as_reported,fy26_discretionary_enacted,fy26_pl11921_spend_plan,fy26_published_total,fy27_discretionary_request,fy27_mandatory_request,fy27_published_total
+PB27,rdte_title,FY2027_r1.pdf,non_additive_published_control,appropriation,2040A,"Research, Development, Test and Evaluation, Army",1,6,14508761,16565760,1778903,18344663,18708826,40000,18748826
+PB27,rdte_title,FY2027_r1.pdf,non_additive_published_control,appropriation,1319N,"Research, Development, Test and Evaluation, Navy",1,6,26098258,27942776,6747792,34690568,32386619,3849854,36236473
+PB27,rdte_title,FY2027_r1.pdf,non_additive_published_control,appropriation,3600F,"Research, Development, Test and Evaluation, Air Force",1,6,47044594,50289595,6705560,56995155,73075614,1091686,74167300
+PB27,rdte_title,FY2027_r1.pdf,non_additive_published_control,appropriation,3620F,"Research, Development, Test, and Evaluation, Space Force",1,6,18461132,14777160,5536072,20313232,38373489,2288397,40661886
+PB27,rdte_title,FY2027_r1.pdf,non_additive_published_control,appropriation,0400D,"Research, Development, Test and Evaluation, Defense-Wide",1,6,36850542,35010875,23597294,58608169,55736724,100507225,156243949
+PB27,rdte_title,FY2027_r1.pdf,non_additive_published_control,appropriation,3007D,Golden Dome for America Fund,1,6,34000,,21097100,21097100,397971,17120151,17518122
+PB27,rdte_title,FY2027_r1.pdf,non_additive_published_control,appropriation,0460D,"Operational Test and Evaluation, Defense",1,6,348709,336143,,336143,112365,,112365
+PB27,outside_rdte_title,FY2027_r1.pdf,non_additive_published_control,appropriation,0107D,Office of the Inspector General,1,6,1900,4625,,4625,1506,,1506
+PB27,outside_rdte_title,FY2027_r1.pdf,non_additive_published_control,appropriation,0130D,Combat and Operational Medicine Program,1,6,1695436,2472712,,2472712,1019362,,1019362
+PB27,outside_rdte_title,FY2027_r1.pdf,non_additive_published_control,appropriation,0390D,"Chemical Agents and Munitions Destruction, Defense",1,6,754762,210039,,210039,55972,,55972
+PB27,rdte_title,FY2027_r1.pdf,non_additive_published_control,scope_total,rdte_title_total,"Total Research, Development, Test, & Evaluation",1,6,143345996,144922309,65462721,210385030,218791608,124897313,343688921
+PB27,outside_rdte_title,FY2027_r1.pdf,non_additive_published_control,scope_total,outside_title_total,"Total Not in Research, Development, Test, & Evaluation",1,6,2452098,2687376,,2687376,1076840,,1076840
