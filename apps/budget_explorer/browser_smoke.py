@@ -24,6 +24,12 @@ with sync_playwright() as pw:
     desktop.on('pageerror', lambda error: errors.append(str(error)))
     load(desktop)
     expect(desktop.get_by_role('heading',name='Operations & maintenance')).to_be_visible()
+    expect(desktop.locator('#ocontext')).to_have_text(
+        'Funding FY2025 · O&M Title + Indefinite Accounts · as-published total obligational authority (TOA)'
+    )
+    first_amount = desktop.locator('#ocompare .ocrow-head').first
+    expect(first_amount.locator('span')).to_have_text('FY2025 · PB25 · President’s Budget request · TOA')
+    expect(first_amount.locator('strong')).to_have_text('$338.098474B')
     expect(desktop.locator('#ocompare')).to_contain_text('$338.098474B')
     expect(desktop.locator('#ocompare')).to_contain_text('$338.459009B')
     expect(desktop.locator('#ocompare')).to_contain_text('$342.358161B')
@@ -32,6 +38,7 @@ with sync_playwright() as pw:
     desktop.locator('#oextra summary').click()
     expect(desktop.locator('#oother')).to_contain_text('$3.940452B')
     desktop.locator('#ofiscal').select_option('2026')
+    expect(desktop.locator('#oother')).to_contain_text('FY2026 · PB26 · Reconciliation request · TOA')
     expect(desktop.locator('#oother')).to_contain_text('$22.708023B')
     expect(desktop.locator('#oother')).to_contain_text('$19.991335B')
     desktop.locator('#ofiscal').select_option('2024')
@@ -47,6 +54,7 @@ with sync_playwright() as pw:
     desktop.locator('#osearch').fill('490')
     result=desktop.locator('#olines details').first
     result.locator('summary').click()
+    expect(result).to_contain_text('FY2024 · PB25 · CR-adjusted request · TOA')
     expect(result).to_contain_text('−$1,288.238M')
     assert '#page=' in result.get_by_role('link').get_attribute('href')
     desktop.get_by_role('button',name='Department trends').click()
@@ -69,7 +77,9 @@ with sync_playwright() as pw:
     assert phone.evaluate('document.documentElement.scrollWidth <= innerWidth')
     phone.locator('#osearch').fill('0130D')
     phone.locator('#olines details summary').first.tap()
-    expect(phone.locator('#olines > details[open] > dl.olamount')).to_be_visible()
+    pinned_amounts = phone.locator('#olines > details[open] > dl.olamount')
+    expect(pinned_amounts).to_be_visible()
+    expect(pinned_amounts).to_contain_text('FY2025 · PB27 · Actuals as reported (printed lane) · TOA')
     assert phone.evaluate('document.documentElement.scrollWidth <= innerWidth')
     assert not errors, errors
     print('Chromium offline smoke passed: exact FY25 stages, FY26 supplemental bases, FY24 CR caution, filters, pagination, signed drilldown, source page, legacy views, and mobile layout.')
