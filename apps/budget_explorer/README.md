@@ -43,15 +43,20 @@ provenance, the data contract, and source limitations.
 
 ## Validation and scope
 
-The supplied HTML is committed as index.html with unchanged bytes. Its
-SHA-256 is `d22a08af345a8d835dac2a892f4d474fb1cd792260b85b985205f4e292f12611`.
+The current O-1 display build is committed as `index.html` with SHA-256
+`d22a08af345a8d835dac2a892f4d474fb1cd792260b85b985205f4e292f12611`.
+It regenerates byte for byte from the pinned inputs. The O-1 evidence
+tests and offline Node DOM smoke pass on this build.
+
+The earlier supplied preview was committed without changes to its HTML.
+Its SHA-256 was
+`6085d8a4f953e950b8aa7326b162830db6da85269a07948702792390d4c38bd0`.
 The incoming source ZIP did not include a checksum manifest; all 13 O-1
-input pins were instead verified against both the bundled snapshot and
-Git blobs at the declared commit. Snapshot/Git payloads and full HTML
-regeneration are byte-identical. Five evidence tests and the Node DOM
-smoke pass. Chromium desktop and 360px mobile checks pass offline with
-`--content`; direct file-URL navigation is blocked by managed browser
-policy in the validation environment and was not validated there.
+input pins were verified against both the bundled snapshot and the Git
+blobs at the declared commit. The earlier preview passed the Chromium
+desktop and 360px mobile checks with `--content`. Those browser checks
+were not rerun successfully on the current build. Direct file-URL
+navigation and Windows file opening were not verified for this build.
 
 The mobile browser smoke targets the primary amount list explicitly; an
 expanded PB27 line also contains a separate workbook-only list. The Node
