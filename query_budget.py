@@ -793,7 +793,7 @@ def write_fydp_trends(wb, fydp, vintage):
                 "year is flagged and that point is left off the chart. Below "
                 "threshold does not mean the years are comparable: those records "
                 "are still missing and the change still includes their absence. "
-                "The cause is not established here; it may be a parsing gap or a "
+                "For other coverage breaks, the cause is not established here; it may be a parsing gap or a "
                 "real change in the exhibit.")
     row += 1
 
@@ -805,7 +805,18 @@ def write_fydp_trends(wb, fydp, vintage):
     row = _section(ws, row, "Chart data (flagged points left blank)")
     chart_header = row
     row = write_df(ws, fydp["chart"], start_row=row, number_cols=money)
-    row += 1
+    # DBDP-133: use the existing spacer above the chart, without moving data
+    # or chart references. Account 0146 is not yet included (DBDP-132).
+    note_row = row
+    row = _note(ws, row,
+                "FY2027 DHP is omitted from the chart because Private Sector Care "
+                "moved from account 0130 to 0146, which this view does not yet "
+                "include. The table shows only FY2027 DHP amounts in the current data.")
+    ws.merge_cells(start_row=note_row, start_column=1,
+                   end_row=note_row, end_column=8)
+    ws.cell(row=note_row, column=1).alignment = Alignment(
+        wrap_text=True, vertical="center")
+    ws.row_dimensions[note_row].height = 32
 
     chart = LineChart()
     chart.title = f"FY{REPORT_BUDGET_YEAR} President's Budget Request ($M)"
