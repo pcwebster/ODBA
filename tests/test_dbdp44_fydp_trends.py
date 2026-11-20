@@ -261,6 +261,19 @@ class FydpTrendsSheetTests(unittest.TestCase):
         self.assertEqual(len(re.findall(r"<(?:c:)?cat><(?:c:)?strRef>", xml)), with_data)
         self.assertNotRegex(xml, r"<(?:c:)?cat><(?:c:)?numRef>")
 
+    def test_dhp_transfer_note_visible_without_moving_chart_data(self):
+        expected = ("FY2027 DHP is omitted from the chart because Private Sector Care "
+                    "moved from account 0130 to 0146, which this view does not yet "
+                    "include. The table shows only FY2027 DHP amounts in the current data.")
+        self.assertEqual(self.ws["A56"].value, expected)
+        self.assertIn("A56:H56", {str(r) for r in self.ws.merged_cells.ranges})
+        self.assertTrue(self.ws["A56"].alignment.wrap_text)
+        self.assertGreaterEqual(self.ws.row_dimensions[56].height, 30)
+        self.assertEqual(self.ws["D12"].value, 21012.3)
+        self.assertIsNone(self.ws["D55"].value)
+        self.assertEqual(self.ws._charts[0].series[-1].val.numRef.f,
+                         "'FYDP Trends'!$B$55:$H$55")
+
     def test_no_wall_clock_values(self):
         import datetime as dt
         ts = re.compile(r"\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}")
