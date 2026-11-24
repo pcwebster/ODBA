@@ -76,6 +76,17 @@ discretionary request $22,175,472 thousand from 0146D: +$1,401,584 thousand
 do not join or merge the entire accounts. The FY2027 0130D Private Sector
 Care blank remains blank.
 
+Line-code crosswalk (DBDP-132). In the FY2027 President's Budget request,
+the MHS J-Book Vol 1 O-1 prints the Private Sector Care Program line as
+0146D line 020, while this consolidated O-1 prints the same request as
+0146D line 010. The ETL stores the J-Book row as printed (0146D/020,
+source MHS_PB27_J-Book-Vol1-COMP_PSCP.xml) and maps it with
+`MHS_PSCP_LINE_CROSSWALK` in etl_budget.py: J-Book 0146D/020 = consolidated
+O-1 0146D/010. They are one $22,175,472 thousand request, never two amounts
+to add. Never join 0146D on the line number alone: 0130D line 020 is the
+historical Private Sector Care line. The J-Book row's FY2025 and FY2026
+amounts are printed as dashes and stay blank.
+
 Regenerate and check from repository root (Python standard library only):
     python tools/build_o1_pb2027_health.py --out-dir data/o1/pb2027_health
     python tools/build_o1_pb2027_health.py --check data/o1/pb2027_health
