@@ -8,9 +8,9 @@ Everything in this README is frozen before the Tester runs V4. Under 114-B, a de
 
 | File | What it is | Source |
 | --- | --- | --- |
-| `Defense_Wide_OM_PB27.csv` | The hand-shaped CSV the dashboard imports: 750 rows, 28 agencies, all `exhibit_type = OP-5`, FY2025 to FY2027. UTF-8 with BOM, CRLF line endings, kept byte-exact. | The model's only import table, `OP5`. Copied from OneDrive Documents/Gemini, file dated 2026-08-23, 155,221 bytes. |
+| `Defense_Wide_OM_PB27.csv` | The hand-shaped CSV the dashboard imports: 750 rows, 28 agencies, all `exhibit_type = OP-5`, FY2025 to FY2027. UTF-8 with BOM, CRLF line endings, kept byte-exact. | The model's only import table, `OP5`. Copied from the dashboard project's local data folder, file dated 2026-08-23, 155,221 bytes. |
 | `core_measures.dax` | The four core measures, copied from `OP5.tmdl` | `PB27_Defense_Wide_OM_Executive_Dashboard.SemanticModel/definition/tables/OP5.tmdl` |
-| `op5_partition.m` | The `OP5` import query (Power Query M) | Same `OP5.tmdl`, partition section |
+| `op5_partition.m` | The `OP5` import query (Power Query M). One deliberate change from the model's copy: the hard-coded local file path is replaced by a `FixtureRoot` parameter (the file's header says how to set it). The query steps are unchanged. | Same `OP5.tmdl`, partition section |
 | `relationships.tmdl` | The model's one relationship, `OP5.service_agency_acronym` to `Agency.service_agency_acronym` | Same SemanticModel folder |
 | `FIXTURE_SHA256.json` | SHA-256 digest of every file above and of this README | Generated at commit |
 
