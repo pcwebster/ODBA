@@ -1,31 +1,158 @@
 {
  "about": "DBDP-134 gold sample. Values were read from the pinned original (SHA-256 4cef3b41...a96a3) with pdftotext -layout, a reading the build does not use, and checked by hand against the printed page. Blank means printed blank, not zero. Proposed by the builder; the reviewer re-checks each value on the original before sign-off.",
  "records": [
-  {"file": "published_controls.csv", "page_code": "N-1", "title_norm": "Grand Total Military Personnel, Navy, 2026/2026",
-   "expect": {"lane_c": "40744435", "lane_g": "-199876", "lane_i": "40544559"}},
-  {"file": "published_controls.csv", "page_code": "N-1", "title_norm": "APPROPRIATION, P.L. (Base)",
-   "expect": {"lane_c": "40744435", "lane_g": "-199876", "lane_i": "40544559"}},
-  {"file": "published_controls.csv", "page_code": "N-1", "title_norm": "Subtotal Budget Activity 05: Permanent change of station travel",
-   "expect": {"lane_c": "1291237", "lane_g": "", "lane_i": "1291237"}},
-  {"file": "published_controls.csv", "page_code": "N-14", "title_norm": "Subtotal Budget Activity 01: Combat aircraft",
-   "expect": {"lane_c": "7920530", "lane_g": "-241375", "lane_i": "7679155"}},
-  {"file": "published_controls.csv", "page_code": "DW-18", "title_norm": "Grand Total Defense Health Program, 2026/2026",
-   "expect": {"lane_c": "39174590", "lane_g": "-231877", "lane_i": "38942713"}},
-  {"file": "published_controls.csv", "page_code": "DW-23", "title_norm": "Grand Total Defense Health Program, 2026/XXXX",
-   "expect": {"lane_c": "", "lane_g": "5000", "lane_i": "5000"}},
-  {"file": "published_controls.csv", "page_code": "A-6", "title_norm": "Grand Total Operation and Maintenance, Army , 2026/2026",
-   "expect": {"lane_c": "58975065", "lane_g": "-1657804", "lane_i": "57317261"}},
-  {"file": "published_controls.csv", "page_code": "A-6", "title_norm": "APPROPRIATION, P.L. (Base)",
-   "expect": {"lane_c": "58975065", "lane_g": "-943903", "lane_i": "58031162"}},
-  {"file": "published_controls.csv", "page_code": "A-6", "title_norm": "Sec. 8121 WCF Cash Balance",
-   "expect": {"lane_c": "", "lane_g": "-100000", "lane_i": ""}},
-  {"file": "published_controls.csv", "page_code": "A-58", "title_norm": "Subtotal Budget Activity 05: System development and demonstration",
-   "expect": {"lane_c": "5378817", "lane_g": "797698", "lane_i": "6176515"}},
-  {"file": "baseline_lines.csv", "page_code": "A-58", "line_identifier": "0605345A",
-   "expect": {"lane_c": "", "lane_g": "184631", "lane_i": "184631", "edited": "true", "adjustment_count": "2"}},
-  {"file": "baseline_lines.csv", "page_code": "A-58", "line_identifier": "0605346A",
-   "expect": {"lane_c": "", "lane_g": "172898", "lane_i": "172898", "edited": "true", "adjustment_count": "1"}},
-  {"file": "baseline_lines.csv", "page_code": "N-29", "title_norm": "CVN Refueling Overhauls",
-   "expect": {"lane_c": "1779011", "lane_g": "-200000", "lane_i": "1579011", "edited": "false", "adjustment_count": "2"}}
+  {
+   "file": "published_controls.csv",
+   "page_code": "N-1",
+   "title_norm": "Grand Total Military Personnel, Navy, 2026/2026",
+   "expect": {
+    "lane_c": "40744435",
+    "lane_g": "-199876",
+    "lane_i": "40544559"
+   }
+  },
+  {
+   "file": "published_controls.csv",
+   "page_code": "N-1",
+   "title_norm": "APPROPRIATION, P.L. (Base)",
+   "expect": {
+    "lane_c": "40744435",
+    "lane_g": "-199876",
+    "lane_i": "40544559"
+   }
+  },
+  {
+   "file": "published_controls.csv",
+   "page_code": "N-1",
+   "title_norm": "Subtotal Budget Activity 05: Permanent change of station travel",
+   "expect": {
+    "lane_c": "1291237",
+    "lane_g": "",
+    "lane_i": "1291237"
+   }
+  },
+  {
+   "file": "published_controls.csv",
+   "page_code": "N-14",
+   "title_norm": "Subtotal Budget Activity 01: Combat aircraft",
+   "expect": {
+    "lane_c": "7920530",
+    "lane_g": "-241375",
+    "lane_i": "7679155"
+   }
+  },
+  {
+   "file": "published_controls.csv",
+   "page_code": "DW-18",
+   "title_norm": "Grand Total Defense Health Program, 2026/2026",
+   "expect": {
+    "lane_c": "39174590",
+    "lane_g": "-231877",
+    "lane_i": "38942713"
+   }
+  },
+  {
+   "file": "published_controls.csv",
+   "page_code": "DW-23",
+   "title_norm": "Grand Total Defense Health Program, 2026/XXXX",
+   "expect": {
+    "lane_c": "",
+    "lane_g": "5000",
+    "lane_i": "5000"
+   }
+  },
+  {
+   "file": "published_controls.csv",
+   "page_code": "A-6",
+   "title_norm": "Grand Total Operation and Maintenance, Army , 2026/2026",
+   "expect": {
+    "lane_c": "58975065",
+    "lane_g": "-1657804",
+    "lane_i": "57317261"
+   }
+  },
+  {
+   "file": "published_controls.csv",
+   "page_code": "A-6",
+   "title_norm": "APPROPRIATION, P.L. (Base)",
+   "expect": {
+    "lane_c": "58975065",
+    "lane_g": "-943903",
+    "lane_i": "58031162"
+   }
+  },
+  {
+   "file": "published_controls.csv",
+   "page_code": "A-6",
+   "title_norm": "Sec. 8121 WCF Cash Balance",
+   "expect": {
+    "lane_c": "",
+    "lane_g": "-100000",
+    "lane_i": ""
+   }
+  },
+  {
+   "file": "published_controls.csv",
+   "page_code": "A-58",
+   "title_norm": "Subtotal Budget Activity 05: System development and demonstration",
+   "expect": {
+    "lane_c": "5378817",
+    "lane_g": "797698",
+    "lane_i": "6176515"
+   }
+  },
+  {
+   "file": "baseline_lines.csv",
+   "page_code": "A-58",
+   "line_identifier": "0605345A",
+   "expect": {
+    "lane_c": "",
+    "lane_g": "184631",
+    "lane_i": "184631",
+    "edited": "true",
+    "adjustment_count": "2"
+   }
+  },
+  {
+   "file": "baseline_lines.csv",
+   "page_code": "A-58",
+   "line_identifier": "0605346A",
+   "expect": {
+    "lane_c": "",
+    "lane_g": "172898",
+    "lane_i": "172898",
+    "edited": "true",
+    "adjustment_count": "1"
+   }
+  },
+  {
+   "file": "baseline_lines.csv",
+   "page_code": "N-29",
+   "title_norm": "CVN Refueling Overhauls",
+   "expect": {
+    "lane_c": "1779011",
+    "lane_g": "-200000",
+    "lane_i": "1579011",
+    "edited": "false",
+    "adjustment_count": "2"
+   }
+  }
+ ],
+ "cross_publication": [
+  {
+   "id": "M1-N",
+   "kind": "diagnostic",
+   "compare": {
+    "file": "published_controls.csv",
+    "page_code": "N-1",
+    "title_norm": "Grand Total Military Personnel, Navy, 2026/2026",
+    "lane": "lane_i"
+   },
+   "source": "PB27 M-1 (FY2027_m1.pdf), printed page 15, Total Direct - Military Personnel, Navy, FY2026 discretionary enacted column. The separate 703,641 spend-plan column is excluded.",
+   "value": 40544559,
+   "unit": "USD thousands",
+   "sourced_by": "OpenAI reviewer, PR #30 comment 7230286104 (design c10764 asks for this one sourced value)",
+   "builder_note": "The builder could not open the M-1 from its environment, so the reviewer's reading is recorded as given. It is a diagnostic only, not a gate on other cross-publication differences."
+  }
  ]
 }

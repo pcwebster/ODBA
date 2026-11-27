@@ -155,6 +155,33 @@ def html_to_crop(html, w, h):
     return ""
 
 
+def check_inputs(exceptions, differences, stops):
+    """The committed inputs are registries: every id and every match key is used once. A repeated
+    entry would let a later one silently shadow an earlier one when the lists become dicts, so it
+    stops the build before anything is read (OpenAI review of PR #30, item 1; c10824, c10838)."""
+    def unique(label, check, items, key):
+        for k, n in Counter(key(e) for e in items).items():
+            if n > 1:
+                stops(check, f"{label}: {k!r} appears {n} times")
+
+    lists = {name: exceptions.get(name, []) for name in ("entries", "diagnostics", "repeated_blank_lines")}
+    every = [e for items in lists.values() for e in items]
+    if any(not e.get("id") for e in every) or any(not d.get("id") for d in differences.get("entries", [])):
+        stops("9c", "a committed exception or published difference has no id")
+    unique(EDIT_EXCEPTIONS + " id", "9c", every, lambda e: e.get("id"))
+    unique(EDIT_EXCEPTIONS + " entry", "9c", lists["entries"],
+           lambda e: (e["page_code"], e["text"], e["hex"], e["font"], tuple(e["pdfminer"])))
+    unique(EDIT_EXCEPTIONS + " diagnostic", "9c", lists["diagnostics"],
+           lambda d: (d["page_code"], d["line_identifier"], d["row_kind"], d["lane"]))
+    unique(EDIT_EXCEPTIONS + " repeated blank line", "7", lists["repeated_blank_lines"],
+           lambda e: (e["page_code"], e["account_code_raw"], e["availability_raw"], e["budget_activity"],
+                      e["line_identifier"], e["title"]))
+    unique(PUBLISHED_DIFFERENCES + " id", "6", differences.get("entries", []), lambda d: d.get("id"))
+    unique(PUBLISHED_DIFFERENCES + " entry", "6", differences.get("entries", []),
+           lambda d: (d["page_code"], d["control_title"], d["lane"]))
+    return not stops
+
+
 # ------------------------------------------------------------------ build
 
 class Build:
@@ -166,6 +193,9 @@ class Build:
         self.diagnostics = []
         self.edit_records = []
         self.strike_records = []
+
+    def inputs(self):
+        return check_inputs(self.exceptions, self.differences, self.stops)
 
     # -------------------------------------------------- read (checks 1 to 3)
     def read(self):
@@ -852,15 +882,16 @@ class Build:
         else:
             out["o1_pb2027_fy26_discretionary_enacted"] = {"status": "not compared: sidecar missing"}
         out["m1_pb2027_milpers_navy"] = {
-            "status": "not compared here: PB27 M-1 is not parsed in the repo (DBDP-130); the one value goes in "
-                      "the gold fixture with its M-1 page cited, for the reviewer to re-check"}
+            "status": "compared in tests/fixtures/dd1414_fy2026_gold.json, entry M1-N: PB27 M-1 printed page 15, "
+                      "Total Direct - Military Personnel, Navy, FY2026 discretionary enacted, against N-1 grand total "
+                      "lane i (value sourced by the reviewer; M-1 is not parsed in the repo, DBDP-130)"}
         out["lane_c_against_fy26_request"] = {
             "status": "not compared: no FY26 request sidecar keyed to DD 1414 lines is committed"}
         return out
 
     # -------------------------------------------------- run
     def run(self):
-        for step in (self.read, self.parse, self.strikes, self.finalize_rows, self.edits, self.values):
+        for step in (self.inputs, self.read, self.parse, self.strikes, self.finalize_rows, self.edits, self.values):
             if not step():
                 return False
         self.keys()             # a key stop does not hide the checks after it

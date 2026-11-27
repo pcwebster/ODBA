@@ -1286,7 +1286,7 @@
       ]
     },
     "m1_pb2027_milpers_navy": {
-      "status": "not compared here: PB27 M-1 is not parsed in the repo (DBDP-130); the one value goes in the gold fixture with its M-1 page cited, for the reviewer to re-check"
+      "status": "compared in tests/fixtures/dd1414_fy2026_gold.json, entry M1-N: PB27 M-1 printed page 15, Total Direct - Military Personnel, Navy, FY2026 discretionary enacted, against N-1 grand total lane i (value sourced by the reviewer; M-1 is not parsed in the repo, DBDP-130)"
     },
     "lane_c_against_fy26_request": {
       "status": "not compared: no FY26 request sidecar keyed to DD 1414 lines is committed"

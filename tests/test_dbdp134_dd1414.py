@@ -198,6 +198,54 @@ class SidecarIntegrityTest(unittest.TestCase):
             self.assertEqual(len(hit), 1, match)
             self.assertEqual({k: hit[0][k] for k in g["expect"]}, g["expect"], match)
 
+    def test_navy_m1_cross_publication(self):
+        gold = json.loads(GOLD.read_text(encoding="utf-8"))
+        files = {"baseline_lines.csv": self.lines, "published_controls.csv": self.controls}
+        entries = gold["cross_publication"]
+        self.assertEqual([e["id"] for e in entries], ["M1-N"])
+        for e in entries:
+            c = e["compare"]
+            hit = [r for r in files[c["file"]] if r["page_code"] == c["page_code"] and r["title_norm"] == c["title_norm"]]
+            self.assertEqual(len(hit), 1)
+            self.assertEqual(int(hit[0][c["lane"]]), e["value"])
+
+
+@unittest.skipIf(B is None, MISSING)
+class InputRegistryTest(unittest.TestCase):
+    """OpenAI review of PR #30, item 1: a repeated entry must not shadow another."""
+
+    def setUp(self):
+        self.exceptions = json.loads((SIDECAR / B.EDIT_EXCEPTIONS).read_text(encoding="utf-8"))
+        self.differences = json.loads((SIDECAR / B.PUBLISHED_DIFFERENCES).read_text(encoding="utf-8"))
+
+    def stops(self):
+        stops = B.Stops()
+        B.check_inputs(self.exceptions, self.differences, stops)
+        return stops.items
+
+    def test_committed_inputs_are_clean(self):
+        self.assertEqual(self.stops(), [])
+        dw54 = {(d["control_title"], d["lane"]) for d in self.differences["entries"] if d["page_code"] == "DW-54"}
+        self.assertEqual(len(dw54), 4)
+
+    def test_wrong_entry_shadowed_by_a_correct_one_stops(self):
+        right = self.differences["entries"][0]
+        wrong = dict(right, id=right["id"] + "x", printed=right["printed"] + 1)
+        self.differences["entries"].insert(0, wrong)
+        self.assertTrue(any("appears 2 times" in s for s in self.stops()))
+
+    def test_repeated_id_stops(self):
+        self.differences["entries"].append(dict(self.differences["entries"][1], id=self.differences["entries"][0]["id"],
+                                                lane="x"))
+        self.assertTrue(any("id" in s and "appears 2 times" in s for s in self.stops()))
+        self.setUp()
+        self.exceptions["diagnostics"].append(dict(self.exceptions["diagnostics"][0], lane="c"))
+        self.assertTrue(any("appears 2 times" in s for s in self.stops()))
+
+    def test_repeated_edit_entry_stops(self):
+        self.exceptions["entries"].append(dict(self.exceptions["entries"][0], id="A58-1b"))
+        self.assertTrue(any("entry" in s and "appears 2 times" in s for s in self.stops()))
+
 
 @unittest.skipUnless(SOURCE and MISSING == "", "set ODBA_FY26_DD1414_PDF to the pinned original")
 class FullSourceTest(unittest.TestCase):
