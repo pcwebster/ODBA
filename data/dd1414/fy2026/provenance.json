@@ -1,0 +1,1305 @@
+{
+  "ticket": "DBDP-134",
+  "design_comments": {
+    "design": [
+      "10752",
+      "10764",
+      "10775"
+    ],
+    "decisions": [
+      "10758"
+    ],
+    "approvals": [
+      "10795",
+      "10800"
+    ],
+    "revision_v5": "10824",
+    "guardrail": "10827",
+    "pdfminer_install": "10828",
+    "dispositions": [
+      "10829",
+      "10834",
+      "10836"
+    ],
+    "published_rounding": "10838",
+    "build_mandate": "10832"
+  },
+  "source": {
+    "file": "FY_2026_DD_1414_Base_for_Reprogramming_Actions.pdf",
+    "official_url": "https://comptroller.war.gov/Portals/45/Documents/execution/FY_2026_DD_1414_Base_for_Reprogramming_Actions.pdf",
+    "url_receipt": "DBDP-89 c10373",
+    "sha256": "4cef3b41d68da3812828993bbb4b110d1aca5d5b0a67b1cb9eee8961324a96a3",
+    "bytes": 10582173,
+    "pages": 304,
+    "trailer_ids": [
+      "87a0d522222b084ba7c91d5c7acb6633",
+      "af652bcc76a31544ae03ce2034b86e3a"
+    ],
+    "creation_date": "D:20260305092233-05'00'",
+    "mod_date": "D:20260810111147-04'00'",
+    "delivered": "branch source/dd1414-fy26 commit 893c2ef1189b2e07150923131d81484d233f35a9 (never merged); receipt DBDP-134 c10830",
+    "http_last_modified_seen_by_peter": null,
+    "acquisition_date": null,
+    "open_items": [
+      "Peter's download Last-Modified and acquisition date are not recorded on the ticket.",
+      "The DBDP-89 c10373 survey (2026-07-15) saw Last-Modified 2026-03-05; this edition's ModDate is 2026-08-10, so the published file was revised after that survey."
+    ]
+  },
+  "readers": {
+    "pdfminer.six": "20260107",
+    "poppler": "24.02.0",
+    "poppler_tools": [
+      "pdftotext -bbox-layout -cropbox",
+      "pdftohtml -xml -zoom 1 -noroundcoord",
+      "pdftoppm -cropbox -r 300"
+    ],
+    "frame": "crop-local points, origin CropBox lower-left, y up, half-even to 0.01 pt"
+  },
+  "lane_catalog": {
+    "b": "Quantity, program base presented to Congress in printed justification",
+    "c": "Amount, program base presented to Congress in printed justification (Budget Request stage)",
+    "d": "Quantity, approved changes prior to final congressional action (a change, not a stage)",
+    "e": "Amount, approved changes prior to final congressional action (a change, not a stage)",
+    "f": "Quantity, changes reflecting congressional action/intent (a change, not a stage)",
+    "g": "Amount, changes reflecting congressional action/intent (a change, not a stage)",
+    "h": "Quantity, program base reflecting congressional/presidential action",
+    "i": "Amount, program base reflecting congressional/presidential action (Enacted stage)"
+  },
+  "pages": {
+    "total": 304,
+    "by_class": {
+      "blank": 12,
+      "contents": 4,
+      "data": 282,
+      "letter": 4,
+      "notice": 1,
+      "title": 1
+    },
+    "non_data_boxes_differ": {
+      "3": {
+        "media_box": [
+          "0.00",
+          "0.00",
+          "613.68",
+          "792.96"
+        ],
+        "crop_box": [
+          "0.72",
+          "0.48",
+          "612.72",
+          "792.48"
+        ]
+      },
+      "5": {
+        "media_box": [
+          "0.00",
+          "0.00",
+          "615.12",
+          "794.40"
+        ],
+        "crop_box": [
+          "1.44",
+          "1.20",
+          "613.44",
+          "793.20"
+        ]
+      },
+      "7": {
+        "media_box": [
+          "0.00",
+          "0.00",
+          "615.12",
+          "794.40"
+        ],
+        "crop_box": [
+          "1.44",
+          "1.20",
+          "613.44",
+          "793.20"
+        ]
+      },
+      "9": {
+        "media_box": [
+          "0.00",
+          "0.00",
+          "615.12",
+          "794.40"
+        ],
+        "crop_box": [
+          "1.44",
+          "1.20",
+          "613.44",
+          "793.20"
+        ]
+      }
+    }
+  },
+  "row_kinds": {
+    "adjustment": 2062,
+    "adjustment (superseded)": 2,
+    "appropriated_base": 1926,
+    "financing": 285,
+    "general_provision": 559,
+    "grand_total": 75,
+    "line": 1925,
+    "parent": 269,
+    "repeated_blank_line": 1,
+    "subtotal": 378
+  },
+  "counts": {
+    "accounts": 75,
+    "additive_lines": 1925,
+    "parents": 269,
+    "adjustments": 2621,
+    "superseded_rows": 2,
+    "published_controls": 738,
+    "source_cells": 40298
+  },
+  "body_style": {
+    "colours": [
+      "000000"
+    ],
+    "fonts": [
+      "ATQGGI+Arial-BoldItalicMT",
+      "FLBKYY+ArialMT",
+      "LUDUEM+Arial-BoldMT"
+    ],
+    "rule": "drawn on at least two data pages (c10824 section B)"
+  },
+  "colour_census": [
+    {
+      "hex": "000000",
+      "font": "ATQGGI+Arial-BoldItalicMT",
+      "tokens": 75
+    },
+    {
+      "hex": "000000",
+      "font": "BQGAOW+Arial-BoldMT",
+      "tokens": 1
+    },
+    {
+      "hex": "000000",
+      "font": "FLBKYY+ArialMT",
+      "tokens": 11674
+    },
+    {
+      "hex": "000000",
+      "font": "LUDUEM+Arial-BoldMT",
+      "tokens": 28539
+    },
+    {
+      "hex": "000000",
+      "font": "QQVBGX+ArialMT",
+      "tokens": 1
+    },
+    {
+      "hex": "FF0000",
+      "font": "AIBUYX+Arial-BoldMT",
+      "tokens": 3
+    },
+    {
+      "hex": "FF0000",
+      "font": "QDYHJX+Arial-BoldMT",
+      "tokens": 4
+    },
+    {
+      "hex": "FF0000",
+      "font": "ZCYKBQ+Arial-BoldMT",
+      "tokens": 1
+    }
+  ],
+  "edit_finding": "In this edition only: Acrobat text edits appear on A-58 (red Arial runs replacing struck values, and one black amount in its own font subset) and on AF-43 (one black footnote code in its own font subset). Red here marks a published correction. It is not a rule for other forms or editions and not a funding-type classification; B4 does not classify (c10824 section D).",
+  "edit_census": [
+    {
+      "page_code": "A-58",
+      "hex": "000000",
+      "font": "BQGAOW+Arial-BoldMT",
+      "tokens": 1
+    },
+    {
+      "page_code": "A-58",
+      "hex": "FF0000",
+      "font": "AIBUYX+Arial-BoldMT",
+      "tokens": 3
+    },
+    {
+      "page_code": "A-58",
+      "hex": "FF0000",
+      "font": "QDYHJX+Arial-BoldMT",
+      "tokens": 4
+    },
+    {
+      "page_code": "A-58",
+      "hex": "FF0000",
+      "font": "ZCYKBQ+Arial-BoldMT",
+      "tokens": 1
+    },
+    {
+      "page_code": "AF-43",
+      "hex": "000000",
+      "font": "QQVBGX+ArialMT",
+      "tokens": 1
+    }
+  ],
+  "edits": [
+    {
+      "page": 70,
+      "page_code": "A-58",
+      "text": "184,631",
+      "hex": "FF0000",
+      "font": "AIBUYX+Arial-BoldMT",
+      "size": "6.96",
+      "lane": "i",
+      "pdfminer": [
+        "698.27",
+        "386.69"
+      ],
+      "rule_origin_x": "698.27",
+      "pdftotext": [
+        [
+          "698.27",
+          "384.07"
+        ]
+      ],
+      "pdftohtml": [
+        [
+          "698.27",
+          "384.07"
+        ]
+      ],
+      "disposition": "automatic",
+      "owner": {
+        "row_kind": "line",
+        "line_identifier": "0605345A",
+        "line_title": "Unmanned Aerial Systems Launched Effects Systems Development",
+        "text": "",
+        "lane": "i",
+        "role": "line"
+      }
+    },
+    {
+      "page": 70,
+      "page_code": "A-58",
+      "text": "184,631",
+      "hex": "FF0000",
+      "font": "AIBUYX+Arial-BoldMT",
+      "size": "6.96",
+      "lane": "g",
+      "pdfminer": [
+        "587.85",
+        "386.34"
+      ],
+      "rule_origin_x": "587.85",
+      "pdftotext": [
+        [
+          "587.85",
+          "383.72"
+        ]
+      ],
+      "pdftohtml": [
+        [
+          "587.85",
+          "383.72"
+        ]
+      ],
+      "disposition": "automatic",
+      "owner": {
+        "row_kind": "line",
+        "line_identifier": "0605345A",
+        "line_title": "Unmanned Aerial Systems Launched Effects Systems Development",
+        "text": "",
+        "lane": "g",
+        "role": "line"
+      }
+    },
+    {
+      "page": 70,
+      "page_code": "A-58",
+      "text": "184,631",
+      "hex": "FF0000",
+      "font": "ZCYKBQ+Arial-BoldMT",
+      "size": "6.96",
+      "lane": "g",
+      "pdfminer": [
+        "563.91",
+        "375.80"
+      ],
+      "rule_origin_x": "563.91",
+      "pdftotext": [
+        [
+          "563.91",
+          "373.18"
+        ]
+      ],
+      "pdftohtml": [
+        [
+          "563.91",
+          "373.18"
+        ]
+      ],
+      "disposition": "owner",
+      "exception": "A58-1",
+      "approval": "DBDP-134 c10829",
+      "owner": {
+        "row_kind": "appropriated_base",
+        "line_identifier": "0605345A",
+        "line_title": "Unmanned Aerial Systems Launched Effects Systems Development",
+        "text": "",
+        "lane": "g",
+        "role": "appropriated_base"
+      }
+    },
+    {
+      "page": 70,
+      "page_code": "A-58",
+      "text": "184,631",
+      "hex": "FF0000",
+      "font": "AIBUYX+Arial-BoldMT",
+      "size": "6.96",
+      "lane": "i",
+      "pdfminer": [
+        "698.27",
+        "367.77"
+      ],
+      "rule_origin_x": "698.27",
+      "pdftotext": [
+        [
+          "698.27",
+          "365.15"
+        ]
+      ],
+      "pdftohtml": [
+        [
+          "698.27",
+          "365.15"
+        ]
+      ],
+      "disposition": "owner",
+      "exception": "A58-2",
+      "approval": "DBDP-134 c10829",
+      "owner": {
+        "row_kind": "appropriated_base",
+        "line_identifier": "0605345A",
+        "line_title": "Unmanned Aerial Systems Launched Effects Systems Development",
+        "text": "",
+        "lane": "i",
+        "role": "appropriated_base"
+      }
+    },
+    {
+      "page": 70,
+      "page_code": "A-58",
+      "text": "187,473",
+      "hex": "000000",
+      "font": "BQGAOW+Arial-BoldMT",
+      "size": "6.96",
+      "lane": "g",
+      "pdfminer": [
+        "588.83",
+        "357.40"
+      ],
+      "rule_origin_x": "588.83",
+      "pdftotext": [
+        [
+          "588.83",
+          "354.78"
+        ]
+      ],
+      "pdftohtml": [
+        [
+          "588.83",
+          "354.78"
+        ]
+      ],
+      "disposition": "automatic",
+      "owner": {
+        "row_kind": "adjustment",
+        "line_identifier": "0605345A",
+        "line_title": "Unmanned Aerial Systems Launched Effects Systems Development",
+        "text": "Transfer from line 242 for proper budget execution",
+        "lane": "g",
+        "role": "adjustment"
+      }
+    },
+    {
+      "page": 70,
+      "page_code": "A-58",
+      "text": "172,898",
+      "hex": "FF0000",
+      "font": "QDYHJX+Arial-BoldMT",
+      "size": "6.96",
+      "lane": "i",
+      "pdfminer": [
+        "697.74",
+        "337.96"
+      ],
+      "rule_origin_x": "697.74",
+      "pdftotext": [
+        [
+          "697.74",
+          "335.35"
+        ]
+      ],
+      "pdftohtml": [
+        [
+          "697.74",
+          "335.35"
+        ]
+      ],
+      "disposition": "automatic",
+      "owner": {
+        "row_kind": "line",
+        "line_identifier": "0605346A",
+        "line_title": "UAS Launched Effects Development",
+        "text": "",
+        "lane": "i",
+        "role": "line"
+      }
+    },
+    {
+      "page": 70,
+      "page_code": "A-58",
+      "text": "172,898",
+      "hex": "FF0000",
+      "font": "QDYHJX+Arial-BoldMT",
+      "size": "6.96",
+      "lane": "g",
+      "pdfminer": [
+        "587.91",
+        "337.84"
+      ],
+      "rule_origin_x": "587.91",
+      "pdftotext": [
+        [
+          "587.91",
+          "335.22"
+        ]
+      ],
+      "pdftohtml": [
+        [
+          "587.91",
+          "335.22"
+        ]
+      ],
+      "disposition": "automatic",
+      "owner": {
+        "row_kind": "line",
+        "line_identifier": "0605346A",
+        "line_title": "UAS Launched Effects Development",
+        "text": "",
+        "lane": "g",
+        "role": "line"
+      }
+    },
+    {
+      "page": 70,
+      "page_code": "A-58",
+      "text": "172,898",
+      "hex": "FF0000",
+      "font": "QDYHJX+Arial-BoldMT",
+      "size": "6.96",
+      "lane": "i",
+      "pdfminer": [
+        "699.22",
+        "310.78"
+      ],
+      "rule_origin_x": "699.22",
+      "pdftotext": [
+        [
+          "699.22",
+          "308.16"
+        ]
+      ],
+      "pdftohtml": [
+        [
+          "699.22",
+          "308.16"
+        ],
+        [
+          "699.22",
+          "308.16"
+        ]
+      ],
+      "disposition": "owner",
+      "exception": "A58-3b",
+      "approval": "DBDP-134 c10829, c10834",
+      "owner": {
+        "row_kind": "appropriated_base",
+        "line_identifier": "0605346A",
+        "line_title": "UAS Launched Effects Development",
+        "text": "",
+        "lane": "i",
+        "role": "appropriated_base"
+      }
+    },
+    {
+      "page": 70,
+      "page_code": "A-58",
+      "text": "172,898",
+      "hex": "FF0000",
+      "font": "QDYHJX+Arial-BoldMT",
+      "size": "6.96",
+      "lane": "",
+      "pdfminer": [
+        "724.24",
+        "310.78"
+      ],
+      "rule_origin_x": "699.22",
+      "pdftotext": [],
+      "pdftohtml": [],
+      "disposition": "duplicate",
+      "exception": "A58-3a",
+      "approval": "DBDP-134 c10829, c10834 (Peter: option A on both A-58 questions)",
+      "duplicate_of": [
+        "699.22",
+        "310.78"
+      ],
+      "pdftohtml_drawings": [
+        [
+          "699.22",
+          "308.16"
+        ],
+        [
+          "699.22",
+          "308.16"
+        ]
+      ]
+    },
+    {
+      "page": 198,
+      "page_code": "AF-43",
+      "text": "2",
+      "hex": "000000",
+      "font": "QQVBGX+ArialMT",
+      "size": "6.96",
+      "lane": "a",
+      "pdfminer": [
+        "126.59",
+        "338.20"
+      ],
+      "rule_origin_x": "126.59",
+      "pdftotext": [
+        [
+          "126.59",
+          "335.94"
+        ]
+      ],
+      "pdftohtml": [
+        [
+          "126.59",
+          "335.94"
+        ]
+      ],
+      "disposition": "footnote_owner",
+      "exception": "AF43-1",
+      "approval": "DBDP-134 c10836 (Peter, message cmsg_01XCKDR5zt6g39C9ogv2iRpwVsdRFA5a4JGyaxFudbXtMJ)",
+      "owner": {
+        "row_kind": "adjustment",
+        "line_identifier": "0207455F",
+        "line_title": "Three Dimensional Long-Range Radar (3DELRR)",
+        "text": "Program carryover",
+        "field": "footnote_codes_raw",
+        "in_place_edit": true
+      }
+    }
+  ],
+  "strikes": {
+    "struck_tokens": 12,
+    "by_page": {
+      "A-58": 12
+    },
+    "tokens": [
+      {
+        "page": 70,
+        "page_code": "A-58",
+        "text": "357,529",
+        "lane": "i",
+        "x0": "698.27",
+        "baseline": "395.04",
+        "marks": [
+          {
+            "source": "2ef320a5-6314-4129-ab39-6a15078b574d",
+            "x0": 698.27,
+            "x1": 723.25,
+            "y": 396.69,
+            "hex": "DB3425",
+            "width": 0.62,
+            "coverage": 1.0,
+            "confirmed": 1.0
+          }
+        ]
+      },
+      {
+        "page": 70,
+        "page_code": "A-58",
+        "text": "357,529",
+        "lane": "g",
+        "x0": "588.83",
+        "baseline": "394.04",
+        "marks": [
+          {
+            "source": "3514e439-9917-46fe-82b7-c390a0007a30",
+            "x0": 588.83,
+            "x1": 613.82,
+            "y": 395.69,
+            "hex": "DB3425",
+            "width": 0.62,
+            "coverage": 1.0,
+            "confirmed": 1.0
+          }
+        ]
+      },
+      {
+        "page": 70,
+        "page_code": "A-58",
+        "text": "357,529",
+        "lane": "g",
+        "x0": "588.76",
+        "baseline": "376.21",
+        "marks": [
+          {
+            "source": "91d1eeea-ade9-4dd7-9cd7-a52e328a5255",
+            "x0": 588.76,
+            "x1": 613.75,
+            "y": 377.94,
+            "hex": "DB3425",
+            "width": 0.57,
+            "coverage": 1.0,
+            "confirmed": 1.0
+          }
+        ]
+      },
+      {
+        "page": 70,
+        "page_code": "A-58",
+        "text": "357,529",
+        "lane": "i",
+        "x0": "698.27",
+        "baseline": "376.12",
+        "marks": [
+          {
+            "source": "56acfb40-955a-4c0b-b31b-9acb20dfd971",
+            "x0": 698.27,
+            "x1": 723.26,
+            "y": 377.77,
+            "hex": "DB3425",
+            "width": 0.62,
+            "coverage": 1.0,
+            "confirmed": 1.0
+          }
+        ]
+      },
+      {
+        "page": 70,
+        "page_code": "A-58",
+        "text": "5",
+        "lane": "a",
+        "x0": "121.67",
+        "baseline": "367.00",
+        "marks": [
+          {
+            "source": "eb1afa09-6891-48e0-a872-0462a072f599",
+            "x0": 121.67,
+            "x1": 125.54,
+            "y": 368.81,
+            "hex": "DB3425",
+            "width": 0.59,
+            "coverage": 1.0,
+            "confirmed": 1.0
+          }
+        ]
+      },
+      {
+        "page": 70,
+        "page_code": "A-58",
+        "text": "/",
+        "lane": "a",
+        "x0": "143.87",
+        "baseline": "367.00",
+        "marks": [
+          {
+            "source": "eb1afa09-6891-48e0-a872-0462a072f599",
+            "x0": 143.87,
+            "x1": 145.81,
+            "y": 368.81,
+            "hex": "DB3425",
+            "width": 0.59,
+            "coverage": 1.0,
+            "confirmed": 1.0
+          }
+        ]
+      },
+      {
+        "page": 70,
+        "page_code": "A-58",
+        "text": "Transfer from line 243 for proper budget execution",
+        "lane": "a",
+        "x0": "155.63",
+        "baseline": "367.00",
+        "marks": [
+          {
+            "source": "eb1afa09-6891-48e0-a872-0462a072f599",
+            "x0": 155.63,
+            "x1": 309.79,
+            "y": 368.81,
+            "hex": "DB3425",
+            "width": 0.59,
+            "coverage": 1.0,
+            "confirmed": 1.0
+          }
+        ]
+      },
+      {
+        "page": 70,
+        "page_code": "A-58",
+        "text": "172,898",
+        "lane": "g",
+        "x0": "588.83",
+        "baseline": "367.00",
+        "marks": [
+          {
+            "source": "e57acc86-fc28-4256-a635-ba54f5313360",
+            "x0": 588.83,
+            "x1": 613.83,
+            "y": 368.81,
+            "hex": "DB3425",
+            "width": 0.59,
+            "coverage": 1.0,
+            "confirmed": 1.0
+          }
+        ]
+      },
+      {
+        "page": 70,
+        "page_code": "A-58",
+        "text": "5",
+        "lane": "a",
+        "x0": "121.67",
+        "baseline": "319.00",
+        "marks": [
+          {
+            "source": "843ab277-65bb-4df5-85a8-5ba09027f28f",
+            "x0": 121.67,
+            "x1": 125.54,
+            "y": 320.81,
+            "hex": "DB3425",
+            "width": 0.59,
+            "coverage": 1.0,
+            "confirmed": 1.0
+          }
+        ]
+      },
+      {
+        "page": 70,
+        "page_code": "A-58",
+        "text": "/",
+        "lane": "a",
+        "x0": "143.87",
+        "baseline": "319.00",
+        "marks": [
+          {
+            "source": "843ab277-65bb-4df5-85a8-5ba09027f28f",
+            "x0": 143.87,
+            "x1": 145.81,
+            "y": 320.81,
+            "hex": "DB3425",
+            "width": 0.59,
+            "coverage": 1.0,
+            "confirmed": 1.0
+          }
+        ]
+      },
+      {
+        "page": 70,
+        "page_code": "A-58",
+        "text": "Transfer from line 243 for proper budget execution",
+        "lane": "a",
+        "x0": "155.63",
+        "baseline": "319.00",
+        "marks": [
+          {
+            "source": "843ab277-65bb-4df5-85a8-5ba09027f28f",
+            "x0": 155.63,
+            "x1": 309.79,
+            "y": 320.81,
+            "hex": "DB3425",
+            "width": 0.59,
+            "coverage": 1.0,
+            "confirmed": 1.0
+          }
+        ]
+      },
+      {
+        "page": 70,
+        "page_code": "A-58",
+        "text": "-172,898",
+        "lane": "g",
+        "x0": "586.55",
+        "baseline": "319.00",
+        "marks": [
+          {
+            "source": "979afbae-3516-43cf-a10a-47a442e7a062",
+            "x0": 586.55,
+            "x1": 613.83,
+            "y": 320.81,
+            "hex": "DB3425",
+            "width": 0.59,
+            "coverage": 1.0,
+            "confirmed": 1.0
+          }
+        ]
+      }
+    ]
+  },
+  "first_printed": [
+    {
+      "page_code": "A-58",
+      "line_identifier": "0605345A",
+      "title": "Unmanned Aerial Systems Launched Effects Systems Development",
+      "first_printed": {
+        "c": null,
+        "e": null,
+        "g": 357529,
+        "i": 357529
+      },
+      "owned": {
+        "c": null,
+        "e": null,
+        "g": 184631,
+        "i": 184631
+      },
+      "first_printed_c_plus_e_plus_g_equals_i": true,
+      "first_printed_adjustments_g": 170056
+    },
+    {
+      "page_code": "A-58",
+      "line_identifier": "0605346A",
+      "title": "UAS Launched Effects Development",
+      "first_printed": {
+        "c": null,
+        "e": null,
+        "g": null,
+        "i": null
+      },
+      "owned": {
+        "c": null,
+        "e": null,
+        "g": 172898,
+        "i": 172898
+      },
+      "first_printed_c_plus_e_plus_g_equals_i": true,
+      "first_printed_adjustments_g": 0
+    }
+  ],
+  "diagnostics": [
+    {
+      "kind": "edit_font_whitespace",
+      "page": 198,
+      "x0": "242.31",
+      "baseline": "347.32",
+      "font": "ANTEQD+Arial-BoldMT",
+      "hex": "000000",
+      "note": "whitespace-only glyph drawn in an edit font; it holds no text"
+    },
+    {
+      "kind": "edit_font_whitespace",
+      "page": 198,
+      "x0": "130.43",
+      "baseline": "338.20",
+      "font": "QQVBGX+ArialMT",
+      "hex": "000000",
+      "note": "whitespace-only glyph drawn in an edit font; it holds no text"
+    },
+    {
+      "kind": "edit_font_whitespace",
+      "page": 198,
+      "x0": "134.96",
+      "baseline": "338.20",
+      "font": "QQVBGX+ArialMT",
+      "hex": "000000",
+      "note": "whitespace-only glyph drawn in an edit font; it holds no text"
+    },
+    {
+      "kind": "edit_font_whitespace",
+      "page": 198,
+      "x0": "141.42",
+      "baseline": "338.20",
+      "font": "QQVBGX+ArialMT",
+      "hex": "000000",
+      "note": "whitespace-only glyph drawn in an edit font; it holds no text"
+    },
+    {
+      "kind": "reader_quirk",
+      "page": 70,
+      "page_code": "A-58",
+      "text": "172,898",
+      "pdfminer_x0": "724.24",
+      "rule_origin_x": "699.22",
+      "shift": "25.02",
+      "note": "pdfminer.six 20260107 places this second drawing of the run 25.02 pt right of where the PDF text-positioning rule puts it; collapsed as a duplicate under DBDP-134 c10829, c10834 (Peter: option A on both A-58 questions)"
+    },
+    {
+      "kind": "as_printed_mismatch_non_additive_row",
+      "id": "A58-Q2",
+      "page_code": "A-58",
+      "check": "5",
+      "line_identifier": "0605346A",
+      "row_kind": "appropriated_base",
+      "lane": "g",
+      "published": null,
+      "line": 172898,
+      "reason": "As printed, 0605346A's appropriated-base row is blank in lane g while the corrected line is 172,898. The row is non-additive; reported as an as-printed mismatch. Line, lane, adjustment, ownership, BA and account checks stay hard stops.",
+      "approval": "DBDP-134 c10834"
+    }
+  ],
+  "repeated_blank_lines": [
+    {
+      "id": "N29-1",
+      "page": 108,
+      "page_code": "N-29",
+      "title": "CVN Refueling Overhauls",
+      "base_rows": 1,
+      "disposition": "repeated_blank_line",
+      "approval": "DBDP-134 c10839, c10840 (Peter, message cmsg_01XCKDR5zt6g39C9ogv2iRpwQqqP2rpFEprYvjAKDBjHs5)"
+    }
+  ],
+  "published_rounding": [
+    {
+      "record_id": "dd1414-fy26-00447cd6e1acd1e72ce9",
+      "lane": "g",
+      "id": "R01g"
+    },
+    {
+      "record_id": "dd1414-fy26-00447cd6e1acd1e72ce9",
+      "lane": "i",
+      "id": "R01i"
+    },
+    {
+      "record_id": "dd1414-fy26-d4765d161019398f5922",
+      "lane": "g",
+      "id": "R02g"
+    },
+    {
+      "record_id": "dd1414-fy26-d4765d161019398f5922",
+      "lane": "i",
+      "id": "R02i"
+    },
+    {
+      "record_id": "dd1414-fy26-6a233a63a2ac615c8e2d",
+      "lane": "g",
+      "id": "R03g"
+    },
+    {
+      "record_id": "dd1414-fy26-6a233a63a2ac615c8e2d",
+      "lane": "i",
+      "id": "R03i"
+    },
+    {
+      "record_id": "dd1414-fy26-472e2d583165c471e563",
+      "lane": "g",
+      "id": "R04g"
+    },
+    {
+      "record_id": "dd1414-fy26-472e2d583165c471e563",
+      "lane": "i",
+      "id": "R04i"
+    },
+    {
+      "record_id": "dd1414-fy26-a63bf5917b5e609f142b",
+      "lane": "g",
+      "id": "R05g"
+    },
+    {
+      "record_id": "dd1414-fy26-a63bf5917b5e609f142b",
+      "lane": "i",
+      "id": "R05i"
+    },
+    {
+      "record_id": "dd1414-fy26-e63d70c257bf775d3b4b",
+      "lane": "g",
+      "id": "R06g"
+    },
+    {
+      "record_id": "dd1414-fy26-e63d70c257bf775d3b4b",
+      "lane": "i",
+      "id": "R06i"
+    },
+    {
+      "record_id": "dd1414-fy26-10ed92dedfb3efd8e376",
+      "lane": "g",
+      "id": "R07g"
+    },
+    {
+      "record_id": "dd1414-fy26-10ed92dedfb3efd8e376",
+      "lane": "i",
+      "id": "R07i"
+    },
+    {
+      "record_id": "dd1414-fy26-ae8bedab3c4875fea653",
+      "lane": "g",
+      "id": "R08g"
+    },
+    {
+      "record_id": "dd1414-fy26-ae8bedab3c4875fea653",
+      "lane": "i",
+      "id": "R08i"
+    },
+    {
+      "record_id": "dd1414-fy26-5697a25fc6288f1990d5",
+      "lane": "g",
+      "id": "R09g"
+    },
+    {
+      "record_id": "dd1414-fy26-5697a25fc6288f1990d5",
+      "lane": "i",
+      "id": "R09i"
+    },
+    {
+      "record_id": "dd1414-fy26-651aee6802d1b9050e40",
+      "lane": "g",
+      "id": "R10g"
+    },
+    {
+      "record_id": "dd1414-fy26-651aee6802d1b9050e40",
+      "lane": "i",
+      "id": "R10i"
+    },
+    {
+      "record_id": "dd1414-fy26-cf5414eb0e9a5d75da56",
+      "lane": "g",
+      "id": "R11g"
+    },
+    {
+      "record_id": "dd1414-fy26-cf5414eb0e9a5d75da56",
+      "lane": "i",
+      "id": "R11i"
+    },
+    {
+      "record_id": "dd1414-fy26-678c4ea989d7b47f9fd1",
+      "lane": "g",
+      "id": "R12g"
+    },
+    {
+      "record_id": "dd1414-fy26-678c4ea989d7b47f9fd1",
+      "lane": "i",
+      "id": "R12i"
+    }
+  ],
+  "reader_agreement": {
+    "data_pages": 282,
+    "adjustment_rows": 2623,
+    "rule": "every pdftotext word and pdftohtml run maps to exactly one pdfminer cell and each cell's text, whitespace removed, is identical (checks 3, 6b, 9)"
+  },
+  "check_10_diagnostic": {
+    "r1_pb2027_fy26_discretionary_enacted": {
+      "status": "compared on (account code, line identifier)",
+      "counts": {
+        "different": 26,
+        "equal": 916,
+        "sidecar_rows_with_no_dd1414_line": 206
+      },
+      "differences": [
+        {
+          "account_code_raw": "0400D",
+          "line_identifier": "0208085JCY",
+          "dd1414_lane_i": 88522,
+          "sidecar": null
+        },
+        {
+          "account_code_raw": "0400D",
+          "line_identifier": "0603289D8Z",
+          "dd1414_lane_i": 56678,
+          "sidecar": 56677
+        },
+        {
+          "account_code_raw": "0400D",
+          "line_identifier": "0603881C",
+          "dd1414_lane_i": 465311,
+          "sidecar": 465312
+        },
+        {
+          "account_code_raw": "0400D",
+          "line_identifier": "0603884C",
+          "dd1414_lane_i": 181321,
+          "sidecar": 181320
+        },
+        {
+          "account_code_raw": "0400D",
+          "line_identifier": "0603896C",
+          "dd1414_lane_i": 597397,
+          "sidecar": 597396
+        },
+        {
+          "account_code_raw": "0400D",
+          "line_identifier": "0603924D8Z",
+          "dd1414_lane_i": 120761,
+          "sidecar": 120763
+        },
+        {
+          "account_code_raw": "0400D",
+          "line_identifier": "0604011D8Z",
+          "dd1414_lane_i": 22122,
+          "sidecar": 71278
+        },
+        {
+          "account_code_raw": "0400D",
+          "line_identifier": "0604122D8Z",
+          "dd1414_lane_i": 293597,
+          "sidecar": null
+        },
+        {
+          "account_code_raw": "0400D",
+          "line_identifier": "0604250D8Z",
+          "dd1414_lane_i": 770843,
+          "sidecar": 770844
+        },
+        {
+          "account_code_raw": "0400D",
+          "line_identifier": "0605798D8Z",
+          "dd1414_lane_i": 44828,
+          "sidecar": 44826
+        },
+        {
+          "account_code_raw": "1319N",
+          "line_identifier": "0101221N",
+          "dd1414_lane_i": 823510,
+          "sidecar": 828337
+        },
+        {
+          "account_code_raw": "1319N",
+          "line_identifier": "0204136N",
+          "dd1414_lane_i": 395928,
+          "sidecar": 395927
+        },
+        {
+          "account_code_raw": "1319N",
+          "line_identifier": "0205633N",
+          "dd1414_lane_i": 138523,
+          "sidecar": 138522
+        },
+        {
+          "account_code_raw": "1319N",
+          "line_identifier": "0603724N",
+          "dd1414_lane_i": 58161,
+          "sidecar": 58162
+        },
+        {
+          "account_code_raw": "1319N",
+          "line_identifier": "0603725N",
+          "dd1414_lane_i": 15752,
+          "sidecar": 10925
+        },
+        {
+          "account_code_raw": "1319N",
+          "line_identifier": "0605013N",
+          "dd1414_lane_i": 234101,
+          "sidecar": 234102
+        },
+        {
+          "account_code_raw": "2040A",
+          "line_identifier": "0605345A",
+          "dd1414_lane_i": 184631,
+          "sidecar": 357529
+        },
+        {
+          "account_code_raw": "3600F",
+          "line_identifier": "0102417F",
+          "dd1414_lane_i": 130401,
+          "sidecar": null
+        },
+        {
+          "account_code_raw": "3600F",
+          "line_identifier": "0207110F",
+          "dd1414_lane_i": 3053053,
+          "sidecar": null
+        },
+        {
+          "account_code_raw": "3600F",
+          "line_identifier": "0207412F",
+          "dd1414_lane_i": 17407,
+          "sidecar": null
+        },
+        {
+          "account_code_raw": "3600F",
+          "line_identifier": "0207701F",
+          "dd1414_lane_i": 7985,
+          "sidecar": 10276
+        },
+        {
+          "account_code_raw": "3600F",
+          "line_identifier": "0305155F",
+          "dd1414_lane_i": 19777,
+          "sidecar": null
+        },
+        {
+          "account_code_raw": "3600F",
+          "line_identifier": "0604222F",
+          "dd1414_lane_i": 78326,
+          "sidecar": null
+        },
+        {
+          "account_code_raw": "3600F",
+          "line_identifier": "0604288F",
+          "dd1414_lane_i": 1801293,
+          "sidecar": null
+        },
+        {
+          "account_code_raw": "3600F",
+          "line_identifier": "0604776F",
+          "dd1414_lane_i": 4996,
+          "sidecar": 30263
+        },
+        {
+          "account_code_raw": "3620F",
+          "line_identifier": "1206855SF",
+          "dd1414_lane_i": 1111595,
+          "sidecar": null
+        }
+      ]
+    },
+    "o1_pb2027_fy26_discretionary_enacted": {
+      "status": "O-1 detail summed by (account code, budget activity), compared with BA-grain lines",
+      "counts": {
+        "different": 3,
+        "equal": 41,
+        "sidecar_rows_with_no_dd1414_line": 14
+      },
+      "differences": [
+        {
+          "account_code_raw": "0130D",
+          "budget_activity": "01",
+          "dd1414_lane_i": 38942713,
+          "sidecar": 38947713
+        },
+        {
+          "account_code_raw": "1804N",
+          "budget_activity": "02",
+          "dd1414_lane_i": 978305,
+          "sidecar": 1763357
+        },
+        {
+          "account_code_raw": "2020A",
+          "budget_activity": "04",
+          "dd1414_lane_i": 12911843,
+          "sidecar": 13129859
+        }
+      ]
+    },
+    "m1_pb2027_milpers_navy": {
+      "status": "not compared here: PB27 M-1 is not parsed in the repo (DBDP-130); the one value goes in the gold fixture with its M-1 page cited, for the reviewer to re-check"
+    },
+    "lane_c_against_fy26_request": {
+      "status": "not compared: no FY26 request sidecar keyed to DD 1414 lines is committed"
+    }
+  },
+  "inputs": {
+    "edit_exceptions.json": "c068e1fbb120f3e35fa12a00f99dea0f42553e8e7d30d9f85c9346b4d5615790",
+    "published_differences.json": "51b8a8b3c9a5dc2010b9b13537d5703eb326631984829dfc8efa16f54e23b241"
+  },
+  "outputs": {
+    "adjustments.csv": "3f4e98404154d269439b7cc37d28002e32b98ec0859b986d781cd33ff8357457",
+    "baseline_lines.csv": "ab1da58236ca370dcaef6c0741d36db03b90ff043db02afe3abc46bfe1efa6b3",
+    "published_controls.csv": "b28598ec15c7cf42764512d7deb9c77253d1ac7b31fdff71383d61c17dddf3f4",
+    "source_cells.csv": "4b0fb458367f7c91a1a8f9fd9c99b0c5da344a7906216cadb729459a178118ed"
+  }
+}

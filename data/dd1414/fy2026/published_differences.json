@@ -1,0 +1,245 @@
+{
+  "about": "The 12 printed controls (24 lane values) in RDT&E Navy and RDT&E Defense-Wide that miss the sum of their lines by 1 or 2. Published as printed and flagged as rounding; Peter's narrow, listed exception to the tie-out guardrail (c10838). Any other mismatch, any change to one of these, or an entry that matches no control stops the build.",
+  "entries": [
+    {
+      "id": "R01g",
+      "page_code": "N-49",
+      "control_title": "Subtotal Budget Activity 02: Applied Research",
+      "lane": "g",
+      "printed": 380547,
+      "line_sum": 380548,
+      "kind": "as_published_rounding",
+      "approval": "DBDP-134 c10838 (Peter, message cmsg_01XCKDR5zt6g39C9ogv2iRpwNAETuBzqN2sKwLUEcfupTD)"
+    },
+    {
+      "id": "R01i",
+      "page_code": "N-49",
+      "control_title": "Subtotal Budget Activity 02: Applied Research",
+      "lane": "i",
+      "printed": 1335241,
+      "line_sum": 1335242,
+      "kind": "as_published_rounding",
+      "approval": "DBDP-134 c10838 (Peter, message cmsg_01XCKDR5zt6g39C9ogv2iRpwNAETuBzqN2sKwLUEcfupTD)"
+    },
+    {
+      "id": "R02g",
+      "page_code": "N-60",
+      "control_title": "Subtotal Budget Activity 04: Advanced Component Development and Prototypes",
+      "lane": "g",
+      "printed": 268479,
+      "line_sum": 268477,
+      "kind": "as_published_rounding",
+      "approval": "DBDP-134 c10838 (Peter, message cmsg_01XCKDR5zt6g39C9ogv2iRpwNAETuBzqN2sKwLUEcfupTD)"
+    },
+    {
+      "id": "R02i",
+      "page_code": "N-60",
+      "control_title": "Subtotal Budget Activity 04: Advanced Component Development and Prototypes",
+      "lane": "i",
+      "printed": 7722824,
+      "line_sum": 7722822,
+      "kind": "as_published_rounding",
+      "approval": "DBDP-134 c10838 (Peter, message cmsg_01XCKDR5zt6g39C9ogv2iRpwNAETuBzqN2sKwLUEcfupTD)"
+    },
+    {
+      "id": "R03g",
+      "page_code": "N-67",
+      "control_title": "Subtotal Budget Activity 06: Management Support",
+      "lane": "g",
+      "printed": 5308,
+      "line_sum": 5307,
+      "kind": "as_published_rounding",
+      "approval": "DBDP-134 c10838 (Peter, message cmsg_01XCKDR5zt6g39C9ogv2iRpwNAETuBzqN2sKwLUEcfupTD)"
+    },
+    {
+      "id": "R03i",
+      "page_code": "N-67",
+      "control_title": "Subtotal Budget Activity 06: Management Support",
+      "lane": "i",
+      "printed": 1073632,
+      "line_sum": 1073631,
+      "kind": "as_published_rounding",
+      "approval": "DBDP-134 c10838 (Peter, message cmsg_01XCKDR5zt6g39C9ogv2iRpwNAETuBzqN2sKwLUEcfupTD)"
+    },
+    {
+      "id": "R04g",
+      "page_code": "N-71",
+      "control_title": "Subtotal Budget Activity 07: Operational system development",
+      "lane": "g",
+      "printed": 136972,
+      "line_sum": 136973,
+      "kind": "as_published_rounding",
+      "approval": "DBDP-134 c10838 (Peter, message cmsg_01XCKDR5zt6g39C9ogv2iRpwNAETuBzqN2sKwLUEcfupTD)"
+    },
+    {
+      "id": "R04i",
+      "page_code": "N-71",
+      "control_title": "Subtotal Budget Activity 07: Operational system development",
+      "lane": "i",
+      "printed": 7229867,
+      "line_sum": 7229868,
+      "kind": "as_published_rounding",
+      "approval": "DBDP-134 c10838 (Peter, message cmsg_01XCKDR5zt6g39C9ogv2iRpwNAETuBzqN2sKwLUEcfupTD)"
+    },
+    {
+      "id": "R05g",
+      "page_code": "DW-54",
+      "control_title": "Subtotal Budget Activity 04: Advanced Component Development and Prototypes",
+      "lane": "g",
+      "printed": -439620,
+      "line_sum": -439619,
+      "kind": "as_published_rounding",
+      "approval": "DBDP-134 c10838 (Peter, message cmsg_01XCKDR5zt6g39C9ogv2iRpwNAETuBzqN2sKwLUEcfupTD)"
+    },
+    {
+      "id": "R05i",
+      "page_code": "DW-54",
+      "control_title": "Subtotal Budget Activity 04: Advanced Component Development and Prototypes",
+      "lane": "i",
+      "printed": 7431337,
+      "line_sum": 7431338,
+      "kind": "as_published_rounding",
+      "approval": "DBDP-134 c10838 (Peter, message cmsg_01XCKDR5zt6g39C9ogv2iRpwNAETuBzqN2sKwLUEcfupTD)"
+    },
+    {
+      "id": "R06g",
+      "page_code": "DW-54",
+      "control_title": "Subtotal Missile Defense Agency",
+      "lane": "g",
+      "printed": -395809,
+      "line_sum": -395808,
+      "kind": "as_published_rounding",
+      "approval": "DBDP-134 c10838 (Peter, message cmsg_01XCKDR5zt6g39C9ogv2iRpwNAETuBzqN2sKwLUEcfupTD)"
+    },
+    {
+      "id": "R06i",
+      "page_code": "DW-54",
+      "control_title": "Subtotal Missile Defense Agency",
+      "lane": "i",
+      "printed": 7567585,
+      "line_sum": 7567586,
+      "kind": "as_published_rounding",
+      "approval": "DBDP-134 c10838 (Peter, message cmsg_01XCKDR5zt6g39C9ogv2iRpwNAETuBzqN2sKwLUEcfupTD)"
+    },
+    {
+      "id": "R07g",
+      "page_code": "DW-60",
+      "control_title": "Subtotal Budget Activity 03: Advanced Technology Development",
+      "lane": "g",
+      "printed": 406336,
+      "line_sum": 406334,
+      "kind": "as_published_rounding",
+      "approval": "DBDP-134 c10838 (Peter, message cmsg_01XCKDR5zt6g39C9ogv2iRpwNAETuBzqN2sKwLUEcfupTD)"
+    },
+    {
+      "id": "R07i",
+      "page_code": "DW-60",
+      "control_title": "Subtotal Budget Activity 03: Advanced Technology Development",
+      "lane": "i",
+      "printed": 3234831,
+      "line_sum": 3234829,
+      "kind": "as_published_rounding",
+      "approval": "DBDP-134 c10838 (Peter, message cmsg_01XCKDR5zt6g39C9ogv2iRpwNAETuBzqN2sKwLUEcfupTD)"
+    },
+    {
+      "id": "R08g",
+      "page_code": "DW-62",
+      "control_title": "Subtotal Budget Activity 04: Advanced Component Development and Prototypes",
+      "lane": "g",
+      "printed": 121585,
+      "line_sum": 121586,
+      "kind": "as_published_rounding",
+      "approval": "DBDP-134 c10838 (Peter, message cmsg_01XCKDR5zt6g39C9ogv2iRpwNAETuBzqN2sKwLUEcfupTD)"
+    },
+    {
+      "id": "R08i",
+      "page_code": "DW-62",
+      "control_title": "Subtotal Budget Activity 04: Advanced Component Development and Prototypes",
+      "lane": "i",
+      "printed": 2182789,
+      "line_sum": 2182790,
+      "kind": "as_published_rounding",
+      "approval": "DBDP-134 c10838 (Peter, message cmsg_01XCKDR5zt6g39C9ogv2iRpwNAETuBzqN2sKwLUEcfupTD)"
+    },
+    {
+      "id": "R09g",
+      "page_code": "DW-66",
+      "control_title": "Subtotal Budget Activity 06: Management Support",
+      "lane": "g",
+      "printed": 445586,
+      "line_sum": 445587,
+      "kind": "as_published_rounding",
+      "approval": "DBDP-134 c10838 (Peter, message cmsg_01XCKDR5zt6g39C9ogv2iRpwNAETuBzqN2sKwLUEcfupTD)"
+    },
+    {
+      "id": "R09i",
+      "page_code": "DW-66",
+      "control_title": "Subtotal Budget Activity 06: Management Support",
+      "lane": "i",
+      "printed": 1819140,
+      "line_sum": 1819141,
+      "kind": "as_published_rounding",
+      "approval": "DBDP-134 c10838 (Peter, message cmsg_01XCKDR5zt6g39C9ogv2iRpwNAETuBzqN2sKwLUEcfupTD)"
+    },
+    {
+      "id": "R10g",
+      "page_code": "DW-68",
+      "control_title": "Subtotal Budget Activity 07: Operational Systems Development",
+      "lane": "g",
+      "printed": 574696,
+      "line_sum": 574694,
+      "kind": "as_published_rounding",
+      "approval": "DBDP-134 c10838 (Peter, message cmsg_01XCKDR5zt6g39C9ogv2iRpwNAETuBzqN2sKwLUEcfupTD)"
+    },
+    {
+      "id": "R10i",
+      "page_code": "DW-68",
+      "control_title": "Subtotal Budget Activity 07: Operational Systems Development",
+      "lane": "i",
+      "printed": 972186,
+      "line_sum": 972184,
+      "kind": "as_published_rounding",
+      "approval": "DBDP-134 c10838 (Peter, message cmsg_01XCKDR5zt6g39C9ogv2iRpwNAETuBzqN2sKwLUEcfupTD)"
+    },
+    {
+      "id": "R11g",
+      "page_code": "DW-69",
+      "control_title": "Subtotal OSD",
+      "lane": "g",
+      "printed": 1856867,
+      "line_sum": 1856866,
+      "kind": "as_published_rounding",
+      "approval": "DBDP-134 c10838 (Peter, message cmsg_01XCKDR5zt6g39C9ogv2iRpwNAETuBzqN2sKwLUEcfupTD)"
+    },
+    {
+      "id": "R11i",
+      "page_code": "DW-69",
+      "control_title": "Subtotal OSD",
+      "lane": "i",
+      "printed": 10224687,
+      "line_sum": 10224686,
+      "kind": "as_published_rounding",
+      "approval": "DBDP-134 c10838 (Peter, message cmsg_01XCKDR5zt6g39C9ogv2iRpwNAETuBzqN2sKwLUEcfupTD)"
+    },
+    {
+      "id": "R12g",
+      "page_code": "DW-73",
+      "control_title": "Grand Total Research, Development, Test, and Evaluation, Defense-Wide, 2026/2027",
+      "lane": "g",
+      "printed": 1088936,
+      "line_sum": 1088937,
+      "kind": "as_published_rounding",
+      "approval": "DBDP-134 c10838 (Peter, message cmsg_01XCKDR5zt6g39C9ogv2iRpwNAETuBzqN2sKwLUEcfupTD)"
+    },
+    {
+      "id": "R12i",
+      "page_code": "DW-73",
+      "control_title": "Grand Total Research, Development, Test, and Evaluation, Defense-Wide, 2026/2027",
+      "lane": "i",
+      "printed": 35010875,
+      "line_sum": 35010876,
+      "kind": "as_published_rounding",
+      "approval": "DBDP-134 c10838 (Peter, message cmsg_01XCKDR5zt6g39C9ogv2iRpwNAETuBzqN2sKwLUEcfupTD)"
+    }
+  ]
+}

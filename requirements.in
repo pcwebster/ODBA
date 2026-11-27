@@ -4,6 +4,8 @@ pyarrow==24.0.0
 duckdb==1.5.3
 openpyxl==3.1.5
 defusedxml==0.7.1
+# DBDP-134: DD 1414 PDF glyph reader (Peter's decisions c10758, c10828).
+pdfminer.six==20260107
 
 # Transitive constraints: retain Python 3.10 compatibility while admitting
 # CPython 3.14 wheels. No direct runtime dependency versions are changed.
@@ -11,3 +13,8 @@ numpy==2.2.6 ; python_version < "3.14"
 numpy==2.3.5 ; python_version >= "3.14"
 # python-dateutil 4.x requires Python >=3.11; retain 3.10 compatibility.
 python-dateutil==2.9.0.post0
+# DBDP-134: pdfminer.six closure held unconditional so every lock entry keeps the
+# exact-pin shape that tests/test_dependency_lock.py enforces.
+cffi==2.1.1
+pycparser==3.11
+typing-extensions==4.16.0

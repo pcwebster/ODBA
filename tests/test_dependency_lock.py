@@ -17,12 +17,13 @@ class DependencyLockTests(unittest.TestCase):
             self.assertRegex(entry, r"^[\w-]+==[^\s]+(?: ; python_full_version (?:<|>=) '3.14')?(?:\s+--hash=sha256:[a-f0-9]{64})+$")
             names.add(entry.split('==')[0])
         self.assertTrue({'pandas', 'pyarrow', 'duckdb', 'openpyxl', 'defusedxml',
-                         'numpy', 'python-dateutil', 'pytz', 'tzdata', 'et-xmlfile'} <= names)
+                         'numpy', 'python-dateutil', 'pytz', 'tzdata', 'et-xmlfile',
+                         'pdfminer-six', 'charset-normalizer', 'cryptography'} <= names)
 
     def test_original_direct_pins_preserved(self):
         source = (ROOT / 'requirements.in').read_text().splitlines()
         for pin in ('pandas==2.3.3', 'pyarrow==24.0.0', 'duckdb==1.5.3',
-                    'openpyxl==3.1.5', 'defusedxml==0.7.1'):
+                    'openpyxl==3.1.5', 'defusedxml==0.7.1', 'pdfminer.six==20260107'):
             self.assertIn(pin, source)
 
     def test_launchers_fail_closed_before_python_if_lock_missing(self):
