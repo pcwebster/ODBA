@@ -212,6 +212,10 @@ class FydpTrendsSheetTests(unittest.TestCase):
         share = drop["cost_fy2026"].sum() / df["cost_fy2026"].sum()
         self.assertEqual(len(drop), 1)
         self.assertGreaterEqual(share, self.qb.FYDP_BREAK_SHARE)
+        # DBDP-132: the 0146D record is new in FY2027, so it is not a drop
+        pscp = df[df["appropriation_code"] == "0146D"]
+        self.assertEqual(len(pscp), 1)
+        self.assertTrue(pscp["cost_fy2026"].isna().all())
 
     def test_table_keeps_summed_figure_and_chart_data_blanks_break(self):
         amounts = self.fydp["amounts"].set_index("Appropriation Type")
@@ -262,14 +266,20 @@ class FydpTrendsSheetTests(unittest.TestCase):
         self.assertNotRegex(xml, r"<(?:c:)?cat><(?:c:)?numRef>")
 
     def test_dhp_transfer_note_visible_without_moving_chart_data(self):
-        expected = ("FY2027 DHP is omitted from the chart because Private Sector Care "
-                    "moved from account 0130 to 0146, which this view does not yet "
-                    "include. The table shows only FY2027 DHP amounts in the current data.")
+        # DBDP-132 (c10763): account 0146 is now loaded, so the note says the
+        # table includes it; the FY2027 DHP point stays off the chart because
+        # the 0130 record still counts as a coverage break.
+        expected = ("FY2027 DHP is left off the chart because, in the FY2027 "
+                    "President's Budget request, Private Sector Care moved from "
+                    "account 0130 to account 0146. The 0130 record carries FY2026 "
+                    "but no FY2027 amount, which counts as a coverage break above. "
+                    "The table's FY2027 DHP figure includes account 0146.")
         self.assertEqual(self.ws["A56"].value, expected)
         self.assertIn("A56:H56", {str(r) for r in self.ws.merged_cells.ranges})
         self.assertTrue(self.ws["A56"].alignment.wrap_text)
-        self.assertGreaterEqual(self.ws.row_dimensions[56].height, 30)
-        self.assertEqual(self.ws["D12"].value, 21012.3)
+        self.assertGreaterEqual(self.ws.row_dimensions[56].height, 45)
+        # 21,012.3 (0130D + SMR) + 22,175.5 (0146D) = 43,187.8 $M
+        self.assertEqual(self.ws["D12"].value, 43187.8)
         self.assertIsNone(self.ws["D55"].value)
         self.assertEqual(self.ws._charts[0].series[-1].val.numRef.f,
                          "'FYDP Trends'!$B$55:$H$55")

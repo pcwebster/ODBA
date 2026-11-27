@@ -713,9 +713,17 @@ def fydp_trend_queries(con):
         [(f"FY{fy}", basis) for _, fy, _, basis in years],
         columns=["Fiscal Year", f"Role in the FY{REPORT_BUDGET_YEAR} submission "
                                 "(ODBA amount-basis model)"])
+    # DBDP-132: does the FY2027 DHP figure include account 0146 (Private
+    # Sector Care Program)? The chart note below states it, so it is read
+    # from the data, never assumed.
+    pscp_fy27 = con.execute("""
+        SELECT COUNT(*) FROM report_slice
+        WHERE appropriation_code = '0146D' AND cost_fy2027 IS NOT NULL
+    """).fetchone()[0]
     return {"amounts": amounts, "records": records, "breaks": breaks,
             "chart": chart, "roles": roles, "flagged": sorted(flagged),
-            "years": [(fy, h) for _, fy, h, _ in years]}
+            "years": [(fy, h) for _, fy, h, _ in years],
+            "dhp_0146_fy27_records": int(pscp_fy27)}
 
 
 def write_fydp_trends(wb, fydp, vintage):
@@ -806,17 +814,27 @@ def write_fydp_trends(wb, fydp, vintage):
     chart_header = row
     row = write_df(ws, fydp["chart"], start_row=row, number_cols=money)
     # DBDP-133: use the existing spacer above the chart, without moving data
-    # or chart references. Account 0146 is not yet included (DBDP-132).
+    # or chart references. DBDP-132 (c10763): account 0146 is now in the
+    # table; the chart rule is unchanged, so FY2027 DHP must still be a
+    # flagged break. If either fact is false the note would mislead: stop.
+    if fydp.get("dhp_0146_fy27_records") != 1 or ("DHP", "FY2027") not in fydp["flagged"]:
+        raise RuntimeError(
+            "DBDP-132: the FYDP Trends note expects one account 0146 FY2027 "
+            "record and a flagged FY2027 DHP break; found "
+            f"{fydp.get('dhp_0146_fy27_records')} record(s), flagged="
+            f"{('DHP', 'FY2027') in fydp['flagged']}. Stop and report.")
     note_row = row
     row = _note(ws, row,
-                "FY2027 DHP is omitted from the chart because Private Sector Care "
-                "moved from account 0130 to 0146, which this view does not yet "
-                "include. The table shows only FY2027 DHP amounts in the current data.")
+                "FY2027 DHP is left off the chart because, in the FY2027 "
+                "President's Budget request, Private Sector Care moved from "
+                "account 0130 to account 0146. The 0130 record carries FY2026 "
+                "but no FY2027 amount, which counts as a coverage break above. "
+                "The table's FY2027 DHP figure includes account 0146.")
     ws.merge_cells(start_row=note_row, start_column=1,
                    end_row=note_row, end_column=8)
     ws.cell(row=note_row, column=1).alignment = Alignment(
         wrap_text=True, vertical="center")
-    ws.row_dimensions[note_row].height = 32
+    ws.row_dimensions[note_row].height = 48
 
     chart = LineChart()
     chart.title = f"FY{REPORT_BUDGET_YEAR} President's Budget Request ($M)"

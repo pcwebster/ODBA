@@ -1951,7 +1951,320 @@ def _mhs_get_rows(filepath):
     return table.findall(_ss("Row"))
 
 
-def _parse_mhs_vol1(filepath):
+# ── DBDP-132: account 0146D, Private Sector Care Program (PSCP) ──────────────
+# Design c10751 as revised by c10763; OpenAI APPROVE c10771; Peter c10774.
+# In the FY2027 President's Budget request, Private Sector Care moved from
+# account 0130 (BAG 2) to the new account 0146. Vol 1 prints the 0146D O-1
+# line only inside one merged text cell, so the 0130D cell reader never sees
+# it. The extractor below is pinned to ONE source by file name AND manifest
+# sha256; its hard stops apply to that source only. Any other MHS Vol 1
+# vintage is parsed exactly as before, with no 0146D step.
+MHS_PSCP_SOURCE = "MHS_PB27_J-Book-Vol1-COMP_PSCP.xml"
+MHS_PSCP_SHA256 = "e22316c9a039a8c0bf28b7c1de6bf353f211ec503bc7192484372a5dc67b0c6f"
+
+# Peter c10774: store the line as printed in the J-Book (020) and crosswalk it
+# to the consolidated O-1 line (010). The two lines are the SAME request, not
+# amounts to add. Never join 0146D on the line number alone: 0130D also has a
+# line 020 (its historical Private Sector Care line).
+MHS_PSCP_LINE_CROSSWALK = {
+    # (J-Book account, J-Book line) -> (consolidated O-1 account, O-1 line)
+    ("0146D", "020"): ("0146D", "010"),
+}
+
+# Facts of the pinned source, checked by the post-run assertion block.
+MHS_PSCP_PINS = {
+    "pscp_fy27_request_k": 22175472,     # 0146D O-1 line, FY2027 Request
+    "op5_subactivities": 12,             # PSCP OP-5 Part A rows
+    "comp_rows": 7,                      # 0130D rows emitted from this file
+    "comp_fy27_sum_m": 18955.553,        # their FY2027 sum ($M)
+}
+
+# Control results from the last pinned-source parse (read by the post-run
+# assertion block; same pattern as VERIFICATION_EVENTS).
+MHS_PSCP_CONTROLS = {}
+
+
+class PscpControlError(Exception):
+    """DBDP-132 hard stop: the pinned 0146D source is not as expected."""
+
+
+_PSCP_TOKEN = r"(?:[\d,]+|-)"
+_PSCP_TOKENS = rf"({_PSCP_TOKEN}(?:\s+{_PSCP_TOKEN})*)"
+_PSCP_DETAIL_RE = re.compile(rf"^0146D\s+(\d{{3}})\s+(\S.*?\S)\s+{_PSCP_TOKENS}$")
+_PSCP_TOTAL_RE = re.compile(rf"^TOTAL,\s*BA\s*01:\s*(\S.*?\S)\s+{_PSCP_TOKENS}$")
+_PSCP_PART_C_RE = re.compile(
+    r"FY 2026 Normalized Current Estimate \$([\d,]+)\s+"
+    r"6\. Price Change \$([\d,]+)\s+"
+    r"7\. Functional Transfers \(\$([\d,]+)\)")
+_PSCP_TRANSFER_OUT_RE = re.compile(
+    r"Establishment of PSCP Appropriation \(\$([\d,]+)\)")
+
+# The seven O-1 columns of the 0146D line, in printed order (row header).
+PSCP_O1_COLUMNS = ("FY 2025 Actuals", "FY 2026 Enacted",
+                   "FY 2026 Mandatory Spend", "FY 2026 Total",
+                   "FY 2027 Request", "FY 2027 Mandatory Request",
+                   "FY 2027 Total")
+
+
+def _pscp_raw_lines(cell):
+    """Raw text lines of a SpreadsheetML cell, NBSPs as spaces, stripped."""
+    data = cell.find(_ss("Data"))
+    if data is None:
+        return []
+    raw = "".join(data.itertext()).replace("\xa0", " ")
+    return [re.sub(r"[ \t]+", " ", ln).strip() for ln in raw.splitlines()]
+
+
+def _pscp_tokens(text):
+    """'- 22,175,472' -> [None, 22175472]. A dash is a blank, never zero."""
+    return [None if t == "-" else int(t.replace(",", "")) for t in text.split()]
+
+
+def _pscp_k(text):
+    return int(text.replace(",", ""))
+
+
+def _pscp_find_col(cells, header):
+    cols = [i + 1 for i, v in enumerate(cells) if v == header]
+    if len(cols) != 1:
+        raise PscpControlError(
+            f"expected one '{header}' column, found {len(cols)}")
+    return cols[0]
+
+
+def _pscp_op5_part_a(rows, start):
+    """PSCP OP-5 Part A: the first 'A. BA Subactivities' table after row
+    index `start`. Returns (subactivity values $K, printed total $K, index
+    of the Total row)."""
+    for i in range(start, len(rows)):
+        cells = _mhs_row_cells(rows[i])
+        if _mhs_col(cells, 1).startswith("A. BA Subactivities"):
+            col = _pscp_find_col(cells, "FY 2027 Request")
+            break
+    else:
+        raise PscpControlError("no PSCP OP-5 Part A table after the 0146D line")
+    values = []
+    for j in range(i + 1, len(rows)):
+        cells = _mhs_row_cells(rows[j])
+        label = _mhs_col(cells, 1)
+        if label == "Total":
+            total = _mhs_float(cells, col)
+            if total is None:
+                raise PscpControlError("PSCP OP-5 Part A Total has no FY 2027 amount")
+            return values, int(total), j
+        if re.match(r"^\d+[.,]\s", label):
+            v = _mhs_float(cells, col)
+            if v is None:
+                raise PscpControlError(
+                    f"PSCP OP-5 subactivity {label!r} has no FY 2027 amount")
+            values.append(int(v))
+    raise PscpControlError("PSCP OP-5 Part A has no Total row")
+
+
+def _pscp_op5_part_b(rows, start):
+    """PSCP OP-5 Part B, FY 2026/FY 2027 column: baseline, price, transfers,
+    program changes and current estimate, each found exactly once."""
+    for i in range(start, len(rows)):
+        cells = _mhs_row_cells(rows[i])
+        if _mhs_col(cells, 1).startswith("B. Reconciliation Summary"):
+            col = _pscp_find_col(cells, "Change FY 2026/FY 2027")
+            break
+    else:
+        raise PscpControlError("no PSCP OP-5 Part B after Part A")
+    wanted = {"BASELINE FUNDING": "baseline", "Price Changes": "price",
+              "Functional Transfers": "transfers", "Program Changes": "program",
+              "CURRENT ESTIMATE": "current"}
+    found = {}
+    for j in range(i + 1, len(rows)):
+        cells = _mhs_row_cells(rows[j])
+        key = wanted.get(_mhs_col(cells, 1))
+        if key is None:
+            continue
+        if key in found:
+            raise PscpControlError(f"PSCP OP-5 Part B row {key!r} appears twice")
+        v = _mhs_float(cells, col)
+        if v is None:
+            raise PscpControlError(f"PSCP OP-5 Part B row {key!r} has no FY 2027 amount")
+        found[key] = int(v)
+        if key == "current":
+            break
+    missing = sorted(set(wanted.values()) - set(found))
+    if missing:
+        raise PscpControlError(f"PSCP OP-5 Part B rows missing: {missing}")
+    return found
+
+
+def _extract_mhs_pscp_0146d(rows, fname, comp_records):
+    """DBDP-132: the one 0146D record of the pinned Vol 1 source, plus its
+    controls. Raises PscpControlError on anything outside the expected
+    structure; never guesses, never uses row numbers.
+
+    comp_records: the 0130D records already parsed from the same file (for
+    the 0130 Part C transfer tie)."""
+    detail, total = [], []
+    for i, row in enumerate(rows):
+        for cell in row.findall(_ss("Cell")):
+            lines = _pscp_raw_lines(cell)
+            hits = [m for m in map(_PSCP_DETAIL_RE.match, lines) if m]
+            if hits:
+                detail += [(i, m) for m in hits]
+                total += [m for m in map(_PSCP_TOTAL_RE.match, lines) if m]
+    if len(detail) != 1:
+        raise PscpControlError(f"expected exactly one 0146D O-1 line, found {len(detail)}")
+    row_i, m = detail[0]
+    line, title = m.group(1), m.group(2)
+    tokens = _pscp_tokens(m.group(3))
+    if len(tokens) != len(PSCP_O1_COLUMNS):
+        raise PscpControlError(
+            f"0146D line has {len(tokens)} amount tokens, expected {len(PSCP_O1_COLUMNS)}")
+    if len(total) != 1:
+        raise PscpControlError(
+            f"expected one TOTAL, BA 01 line with the 0146D line, found {len(total)}")
+    total_tokens = _pscp_tokens(total[0].group(2))
+    if total_tokens != tokens:
+        raise PscpControlError(
+            f"TOTAL, BA 01 {total_tokens} differs from the 0146D line {tokens}")
+    amounts = dict(zip(PSCP_O1_COLUMNS, tokens))
+    fy27 = amounts["FY 2027 Request"]
+    if fy27 is None:
+        raise PscpControlError("0146D line has no FY 2027 Request amount")
+
+    # Control: PSCP OP-5 Part A (12 subactivities) ties to the O-1 line.
+    subs, op5_total, total_j = _pscp_op5_part_a(rows, row_i + 1)
+    if sum(subs) != op5_total or op5_total != fy27:
+        raise PscpControlError(
+            f"PSCP OP-5 Part A: {len(subs)} rows sum {sum(subs):,}K, printed "
+            f"total {op5_total:,}K, O-1 line {fy27:,}K")
+
+    # Control: PSCP OP-5 Part B reconciles to the same request.
+    b = _pscp_op5_part_b(rows, total_j + 1)
+    b_sum = b["baseline"] + b["price"] + b["transfers"] + b["program"]
+    if b_sum != b["current"] or b["current"] != fy27:
+        raise PscpControlError(
+            f"PSCP OP-5 Part B: baseline+price+transfers+program {b_sum:,}K, "
+            f"current estimate {b['current']:,}K, O-1 line {fy27:,}K")
+
+    # Control: the 0130 Part C transfer out equals the PSCP transfer in, and
+    # starts from 0130D line 020's FY2026 enacted amount.
+    part_c = []
+    for row in rows:
+        for cell in row.findall(_ss("Cell")):
+            text = _mhs_cell_text(cell)
+            out = _PSCP_TRANSFER_OUT_RE.search(text)
+            pc = _PSCP_PART_C_RE.search(text)
+            if out and pc:
+                part_c.append((pc, out))
+    if len(part_c) != 1:
+        raise PscpControlError(
+            f"expected one 0130 Part C transfer to PSCP, found {len(part_c)}")
+    pc, out = part_c[0]
+    est, price, xfer = (_pscp_k(pc.group(k)) for k in (1, 2, 3))
+    xfer_out = _pscp_k(out.group(1))
+    comp_psc = [r for r in comp_records if r["budget_sub_activity_number"] == line]
+    comp_fy26 = (round(comp_psc[0]["cost_current_year"] * 1000)
+                 if len(comp_psc) == 1 and comp_psc[0]["cost_current_year"] is not None
+                 else None)
+    if not (est + price == xfer == xfer_out == b["transfers"] and est == comp_fy26):
+        raise PscpControlError(
+            f"0130 Part C: estimate {est:,}K + price {price:,}K vs transfer "
+            f"{xfer:,}K / {xfer_out:,}K, PSCP transfer in {b['transfers']:,}K, "
+            f"0130D {line} FY2026 {comp_fy26}")
+
+    r = blank_record()
+    r.update({
+        "record_id"                    : make_id(fname, "0146D", line),
+        "budget_year"                  : 2027.0,
+        "budget_cycle"                 : "PB",
+        "submission_date"              : "2026-04",
+        "service_agency_name"          : "Defense Health Agency",
+        "service_agency_acronym"       : "DHA",
+        "appropriation_code"           : "0146D",
+        "appropriation_name"           : "Private Sector Care Program",
+        "appropriation_type"           : "DHP",
+        "exhibit_type"                 : "DHP-J-Book",
+        "source_file"                  : fname,
+        "file_format"                  : "XML",
+        "budget_activity_number"       : "01",
+        "budget_activity_title"        : "Operation & Maintenance",
+        "budget_sub_activity_number"   : line,
+        "budget_sub_activity_title"    : title,
+        # same columns as 0130D: FY25 actuals, FY26 enacted, FY27 request;
+        # mandatory and total columns are not loaded. Dashes stay null.
+        "cost_prior_year"              : _mhs_k_to_m(amounts["FY 2025 Actuals"]),
+        "cost_current_year"            : _mhs_k_to_m(amounts["FY 2026 Enacted"]),
+        "_by_slots"                    : [_mhs_k_to_m(fy27), None,
+                                          None, None, None],
+        "cost_units"                   : "Millions",
+    })
+    controls = {
+        "source_file": fname, "line": line, "o1_amounts_k": amounts,
+        "total_ba01_matches": True, "op5_subactivities": len(subs),
+        "op5_sum_k": sum(subs), "op5_total_k": op5_total, "part_b_k": b,
+        "part_c_k": {"normalized_estimate": est, "price": price,
+                     "transfer_out": xfer_out},
+        "crosswalk": MHS_PSCP_LINE_CROSSWALK.get(("0146D", line)),
+    }
+    return r, controls
+
+
+def check_mhs_pscp(df, controls):
+    """DBDP-132 post-run assertions on the final frame (c10751 §6 as revised
+    by c10763). Returns failure strings; empty = pass. Used by main() and by
+    tests/test_dbdp132_mhs_0146d.py (one executable path)."""
+    def m6(v):
+        return None if v is None or pd.isna(v) else format(float(v), ".6f")
+
+    fails = []
+    pins = MHS_PSCP_PINS
+    if controls.get("source_file") != MHS_PSCP_SOURCE:
+        return ["pinned source parsed but the 0146D controls did not run"]
+    src = df[df["source_file"] == MHS_PSCP_SOURCE]
+
+    pscp = src[src["appropriation_code"] == "0146D"]
+    if len(pscp) != 1:
+        fails.append(f"expected 1 0146D record, found {len(pscp)}")
+    else:
+        r = pscp.iloc[0]
+        line = r["budget_sub_activity_number"]
+        if ("0146D", line) not in MHS_PSCP_LINE_CROSSWALK:
+            fails.append(f"0146D line {line!r} has no crosswalk to the O-1")
+        if r["record_id"] != make_id(MHS_PSCP_SOURCE, "0146D", line):
+            fails.append("0146D record_id is not make_id(source_file, '0146D', line)")
+        want = m6(pins["pscp_fy27_request_k"] / 1000.0)
+        if m6(r["cost_fy2027"]) != want:
+            fails.append(f"0146D cost_fy2027 {m6(r['cost_fy2027'])} != {want}")
+        for col in ("cost_prior_year", "cost_current_year",
+                    "cost_fy2025", "cost_fy2026"):
+            if m6(r[col]) is not None:
+                fails.append(f"0146D {col} is {m6(r[col])}; the source prints a "
+                             f"dash, which must stay blank")
+
+    if controls.get("op5_subactivities") != pins["op5_subactivities"]:
+        fails.append(f"PSCP OP-5 Part A has {controls.get('op5_subactivities')} "
+                     f"rows, expected {pins['op5_subactivities']}")
+    k = pins["pscp_fy27_request_k"]
+    ties = (controls.get("o1_amounts_k", {}).get("FY 2027 Request"),
+            controls.get("op5_sum_k"), controls.get("op5_total_k"),
+            controls.get("part_b_k", {}).get("current"))
+    if not controls.get("total_ba01_matches") or any(t != k for t in ties):
+        fails.append(f"0146D controls do not all tie to {k:,}K: {ties}")
+
+    comp = src[src["appropriation_code"] == "0130D"]
+    comp_sum = m6(comp["cost_fy2027"].sum(min_count=1))
+    if len(comp) != pins["comp_rows"] or comp_sum != m6(pins["comp_fy27_sum_m"]):
+        fails.append(f"0130D changed: {len(comp)} rows, FY2027 sum {comp_sum} "
+                     f"(expected {pins['comp_rows']} rows, "
+                     f"{m6(pins['comp_fy27_sum_m'])})")
+    comp_psc = comp[comp["budget_sub_activity_number"] == "020"]
+    if len(comp_psc) != 1 or m6(comp_psc.iloc[0]["cost_fy2027"]) is not None:
+        fails.append("0130D line 020 FY2027 must stay blank (it moved to 0146D)")
+
+    if src["record_id"].duplicated().any():
+        fails.append("record_id not unique within the pinned Vol 1 source")
+    return fails
+
+
+def _parse_mhs_vol1(filepath, manifest=None):
     """
     Extract BA O&M sub-activity line items from Vol 1 (COMP_PSCP).
 
@@ -2014,6 +2327,21 @@ def _parse_mhs_vol1(filepath):
                 "cost_units"                   : "Millions",
             })
             records.append(r)
+
+    # DBDP-132: 0146D, only for the pinned source (name AND manifest sha256).
+    sha = (manifest or {}).get(fname, {}).get("sha256")
+    if fname == MHS_PSCP_SOURCE and sha == MHS_PSCP_SHA256:
+        MHS_PSCP_CONTROLS.clear()
+        try:
+            rec, controls = _extract_mhs_pscp_0146d(rows, fname, records)
+        except PscpControlError as exc:
+            print(f"  [FATAL] DBDP-132 0146D ({fname}): {exc}")
+            sys.exit(1)
+        records.append(rec)
+        MHS_PSCP_CONTROLS.update(controls)
+    elif fname == MHS_PSCP_SOURCE:
+        print(f"  [WARN] DBDP-132: {fname} manifest sha256 is not the pinned "
+              f"0146D source; 0146D not loaded (design c10763 scope)")
 
     return records
 
@@ -2223,7 +2551,7 @@ def _parse_mhs_vol2(filepath):
     return records
 
 
-def parse_mhs_xml(filepath):
+def parse_mhs_xml(filepath, manifest=None):
     """
     Dispatch to the correct MHS J-Book parser based on filename.
     Returns a list of budget records.
@@ -2231,7 +2559,7 @@ def parse_mhs_xml(filepath):
     fname = Path(filepath).name
     try:
         if "Vol1" in fname or "COMP_PSCP" in fname:
-            recs = _parse_mhs_vol1(filepath)
+            recs = _parse_mhs_vol1(filepath, manifest)
         elif "Vol2" in fname or "SMR" in fname:
             recs = _parse_mhs_vol2(filepath)
         else:
@@ -2377,7 +2705,7 @@ def main():
     for fp in mhs_files:
         verify_file_integrity(fp, manifest)
         try:
-            recs = parse_mhs_xml(fp)
+            recs = parse_mhs_xml(fp, manifest)
             all_records.extend(recs)
             vol = "Vol1" if "Vol1" in fp.name else "Vol2"
             print(f"  [MHS-{vol}]  {fp.name:<60}  {len(recs):>4} records")
@@ -2734,6 +3062,20 @@ def main():
     else:
         print(f"  [FAIL] source_file         : {null_sf:,} null/empty records")
         fails.append("source_file")
+
+    # (d) DBDP-132 0146D Private Sector Care (c10763; c10774) — only when
+    #     the pinned Vol 1 source was parsed. Callable shared with the tests.
+    if (MHS_PSCP_SOURCE in set(df["source_file"])
+            and manifest_chk.get(MHS_PSCP_SOURCE, {}).get("sha256") == MHS_PSCP_SHA256):
+        pscp_fails = check_mhs_pscp(df, MHS_PSCP_CONTROLS)
+        if not pscp_fails:
+            print(f"  [PASS] DBDP-132 0146D      : 1 record, FY2027 "
+                  f"{MHS_PSCP_PINS['pscp_fy27_request_k']:,}K = TOTAL BA 01 = "
+                  f"OP-5 Part A/B; 0130D unchanged; 020 -> O-1 010")
+        else:
+            for f_ in pscp_fails:
+                print(f"  [FAIL] DBDP-132 0146D      : {f_}")
+            fails.append("DBDP-132_0146D")
 
     print()
     if fails:
