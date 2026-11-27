@@ -1,0 +1,6 @@
+// Core measures from PB27_Defense_Wide_OM_Executive_Dashboard.SemanticModel/definition/tables/OP5.tmdl
+// Copied from a Nov 24 copy of OP5.tmdl (same size as the Aug 26 OP5.tmdl). All formatString #,##0.0, units $M.
+measure 'FY25 $' = CALCULATE ( SUM ( OP5[Amount] ), OP5[FY] = 2025 )
+measure 'FY26 $' = CALCULATE ( SUM ( OP5[Amount] ), OP5[FY] = 2026 )
+measure 'FY27 $' = CALCULATE ( SUM ( OP5[Amount] ), OP5[FY] = 2027 )
+measure 'Total Amount' = SUM ( OP5[Amount] )

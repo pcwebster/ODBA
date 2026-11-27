@@ -1,0 +1,25 @@
+{
+  "algorithm": "sha256",
+  "files": {
+    "Defense_Wide_OM_PB27.csv": {
+      "sha256": "ca6e3fdd4641542a2956ac6b221f1762086e77864b8b6e977cb81a752a4cf21a",
+      "bytes": 155221
+    },
+    "README.md": {
+      "sha256": "ed989e5033f2cd4c2656262ba5c91b964d9030213987f4a7357db5a333c92355",
+      "bytes": 5036
+    },
+    "core_measures.dax": {
+      "sha256": "38d90b4a854ea2b76fd302aaef5100fcb04ff3bbd53fdb8716fbda229ada11b3",
+      "bytes": 469
+    },
+    "op5_partition.m": {
+      "sha256": "e69453c3705e3ab3f0eba6b56d4c986bd4db015246c2db38cedd2fadf83fe824",
+      "bytes": 1359
+    },
+    "relationships.tmdl": {
+      "sha256": "2cd4dccc0fb1c5ec9a15b98b9bc7c387d5339af52c3cd366e9a204bcaaa92b84",
+      "bytes": 131
+    }
+  }
+}

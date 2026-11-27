@@ -18,3 +18,7 @@ data/dim_agency_map.json           text eol=lf
 # Binary artifacts: never touched by EOL conversion.
 *.parquet  binary
 *.xlsx     binary
+
+# DBDP-114 V4 fixtures are receipted by SHA-256 (FIXTURE_SHA256.json), so keep
+# their bytes exactly as frozen. The hand-shaped CSV is CRLF with a UTF-8 BOM.
+fixtures/dbdp114/*  -text
