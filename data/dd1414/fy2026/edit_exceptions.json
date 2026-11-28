@@ -1,0 +1,190 @@
+{
+ "about": "Reviewed dispositions for DD 1414 FY2026 edit tokens that have no automatic owner (DBDP-134 design c10824 section B). Content-keyed: page code, raw text, colour, font, and both readers' positions (pdfminer origin x and baseline; pdftotext and pdftohtml box x0 and y0, crop-local points). Each entry cites Peter's recorded approval. An entry never waives a corrected tie-out (guardrail c10827); an entry that matches no token stops the build.",
+ "entries": [
+  {
+   "id": "A58-1",
+   "page_code": "A-58",
+   "text": "184,631",
+   "hex": "FF0000",
+   "font": "ZCYKBQ+Arial-BoldMT",
+   "pdfminer": [
+    563.91,
+    375.8
+   ],
+   "pdftotext": [
+    [
+     563.91,
+     373.18
+    ]
+   ],
+   "pdftohtml": [
+    [
+     563.91,
+     373.18
+    ]
+   ],
+   "disposition": "owner",
+   "owner": {
+    "row": {
+     "row_kind": "appropriated_base",
+     "line_identifier": "0605345A"
+    },
+    "lane": "g",
+    "role": "appropriated_base"
+   },
+   "reason": "Drawn just left of the struck 357,529 and across the f/g rule on 0605345A's appropriated-base row.",
+   "approval": "DBDP-134 c10829"
+  },
+  {
+   "id": "A58-2",
+   "page_code": "A-58",
+   "text": "184,631",
+   "hex": "FF0000",
+   "font": "AIBUYX+Arial-BoldMT",
+   "pdfminer": [
+    698.27,
+    367.77
+   ],
+   "pdftotext": [
+    [
+     698.27,
+     365.15
+    ]
+   ],
+   "pdftohtml": [
+    [
+     698.27,
+     365.15
+    ]
+   ],
+   "disposition": "owner",
+   "owner": {
+    "row": {
+     "row_kind": "appropriated_base",
+     "line_identifier": "0605345A"
+    },
+    "lane": "i",
+    "role": "appropriated_base"
+   },
+   "reason": "Lane i of 0605345A's appropriated-base row, whose printed 357,529 is struck; the edit sits on the band of the struck transfer row below it.",
+   "approval": "DBDP-134 c10829"
+  },
+  {
+   "id": "A58-3a",
+   "page_code": "A-58",
+   "text": "172,898",
+   "hex": "FF0000",
+   "font": "QDYHJX+Arial-BoldMT",
+   "pdfminer": [
+    724.24,
+    310.78
+   ],
+   "pdftotext": [],
+   "pdftohtml": [],
+   "disposition": "duplicate",
+   "duplicate_of": "A58-3b",
+   "reason": "Second drawing of the same run: content-stream rule origins 699.219 and 699.225, same text, colour, font and size; pdftohtml reports both drawings at 699.22; pdfminer.six places this one 25.01 pt right (reader quirk, recorded as a diagnostic).",
+   "approval": "DBDP-134 c10829, c10834 (Peter: option A on both A-58 questions)"
+  },
+  {
+   "id": "A58-3b",
+   "page_code": "A-58",
+   "text": "172,898",
+   "hex": "FF0000",
+   "font": "QDYHJX+Arial-BoldMT",
+   "pdfminer": [
+    699.23,
+    310.78
+   ],
+   "pdftotext": [
+    [
+     699.22,
+     308.16
+    ]
+   ],
+   "pdftohtml": [
+    [
+     699.22,
+     308.16
+    ],
+    [
+     699.22,
+     308.16
+    ]
+   ],
+   "disposition": "owner",
+   "owner": {
+    "row": {
+     "row_kind": "appropriated_base",
+     "line_identifier": "0605346A"
+    },
+    "lane": "i",
+    "role": "appropriated_base"
+   },
+   "reason": "Lane i of 0605346A's appropriated-base row, which printed blank; the edit floats between row bands.",
+   "approval": "DBDP-134 c10829, c10834"
+  },
+  {
+   "id": "AF43-1",
+   "page_code": "AF-43",
+   "text": "2",
+   "hex": "000000",
+   "font": "QQVBGX+ArialMT",
+   "pdfminer": [
+    126.59,
+    338.2
+   ],
+   "pdftotext": [
+    [
+     126.59,
+     335.94
+    ]
+   ],
+   "pdftohtml": [
+    [
+     126.59,
+     335.94
+    ]
+   ],
+   "disposition": "footnote_owner",
+   "owner": {
+    "row": {
+     "row_kind": "adjustment",
+     "line_identifier": "0207455F",
+     "text": "Program carryover"
+    },
+    "field": "footnote_codes_raw"
+   },
+   "reason": "In-place Acrobat edit of the footnote code on '2 / Program carryover -4,500' under 0207455F (3DELRR), RDT&E Air Force 2026/2027 (3600F). Money checks stay hard stops.",
+   "approval": "DBDP-134 c10836 (Peter, message cmsg_01XCKDR5zt6g39C9ogv2iRpwVsdRFA5a4JGyaxFudbXtMJ)"
+  }
+ ],
+ "diagnostics": [
+  {
+   "id": "A58-Q2",
+   "page_code": "A-58",
+   "check": "5",
+   "line_identifier": "0605346A",
+   "row_kind": "appropriated_base",
+   "lane": "g",
+   "published": null,
+   "line": 172898,
+   "reason": "As printed, 0605346A's appropriated-base row is blank in lane g while the corrected line is 172,898. The row is non-additive; reported as an as-printed mismatch. Line, lane, adjustment, ownership, BA and account checks stay hard stops.",
+   "approval": "DBDP-134 c10834"
+  }
+ ],
+ "repeated_blank_lines": [
+  {
+   "id": "N29-1",
+   "page_code": "N-29",
+   "account_code_raw": "1611N",
+   "availability_raw": "2026/2030",
+   "budget_activity": "02",
+   "line_identifier": "",
+   "title": "CVN Refueling Overhauls",
+   "disposition": "repeated_blank_line",
+   "reason": "The title prints twice under the same key. The first row is priced and ties; the repeat is blank in every lane, with a blank appropriated-base row and no adjustments. The repeat stays in source_cells as printed and is left out of baseline_lines and the key set. A repeat that shows any value stops the build.",
+   "approval": "DBDP-134 c10839, c10840 (Peter, message cmsg_01XCKDR5zt6g39C9ogv2iRpwQqqP2rpFEprYvjAKDBjHs5)"
+  }
+ ]
+}

@@ -22,3 +22,9 @@ data/dim_agency_map.json           text eol=lf
 # DBDP-114 V4 fixtures are receipted by SHA-256 (FIXTURE_SHA256.json), so keep
 # their bytes exactly as frozen. The hand-shaped CSV is CRLF with a UTF-8 BOM.
 fixtures/dbdp114/*  -text
+
+# DBDP-134 DD 1414 FY2026 sidecar: rebuilt byte-for-byte by
+# tools/build_dd1414_fy2026.py --check, so keep its text files LF.
+data/dd1414/fy2026/*.csv   text eol=lf
+data/dd1414/fy2026/*.json  text eol=lf
+data/dd1414/fy2026/*.md    text eol=lf
