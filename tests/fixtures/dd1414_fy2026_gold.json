@@ -154,5 +154,603 @@
    "sourced_by": "OpenAI reviewer, PR #30 comment 7230286104 (design c10764 asks for this one sourced value)",
    "builder_note": "The builder could not open the M-1 from its environment, so the reviewer's reading is recorded as given. It is a diagnostic only, not a gate on other cross-publication differences."
   }
- ]
+ ],
+ "row_assertions": {
+  "about": "Section 8 of c10764 as amended by c10775: source-pinned rows and adjustments, each line asserted by its own content key with every lane and its adjustments row by row, in printed order. Requested by the reviewer in PR #30 comment 7230523833. Values transcribed by the builder from the original; the reviewer re-checks them before the fixture is frozen.",
+  "pages": [
+   {
+    "id": "ROWS-N1",
+    "page": 80,
+    "page_code": "N-1",
+    "account_code_raw": "1453N",
+    "availability_raw": "2026/2026",
+    "organization": "",
+    "source": "original PDF (SHA-256 4cef3b41...a96a3), read with pdftotext -layout on the physical page and checked by hand; values in $K",
+    "lines": [
+     {
+      "line": {
+       "budget_activity": "01",
+       "title_norm": "Pay and allowances of officers"
+      },
+      "expect": {
+       "is_additive": "true",
+       "lane_b": "",
+       "lane_c": "10808094",
+       "lane_d": "",
+       "lane_e": "",
+       "lane_f": "",
+       "lane_g": "-23000",
+       "lane_h": "",
+       "lane_i": "10785094",
+       "adjustment_count": "1"
+      },
+      "adjustments": [
+       {
+        "footnote_codes_raw": "",
+        "text_norm": "Excess to need",
+        "quantity_lane_f": "",
+        "amount_lane_g": "-23000"
+       }
+      ]
+     },
+     {
+      "line": {
+       "budget_activity": "02",
+       "title_norm": "Pay and allowances of enlisted personnel"
+      },
+      "expect": {
+       "is_additive": "true",
+       "lane_b": "",
+       "lane_c": "28403992",
+       "lane_d": "",
+       "lane_e": "",
+       "lane_f": "",
+       "lane_g": "-1846699",
+       "lane_h": "",
+       "lane_i": "26557293",
+       "adjustment_count": "2"
+      },
+      "adjustments": [
+       {
+        "footnote_codes_raw": "",
+        "text_norm": "Excess to need",
+        "quantity_lane_f": "",
+        "amount_lane_g": "-176876"
+       },
+       {
+        "footnote_codes_raw": "",
+        "text_norm": "To reflect the Conference budget tables",
+        "quantity_lane_f": "",
+        "amount_lane_g": "-1669823"
+       }
+      ]
+     },
+     {
+      "line": {
+       "budget_activity": "03",
+       "title_norm": "Pay and Allowances of Cadets"
+      },
+      "expect": {
+       "is_additive": "true",
+       "lane_b": "",
+       "lane_c": "120159",
+       "lane_d": "",
+       "lane_e": "",
+       "lane_f": "",
+       "lane_g": "",
+       "lane_h": "",
+       "lane_i": "120159",
+       "adjustment_count": "0"
+      },
+      "adjustments": []
+     },
+     {
+      "line": {
+       "budget_activity": "04",
+       "title_norm": "Subsistence of enlisted personnel"
+      },
+      "expect": {
+       "is_additive": "true",
+       "lane_b": "",
+       "lane_c": "",
+       "lane_d": "",
+       "lane_e": "",
+       "lane_f": "",
+       "lane_g": "1669823",
+       "lane_h": "",
+       "lane_i": "1669823",
+       "adjustment_count": "1"
+      },
+      "adjustments": [
+       {
+        "footnote_codes_raw": "",
+        "text_norm": "To reflect the Conference budget tables",
+        "quantity_lane_f": "",
+        "amount_lane_g": "1669823"
+       }
+      ]
+     },
+     {
+      "line": {
+       "budget_activity": "05",
+       "title_norm": "Permanent change of station travel"
+      },
+      "expect": {
+       "is_additive": "true",
+       "lane_b": "",
+       "lane_c": "1291237",
+       "lane_d": "",
+       "lane_e": "",
+       "lane_f": "",
+       "lane_g": "",
+       "lane_h": "",
+       "lane_i": "1291237",
+       "adjustment_count": "0"
+      },
+      "adjustments": []
+     },
+     {
+      "line": {
+       "budget_activity": "06",
+       "title_norm": "Other Military Personnel Costs"
+      },
+      "expect": {
+       "is_additive": "true",
+       "lane_b": "",
+       "lane_c": "120953",
+       "lane_d": "",
+       "lane_e": "",
+       "lane_f": "",
+       "lane_g": "",
+       "lane_h": "",
+       "lane_i": "120953",
+       "adjustment_count": "0"
+      },
+      "adjustments": []
+     }
+    ],
+    "lane_i_ties_to": {
+     "title_norm": "Grand Total Military Personnel, Navy, 2026/2026",
+     "lane_i": "40544559"
+    }
+   },
+   {
+    "id": "ROWS-N14",
+    "page": 93,
+    "page_code": "N-14",
+    "account_code_raw": "1506N",
+    "availability_raw": "2026/2028",
+    "organization": "",
+    "source": "original PDF (SHA-256 4cef3b41...a96a3), read with pdftotext -layout on the physical page and checked by hand; values in $K",
+    "parents": {
+     "01": "Combat aircraft",
+     "04": "Other aircraft"
+    },
+    "lines": [
+     {
+      "line": {
+       "budget_activity": "01",
+       "title_norm": "F/A-18E/F (Fighter) Hornet"
+      },
+      "expect": {
+       "is_additive": "true",
+       "lane_b": "",
+       "lane_c": "50607",
+       "lane_d": "",
+       "lane_e": "",
+       "lane_f": "",
+       "lane_g": "-21101",
+       "lane_h": "",
+       "lane_i": "29506",
+       "adjustment_count": "1"
+      },
+      "adjustments": [
+       {
+        "footnote_codes_raw": "2",
+        "text_norm": "Production line shutdown early to need",
+        "quantity_lane_f": "",
+        "amount_lane_g": "-21101"
+       }
+      ]
+     },
+     {
+      "line": {
+       "budget_activity": "01",
+       "title_norm": "Joint Strike Fighter CV"
+      },
+      "expect": {
+       "is_additive": "true",
+       "lane_b": "12",
+       "lane_c": "1951629",
+       "lane_d": "",
+       "lane_e": "",
+       "lane_f": "",
+       "lane_g": "-30705",
+       "lane_h": "12",
+       "lane_i": "1920924",
+       "adjustment_count": "1"
+      },
+      "adjustments": [
+       {
+        "footnote_codes_raw": "2",
+        "text_norm": "Airframe PGSE excess growth",
+        "quantity_lane_f": "",
+        "amount_lane_g": "-30705"
+       }
+      ]
+     },
+     {
+      "line": {
+       "budget_activity": "01",
+       "title_norm": "Joint Strike Fighter CV Advance Procurement (CY)"
+      },
+      "expect": {
+       "is_additive": "true",
+       "lane_b": "",
+       "lane_c": "401596",
+       "lane_d": "",
+       "lane_e": "",
+       "lane_f": "",
+       "lane_g": "",
+       "lane_h": "",
+       "lane_i": "401596",
+       "adjustment_count": "0"
+      },
+      "adjustments": []
+     },
+     {
+      "line": {
+       "budget_activity": "01",
+       "title_norm": "JSF STOVL"
+      },
+      "expect": {
+       "is_additive": "true",
+       "lane_b": "11",
+       "lane_c": "1787313",
+       "lane_d": "",
+       "lane_e": "",
+       "lane_f": "",
+       "lane_g": "",
+       "lane_h": "11",
+       "lane_i": "1787313",
+       "adjustment_count": "0"
+      },
+      "adjustments": []
+     },
+     {
+      "line": {
+       "budget_activity": "01",
+       "title_norm": "JSF STOVL Advance Procurement (CY)"
+      },
+      "expect": {
+       "is_additive": "true",
+       "lane_b": "",
+       "lane_c": "113744",
+       "lane_d": "",
+       "lane_e": "",
+       "lane_f": "",
+       "lane_g": "",
+       "lane_h": "",
+       "lane_i": "113744",
+       "adjustment_count": "0"
+      },
+      "adjustments": []
+     },
+     {
+      "line": {
+       "budget_activity": "01",
+       "title_norm": "CH-53K (Heavy Lift)"
+      },
+      "expect": {
+       "is_additive": "true",
+       "lane_b": "12",
+       "lane_c": "1707601",
+       "lane_d": "",
+       "lane_e": "",
+       "lane_f": "2",
+       "lane_g": "213187",
+       "lane_h": "14",
+       "lane_i": "1920788",
+       "adjustment_count": "2"
+      },
+      "adjustments": [
+       {
+        "footnote_codes_raw": "1,4",
+        "text_norm": "Program increase - additional CH-53K aircraft",
+        "quantity_lane_f": "2",
+        "amount_lane_g": "313187"
+       },
+       {
+        "footnote_codes_raw": "2",
+        "text_norm": "Excess to need",
+        "quantity_lane_f": "",
+        "amount_lane_g": "-100000"
+       }
+      ]
+     },
+     {
+      "line": {
+       "budget_activity": "01",
+       "title_norm": "CH-53K (Heavy Lift) Advance Procurement (CY)"
+      },
+      "expect": {
+       "is_additive": "true",
+       "lane_b": "",
+       "lane_c": "335352",
+       "lane_d": "",
+       "lane_e": "",
+       "lane_f": "",
+       "lane_g": "",
+       "lane_h": "",
+       "lane_i": "335352",
+       "adjustment_count": "0"
+      },
+      "adjustments": []
+     },
+     {
+      "line": {
+       "budget_activity": "01",
+       "title_norm": "V-22 (Medium Lift)"
+      },
+      "expect": {
+       "is_additive": "true",
+       "lane_b": "",
+       "lane_c": "47196",
+       "lane_d": "",
+       "lane_e": "",
+       "lane_f": "",
+       "lane_g": "",
+       "lane_h": "",
+       "lane_i": "47196",
+       "adjustment_count": "0"
+      },
+      "adjustments": []
+     },
+     {
+      "line": {
+       "budget_activity": "01",
+       "title_norm": "H-1 Upgrades (UH-1Y/AH-1Z)"
+      },
+      "expect": {
+       "is_additive": "true",
+       "lane_b": "",
+       "lane_c": "8305",
+       "lane_d": "",
+       "lane_e": "",
+       "lane_f": "",
+       "lane_g": "",
+       "lane_h": "",
+       "lane_i": "8305",
+       "adjustment_count": "0"
+      },
+      "adjustments": []
+     },
+     {
+      "line": {
+       "budget_activity": "01",
+       "title_norm": "P-8A Poseidon"
+      },
+      "expect": {
+       "is_additive": "true",
+       "lane_b": "",
+       "lane_c": "13631",
+       "lane_d": "",
+       "lane_e": "",
+       "lane_f": "",
+       "lane_g": "",
+       "lane_h": "",
+       "lane_i": "13631",
+       "adjustment_count": "0"
+      },
+      "adjustments": []
+     },
+     {
+      "line": {
+       "budget_activity": "01",
+       "title_norm": "E-2D Adv Hawkeye"
+      },
+      "expect": {
+       "is_additive": "true",
+       "lane_b": "4",
+       "lane_c": "1503556",
+       "lane_d": "",
+       "lane_e": "",
+       "lane_f": "-1",
+       "lane_g": "-402756",
+       "lane_h": "3",
+       "lane_i": "1100800",
+       "adjustment_count": "1"
+      },
+      "adjustments": [
+       {
+        "footnote_codes_raw": "2",
+        "text_norm": "Program decrease",
+        "quantity_lane_f": "-1",
+        "amount_lane_g": "-402756"
+       }
+      ]
+     },
+     {
+      "line": {
+       "budget_activity": "04",
+       "title_norm": "KC-130J"
+      },
+      "expect": {
+       "is_additive": "true",
+       "lane_b": "",
+       "lane_c": "18017",
+       "lane_d": "",
+       "lane_e": "",
+       "lane_f": "4",
+       "lane_g": "500000",
+       "lane_h": "4",
+       "lane_i": "518017",
+       "adjustment_count": "1"
+      },
+      "adjustments": [
+       {
+        "footnote_codes_raw": "1,4",
+        "text_norm": "Program increase - four additional KC-130Js for the Navy Reserve",
+        "quantity_lane_f": "4",
+        "amount_lane_g": "500000"
+       }
+      ]
+     },
+     {
+      "line": {
+       "budget_activity": "04",
+       "title_norm": "MQ-4 Triton"
+      },
+      "expect": {
+       "is_additive": "true",
+       "lane_b": "",
+       "lane_c": "133139",
+       "lane_d": "",
+       "lane_e": "",
+       "lane_f": "",
+       "lane_g": "-9300",
+       "lane_h": "",
+       "lane_i": "123839",
+       "adjustment_count": "1"
+      },
+      "adjustments": [
+       {
+        "footnote_codes_raw": "2",
+        "text_norm": "Airframe PGSE ahead of need",
+        "quantity_lane_f": "",
+        "amount_lane_g": "-9300"
+       }
+      ]
+     }
+    ],
+    "lane_i_ties_to": {
+     "title_norm": "Subtotal Budget Activity 01: Combat aircraft",
+     "lane_i": "7679155",
+     "budget_activity": "01"
+    }
+   },
+   {
+    "id": "ROWS-DW18",
+    "page": 247,
+    "page_code": "DW-18",
+    "account_code_raw": "0130D",
+    "availability_raw": "2026/2026",
+    "organization": "Defense Health Agency",
+    "source": "original PDF (SHA-256 4cef3b41...a96a3), read with pdftotext -layout on the physical page and checked by hand; values in $K",
+    "lines": [
+     {
+      "line": {
+       "budget_activity": "01",
+       "title_norm": "Operation and Maintenance"
+      },
+      "expect": {
+       "is_additive": "true",
+       "lane_b": "",
+       "lane_c": "39174590",
+       "lane_d": "",
+       "lane_e": "",
+       "lane_f": "",
+       "lane_g": "-231877",
+       "lane_h": "",
+       "lane_i": "38942713",
+       "adjustment_count": "9"
+      },
+      "adjustments": [
+       {
+        "footnote_codes_raw": "1",
+        "text_norm": "Program increase - Uniformed Services University multi- domain operations",
+        "quantity_lane_f": "",
+        "amount_lane_g": "10000"
+       },
+       {
+        "footnote_codes_raw": "1",
+        "text_norm": "Program increase - advanced orthopedic surgical training",
+        "quantity_lane_f": "",
+        "amount_lane_g": "4500"
+       },
+       {
+        "footnote_codes_raw": "1",
+        "text_norm": "Program increase - circuit rider health programs",
+        "quantity_lane_f": "",
+        "amount_lane_g": "1000"
+       },
+       {
+        "footnote_codes_raw": "1",
+        "text_norm": "Program increase - deployment psychology-behavioral science telehealth",
+        "quantity_lane_f": "",
+        "amount_lane_g": "4000"
+       },
+       {
+        "footnote_codes_raw": "1",
+        "text_norm": "Program increase - outdoor recreation and education activities",
+        "quantity_lane_f": "",
+        "amount_lane_g": "9500"
+       },
+       {
+        "footnote_codes_raw": "1",
+        "text_norm": "Program increase - therapeutic service dog training program",
+        "quantity_lane_f": "",
+        "amount_lane_g": "17000"
+       },
+       {
+        "footnote_codes_raw": "1",
+        "text_norm": "Program increase - waterless laboratory diagnostic systems",
+        "quantity_lane_f": "",
+        "amount_lane_g": "2000"
+       },
+       {
+        "footnote_codes_raw": "2",
+        "text_norm": "Previously funded",
+        "quantity_lane_f": "",
+        "amount_lane_g": "-30000"
+       },
+       {
+        "footnote_codes_raw": "",
+        "text_norm": "Undistributed adjustment - underexecution",
+        "quantity_lane_f": "",
+        "amount_lane_g": "-249877"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "ROWS-DW23",
+    "page": 252,
+    "page_code": "DW-23",
+    "account_code_raw": "0130DX",
+    "availability_raw": "2026/XXXX",
+    "organization": "Defense Health Agency",
+    "source": "original PDF (SHA-256 4cef3b41...a96a3), read with pdftotext -layout on the physical page and checked by hand; values in $K",
+    "lines": [
+     {
+      "line": {
+       "budget_activity": "01",
+       "title_norm": "Operation and Maintenance"
+      },
+      "expect": {
+       "is_additive": "true",
+       "lane_b": "",
+       "lane_c": "",
+       "lane_d": "",
+       "lane_e": "",
+       "lane_f": "",
+       "lane_g": "5000",
+       "lane_h": "",
+       "lane_i": "5000",
+       "adjustment_count": "1"
+      },
+      "adjustments": [
+       {
+        "footnote_codes_raw": "1",
+        "text_norm": "Fisher House (Sec. 8067)",
+        "quantity_lane_f": "",
+        "amount_lane_g": "5000"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
 }

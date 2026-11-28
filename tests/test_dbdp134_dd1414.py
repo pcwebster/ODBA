@@ -210,6 +210,66 @@ class SidecarIntegrityTest(unittest.TestCase):
             self.assertEqual(int(hit[0][c["lane"]]), e["value"])
 
 
+    def test_source_pinned_rows_and_adjustments(self):
+        """c10764 section 8 as amended by c10775: every listed line by its own key, all lanes, adjustments row by row."""
+        gold = json.loads(GOLD.read_text(encoding="utf-8"))["row_assertions"]
+        self.assertEqual([p["id"] for p in gold["pages"]], ["ROWS-N1", "ROWS-N14", "ROWS-DW18", "ROWS-DW23"])
+        by_parent = {}
+        for a in self.adjustments:
+            by_parent.setdefault(a["parent_record_id"], []).append(a)
+        for p in gold["pages"]:
+            account = {k: p[k] for k in ("page_code", "account_code_raw", "availability_raw", "organization")}
+            page_lines = [r for r in self.lines if all(r[k] == v for k, v in account.items())
+                          and r["is_additive"] == "true"]
+            self.assertEqual(len(page_lines), len(p["lines"]), p["id"])
+            seen = set()
+            for g in p["lines"]:
+                key = dict(account, **g["line"])
+                hit = [r for r in self.lines if all(r[k] == v for k, v in key.items())]
+                self.assertEqual(len(hit), 1, key)
+                row = hit[0]
+                seen.add(row["record_id"])
+                self.assertEqual({k: row[k] for k in g["expect"]}, g["expect"], key)
+                adj = by_parent.get(row["record_id"], [])
+                got = [{k: a[k] for k in ("footnote_codes_raw", "text_norm", "quantity_lane_f", "amount_lane_g")}
+                       for a in adj]
+                self.assertEqual(got, g["adjustments"], key)
+                self.assertEqual(sum(int(a["amount_lane_g"]) for a in adj), int(row["lane_g"] or 0), key)
+                if "parents" in p:
+                    parent = [r for r in self.lines if r["record_id"] == row["parent_record_id"]]
+                    self.assertEqual(len(parent), 1, key)
+                    self.assertEqual((parent[0]["row_kind"], parent[0]["title_norm"]),
+                                     ("parent", p["parents"][g["line"]["budget_activity"]]), key)
+                else:
+                    self.assertEqual(row["parent_record_id"], "", key)
+            self.assertEqual(len(seen), len(p["lines"]), p["id"])
+            tie = p.get("lane_i_ties_to")
+            if tie:
+                ba = tie.get("budget_activity")
+                total = sum(int(r["lane_i"] or 0) for r in page_lines if ba is None or r["budget_activity"] == ba)
+                self.assertEqual(total, int(tie["lane_i"]), p["id"])
+                control = [c for c in self.controls if c["page_code"] == p["page_code"]
+                           and c["title_norm"] == tie["title_norm"]]
+                self.assertEqual(len(control), 1, p["id"])
+                self.assertEqual(control[0]["lane_i"], tie["lane_i"], p["id"])
+
+    def test_every_line_links_to_its_open_budget_activity_heading(self):
+        """A line under a budget-activity heading points to that heading, not only the first line after it."""
+        grain = ("account_code_raw", "availability_raw", "organization", "budget_activity")
+        heads = {}
+        for r in self.lines:
+            if r["row_kind"] == "parent" and r["budget_activity"]:
+                heads.setdefault(tuple(r[f] for f in grain), []).append(r["record_id"])
+        self.assertTrue(all(len(v) == 1 for v in heads.values()))
+        linked = 0
+        for r in self.lines:
+            if r["row_kind"] != "line":
+                continue
+            head = heads.get(tuple(r[f] for f in grain))
+            self.assertEqual(r["parent_record_id"], head[0] if head else "", r["record_id"])
+            linked += bool(head)
+        self.assertEqual(linked, 1816)
+
 @unittest.skipIf(B is None, MISSING)
 class InputRegistryTest(unittest.TestCase):
     """OpenAI review of PR #30, item 1: a repeated entry must not shadow another."""

@@ -369,7 +369,7 @@ class PageGrammar:
     def page(self, page, hdr, clusters, geo):
         key = (hdr["account_code_raw"], hdr["availability_raw"], hdr["fiscal_year_program"])
         if self.state.get("account") != key:
-            self.state = {"account": key, "org": "", "ba": "", "ba_title": "", "owner": None,
+            self.state = {"account": key, "org": "", "ba": "", "ba_title": "", "owner": None, "ba_row": None,
                           "open": None, "last": None, "section": "body"}
         st = self.state
         st["open"] = None
@@ -444,6 +444,7 @@ class PageGrammar:
                 return self.stop(page, cl, "budget activity heading not parsed")
             st["ba"], st["ba_title"] = m.group(1), m.group(2)
             row = self.new("ba_header", page, hdr, [cl], title=m.group(2))
+            st["ba_row"] = row
             st["owner"] = row
             st["open"] = row
             st["last"] = row
@@ -462,11 +463,13 @@ class PageGrammar:
                 if text != "Subtotal " + st["org"]:
                     self.stop(page, cl, "organization subtotal does not match the open organization")
                 st["org"] = ""
+            st["ba_row"] = None
             st["owner"] = None
             st["last"] = row
             return
         if text.startswith("Grand Total ") and a[0].bold:
             row = self.new("grand_total", page, hdr, [cl], title=text)
+            st["ba_row"] = None
             st["owner"] = None
             st["open"] = row
             st["last"] = row
@@ -474,6 +477,7 @@ class PageGrammar:
         if text == "Financing" and a[0].bold and not lanes:
             row = self.new("financing", page, hdr, [cl], title=text, subtype="heading")
             st["section"] = "financing"
+            st["ba_row"] = None
             st["owner"] = None
             st["last"] = row
             return
@@ -492,9 +496,10 @@ class PageGrammar:
                 self.stop(page, cl, f"line code {ba} under budget activity {st['ba']!r}")
             title = norm(" ".join(t.text for t in rest))
             row = self.new("line", page, hdr, [cl], title=title, ba=ba, line_id=line_id)
-            if st["owner"] is not None and st["owner"].kind == "ba_header":
-                st["owner"].children.append(row)
-                row.parent = st["owner"]
+            if st["ba_row"] is not None:
+                # every line under an open budget-activity heading is its child, not only the first
+                st["ba_row"].children.append(row)
+                row.parent = st["ba_row"]
             st["owner"] = row
             st["open"] = row
             st["last"] = row
@@ -502,9 +507,10 @@ class PageGrammar:
         if a and all(t.bold for t in a) and a[0].x0 > 100 and not text.startswith(KEYWORD_PREFIX):
             # first title line of a line item whose code row follows
             row = self.new("line", page, hdr, [cl], title=text)
-            if st["owner"] is not None and st["owner"].kind == "ba_header":
-                st["owner"].children.append(row)
-                row.parent = st["owner"]
+            if st["ba_row"] is not None:
+                # every line under an open budget-activity heading is its child, not only the first
+                st["ba_row"].children.append(row)
+                row.parent = st["ba_row"]
             st["owner"] = row
             st["open"] = row
             st["last"] = row
@@ -514,6 +520,7 @@ class PageGrammar:
             st["org"] = text
             st["ba"], st["ba_title"] = "", ""
             row = self.new("org_header", page, hdr, [cl], title=text)
+            st["ba_row"] = None
             st["owner"] = None
             st["last"] = row
             return
