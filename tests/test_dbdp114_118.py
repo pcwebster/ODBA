@@ -4,7 +4,7 @@
 # =============================================================================
 # Canonical surfaces:
 #   DBDP-114 -- c10626 as amended by Codex c10628 (Amendments 114-A..D)
-#   DBDP-118 -- c10627 as amended by Codex c10629 (Amendments 118-A..F)
+#   DBDP-118 -- c10627 as amended by Codex c10629 (Amendments 118-A..H)
 # Every amendment is BLOCKING. Per AR c10618/c10619 the two tickets ship in one
 # PR, so this file keeps their cases in SEPARATE sections and the runner prints
 # a per-ticket scorecard -- per-ticket traceability survives the shared commit.
@@ -18,12 +18,13 @@
 # =============================================================================
 
 import csv
+import io
 import hashlib
 import json
 import subprocess
 import sys
 import tempfile
-from decimal import Decimal
+from decimal import Decimal, ROUND_HALF_UP
 from pathlib import Path
 
 REPO = Path(__file__).parent.parent
@@ -38,15 +39,19 @@ PARQUET  = REPO / "output" / "fact_budget_line_items.parquet"
 CONSUME  = REPO / "output" / "consumption"
 FIXTURES = REPO / "fixtures" / "dbdp114"
 
-# TC-118-ID2 pins, exactly as c10576 measured and c10627 recorded them: ONE
-# decimal place. Amendment 118-B re-expressed them at six decimals; see the
-# ID2 case for why that re-expression is arithmetically unreachable.
-ID2_TOTAL_1DP = Decimal("107249.5")
-ID2_FAMILY_1DP = {
-    "OP-5": Decimal("41562.1"), "R-2": Decimal("19852.5"),
-    "P-40": Decimal("6918.5"), "DHP-J-Book": Decimal("37753.1"),
-    "DHP-SMR": Decimal("1163.4"),
+# Approved 118-G (c10855, c10858); RF-1 deferred to DBDP-135 (c10857).
+ID2_TOTAL = (601, Decimal("107249.517000"), Decimal("107249.5"))
+ID2_FAMILIES = {
+    name: (count, Decimal(exact), Decimal(reported))
+    for name, count, exact, reported in [
+        ("OP-5", 260, "41562.080000", "41562.1"),
+        ("R-2", 250, "19852.493000", "19852.5"),
+        ("P-40", 60, "6918.479000", "6918.5"),
+        ("DHP-J-Book", 7, "37753.071000", "37753.1"),
+        ("DHP-SMR", 24, "1163.394000", "1163.4"),
+    ]
 }
+ID3_POST_SHA = "215669ab2d35be8a7969c91599a56cbfdd1066bc"
 
 results = []          # (ticket, case, state, detail)
 
@@ -95,7 +100,7 @@ def sha256_file(path):
 
 def section_118(df, coverage):
     T = "DBDP-118"
-    print("\n-- DBDP-118 (c10627 + Amendments 118-A..F) ----------------------")
+    print("\n-- DBDP-118 (c10627 + Amendments 118-A..H) ----------------------")
 
     # ── TC-118-ID1 -- anchor-copy identities, correctly bounded (118-A) ──────
     # Applies to backward anchors whose target FY is INSIDE the window and
@@ -140,101 +145,81 @@ def section_118(df, coverage):
          f"{len(legs)} in-window leg(s); {len(violations)} violation(s)"
          + (f" first={violations[0]}" if violations else ""))
 
-    # ── TC-118-ID2 -- FY2025 tie pin (118-B: pins may not be reduced) ────────
+    # TC-118-ID2: exact five-family pin and null-vs-zero (118-G).
     fy27 = df[df["budget_year"] == 2027]
     vals = fy27["cost_fy2025"].dropna()
-    measured = sum((dec(v) for v in vals), Decimal(0))
-    fam_measured = {
-        fam: sum((dec(v) for v in fy27[fy27["exhibit_type"] == fam]["cost_fy2025"].dropna()),
-                 Decimal(0))
-        for fam in sorted(ID2_FAMILY_1DP)
-    }
-    ones = [("total", measured, ID2_TOTAL_1DP)] + [
-        (f, fam_measured[f], ID2_FAMILY_1DP[f]) for f in sorted(ID2_FAMILY_1DP)]
-    at_1dp = all(m.quantize(Decimal("0.1")) == p for _, m, p in ones)
-    six_dp_reachable = all(m == p.quantize(Decimal("0.000001")) for _, m, p in ones)
-    rf1_nonnull = int(fy27[fy27["exhibit_type"] == "RF-1"]["cost_fy2025"].notna().sum())
+    sums = {}
+    failures = []
+    def evaluate_pin(label, values, pin):
+        values = [Decimal(str(v)) for v in values]
+        actual = sum(values, Decimal(0))
+        count, exact, display = pin
+        if (any(v != v.quantize(Decimal("0.000001")) for v in values)
+                or (len(values), actual) != (count, exact)
+                or actual.quantize(Decimal("0.1"), rounding=ROUND_HALF_UP) != display):
+            failures.append((label, len(values), str(actual)))
+        return len(values), actual
+    counts, measured = evaluate_pin("total", vals, ID2_TOTAL)
+    for fam, pin in ID2_FAMILIES.items():
+        sums[fam] = evaluate_pin(
+            fam, fy27.loc[fy27["exhibit_type"] == fam, "cost_fy2025"].dropna(), pin)
+    rf1 = fy27[fy27["exhibit_type"] == "RF-1"]
+    rf1_ok = not rf1[["cost_fy2025", "cost_prior_year"]].notna().any().any()
+    zeros = int((vals == 0).sum())
+    partition_ok = (sum(v[0] for v in sums.values()) == counts
+                    and sum((v[1] for v in sums.values()), Decimal(0)) == measured
+                    and set(fy27.loc[fy27["cost_fy2025"].notna(), "exhibit_type"])
+                        == set(ID2_FAMILIES))
+    case(T, "TC-118-ID2 FY2025 tie pin",
+         not failures and partition_ok and rf1_ok and zeros == 60,
+         f"{counts} values / {measured:.6f} $M in five families; explicit zeros={zeros}; "
+         f"RF-1 metadata rows={len(rf1)}, only null={rf1_ok}; mismatches={failures}")
 
-    if at_1dp and not six_dp_reachable:
-        blocked(T, "TC-118-ID2 FY2025 tie pin",
-                f"ties EXACTLY at the precision c10576/c10627 state the pins "
-                f"(1 dp): total measured {measured} -> {measured.quantize(Decimal('0.1'))} "
-                f"== {ID2_TOTAL_1DP}, and all 5 family sub-pins likewise; "
-                f"RF-1 authentic zero confirmed ({rf1_nonnull} non-null). "
-                f"Amendment 118-B re-expresses the pins at six decimals "
-                f"(107249.500000) and forbids reduction -- but source values "
-                f"carry <=3 dp, so a 601-term sum is a 3-dp quantity and can "
-                f"never equal .500000. BLOCKED pending the separately "
-                f"receipted baseline amendment 118-B itself prescribes; "
-                f"exact measured values supplied for that amendment")
-    else:
-        case(T, "TC-118-ID2 FY2025 tie pin", at_1dp and six_dp_reachable,
-             f"measured total {measured}; per-family {fam_measured}; "
-             f"RF-1 non-null {rf1_nonnull}")
-
-    # ── TC-118-ID3 -- logical 38-column regression identity (118-C) ──────────
-    blob = subprocess.run(
-        ["git", "-C", str(REPO), "show", f"{BASE_SHA}:output/fact_budget_line_items.parquet"],
-        capture_output=True).stdout
-    with tempfile.NamedTemporaryFile(suffix=".parquet", delete=False) as fh:
-        fh.write(blob)
-        pre_path = fh.name
-    pre = pd.read_parquet(pre_path)
+    # TC-118-ID3: pinned historical regression (118-H), independent of HEAD.
+    def pinned_parquet(ref):
+        blob = subprocess.run(
+            ["git", "-C", str(REPO), "show",
+             f"{ref}:output/fact_budget_line_items.parquet"],
+            check=True, capture_output=True).stdout
+        return pd.read_parquet(io.BytesIO(blob))
+    pre, post = pinned_parquet(BASE_SHA), pinned_parquet(ID3_POST_SHA)
     old_cols = list(pre.columns)
-    new_cols = list(df.columns)
     key = ["record_id", "data_vintage"]
     pre_k = pre.set_index(key).sort_index()
-    post_k = df.set_index(key).sort_index()
-    same_keys = list(pre_k.index) == list(post_k.index)
-    order_ok = new_cols[:len(old_cols)] == old_cols
-    delta = [c for c in new_cols if c not in old_cols]
+    post_k = post.set_index(key).sort_index()
+    structure = (len(pre) == len(post) == 1413
+                 and len(old_cols) == 38 and list(post.columns) == old_cols + ["cost_fy2025"]
+                 and pre_k.index.is_unique and post_k.index.is_unique
+                 and pre["record_id"].is_unique and post["record_id"].is_unique
+                 and pre_k.index.equals(post_k.index)
+                 and pre.dtypes.equals(post[old_cols].dtypes))
     drift = []
-    if same_keys:
-        for col in old_cols:
-            if col in key:
-                continue
-            a, b = pre_k[col], post_k[col]
-            null_parity = (a.isna() == b.isna()).all()
-            if not null_parity:
-                drift.append(f"{col}: null parity")
-                continue
-            mask = a.notna()
-            if a.dtype.kind == "f":
-                if any(dec(x) != dec(y) for x, y in zip(a[mask], b[mask])):
-                    drift.append(f"{col}: value")
-            elif not (a[mask].astype(str) == b[mask].astype(str)).all():
-                drift.append(f"{col}: value")
-    ids_unique = int(df.duplicated(subset=key).sum()) == 0
-    structural_ok = (same_keys and order_ok and delta == ["cost_fy2025"]
-                     and ids_unique and len(pre) == len(df))
-    # cost_fy2026 is the ONE old column the ruling itself changes: c10576 §2
-    # states "FY27 rows populate cost_fy2025 (py, actuals) and cost_fy2026 (cy,
-    # estimates)", and the ratified c10430 supersession exists precisely so
-    # FY27 rows MAY carry it. TC-118-ID4 (above) therefore REQUIRES the change
-    # — it asserts cost_fy2026 is no longer 100%-null on FY27 rows. ID3 as
-    # written ("exact value equality in every old column") forbids the very
-    # change ID4 demands, so the two cases contradict each other.
-    expected_drift = ["cost_fy2026: null parity"]
-    other_drift = [d for d in drift if d not in expected_drift]
-    fy27_2026 = int(df[df["budget_year"] == 2027]["cost_fy2026"].notna().sum())
-    pre_fy27_2026 = int(pre[pre["budget_year"] == 2027]["cost_fy2026"].notna().sum())
-    if structural_ok and not other_drift and drift == expected_drift:
-        blocked(T, "TC-118-ID3 logical 38-column identity",
-                f"37 of 38 pre-existing columns are EXACTLY identical (row-key "
-                f"set, row count, column order, null/zero parity, value "
-                f"equality); record_id values and uniqueness unchanged; schema "
-                f"delta is exactly ['cost_fy2025']. The single divergence is "
-                f"cost_fy2026 on FY27 rows: {pre_fy27_2026} non-null before -> "
-                f"{fy27_2026} after, which is what c10576 §2 and the ratified "
-                f"c10430 supersession REQUIRE and what TC-118-ID4 asserts. "
-                f"Amendment 118-C's 'exact value equality in every old column' "
-                f"contradicts ID4 on this column. BLOCKED pending a receipted "
-                f"amendment scoping ID3 to the 37 unaffected columns")
-    else:
-        case(T, "TC-118-ID3 logical 38-column identity",
-             structural_ok and not drift,
-             f"{len(old_cols)} old cols preserved in order, schema delta={delta}, "
-             f"rows {len(pre)}->{len(df)}, drift={drift or 'none'}")
+    changed_n = changed_zero = 0
+    def same_cell(left, right, numeric):
+        if pd.isna(left) or pd.isna(right):
+            return bool(pd.isna(left) and pd.isna(right))
+        if numeric:
+            return ((left == 0) == (right == 0)
+                    and Decimal(str(left)) == Decimal(str(right)))
+        return left == right
+    if structure:
+        for col in [c for c in old_cols if c not in key]:
+            numeric = pd.api.types.is_numeric_dtype(pre[col])
+            mask = pre_k["budget_year"].eq(2027) if col == "cost_fy2026" else                    pd.Series(False, index=pre_k.index)
+            if not all(same_cell(x, y, numeric)
+                       for x, y in zip(pre_k.loc[~mask, col], post_k.loc[~mask, col])):
+                drift.append(col)
+            if col == "cost_fy2026":
+                a, b = pre_k.loc[mask, col], post_k.loc[mask, col]
+                changed_n, changed_zero = int(b.count()), int((b == 0).sum())
+                retained_n = int(post_k.loc[post_k["budget_year"].eq(2026), col].count())
+                if (a.notna().any() or (changed_n, changed_zero, retained_n) != (610, 79, 749)
+                    or not all(same_cell(x, y, True)
+                               for x, y in zip(b, post_k.loc[mask, "cost_current_year"]))):
+                    drift.append("FY27 cost_fy2026 does not match its exact allowed change")
+    case(T, "TC-118-ID3 logical 38-column identity", structure and not drift,
+         f"historical pins {BASE_SHA[:7]} / {ID3_POST_SHA[:7]}; structures match={structure}; "
+         f"FY27 updated={changed_n} (explicit zeros={changed_zero}); unexpected drift={drift}")
 
     # ── TC-118-ID4 -- coverage legs + the c10430 supersession consequence ────
     cov_fails = etl.check_cost_coverage(df, coverage)
