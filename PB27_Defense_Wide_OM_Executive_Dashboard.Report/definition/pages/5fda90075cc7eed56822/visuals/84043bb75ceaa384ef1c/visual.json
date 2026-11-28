@@ -1,0 +1,293 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "84043bb75ceaa384ef1c",
+  "position": {
+    "x": 0,
+    "y": 650,
+    "z": 4000,
+    "height": 430,
+    "width": 1920,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "OP5"
+                    }
+                  },
+                  "Property": "budget_activity_title"
+                }
+              },
+              "queryRef": "OP5.budget_activity_title",
+              "nativeQueryRef": "budget_activity_title",
+              "active": true,
+              "displayName": "Budget activity"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "OP5"
+                    }
+                  },
+                  "Property": "line_item_title"
+                }
+              },
+              "queryRef": "OP5.line_item_title",
+              "nativeQueryRef": "line_item_title",
+              "active": true,
+              "displayName": "Line item"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "OP5"
+                    }
+                  },
+                  "Property": "FY25 $"
+                }
+              },
+              "queryRef": "OP5.FY25 $",
+              "nativeQueryRef": "FY25 $",
+              "displayName": "FY25"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "OP5"
+                    }
+                  },
+                  "Property": "FY26 $"
+                }
+              },
+              "queryRef": "OP5.FY26 $",
+              "nativeQueryRef": "FY26 $",
+              "displayName": "FY26"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "OP5"
+                    }
+                  },
+                  "Property": "FY27 $"
+                }
+              },
+              "queryRef": "OP5.FY27 $",
+              "nativeQueryRef": "FY27 $",
+              "displayName": "FY27"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "OP5"
+                    }
+                  },
+                  "Property": "Delta $"
+                }
+              },
+              "queryRef": "OP5.Delta $",
+              "nativeQueryRef": "Delta $",
+              "displayName": "Chg $"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "OP5"
+                    }
+                  },
+                  "Property": "Delta %"
+                }
+              },
+              "queryRef": "OP5.Delta %",
+              "nativeQueryRef": "Delta %",
+              "displayName": "Chg %"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "OP5"
+                  }
+                },
+                "Property": "Delta $"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "OP5.budget_activity_title"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "OP5"
+                    }
+                  },
+                  "Property": "budget_activity_title"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "OP5.line_item_title"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {
+          "children": [
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'Intelligence'"
+                  }
+                }
+              ],
+              "isToggled": true
+            },
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'OSW'"
+                  }
+                }
+              ],
+              "isToggled": true
+            }
+          ]
+        }
+      }
+    ],
+    "objects": {
+      "rowHeaders": [
+        {
+          "properties": {
+            "stepped": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTotals": [
+        {
+          "properties": {
+            "rowSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "columnSubtotals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            },
+            "backColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#EEF0F3'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Line item detail ($M)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

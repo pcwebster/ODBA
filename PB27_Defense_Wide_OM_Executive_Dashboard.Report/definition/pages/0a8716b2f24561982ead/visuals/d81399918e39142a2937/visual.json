@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "d81399918e39142a2937",
+  "position": {
+    "x": 16,
+    "y": 1050,
+    "z": 9000,
+    "height": 28,
+    "width": 1400,
+    "tabOrder": 9000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Source: FY2027 PB OP-5 exhibits, Defense-Wide O&M, $ in millions. FY25 = actual, FY26 = enacted, FY27 = request. Prepared by OPNAV N99P.",
+                    "textStyle": {
+                      "fontSize": "8pt",
+                      "color": "#6B7B8C"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,83 @@
+table Agency
+	lineageTag: 6a8c9f92-803d-401b-8918-96f76a8fa535
+
+	column service_agency_acronym
+		lineageTag: e2d9100a-a8c5-4d6f-9de1-130d6d8878f5
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: OP5[service_agency_acronym]
+		sortByColumn: 'FY27 Sort'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FY27 Sort'
+		isHidden
+		lineageTag: 35c8e87b-2529-4d96-a131-6a26d75f3e0b
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [FY27 Sort]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Mission Portfolio'
+		lineageTag: 4f5e6d7c-8b9a-0c1d-2e3f-4a5b6c7d8e9f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Mission Portfolio]
+		sortByColumn: 'Portfolio Sort'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Portfolio Sort'
+		isHidden
+		lineageTag: 5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Portfolio Sort]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Agency = calculated
+		mode: import
+		source =
+				ADDCOLUMNS (
+				    DISTINCT ( OP5[service_agency_acronym] ),
+				    "FY27 Sort", 0 - CALCULATE ( SUM ( OP5[Amount] ), OP5[FY] = 2027 ),
+				    "Mission Portfolio",
+				        SWITCH (
+				            OP5[service_agency_acronym],
+				            "SOCOM", "Warfighting & Operational",
+				            "USCYBERCOM", "Warfighting & Operational",
+				            "DISA", "Enterprise IT & Logistics",
+				            "DLA", "Enterprise IT & Logistics",
+				            "DCMA", "Enterprise IT & Logistics",
+				            "DCAA", "Enterprise IT & Logistics",
+				            "DoWDE", "Personnel & Education",
+				            "DHRA", "Personnel & Education",
+				            "CMP", "Personnel & Education",
+				            "DAU", "Personnel & Education",
+				            "DAWDA", "Personnel & Education",
+				            "DSCA", "Security Cooperation",
+				            "CTR", "Security Cooperation",
+				            "DCSA", "Intelligence & Security",
+				            "DTRA", "Intelligence & Security",
+				            "MDA", "Intelligence & Security",
+				            "PSYOP", "Intelligence & Security",
+				            "OSD Governance & Support"
+				        ),
+				    "Portfolio Sort",
+				        SWITCH (
+				            OP5[service_agency_acronym],
+				            "SOCOM", 1, "USCYBERCOM", 1,
+				            "DISA", 2, "DLA", 2, "DCMA", 2, "DCAA", 2,
+				            "OSW", 3, "WHS", 3, "OIG", 3, "DLSA", 3, "DPAA", 3, "OLDCC", 3, "DTSA", 3, "DWIA", 3, "OHDACA", 3, "CAAF", 3, "SISC", 3,
+				            "DoWDE", 4, "DHRA", 4, "CMP", 4, "DAU", 4, "DAWDA", 4,
+				            "DSCA", 5, "CTR", 5,
+				            6
+				        )
+				)
+
+	annotation PBI_Id = 1774c7f3451b46b198977d745deab080
+

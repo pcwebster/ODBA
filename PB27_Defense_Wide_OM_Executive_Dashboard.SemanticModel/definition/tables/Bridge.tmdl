@@ -1,0 +1,17 @@
+table Bridge
+	isHidden
+	lineageTag: 3b7f1c2e-9a4d-4f6b-8e2c-1d5a7b9c0e4f
+
+	column Label
+		dataType: string
+		lineageTag: 8e1d4c6a-2b7f-4a9e-b3c5-6f0d2e8a1b7c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Label]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Bridge = calculated
+		mode: import
+		source = DATATABLE ( "Label", STRING, { { "FY26 to FY27" } } )
+

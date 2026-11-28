@@ -1,0 +1,48 @@
+table Parameter
+	lineageTag: 64358105-3565-4712-a9ea-943b04f7ae19
+
+	column Parameter
+		lineageTag: a22fb291-8c0a-4b37-91c6-4ce9eafe1123
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parameter Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Parameter Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Fields'
+		isHidden
+		lineageTag: ee926094-d4ed-4d4c-81c6-4daa2643fdea
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parameter Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Order'
+		isHidden
+		formatString: 0
+		lineageTag: 4455f5a5-712c-4a93-81bc-55f9d88ec35f
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Parameter = calculated
+		mode: import
+		source =
+				{
+				    ("appropriation_name", NAMEOF('OP5'[appropriation_type]), 0),
+				    ("service_agency_name", NAMEOF('OP5'[service_agency_name]), 1)
+				}
+
+	annotation PBI_Id = c2882da6b9a24165b293cbf7717b5ee8
+

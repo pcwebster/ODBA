@@ -1,0 +1,26 @@
+relationship 7c1e2a9b-4d3f-4e8a-9b6c-2f1d5e7a8c3b
+	fromColumn: OP5.service_agency_acronym
+	toColumn: Agency.service_agency_acronym
+
+relationship 8c321ef4-eb98-4689-98c6-7073628c0a54
+	fromColumn: fact_budget_long.record_id
+	toColumn: dim_program_hierarchy.record_id
+
+relationship 58e2d3b9-6a56-43ee-96cf-d3fc999ddc00
+	fromColumn: fact_budget_long.source_file
+	toColumn: dim_budget_cycle.source_file
+
+relationship 963b51df-97eb-477f-9479-156cca49c36e
+	fromColumn: fact_budget_long.service_agency_acronym
+	toColumn: dim_agency.agency_acronym
+
+relationship bddc3a05-a370-45c3-90a4-494cb83f813e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_budget_long.data_vintage
+	toColumn: LocalDateTable_2c011c22-32e0-4149-8daf-4b5c044f7688.Date
+
+relationship 1d3472f0-a6f7-49cc-a755-09287829f775
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_budget_cycle.acquisition_date
+	toColumn: LocalDateTable_77ac44c2-68be-4323-bc72-2812eafaadbd.Date
+

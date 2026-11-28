@@ -1,0 +1,30 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["OP5","Table","fact_budget_long","dim_agency","dim_budget_cycle","dim_program_hierarchy"]
+
+annotation PBI_ProTooling = ["DevMode","DaxQueryView_Desktop"]
+
+ref table OP5
+ref table Parameter
+ref table Table
+ref table Agency
+ref table Bridge
+ref table fact_budget_long
+ref table dim_agency
+ref table dim_budget_cycle
+ref table dim_program_hierarchy
+ref table DateTableTemplate_86f79992-a65e-43c5-a0cd-8085d612f34b
+ref table LocalDateTable_2c011c22-32e0-4149-8daf-4b5c044f7688
+ref table LocalDateTable_77ac44c2-68be-4323-bc72-2812eafaadbd
+
+ref cultureInfo en-US
+

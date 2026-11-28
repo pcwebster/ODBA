@@ -1,0 +1,72 @@
+table dim_program_hierarchy
+	lineageTag: e5a28e1c-fa46-4b53-9b5f-8df56f09d7e3
+
+	column record_id
+		dataType: string
+		lineageTag: 6c553b08-db91-41ef-8423-c0e9c185909a
+		summarizeBy: none
+		sourceColumn: record_id
+
+	column exhibit_type
+		dataType: string
+		lineageTag: 6357075c-3613-4f43-860c-d750ec0cfdbc
+		summarizeBy: none
+		sourceColumn: exhibit_type
+
+	column hierarchy_type
+		dataType: string
+		lineageTag: e5ed0f42-7817-46bf-8d0c-1512ebc9aa0c
+		summarizeBy: none
+		sourceColumn: hierarchy_type
+
+	column level1_code
+		dataType: string
+		lineageTag: d427442c-4c45-4027-9469-18aee3195438
+		summarizeBy: none
+		sourceColumn: level1_code
+
+	column level1_name
+		dataType: string
+		lineageTag: fdb194cf-ced2-440c-8d75-14b79fc232dc
+		summarizeBy: none
+		sourceColumn: level1_name
+
+	column level2_code
+		dataType: string
+		lineageTag: 08396639-2eb2-4542-ad95-abce00010572
+		summarizeBy: none
+		sourceColumn: level2_code
+
+	column level2_name
+		dataType: string
+		lineageTag: e28b2d82-24c7-4027-8e3f-82a90dbd207e
+		summarizeBy: none
+		sourceColumn: level2_name
+
+	column level3_code
+		dataType: string
+		lineageTag: 9639ec05-6764-4657-811f-e3a3c91a4e02
+		summarizeBy: none
+		sourceColumn: level3_code
+
+	column level3_name
+		dataType: string
+		lineageTag: becab539-caeb-4013-acba-9fe766ca9fb9
+		summarizeBy: none
+		sourceColumn: level3_name
+
+	partition dim_program_hierarchy = m
+		mode: import
+		source =
+				let
+					Raw = Csv.Document(File.Contents("C:\Users\peter\ODBA DBDP-114 Check\consumption\dim_program_hierarchy.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+					Headers = Table.PromoteHeaders(Raw, [PromoteAllScalars=true]),
+					CheckedHeaders = if Table.ColumnNames(Headers) = {"record_id", "exhibit_type", "hierarchy_type", "level1_code", "level1_name", "level2_code", "level2_name", "level3_code", "level3_name"} then Headers else error "DBDP-114: unexpected CSV headers",
+					Typed = Table.Buffer(Table.TransformColumnTypes(CheckedHeaders, {{"record_id", type text}, {"exhibit_type", type text}, {"hierarchy_type", type text}, {"level1_code", type text}, {"level1_name", type text}, {"level2_code", type text}, {"level2_name", type text}, {"level3_code", type text}, {"level3_name", type text}}, "en-US")),
+					Errors = Table.RowCount(Table.SelectRowsWithErrors(Typed)),
+					Checked = if Errors <> 0 then error "DBDP-114: conversion errors" else if Table.RowCount(Typed) <> 1382 then error "DBDP-114: wrong number of rows" else Typed
+				in
+					Checked
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,92 @@
+table fact_budget_long
+	lineageTag: f52b814b-a272-44a2-ae9c-784fc14f4ea0
+
+	column record_id
+		dataType: string
+		lineageTag: ce7dda57-0fb4-4b49-b036-909588ee14d8
+		summarizeBy: none
+		sourceColumn: record_id
+
+	column source_file
+		dataType: string
+		lineageTag: 4a38fcb2-54ec-4db8-8ba1-5bf4710b6ba8
+		summarizeBy: none
+		sourceColumn: source_file
+
+	column service_agency_acronym
+		dataType: string
+		lineageTag: 320d13b6-c186-49fe-90f6-93e0f4d4ac58
+		summarizeBy: none
+		sourceColumn: service_agency_acronym
+
+	column budget_year
+		dataType: int64
+		lineageTag: 901aa68b-a22f-4044-9c0e-4253eb1010f9
+		summarizeBy: sum
+		sourceColumn: budget_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_vintage
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: c4148b4e-18e7-4de1-a4c8-4c40b78d4880
+		summarizeBy: none
+		sourceColumn: data_vintage
+
+		variation Variation
+			isDefault
+			relationship: bddc3a05-a370-45c3-90a4-494cb83f813e
+			defaultHierarchy: LocalDateTable_2c011c22-32e0-4149-8daf-4b5c044f7688.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column data_lifecycle_stage
+		dataType: string
+		lineageTag: 1bb2bb51-6d95-4c2f-988f-b3470ec81058
+		summarizeBy: none
+		sourceColumn: data_lifecycle_stage
+
+	column funding_fy
+		dataType: int64
+		lineageTag: 3eb0bb0e-1bb9-49a8-9c26-9d82a9b9ed45
+		summarizeBy: sum
+		sourceColumn: funding_fy
+
+		annotation SummarizationSetBy = Automatic
+
+	column amount_musd
+		dataType: double
+		lineageTag: 46f1a64b-7497-4762-b525-cba8ca9eee08
+		summarizeBy: sum
+		sourceColumn: amount_musd
+
+		annotation SummarizationSetBy = Automatic
+
+	column amount_basis
+		dataType: string
+		lineageTag: a41f131e-f201-41a2-851d-3ccb8cc1c977
+		summarizeBy: none
+		sourceColumn: amount_basis
+
+	column funding_type
+		dataType: string
+		lineageTag: 10a50b78-35c8-4d47-8fa4-e79d9b3f5da5
+		summarizeBy: none
+		sourceColumn: funding_type
+
+	partition fact_budget_long = m
+		mode: import
+		source =
+				let
+					Raw = Csv.Document(File.Contents("C:\Users\peter\ODBA DBDP-114 Check\consumption\fact_budget_long.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+					Headers = Table.PromoteHeaders(Raw, [PromoteAllScalars=true]),
+					CheckedHeaders = if Table.ColumnNames(Headers) = {"record_id", "source_file", "service_agency_acronym", "budget_year", "data_vintage", "data_lifecycle_stage", "funding_fy", "amount_musd", "amount_basis", "funding_type"} then Headers else error "DBDP-114: unexpected CSV headers",
+					Typed = Table.Buffer(Table.TransformColumnTypes(CheckedHeaders, {{"record_id", type text}, {"source_file", type text}, {"service_agency_acronym", type text}, {"budget_year", Int64.Type}, {"data_vintage", type date}, {"data_lifecycle_stage", type text}, {"funding_fy", Int64.Type}, {"amount_musd", type number}, {"amount_basis", type text}, {"funding_type", type text}}, "en-US")),
+					Errors = Table.RowCount(Table.SelectRowsWithErrors(Typed)),
+					Checked = if Errors <> 0 then error "DBDP-114: conversion errors" else if Table.RowCount(Typed) <> 4385 then error "DBDP-114: wrong number of rows" else Typed
+				in
+					Checked
+
+	annotation PBI_ResultType = Table
+

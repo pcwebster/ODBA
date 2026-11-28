@@ -1,0 +1,8 @@
+{
+  "version": "4.0",
+  "datasetReference": {
+    "byPath": {
+      "path": "../PB27_Defense_Wide_OM_Executive_Dashboard.SemanticModel"
+    }
+  }
+}

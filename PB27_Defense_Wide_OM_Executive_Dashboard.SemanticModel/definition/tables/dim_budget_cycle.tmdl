@@ -1,0 +1,70 @@
+table dim_budget_cycle
+	lineageTag: 8d07db9e-ec5a-4878-8f6a-5a46f8eceb2d
+
+	column source_file
+		dataType: string
+		lineageTag: e8fbeffd-05d9-4044-b95a-7c4006c1d9b6
+		summarizeBy: none
+		sourceColumn: source_file
+
+	column budget_year
+		dataType: int64
+		lineageTag: 85203d73-74a5-4af7-bbe1-d3f0f49a706f
+		summarizeBy: sum
+		sourceColumn: budget_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column lifecycle_stage
+		dataType: string
+		lineageTag: d440ccdb-6903-4102-8924-213f06a63020
+		summarizeBy: none
+		sourceColumn: lifecycle_stage
+
+	column acquisition_date
+		dataType: dateTime
+		formatString: yyyy-MM-dd
+		lineageTag: a7db7e3d-e19c-4063-afb6-72f6ba922d08
+		summarizeBy: none
+		sourceColumn: acquisition_date
+
+		variation Variation
+			isDefault
+			relationship: 1d3472f0-a6f7-49cc-a755-09287829f775
+			defaultHierarchy: LocalDateTable_77ac44c2-68be-4323-bc72-2812eafaadbd.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ingest_status
+		dataType: string
+		lineageTag: c82c4b82-f539-42e7-ab8c-6aaf34766e9e
+		summarizeBy: none
+		sourceColumn: ingest_status
+
+	column source_url
+		dataType: string
+		lineageTag: 8a7bfc40-132c-4f11-a782-d5869d8596dc
+		summarizeBy: none
+		sourceColumn: source_url
+
+	column sha256
+		dataType: string
+		lineageTag: 8c568ecf-86c2-431d-931f-a7acd5c353e5
+		summarizeBy: none
+		sourceColumn: sha256
+
+	partition dim_budget_cycle = m
+		mode: import
+		source =
+				let
+					Raw = Csv.Document(File.Contents("C:\Users\peter\ODBA DBDP-114 Check\consumption\dim_budget_cycle.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+					Headers = Table.PromoteHeaders(Raw, [PromoteAllScalars=true]),
+					CheckedHeaders = if Table.ColumnNames(Headers) = {"source_file", "budget_year", "lifecycle_stage", "acquisition_date", "ingest_status", "source_url", "sha256"} then Headers else error "DBDP-114: unexpected CSV headers",
+					Typed = Table.Buffer(Table.TransformColumnTypes(CheckedHeaders, {{"source_file", type text}, {"budget_year", Int64.Type}, {"lifecycle_stage", type text}, {"acquisition_date", type date}, {"ingest_status", type text}, {"source_url", type text}, {"sha256", type text}}, "en-US")),
+					Errors = Table.RowCount(Table.SelectRowsWithErrors(Typed)),
+					Checked = if Errors <> 0 then error "DBDP-114: conversion errors" else if Table.RowCount(Typed) <> 149 then error "DBDP-114: wrong number of rows" else Typed
+				in
+					Checked
+
+	annotation PBI_ResultType = Table
+

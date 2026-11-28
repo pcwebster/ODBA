@@ -1,0 +1,36 @@
+table dim_agency
+	lineageTag: 40aaeebb-16c2-48e3-b81b-45be707aca42
+
+	column agency_acronym
+		dataType: string
+		lineageTag: b2595715-2269-432d-a6ec-7d6ec10c1651
+		summarizeBy: none
+		sourceColumn: agency_acronym
+
+	column agency_name_canonical
+		dataType: string
+		lineageTag: 6ccd1549-d2f6-49bc-b32c-4359be47cd51
+		summarizeBy: none
+		sourceColumn: agency_name_canonical
+
+	column mission_portfolio
+		dataType: string
+		lineageTag: f8ea99d8-6ddf-40fe-b2e7-9936130e1daa
+		summarizeBy: none
+		sourceColumn: mission_portfolio
+
+	partition dim_agency = m
+		mode: import
+		source =
+				let
+					Raw = Csv.Document(File.Contents("C:\Users\peter\ODBA DBDP-114 Check\consumption\dim_agency.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+					Headers = Table.PromoteHeaders(Raw, [PromoteAllScalars=true]),
+					CheckedHeaders = if Table.ColumnNames(Headers) = {"agency_acronym", "agency_name_canonical", "mission_portfolio"} then Headers else error "DBDP-114: unexpected CSV headers",
+					Typed = Table.Buffer(Table.TransformColumnTypes(CheckedHeaders, {{"agency_acronym", type text}, {"agency_name_canonical", type text}, {"mission_portfolio", type text}}, "en-US")),
+					Errors = Table.RowCount(Table.SelectRowsWithErrors(Typed)),
+					Checked = if Errors <> 0 then error "DBDP-114: conversion errors" else if Table.RowCount(Typed) <> 55 then error "DBDP-114: wrong number of rows" else Typed
+				in
+					Checked
+
+	annotation PBI_ResultType = Table
+

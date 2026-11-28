@@ -1,0 +1,38 @@
+EVALUATE
+VAR Slice = CALCULATETABLE (
+    fact_budget_long,
+    dim_budget_cycle[budget_year] = 2027,
+    dim_program_hierarchy[exhibit_type] = "OP-5"
+)
+VAR FY25 = SUMX ( FILTER ( Slice, fact_budget_long[funding_fy] = 2025 ), fact_budget_long[amount_musd] )
+VAR FY26 = SUMX ( FILTER ( Slice, fact_budget_long[funding_fy] = 2026 ), fact_budget_long[amount_musd] )
+VAR FY27 = SUMX ( FILTER ( Slice, fact_budget_long[funding_fy] = 2027 ), fact_budget_long[amount_musd] )
+VAR Total = SUMX ( Slice, fact_budget_long[amount_musd] )
+VAR LeadingZeros =
+    COUNTROWS (
+        FILTER (
+            dim_program_hierarchy,
+            dim_program_hierarchy[record_id] = "c0bd6256fca229039395"
+                && EXACT ( dim_program_hierarchy[level1_code], "01" )
+                && EXACT ( dim_program_hierarchy[level2_code], "020" )
+        )
+    ) = 1
+VAR GoodCounts =
+    COUNTROWS ( fact_budget_long ) = 4385
+        && COUNTROWS ( dim_program_hierarchy ) = 1382
+        && COUNTROWS ( dim_budget_cycle ) = 149
+        && COUNTROWS ( dim_agency ) = 55
+        && COUNTROWS ( Slice ) = 780
+RETURN
+ROW (
+    "FY25 $M", ROUND ( FY25, 3 ), "FY26 $M", ROUND ( FY26, 3 ),
+    "FY27 $M", ROUND ( FY27, 3 ), "Total $M", ROUND ( Total, 3 ),
+    "Fact", COUNTROWS ( fact_budget_long ), "Hierarchy", COUNTROWS ( dim_program_hierarchy ),
+    "Cycle", COUNTROWS ( dim_budget_cycle ), "Agency", COUNTROWS ( dim_agency ),
+    "Slice rows", COUNTROWS ( Slice ), "Leading zeros preserved", LeadingZeros,
+    "Result",
+        IF ( GoodCounts && LeadingZeros
+            && ROUND ( FY25, 3 ) = 41562.080 && ROUND ( FY26, 3 ) = 33223.593
+            && ROUND ( FY27, 3 ) = 37995.003 && ROUND ( Total, 3 ) = 112780.676,
+            "PASS", "FAIL" )
+)

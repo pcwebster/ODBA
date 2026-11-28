@@ -1,0 +1,430 @@
+table OP5
+	lineageTag: 0cfb1320-d49a-45b4-a6a1-ae4670f9a453
+
+	measure 'FY25 $' = CALCULATE ( SUM ( OP5[Amount] ), OP5[FY] = 2025 )
+		formatString: #,##0.0
+		displayFolder: 01 Financial Topline
+		lineageTag: 653d66c5-7923-4ef2-a9f1-9383a380e4d5
+
+	measure 'FY26 $' = CALCULATE ( SUM ( OP5[Amount] ), OP5[FY] = 2026 )
+		formatString: #,##0.0
+		displayFolder: 01 Financial Topline
+		lineageTag: 54d8506e-e6c9-4937-a947-023144359530
+
+	measure 'FY27 $' = CALCULATE ( SUM ( OP5[Amount] ), OP5[FY] = 2027 )
+		formatString: #,##0.0
+		displayFolder: 01 Financial Topline
+		lineageTag: af284e0e-6f9c-4a40-80e3-ab8e3de3cab4
+
+	measure 'Total Amount' = SUM ( OP5[Amount] )
+		formatString: #,##0.0
+		displayFolder: 01 Financial Topline
+		lineageTag: a1b2c3d4-e5f6-4a1b-8c2d-3e4f5a6b7c8d
+
+	measure 'FY27 $B' = DIVIDE ( [FY27 $], 1000 )
+		formatString: $#,##0.00"B"
+		displayFolder: 01 Financial Topline
+		lineageTag: 6fe88cc6-aa68-41b3-8eea-8745695921fb
+
+	measure 'Delta $' = [FY27 $] - [FY26 $]
+		formatString: +#,##0.0;-#,##0.0;0.0
+		displayFolder: 02 Variance Analysis
+		lineageTag: e6e1e68c-947e-4d69-9a0b-498f4395b5a1
+
+	measure 'Delta %' = DIVIDE ( [Delta $], [FY26 $] )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: 02 Variance Analysis
+		lineageTag: 9a727826-1868-4362-bc21-5e7fc1dd58d1
+
+	measure 'Delta $ 25-26' = [FY26 $] - [FY25 $]
+		formatString: +#,##0.0;-#,##0.0;0.0
+		displayFolder: 02 Variance Analysis
+		lineageTag: f1e2d3c4-b5a6-4f7e-8d9c-0b1a2c3d4e5f
+
+	measure 'Delta % 25-26' = DIVIDE ( [Delta $ 25-26], [FY25 $] )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: 02 Variance Analysis
+		lineageTag: e2f3a4b5-c6d7-4e8f-9a0b-1c2d3e4f5a6b
+
+	measure 'Delta Label' =
+			VAR d = [Delta $]
+			RETURN
+			    IF ( d >= 0, "+" & FORMAT ( d, "#,##0.0" ) & "M", FORMAT ( d, "#,##0.0" ) & "M" )
+		displayFolder: 02 Variance Analysis
+		lineageTag: ef3614ac-a8a7-43be-a8f9-a21dc73e3a31
+
+	measure 'Share of FY27' = DIVIDE ( [FY27 $], CALCULATE ( [FY27 $], ALL ( OP5[service_agency_acronym] ) ) )
+		formatString: 0.0%
+		displayFolder: 03 Portfolio & Ranks
+		lineageTag: 7734a7f9-5d0b-40cd-999e-614e104d08af
+
+	measure 'Agency Rank FY27' = RANKX ( ALL ( OP5[service_agency_acronym] ), [FY27 $], , DESC )
+		formatString: 0
+		displayFolder: 03 Portfolio & Ranks
+		lineageTag: 75108e0b-cc1d-467d-9db4-a13ecee32508
+
+	measure 'Top 5 Flag' = IF ( [Agency Rank FY27] <= 5, 1, 0 )
+		formatString: 0
+		displayFolder: 03 Portfolio & Ranks
+		lineageTag: ebd734e8-c8fd-4c85-a958-71943f423fc5
+
+	measure 'Agencies Growing' =
+			CALCULATE (
+			    COUNTROWS ( VALUES ( OP5[service_agency_acronym] ) ),
+			    FILTER ( VALUES ( OP5[service_agency_acronym] ), [Delta $] > 0 )
+			)
+		formatString: 0
+		displayFolder: 03 Portfolio & Ranks
+		lineageTag: 72b450d4-068b-45ec-930c-47bf2aa820db
+
+	measure 'Agencies Shrinking' =
+			CALCULATE (
+			    COUNTROWS ( VALUES ( OP5[service_agency_acronym] ) ),
+			    FILTER ( VALUES ( OP5[service_agency_acronym] ), [Delta $] < 0 )
+			)
+		formatString: 0
+		displayFolder: 03 Portfolio & Ranks
+		lineageTag: bc82da0a-7a01-46a2-be4d-28461f591048
+
+	measure 'Line Items Growing' =
+			CALCULATE (
+			    COUNTROWS ( VALUES ( OP5[line_item_title] ) ),
+			    FILTER ( VALUES ( OP5[line_item_title] ), [Delta $] > 0 )
+			)
+		formatString: 0
+		displayFolder: 03 Portfolio & Ranks
+		lineageTag: b1c2d3e4-f5a6-4b7c-8d9e-0f1a2b3c4d5e
+
+	measure 'Line Items Shrinking' =
+			CALCULATE (
+			    COUNTROWS ( VALUES ( OP5[line_item_title] ) ),
+			    FILTER ( VALUES ( OP5[line_item_title] ), [Delta $] < 0 )
+			)
+		formatString: 0
+		displayFolder: 03 Portfolio & Ranks
+		lineageTag: c2d3e4f5-a6b7-4c8d-9e0f-1a2b3c4d5e6f
+
+	measure 'Mover Flag' =
+			VAR _rankUp =
+			    RANKX (
+			        ALL ( OP5[service_agency_acronym], OP5[line_item_title] ),
+			        [Delta $], , DESC
+			    )
+			VAR _rankDown =
+			    RANKX (
+			        ALL ( OP5[service_agency_acronym], OP5[line_item_title] ),
+			        [Delta $], , ASC
+			    )
+			RETURN
+			    IF ( _rankUp <= 5 || _rankDown <= 5, 1, 0 )
+		formatString: 0
+		displayFolder: 03 Portfolio & Ranks
+		lineageTag: cd1aab6e-db8f-4aab-a629-f9777ef0e469
+
+	measure 'New Starts Total $' =
+			CALCULATE (
+			    [FY27 $],
+			    FILTER ( VALUES ( OP5[line_item_title] ), [FY26 $] = 0 && [FY27 $] > 0 )
+			)
+		formatString: +#,##0.0;-#,##0.0;0.0
+		displayFolder: 04 Lifecycle Measures
+		lineageTag: a2b3c4d5-e6f7-4a1b-8c2d-3e4f5a6b7c8d
+
+	measure 'Terminations Total $' =
+			CALCULATE (
+			    0 - [FY26 $],
+			    FILTER ( VALUES ( OP5[line_item_title] ), [FY26 $] > 0 && [FY27 $] = 0 )
+			)
+		formatString: +#,##0.0;-#,##0.0;0.0
+		displayFolder: 04 Lifecycle Measures
+		lineageTag: b3c4d5e6-f7a8-4b1c-9d2e-4f5a6b7c8d9e
+
+	measure 'Surge Total $' =
+			CALCULATE (
+			    [Delta $],
+			    FILTER ( VALUES ( OP5[line_item_title] ), [FY26 $] > 0 && [Delta %] >= 0.50 )
+			)
+		formatString: +#,##0.0;-#,##0.0;0.0
+		displayFolder: 04 Lifecycle Measures
+		lineageTag: c4d5e6f7-a8b9-4c1d-0e2f-5a6b7c8d9e0f
+
+	measure 'Executive Narrative' =
+			VAR ToplineDelta = [Delta $]
+			VAR ToplinePct = [Delta %]
+			VAR TopAgency = TOPN ( 1, VALUES ( OP5[service_agency_acronym] ), [Delta $], DESC )
+			VAR TopAgencyName = CONCATENATEX ( TopAgency, OP5[service_agency_acronym], ", " )
+			VAR TopAgencyDelta = CALCULATE ( [Delta $], TopAgency )
+			RETURN
+			    "Defense-Wide O&M FY2027 President's Budget requests $" & FORMAT ( [FY27 $] / 1000, "#,##0.00" ) &
+			    "B, representing a net shift of " & IF ( ToplineDelta >= 0, "+$", "-$" ) &
+			    FORMAT ( ABS ( ToplineDelta ), "#,##0.0" ) & "M (" & FORMAT ( ToplinePct, "+0.0%;-0.0%" ) &
+			    ") over FY26 Enacted. Primary expansion driver: " & TopAgencyName & " (+$" &
+			    FORMAT ( TopAgencyDelta, "#,##0.0" ) & "M)."
+		displayFolder: 05 Executive Intelligence
+		lineageTag: e5f6a7b8-c9d0-4e1f-2a3b-4c5d6e7f8a9b
+
+	measure 'Page 2 Title' =
+			VAR _sel = SELECTEDVALUE ( OP5[service_agency_acronym], "All Defense Agencies" )
+			RETURN _sel & ": FY25 to FY27 Line Item Detail"
+		displayFolder: 05 Executive Intelligence
+		lineageTag: 961a15bc-088f-412e-ac58-26befe30d9d8
+
+	measure 'Dynamic Page Title' = "FY2027 Defense-Wide O&M Overview" & IF(ISFILTERED(Agency[service_agency_acronym]), " | " & SELECTEDVALUE(Agency[service_agency_acronym], "Multiple Agencies"), " | All 28 Defense Agencies")
+		displayFolder: 05 Executive Intelligence
+		lineageTag: d1e2f3a4-b5c6-4d7e-8f9a-0b1c2d3e4f5a
+
+	measure 'Agency Color' = IF ( [Top 5 Flag] = 1, "#1B365D", "#A6B1C2" )
+		displayFolder: 06 UI & Formatting
+		lineageTag: 5a6b7c8d-9e0f-4a1b-8c2d-3e4f5a6b7c8d
+
+	measure 'Delta Color' = IF ( [Delta $] > 0, "#107C41", IF ( [Delta $] < 0, "#D83B01", "#595959" ) )
+		displayFolder: 06 UI & Formatting
+		lineageTag: 6999cd88-c386-4c23-a25f-53d32b5fc593
+
+	measure 'Bridge Label' = "FY26 to FY27"
+		displayFolder: 06 UI & Formatting
+		lineageTag: c7a82f19-6551-4c8a-a6ff-a1139d4cb72a
+
+	column service_agency_name
+		dataType: string
+		lineageTag: 2942b9bf-0bcb-4050-8ba5-6e09e61c7ccd
+		summarizeBy: none
+		sourceColumn: service_agency_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column service_agency_acronym
+		dataType: string
+		lineageTag: 75937e19-8b6c-46ae-a57e-95a4e89ded52
+		summarizeBy: none
+		sourceColumn: service_agency_acronym
+
+		annotation SummarizationSetBy = Automatic
+
+	column appropriation_code
+		dataType: string
+		lineageTag: 39dc8ef7-e31b-4227-ace7-6185dad0d955
+		summarizeBy: none
+		sourceColumn: appropriation_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column appropriation_name
+		dataType: string
+		lineageTag: 3e133f11-1776-4622-b067-ed7ee0aeddf1
+		summarizeBy: none
+		sourceColumn: appropriation_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column appropriation_type
+		dataType: string
+		lineageTag: 5eeaf6dd-456d-4a26-bb27-45ab8050d8c6
+		summarizeBy: none
+		sourceColumn: appropriation_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column exhibit_type
+		dataType: string
+		lineageTag: 1ee48175-3df9-422a-8b7d-913d449656ff
+		summarizeBy: none
+		sourceColumn: exhibit_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_file
+		dataType: string
+		lineageTag: 5351c66e-46a5-49eb-bcf0-38c510f3ad55
+		summarizeBy: none
+		sourceColumn: source_file
+
+		annotation SummarizationSetBy = Automatic
+
+	column file_format
+		dataType: string
+		lineageTag: a0982745-ddb3-458f-8eb2-86f05e5e6654
+		summarizeBy: none
+		sourceColumn: file_format
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_lifecycle_stage
+		dataType: string
+		lineageTag: 59da6877-b357-4dd9-a9b5-eb96f3a9bea7
+		summarizeBy: none
+		sourceColumn: data_lifecycle_stage
+
+		annotation SummarizationSetBy = Automatic
+
+	column line_item_title
+		dataType: string
+		lineageTag: c868451c-5d6d-4205-bb22-169f256c171d
+		summarizeBy: none
+		sourceColumn: line_item_title
+
+		annotation SummarizationSetBy = Automatic
+
+	column budget_activity_title
+		dataType: string
+		lineageTag: 3d45920e-3040-415c-b3d2-36f0e5702494
+		summarizeBy: none
+		sourceColumn: budget_activity_title
+
+		annotation SummarizationSetBy = Automatic
+
+	column cost_units
+		dataType: string
+		lineageTag: 0f233ecc-e9dd-4bae-9820-f207f35c20f3
+		summarizeBy: none
+		sourceColumn: cost_units
+
+		annotation SummarizationSetBy = Automatic
+
+	column FY
+		dataType: int64
+		formatString: 0
+		lineageTag: dad47cba-4309-4a15-92eb-945d8319d74e
+		summarizeBy: none
+		sourceColumn: FY
+
+		annotation SummarizationSetBy = Automatic
+
+	column Amount
+		dataType: double
+		formatString: #,##0.0
+		lineageTag: d1434840-0af6-49e3-a934-3acb45aa8da2
+		summarizeBy: sum
+		sourceColumn: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+	column budget_activity_number
+		dataType: string
+		lineageTag: cb89a612-181c-4aa7-b200-f867478a33fc
+		summarizeBy: none
+		sourceColumn: budget_activity_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column budget_sub_activity_number
+		dataType: string
+		lineageTag: df05604f-07e7-4b7b-9b9a-f76f920813dd
+		summarizeBy: none
+		sourceColumn: budget_sub_activity_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column budget_cycle
+		dataType: string
+		lineageTag: c94ee1a9-d13d-4157-9c59-6facf93a8aa0
+		summarizeBy: none
+		sourceColumn: budget_cycle
+
+		annotation SummarizationSetBy = Automatic
+
+	column budget_sub_activity_title
+		dataType: string
+		lineageTag: 0c669c28-a1f0-4bdf-8007-9b8bf4433804
+		summarizeBy: none
+		sourceColumn: budget_sub_activity_title
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sum of budget_year'
+		dataType: string
+		lineageTag: 346c3bab-8a54-455c-abda-fbc136e12d2f
+		summarizeBy: none
+		sourceColumn: Sum of budget_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sum of cost_all_prior_years'
+		dataType: string
+		lineageTag: 60fba01b-21ef-4552-b746-4d6a30ecc26f
+		summarizeBy: none
+		sourceColumn: Sum of cost_all_prior_years
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: c6a1a429-8367-4c68-ac07-7f7a6898198a
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column justification
+		dataType: string
+		lineageTag: 5cef1480-6a24-49d2-bb60-bf979c3455df
+		summarizeBy: none
+		sourceColumn: justification
+
+		annotation SummarizationSetBy = Automatic
+
+	column line_item_number
+		dataType: string
+		lineageTag: 6da7e289-6726-4b85-bb47-7dcd02be832e
+		summarizeBy: none
+		sourceColumn: line_item_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column program_element
+		dataType: string
+		lineageTag: 28ddb573-52e6-4965-bed4-a59805bed706
+		summarizeBy: none
+		sourceColumn: program_element
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: string
+		lineageTag: 4aad8b2c-3fc5-4134-b05c-9c52cc81c4cf
+		summarizeBy: none
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: string
+		lineageTag: 58a17a19-3373-4770-ac9f-aabec2330ee0
+		summarizeBy: none
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: string
+		lineageTag: 737a2934-a52d-4bb7-87c3-9a1dedd5daee
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		dataType: string
+		lineageTag: d184cd0b-b053-4852-8465-7553d896673c
+		summarizeBy: none
+		sourceColumn: Day
+
+		annotation SummarizationSetBy = Automatic
+
+	partition OP5 = m
+		mode: import
+		source =
+				let
+				  Source = Csv.Document(File.Contents("C:\Users\peter\ODBA DBDP-114 Check\data\Defense_Wide_OM_PB27.csv"),[Delimiter=",", Columns=28, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				  #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				  #"Replaced Nulls" = Table.ReplaceValue(#"Promoted Headers",null,"Core Operations",Replacer.ReplaceValue,{"budget_activity_title"}),
+				  #"Replaced Blanks" = Table.ReplaceValue(#"Replaced Nulls","","Core Operations",Replacer.ReplaceValue,{"budget_activity_title"}),
+				  #"Renamed Columns" = Table.RenameColumns(#"Replaced Blanks",{{"Attribute", "FY"}, {"Sum of Value", "Amount"}}),
+				  #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns",{{"FY", Int64.Type}, {"Amount", type number}})
+				in
+				  #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
